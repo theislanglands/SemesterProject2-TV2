@@ -38,7 +38,7 @@ public class Production {
     public void addPerson(Person person){
         this.personArrayList.add(person);
     }
-    
+
     public void setPersonArrayList(ArrayList<Person> personArrayList) {
         this.personArrayList = personArrayList;
     }
