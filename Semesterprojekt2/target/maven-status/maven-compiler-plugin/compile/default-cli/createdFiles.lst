@@ -1,4 +1,6 @@
-org\example\App.class
-org\example\PrimaryController.class
+domain\Produktion.class
+org\presentation\SecondaryController.class
+domain\Person.class
+org\presentation\App.class
 module-info.class
-org\example\SecondaryController.class
+org\presentation\PrimaryController.class
