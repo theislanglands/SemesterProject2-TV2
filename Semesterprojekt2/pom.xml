@@ -37,7 +37,9 @@
                 <version>0.0.4</version>
                 <configuration>
                     <mainClass>org.example.App</mainClass>
+
                     <executable>
+                        <!--Aksel Desktop-->
                         C:/Users/Aksel/.jdks/openjdk-15.0.1/bin/java
                     </executable>
 
