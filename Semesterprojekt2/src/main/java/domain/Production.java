@@ -1,22 +1,33 @@
 package domain;
+import java.util.Date;
+
+//Att. releaseDate refererer til det dato produktionen blev released.
+//Skal krediterings-klassen droppes? Skal vi så bruge en hashMap / ArrayList for kreditering inde på den specifikke produktionen?
+//toString-metoder for at sende information til databasen.
+
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Production {
 
     private String name;
     private String productionId;
+    private Date releaseDate;
     private ArrayList<Person> personArrayList;
 
-    public Production(String name, String productionId) {
+    public Production(String name, String productionId, Date productionDate) {
         this.name = name;
         this.productionId = productionId;
+        this.releaseDate = productionDate;
         personArrayList = new ArrayList<>();
     }
 
     public String getName() {
         return name;
+    }
+
+    public Date getDate() {
+        return releaseDate;
     }
 
     public void setName(String name) {
@@ -41,5 +52,10 @@ public class Production {
 
     public void setPersonArrayList(ArrayList<Person> personArrayList) {
         this.personArrayList = personArrayList;
+    }
+
+    @Override
+    public String toString() {
+        return name + "," + productionId + "," + releaseDate + "," + personArrayList;
     }
 }

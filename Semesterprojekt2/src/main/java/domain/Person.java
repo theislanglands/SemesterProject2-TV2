@@ -2,7 +2,9 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Person {
+//toString-metoder for at sende information til databasen.
+
+public abstract class Person {
 
     private String name;
     private String role;
@@ -49,5 +51,16 @@ public class Person {
 
     public void setProductions(ArrayList<Production> productions) {
         this.productions = productions;
+    }
+
+    //En rættighedsmetode for hver change
+    public void changeProduction(){ if(this instanceof Producer || this instanceof Administrator){
+
+        }
+    }
+
+    @Override
+    public String toString() {
+        return name + "," + role + "," + productions;
     }
 }
