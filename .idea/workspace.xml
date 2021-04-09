@@ -23,11 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Actor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Administrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Producer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +56,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Application.App (1)">
     <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -110,15 +110,32 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1616500719285</updated>
+      <workItem from="1617969913151" duration="383000" />
+      <workItem from="1617970312813" duration="111000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="skelettet" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

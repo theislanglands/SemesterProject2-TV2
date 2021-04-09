@@ -14,6 +14,7 @@ public class Production {
     private String productionId;
     private Date releaseDate;
     private ArrayList<Person> personArrayList;
+    private boolean validation = false;
 
     public Production(String name, String productionId, Date productionDate) {
         this.name = name;
@@ -52,6 +53,14 @@ public class Production {
 
     public void setPersonArrayList(ArrayList<Person> personArrayList) {
         this.personArrayList = personArrayList;
+    }
+
+    public void setValidation(boolean bool){
+        validation = bool;
+    }
+
+    public boolean getValidation(){
+        return validation;
     }
 
     @Override
