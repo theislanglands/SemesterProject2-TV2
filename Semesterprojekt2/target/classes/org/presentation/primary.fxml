@@ -29,8 +29,8 @@
                   <Image url="@Logo/Artboard-1.png" />
                </image>
             </ImageView>
-            <TextArea layoutX="56.0" layoutY="273.0" prefHeight="53.0" prefWidth="331.0" />
-            <TextArea layoutX="55.0" layoutY="369.0" prefHeight="53.0" prefWidth="331.0" />
+            <TextArea layoutX="56.0" layoutY="273.0" prefHeight="53.0" prefWidth="331.0" promptText="E-mail" />
+            <TextArea layoutX="55.0" layoutY="369.0" prefHeight="53.0" prefWidth="331.0" promptText="Adgangskode" />
             <Text fill="WHITE" layoutX="175.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log ind">
                <font>
                   <Font name="AlrightSans-Black" size="26.0" />
@@ -46,22 +46,12 @@
                   <Font name="AlrightSans-Regular" size="15.0" />
                </font>
             </Hyperlink>
-            <Text fill="#afafaf" layoutX="70.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Text>
-            <Text fill="#afafaf" layoutX="60.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adgangskode">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Text>
             <Hyperlink layoutX="240.0" layoutY="459.0" text="Glemt adgangskode?">
                <font>
                   <Font name="AlrightSans-Regular" size="15.0" />
                </font>
             </Hyperlink>
-            <Button fx:id="primaryButton" layoutX="14.0" layoutY="540.0" mnemonicParsing="false" onAction="#switchToSecondary" prefHeight="61.0" prefWidth="129.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="ADMIN" textFill="WHITE">
+            <Button fx:id="primaryButton" layoutX="14.0" layoutY="540.0" mnemonicParsing="false" onAction="#switchToAdministration" prefHeight="61.0" prefWidth="129.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="ADMIN" textFill="WHITE">
                <font>
                   <Font name="AlrightSans-Black" size="19.0" />
                </font>
