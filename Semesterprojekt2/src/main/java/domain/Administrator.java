@@ -1,10 +1,22 @@
 package domain;
 
-public class Administrator extends Person{
+import Interfaces.AdminInterface;
 
-    public Administrator(String name) {
-        super(name);
+
+
+public class Administrator extends Producer implements AdminInterface{
+
+    public Administrator(){
+
     }
 
+    public Administrator(int ID, String firstName, String lastName) {
+        super(ID, firstName, lastName);
+    }
+
+    @Override
+    public void verifyProduction(Production production) {
+
+    }
 
 }

@@ -1,22 +1,38 @@
 package domain;
 
-public class Producer extends Person{
+import Interfaces.ProducerInterface;
 
-    private String login;
+import java.util.ArrayList;
+import java.util.Date;
 
-    public Producer(String name) {
-        super(name);
+public class Producer extends Viewer implements ProducerInterface {
+
+    ArrayList<Production> productions;
+
+    public Producer(){
+        //Facade
     }
 
-    public Producer(String name, String role) {
-        super(name, role);
-    }
-
-    public Producer(String name, String role, Production production) {
-        super(name, role, production);
+    public Producer(int ID, String firstName, String lastName) {
+        super(ID, firstName, lastName);
     }
 
 
+    @Override
+    public void addProduction(int ID, String Name, Date date) {
+        //implementering
 
+        Production prod = new Production(Name, ID, date);
+
+    }
+
+    @Override
+    public void addCredit(Production production) {
+
+    }
+
+    private void getProductions(){
+       // productions = data.getProductions;
+    }
 
 }
