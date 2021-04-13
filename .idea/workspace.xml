@@ -23,11 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Actor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Administrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Producer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/.idea/Semesterprojekt2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/Interfaces/DomainInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/dataMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/dataMain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +47,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.1\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -59,6 +59,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.App (1)">
     <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

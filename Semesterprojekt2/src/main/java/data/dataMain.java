@@ -1,4 +1,6 @@
 package data;
 
-public class dataMain {
+import Interfaces.DataLayerInterface;
+
+public class dataMain implements DataLayerInterface {
 }
