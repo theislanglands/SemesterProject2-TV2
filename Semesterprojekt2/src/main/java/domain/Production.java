@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class Production {
 
     private String name;
-    private String productionId;
+    private int productionId;
     private Date releaseDate;
     private ArrayList<Person> personArrayList;
     private boolean validation = false;
 
-    public Production(String name, String productionId, Date productionDate) {
+    public Production(String name, int productionId, Date productionDate) {
         this.name = name;
         this.productionId = productionId;
         this.releaseDate = productionDate;
@@ -35,11 +35,11 @@ public class Production {
         this.name = name;
     }
 
-    public String getProductionId() {
+    public int getProductionId() {
         return productionId;
     }
 
-    public void setProductionId(String productionId) {
+    public void setProductionId(int productionId) {
         this.productionId = productionId;
     }
 

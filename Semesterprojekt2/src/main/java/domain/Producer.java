@@ -2,10 +2,12 @@ package domain;
 
 import Interfaces.ProducerInterface;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Producer extends Viewer implements ProducerInterface {
 
+    ArrayList<Production> productions;
 
     public Producer(){
         //Facade
@@ -18,6 +20,9 @@ public class Producer extends Viewer implements ProducerInterface {
 
     @Override
     public void addProduction(int ID, String Name, Date date) {
+        //implementering
+
+        Production prod = new Production(Name, ID, date);
 
     }
 
@@ -26,18 +31,8 @@ public class Producer extends Viewer implements ProducerInterface {
 
     }
 
-    @Override
-    public void search(String searchString) {
-
+    private void getProductions(){
+       // productions = data.getProductions;
     }
 
-    @Override
-    public void searchProduction(String searchString) {
-
-    }
-
-    @Override
-    public void searchCredit(String searchString) {
-
-    }
 }

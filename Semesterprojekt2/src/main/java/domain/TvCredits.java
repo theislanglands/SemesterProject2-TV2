@@ -8,46 +8,41 @@ import java.util.Date;
 
 public class TvCredits implements AdminInterface{
 
-    private Viewer viewer;
-    private Producer producer;
-    private Administrator admin;
+    private Administrator facade;
 
     public TvCredits(){
-        viewer = new Viewer();
-        producer = new Producer();
-        admin = new Administrator();
+        facade = new Administrator();
     }
-
 
     //Calling implementation in associated classes.
     @Override
     public void verifyProduction(Production production) {
-        admin.verifyProduction(production);
+        facade.verifyProduction(production);
     }
 
     @Override
     public void addProduction(int ID, String Name, Date date) {
-        producer.addProduction(ID, Name, date);
+        facade.addProduction(ID, Name, date);
     }
 
     @Override
     public void addCredit(Production production) {
-        producer.addCredit(production);
+        facade.addCredit(production);
     }
 
     @Override
     public void search(String searchString) {
-        viewer.search(searchString);
+        facade.search(searchString);
     }
 
     @Override
     public void searchProduction(String searchString) {
-        viewer.searchProduction(searchString);
+        facade.searchProduction(searchString);
     }
 
     @Override
     public void searchCredit(String searchString) {
-        viewer.searchCredit(searchString);
+        facade.searchCredit(searchString);
     }
 
 

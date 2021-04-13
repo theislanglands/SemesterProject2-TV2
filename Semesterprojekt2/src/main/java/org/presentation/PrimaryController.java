@@ -10,7 +10,6 @@ public class PrimaryController {
     TvCredits facade = new TvCredits();
 
 
-
     @FXML
     private void switchToSecondary() throws IOException {
 

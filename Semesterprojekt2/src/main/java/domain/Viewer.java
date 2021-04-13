@@ -2,6 +2,7 @@ package domain;
 
 import Interfaces.ViewerInterface;
 
+
 public class Viewer extends User implements ViewerInterface {
 
 
@@ -11,6 +12,10 @@ public class Viewer extends User implements ViewerInterface {
 
     public Viewer(int ID, String firstName, String lastName) {
         super(ID, firstName, lastName);
+    }
+
+    public Viewer(int ID){
+        super(ID);
     }
 
     @Override

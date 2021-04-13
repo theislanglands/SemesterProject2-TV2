@@ -1,6 +1,6 @@
 package domain;
 
-public class User {
+public abstract class User {
 
     private int ID;
     private String firstName;
@@ -14,6 +14,10 @@ public class User {
         this.ID = ID;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public User(int ID){
+        this.ID = ID;
     }
 
     public int getID() {
