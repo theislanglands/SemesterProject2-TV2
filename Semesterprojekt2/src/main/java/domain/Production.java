@@ -1,4 +1,5 @@
 package domain;
+import java.io.Serializable;
 import java.util.Date;
 
 //Att. releaseDate refererer til det dato produktionen blev released.
@@ -8,7 +9,7 @@ import java.util.Date;
 
 import java.util.ArrayList;
 
-public class Production {
+public class Production implements Serializable {
 
     private String name;
     private int productionId;
