@@ -1,4 +1,4 @@
-package data;
+/* package data;
 
 public class VOP_inpiration {
     package vop.serialio;
@@ -79,3 +79,4 @@ import java.util.logging.Logger;
     }
 
 }
+*/
