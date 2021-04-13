@@ -1,7 +1,9 @@
 package Interfaces;
 
+import domain.Production;
+
 public interface DataLayerInterface {
 
-    void saveProduktion(Production prod);
+    void saveProduction(Production prod);
     Production[] getProduction();
 }
