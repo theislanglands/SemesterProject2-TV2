@@ -53,11 +53,8 @@ public abstract class Person {
         this.productions = productions;
     }
 
-    //En rættighedsmetode for hver change
-    public void changeProduction(){ if(this instanceof Producer || this instanceof Administrator){
 
-        }
-    }
+
 
     @Override
     public String toString() {
