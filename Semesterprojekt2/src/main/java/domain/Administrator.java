@@ -2,7 +2,7 @@ package domain;
 
 import Interfaces.AdminInterface;
 
-import java.util.Date;
+
 
 public class Administrator extends Producer implements AdminInterface{
 
