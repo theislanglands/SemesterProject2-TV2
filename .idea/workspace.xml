@@ -23,16 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProductionsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProducerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProducerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/productions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/productions.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/productions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/productions.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/maven-status/maven-compiler-plugin/compile/default-cli/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/maven-status/maven-compiler-plugin/compile/default-cli/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +150,7 @@
       <workItem from="1617970549241" duration="612000" />
       <workItem from="1618238094088" duration="15000" />
       <workItem from="1618306704507" duration="7337000" />
-      <workItem from="1618918736542" duration="2540000" />
+      <workItem from="1618918736542" duration="2859000" />
     </task>
     <servers />
   </component>

@@ -16,13 +16,6 @@ import javafx.scene.control.TextArea;
 public class ProducerController {
 
 
-    public TextArea productionsTextArea;
-
-    TvCredits tvCredits = TvCredits.getInstance();
-
-
-    List<Production> productions = tvCredits.getProductions();
-
 
     @FXML
     private void switchToPrimary() throws IOException {
