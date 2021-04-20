@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.AdministrationController">
+   <children>
+      <MenuButton layoutX="14.0" layoutY="190.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="265.0" style="-fx-background-color: black;" text="Godkend krediteringer" textFill="WHITE">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Se verifieringsliste" />
+          <MenuItem mnemonicParsing="false" text="Se verifierede produktioner" />
+            <MenuItem mnemonicParsing="false" text="Se  nægtede produktioner" />
+        </items>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </MenuButton>
+      <Label layoutX="923.0" layoutY="28.0" text="Mette Frederiksen" textFill="WHITE">
+         <font>
+            <Font name="AlrightSans-Regular" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="23.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE">
+         <font>
+            <Font name="AlrightSans-Regular" size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="66.0" text="20 marts" textFill="WHITE">
+         <font>
+            <Font name="AlrightSans-Regular" size="17.0" />
+         </font>
+      </Label>
+      <MenuButton layoutX="14.0" layoutY="258.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="265.0" style="-fx-background-color: black;" text="Søg produktioner" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Se produktioner" />
+            <MenuItem mnemonicParsing="false" text="Ændre i produktion" />
+            <MenuItem mnemonicParsing="false" text="Tilføj ny produktion" />
+         </items>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </MenuButton>
+      <MenuButton layoutX="15.0" layoutY="450.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="263.0" style="-fx-background-color: black;" text="Support" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Edit FAQ" />
+            <MenuItem mnemonicParsing="false" text="Håndtere quieries" />
+         </items>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </MenuButton>
+      <MenuButton layoutX="15.0" layoutY="325.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="263.0" style="-fx-background-color: black;" text="Adminstrere bruger" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Indbakke" />
+            <MenuItem mnemonicParsing="false" text="Sendt" />
+            <MenuItem mnemonicParsing="false" text="Arkiveret" />
+         </items>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </MenuButton>
+      <MenuButton layoutX="15.0" layoutY="386.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="263.0" style="-fx-background-color: black;" text="Brugerinformation" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Ændre information" />
+            <MenuItem mnemonicParsing="false" text="Log ud" />
+         </items>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </MenuButton>
+      <Label layoutX="990.0" layoutY="57.0" text="Administrator" textFill="WHITE">
+         <font>
+            <Font name="AlrightSans-Regular" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="322.0" fitWidth="575.0" layoutX="407.0" layoutY="297.0">
+         <image>
+            <Image url="@Logo/Artboard-1.png" />
+         </image>
+      </ImageView>
+      <MenuButton layoutX="1094.0" layoutY="14.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;">
+         <items>
+            <MenuItem fx:id="bruger" mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
+         </items>
+         <graphic>
+            <ImageView fitHeight="52.0" fitWidth="56.0">
+               <image>
+                  <Image url="@Logo/person-icon-white.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MenuButton>
+   </children>
+</AnchorPane>
