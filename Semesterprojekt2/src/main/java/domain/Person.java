@@ -4,60 +4,78 @@ import java.util.ArrayList;
 
 //toString-metoder for at sende information til databasen.
 
-public abstract class Person {
+public class Person {
 
-    private String name;
-    private String role;
-    private ArrayList<Production> productions = new ArrayList<>();
+    private int id;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private int phone;
+    private String email;
 
-    public Person(String name){
-        this.name = name;
+    public Person(int id, String firstName, String lastName, String address, int phone, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
     }
 
-    public Person(String name, String role){
-        this.name = name;
-        this.role = role;
+    public Person(){
+
+    };
+
+    public int getId() {
+        return id;
     }
 
-    public Person(String name, String role, Production production) {
-        this.name = name;
-        this.role = role;
-        this.productions.add(production);
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getRole() {
-        return role;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public ArrayList<Production> getProductions() {
-        return productions;
+    public String getAddress() {
+        return address;
     }
 
-    public void addProduction(Production production){
-        this.productions.add(production);
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public void setProductions(ArrayList<Production> productions) {
-        this.productions = productions;
+    public int getPhone() {
+        return phone;
     }
 
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public String toString() {
-        return name + "," + role + "," + productions;
+        return firstName + " " + lastName;
     }
 }
