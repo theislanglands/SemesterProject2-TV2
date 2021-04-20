@@ -1,5 +1,8 @@
 package domain;
-import java.io.File;
+import domain.enums.Genre;
+import domain.enums.Language;
+import domain.enums.ProductionType;
+
 import java.io.Serializable;
 import java.util.Date;
 
