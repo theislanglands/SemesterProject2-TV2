@@ -4,6 +4,10 @@ import Interfaces.DataLayerInterface;
 import domain.Person;
 import domain.Production;
 import domain.Credit;
+import domain.enums.CreditType;
+import domain.enums.Genre;
+import domain.enums.Language;
+import domain.enums.ProductionType;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,18 +33,18 @@ import java.util.List;
                 person1.setPhone(65926104);
                 person1.setEmail("BodilJoergensen@badehotellet.dk");
 
-                Person person2 = new Person(1235; "Amalie", "Dollerup", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
+                Person person2 = new Person(1235, "Amalie", "Dollerup", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
 
                 // Opretter krediteringer
                 Credit credit1 = new Credit();
-                credit1.setRole("Skuespiller");
-                credit1.setIsValidated(true);
+                credit1.setRole("Far til en eller anden");
+                credit1.setValidated(true);
                 credit1.setPerson(person1);
 
-                Credit credit2 = new Credit("Skuespiller", true, person2);
+                Credit credit2 = new Credit(person2,"Mor til Hans", CreditType.Medvirkende);
 
                 // Opretter liste med krediteringer
-                List<Credit> badehotelletCredits = new ArrayList<>();
+                ArrayList<Credit> badehotelletCredits = new ArrayList<>();
                 badehotelletCredits.add(credit1);
                 badehotelletCredits.add(credit2);
 
@@ -54,8 +58,8 @@ import java.util.List;
                 badehotellet.setHasSubtitle(true);
                 badehotellet.setHasSignLanguage(false);
                 badehotellet.setCredits(badehotelletCredits);
-                badehotellet.setIsActive(true);
-                badehotellet.setIsValidated(true);
+                badehotellet.setActive(true);
+                badehotellet.setValidated(true);
 
                 // Tilføjer produktion produktionslisten
                 returnProductions.add(badehotellet);
@@ -75,18 +79,24 @@ import java.util.List;
                 // Opretter krediteringer
                 Credit credit3 = new Credit();
                 credit3.setRole("Medvirkende");
-                credit3.setIsValidated(true);
+                credit3.setValidated(true);
                 credit3.setPerson(person3);
 
-                Credit credit4 = new Credit("Medvirkende", true, person4);
+                Credit credit4 = new Credit(person4, "En ny rolle", CreditType.Medvirkende);
 
                 // Oprette liste med krediteringer
-                List<Credit> dateMigNoegenCredits = new ArrayList<>();
+                ArrayList<Credit> dateMigNoegenCredits = new ArrayList<>();
                 dateMigNoegenCredits.add(credit3);
                 dateMigNoegenCredits.add(credit4);
 
+
+
                 // Oprette produktion 2
-                Production dateMigNoegen = new Production(2, "Date mig nøgen", new Date(4000), 20, true, false, dateMigNoegenCredits, true, true);
+                ArrayList<Genre> genres = new ArrayList<>();
+                genres.add(Genre.DRAMA);
+                Production dateMigNoegen = new Production(2, "Date mig nøgen", new Date(4000),genres,
+                        ProductionType.SERIES, 20, Language.DANISH, true, true,
+                        dateMigNoegenCredits, true, true);
 
                 // Tilføjer produktion produktionslisten
                 returnProductions.add(dateMigNoegen);
@@ -96,6 +106,6 @@ import java.util.List;
             }
         }
 
-    }
 
-}
+
+
