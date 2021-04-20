@@ -1,7 +1,9 @@
 package org.presentation;
 
 import java.io.IOException;
+import java.util.List;
 
+import domain.Production;
 import domain.TvCredits;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +16,7 @@ public class PrimaryController {
     @FXML
     private void switchToProducer() throws IOException {
         App.setRoot("producer");
+
     }
 
     /*Bliver brugt senere med roller

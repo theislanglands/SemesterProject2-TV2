@@ -45,7 +45,9 @@ public final class TvCredits {
 
     public static void main(String[] args) {
 
-        List<Production> testProductions = dataconnect.getProductions();
+        TvCredits tvCredits = TvCredits.getInstance();
+
+        List<Production> testProductions = tvCredits.getProductions();
         System.out.println(testProductions);
     }
 

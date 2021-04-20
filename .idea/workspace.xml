@@ -24,14 +24,20 @@
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/Interfaces/ViewerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/Interfaces/ViewerInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Administrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Producer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Producer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Viewer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProducerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProducerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/productions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/productions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/Interfaces/DataLayerInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/Interfaces/DataLayerInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataFacade$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataFacade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/dataMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/dataMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/domain/Credit.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/domain/Credit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/domain/TvCredits.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/domain/TvCredits.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/PrimaryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/PrimaryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/producer.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/productions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/productions.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,6 +118,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TvCredits" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="domain.TvCredits" />
+      <module name="Semesterprojekt2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -126,6 +145,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App (1)" />
+        <item itemvalue="Application.TvCredits" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
@@ -144,6 +164,7 @@
       <workItem from="1617970549241" duration="612000" />
       <workItem from="1618238094088" duration="15000" />
       <workItem from="1618306704507" duration="7337000" />
+      <workItem from="1618918736542" duration="1505000" />
     </task>
     <servers />
   </component>
