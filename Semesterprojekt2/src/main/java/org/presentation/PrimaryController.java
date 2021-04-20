@@ -8,17 +8,21 @@ import javafx.fxml.FXML;
 public class PrimaryController {
 
     @FXML
-    private void switchToAdministration() throws IOException {
-        App.setRoot("administration");
-    }
-
-    @FXML
     private void switchToProducer() throws IOException {
         App.setRoot("producer");
     }
 
+    /*Bliver brugt senere med roller
+    @FXML
+    private void switchToAdministration() throws IOException {
+        App.setRoot("administration");
+    }
+
+    Bilver brugt senere med roller
     @FXML
     private void switchToViewer() throws IOException {
         App.setRoot("viewer");
-    }
+    }*/
+
+
 }

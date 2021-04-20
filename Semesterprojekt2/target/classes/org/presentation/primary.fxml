@@ -51,17 +51,7 @@
                   <Font name="AlrightSans-Regular" size="15.0" />
                </font>
             </Hyperlink>
-            <Button fx:id="primaryButton" layoutX="14.0" layoutY="540.0" mnemonicParsing="false" onAction="#switchToAdministration" prefHeight="61.0" prefWidth="129.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="ADMIN" textFill="WHITE">
-               <font>
-                  <Font name="AlrightSans-Black" size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="primaryButton1" layoutX="158.0" layoutY="540.0" mnemonicParsing="false" onAction="#switchToProducer" prefHeight="61.0" prefWidth="129.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="PROD" textFill="WHITE">
-               <font>
-                  <Font name="AlrightSans-Black" size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="primaryButton2" layoutX="300.0" layoutY="540.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="61.0" prefWidth="129.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="SEER" textFill="WHITE">
+            <Button fx:id="primaryButton1" layoutX="129.0" layoutY="505.0" mnemonicParsing="false" onAction="#switchToProducer" prefHeight="61.0" prefWidth="183.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="LOG IND" textFill="WHITE">
                <font>
                   <Font name="AlrightSans-Black" size="19.0" />
                </font>

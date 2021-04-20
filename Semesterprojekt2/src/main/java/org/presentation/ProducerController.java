@@ -10,7 +10,18 @@ public class ProducerController {
         App.setRoot("primary");
     }
 
-    private void switchToCredits() throws IOException {
-        App.setRoot("credits");
+    @FXML
+    private void switchToProductions() throws IOException {
+        App.setRoot("productions");
+    }
+
+    @FXML
+    private void switchToAddProduction() throws IOException {
+        App.setRoot("AddProduction");
+    }
+
+    @FXML
+    private void switchToAddCredits() throws IOException {
+        App.setRoot("AddCredits");
     }
 }
