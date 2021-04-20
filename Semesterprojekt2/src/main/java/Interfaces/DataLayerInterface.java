@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface DataLayerInterface {
 
-    void saveProduction(Production prod);
+    //void saveProduction(Production prod);
     List<Production> getProductions();
 }

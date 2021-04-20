@@ -22,6 +22,9 @@ public class Credit {
         this.creditType = creditType;
     }
 
+    public Credit() {
+    }
+
     public Person getPerson() {
         return person;
     }
