@@ -1,28 +1,15 @@
 package data;
 
-public class dataMain {
-    package data;
-
 import Interfaces.DataLayerInterface;
 import domain.Person;
-import domain.Production;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-    public class dataMain {
-    package data;
-
-import Interfaces.DataLayerInterface;
 import domain.Production;
 import domain.Credit;
-import domain.Person;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+
 
         public class DataMain implements DataLayerInterface {
 
