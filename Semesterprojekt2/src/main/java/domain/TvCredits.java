@@ -1,18 +1,44 @@
 package domain;
 
 import Interfaces.*;
+import domain.enums.CreditType;
 
 import java.util.Date;
 
 //Controllerklasse
 
-public class TvCredits implements AdminInterface{
+public class TvCredits {
 
+    public TvCredits(){
+
+    }
+
+
+    public Production createProduction(int id, String name, Date releaseDate) {
+        return new Production(id, name, releaseDate);
+    }
+
+    public Credit createCredit(Person person, String role, CreditType creditType) {
+        return new Credit(person, role, creditType);
+    }
+
+    public void addCredit (Production production, Credit credit) {
+        production.addCredit(credit);
+    }
+
+
+    public static void main(String[] args) {
+        
+    }
+
+
+/*
     private Administrator facade;
 
     public TvCredits(){
         facade = new Administrator();
     }
+
 
     //Calling implementation in associated classes.
     @Override
@@ -44,7 +70,7 @@ public class TvCredits implements AdminInterface{
     public void searchCredit(String searchString) {
         facade.searchCredit(searchString);
     }
-
+*/
 
     // private Producer producerObj = new Producer(1,"Test", "Testsen");
    // private Administrator administrator = new Administrator(2,"Teste", "Testesen");

@@ -72,7 +72,7 @@ public class DataFacade implements DataLayerInterface {
 
 
     public static void main(String[] args) {
-
+/*
         // tester læs & skriv
         Production testProduktion = new Production("Badehotellet", "sæson1", new Date(5000));
         Production testProduktion2 = new Production("Tilbage til fremtiden", "del 3", new Date(100000));
@@ -91,5 +91,7 @@ public class DataFacade implements DataLayerInterface {
         DataFacade getData = new DataFacade();
         production = getData.getProductions();
         System.out.println(production);
+
+ */
     }
 }
