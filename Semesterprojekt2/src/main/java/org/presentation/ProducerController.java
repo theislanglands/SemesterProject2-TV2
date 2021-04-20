@@ -18,13 +18,10 @@ public class ProducerController {
 
     public TextArea productionsTextArea;
 
-
     TvCredits tvCredits = TvCredits.getInstance();
 
 
     List<Production> productions = tvCredits.getProductions();
-
-
 
 
     @FXML
@@ -35,15 +32,6 @@ public class ProducerController {
     @FXML
     private void switchToProductions() throws IOException {
         App.setRoot("productions");
-
-        //System.out.println(productionsTextArea.getText());
-
-        productionsTextArea.setText("Productions");
-
-        /*for (Production prod :
-                productions) {
-            productionsTextArea.appendText(prod.toString() + "\n");
-        }*/
 
     }
 
