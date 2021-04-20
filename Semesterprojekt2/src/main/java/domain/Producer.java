@@ -22,7 +22,7 @@ public class Producer extends Viewer implements ProducerInterface {
     public void addProduction(int ID, String Name, Date date) {
         //implementering
 
-        Production prod = new Production(Name, ID, date);
+        //Production prod = new Production(Name, ID, date);
 
     }
 
