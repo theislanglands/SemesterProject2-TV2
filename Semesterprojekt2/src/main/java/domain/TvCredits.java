@@ -2,15 +2,22 @@ package domain;
 
 import Interfaces.*;
 import domain.enums.CreditType;
+import javafx.scene.control.TableView;
 
 import java.util.Date;
 
 //Controllerklasse
 
-public class TvCredits {
+public final class TvCredits {
 
-    public TvCredits(){
+    private static final TvCredits INSTANCE = new TvCredits();
 
+    private TvCredits(){
+
+    }
+
+    public static TvCredits getInstance(){
+        return INSTANCE;
     }
 
 
