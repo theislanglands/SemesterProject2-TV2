@@ -1,10 +1,13 @@
 package domain;
 
 import Interfaces.*;
+import data.DataFacade;
+import data.DataMain;
 import domain.enums.CreditType;
-import javafx.scene.control.TableView;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 //Controllerklasse
 
@@ -12,7 +15,10 @@ public final class TvCredits {
 
     private static final TvCredits INSTANCE = new TvCredits();
 
+    private static DataLayerInterface dataconnect;
+
     private TvCredits(){
+        dataconnect = new DataMain();
 
     }
 
@@ -20,6 +26,9 @@ public final class TvCredits {
         return INSTANCE;
     }
 
+    public List<Production> getProductions() {
+        return dataconnect.getProductions();
+    }
 
     public Production createProduction(int id, String name, Date releaseDate) {
         return new Production(id, name, releaseDate);
@@ -36,6 +45,8 @@ public final class TvCredits {
 
     public static void main(String[] args) {
 
+        List<Production> testProductions = dataconnect.getProductions();
+        System.out.println(testProductions);
     }
 
 

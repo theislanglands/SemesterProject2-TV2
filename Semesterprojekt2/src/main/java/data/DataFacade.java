@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class DataFacade implements DataLayerInterface {
-
+public class DataFacade  {
+/*
     String fileName = "src/main/resources/Persistence/productions.tvc";
     File file = new File(fileName);
 
@@ -92,6 +92,8 @@ public class DataFacade implements DataLayerInterface {
         production = getData.getProductions();
         System.out.println(production);
 
- */
+
     }
+
+ */
 }
