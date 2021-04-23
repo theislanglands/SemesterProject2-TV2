@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.addCreditsController">
    <children>
       <Label layoutX="37.0" layoutY="23.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE">
          <font>
@@ -45,37 +45,37 @@
             <Font name="AlrightSans-Regular" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="backButton11" layoutX="965.0" layoutY="582.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE">
+      <Button fx:id="saveButton" layoutX="965.0" layoutY="582.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backButton111" layoutX="965.0" layoutY="222.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj kreditering" textFill="WHITE">
+      <Button fx:id="addCreditButton" layoutX="965.0" layoutY="222.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj kreditering" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backButton1111" layoutX="966.0" layoutY="732.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Godkend og aflevere" textFill="WHITE">
+      <Button fx:id="saveAndSubmitButton" layoutX="966.0" layoutY="732.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Godkend og aflevere" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backButton1112" layoutX="966.0" layoutY="292.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Aktive krediteringer" textFill="WHITE">
+      <Button fx:id="activeCreditsButton" layoutX="966.0" layoutY="292.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Aktive krediteringer" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backButton1113" layoutX="966.0" layoutY="155.0" mnemonicParsing="false" onAction="#switchToAddProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE">
+      <Button fx:id="addProductionButton" layoutX="966.0" layoutY="155.0" mnemonicParsing="false" onAction="#switchToAddProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="backButton112" layoutX="-24.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
+      <Button fx:id="myProductionsButton" layoutX="-24.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="backButton1121" layoutX="-39.0" layoutY="264.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Søg produktion" textFill="WHITE">
+      <Button fx:id="searchProductionButton" layoutX="-39.0" layoutY="264.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Søg produktion" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
@@ -96,7 +96,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button fx:id="addRole" layoutX="274.0" layoutY="255.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="175.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="+ Tilføj rolle" textFill="WHITE">
+      <Button fx:id="addRoleButton" layoutX="274.0" layoutY="255.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="175.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="+ Tilføj rolle" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>

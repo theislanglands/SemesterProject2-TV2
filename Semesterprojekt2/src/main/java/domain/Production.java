@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Production implements Serializable {
 
     //Enums: genre, type, language
-    private int id;
+    private String id; //e.g. nf221
     private String name;
     private Date releaseDate;
     private ArrayList<Genre> genre;
@@ -30,7 +30,7 @@ public class Production implements Serializable {
 
     private ArrayList<Credit> credits;
 
-    public Production(int id, String name, Date releaseDate, ArrayList<Genre> genre,
+    public Production(String id, String name, Date releaseDate, ArrayList<Genre> genre,
                       ProductionType productionType, int length, Language language, boolean hasSubtitle,
                       boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, boolean isValidated) {
         this.id = id;
@@ -46,7 +46,7 @@ public class Production implements Serializable {
         this.isActive = isActive;
     }
 
-    public Production(int id, String name, Date date){
+    public Production(String id, String name, Date date){
         this.id = id;
         this.name = name;
         this.releaseDate = date;
@@ -64,11 +64,11 @@ public class Production implements Serializable {
         credits.remove(credit);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
