@@ -23,12 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProductionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProductionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addProduction.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addProduction.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProductionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProductionsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/addProductionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/addProductionController.class" afterDir="false" />
+    </list>
+    <list id="0eabd785-16f1-4efa-a95d-283dba47f371" name="Changes by eemiiil" comment="">
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
+    </list>
+    <list id="d2fb45a6-ec1b-4449-96ac-6c42362ddedb" name="Changes by theislanglands" comment="">
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +58,18 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java">
+      <ranges>
+        <range start1="28" end1="29" start2="28" end2="30" changelist="0eabd785-16f1-4efa-a95d-283dba47f371" />
+        <range start1="34" end1="35" start2="35" end2="36" changelist="0eabd785-16f1-4efa-a95d-283dba47f371" />
+        <range start1="45" end1="45" start2="46" end2="47" changelist="0eabd785-16f1-4efa-a95d-283dba47f371" />
+        <range start1="46" end1="46" start2="48" end2="49" changelist="d2fb45a6-ec1b-4449-96ac-6c42362ddedb" />
+        <range start1="57" end1="57" start2="60" end2="63" changelist="daef0408-6247-4a34-b3df-884099aaa3f1" />
+        <range start1="145" end1="145" start2="151" end2="159" changelist="0eabd785-16f1-4efa-a95d-283dba47f371" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">

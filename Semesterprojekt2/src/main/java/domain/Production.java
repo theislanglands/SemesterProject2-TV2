@@ -26,13 +26,14 @@ public class Production implements Serializable {
     private boolean hasSubtitle;
     private boolean hasSignLanguage;
     private boolean isActive;
-    private boolean isValidated = false;
+    private boolean isValidated;
+    private int recommendedAge;
 
     private ArrayList<Credit> credits;
 
     public Production(String id, String name, Date releaseDate, ArrayList<Genre> genre,
                       ProductionType productionType, int length, Language language, boolean hasSubtitle,
-                      boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, boolean isValidated) {
+                      boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, int recommendedAge, boolean isValidated) {
         this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
@@ -43,7 +44,9 @@ public class Production implements Serializable {
         this.hasSubtitle = hasSubtitle;
         this.hasSignLanguage = hasSignLanguage;
         this.credits = credits;
+        this.recommendedAge = recommendedAge;
         this.isActive = isActive;
+        this.isValidated = false;
     }
 
     public Production(String id, String name, Date date){
@@ -54,6 +57,9 @@ public class Production implements Serializable {
 
     public Production(){
 
+    }
+
+    public Production(String nf2, String date_mig_nøgen, Date date, ArrayList<Genre> genres, ProductionType series, int i, Language danish, boolean b, boolean b1, ArrayList<Credit> dateMigNoegenCredits, boolean b2, boolean b3) {
     }
 
     public void addCredit(Credit credit){
@@ -142,6 +148,14 @@ public class Production implements Serializable {
 
     public void setCredits(ArrayList<Credit> credits) {
         this.credits = credits;
+    }
+
+    public int getRecommendedAge() {
+        return recommendedAge;
+    }
+
+    public void setRecommendedAge() {
+        this.recommendedAge = recommendedAge;
     }
 
     public boolean isActive() {

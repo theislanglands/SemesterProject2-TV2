@@ -134,11 +134,13 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="genreDropdown" layoutX="573.0" layoutY="526.0" prefHeight="27.0" prefWidth="224.0" />
+      <ChoiceBox fx:id="genreDropdown1" layoutX="573.0" layoutY="526.0" prefHeight="27.0" prefWidth="66.0" />
       <Label layoutX="406.0" layoutY="512.0" prefHeight="54.0" prefWidth="149.0" text="Genre" textFill="WHITE">
          <font>
             <Font name="System Font" size="19.0" />
          </font>
       </Label>
+      <ChoiceBox fx:id="genreDropdown2" layoutX="653.0" layoutY="526.0" prefHeight="27.0" prefWidth="66.0" />
+      <ChoiceBox fx:id="genreDropdown3" layoutX="733.0" layoutY="526.0" prefHeight="27.0" prefWidth="66.0" />
    </children>
 </AnchorPane>
