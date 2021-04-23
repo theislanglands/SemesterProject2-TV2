@@ -16,11 +16,21 @@ import java.util.List;
 
 public class DataMain implements DataLayerInterface {
 
+    // Liste til at simulere persistenslag
+    private List<Production> productionPersistence = new ArrayList<>();
+
     @Override
     public List<Production> getProductions() {
+    return productionPersistence;
+    }
 
-        // Denne liste viser alle de produktioner vi har i vores "database"
-        List<Production> returnProductions = new ArrayList<>();
+    @Override
+    public void saveProduction(Production prod) {
+        productionPersistence.add(prod);
+    }
+
+    public void createTestProductions() {
+
 
         // Opretter produktion 1: "Badehotellet"
         // Opretter personer
@@ -47,7 +57,6 @@ public class DataMain implements DataLayerInterface {
         badehotelletCredits.add(credit1);
         badehotelletCredits.add(credit2);
 
-
         // Opretter produktion
         Production badehotellet = new Production();
         badehotellet.setId(1);
@@ -61,8 +70,7 @@ public class DataMain implements DataLayerInterface {
         badehotellet.setValidated(true);
 
         // Tilføjer produktion produktionslisten
-        returnProductions.add(badehotellet);
-
+        saveProduction(badehotellet);
 
         //Opretter personer
         Person person3 = new Person();
@@ -88,7 +96,6 @@ public class DataMain implements DataLayerInterface {
         dateMigNoegenCredits.add(credit3);
         dateMigNoegenCredits.add(credit4);
 
-
         // Oprette produktion 2
         ArrayList<Genre> genres = new ArrayList<>();
         genres.add(Genre.DRAMA);
@@ -97,12 +104,18 @@ public class DataMain implements DataLayerInterface {
                 dateMigNoegenCredits, true, true);
 
         // Tilføjer produktion produktionslisten
-        returnProductions.add(dateMigNoegen);
+        saveProduction(dateMigNoegen);
+    }
 
+    public static void main(String[] args) {
+        DataLayerInterface dataconnect = new DataMain();
+        dataconnect.createTestProductions();
 
-        return returnProductions;
+        List<Production> testList = dataconnect.getProductions();
+        System.out.println(testList);
     }
 }
+
 
 
 
