@@ -23,7 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProducerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProducerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProductionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProductionsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addProduction.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addProduction.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProducerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProductionsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ProductionsController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +71,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../E-njoy/E-Njoy" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>

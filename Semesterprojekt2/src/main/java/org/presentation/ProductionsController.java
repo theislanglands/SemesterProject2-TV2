@@ -24,8 +24,8 @@ public class ProductionsController {
 
     }
 
-    public void switchToPrimary(ActionEvent actionEvent) {
-
+    public void switchToPrimary(ActionEvent actionEvent) throws IOException {
+        App.setRoot("primary");
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
