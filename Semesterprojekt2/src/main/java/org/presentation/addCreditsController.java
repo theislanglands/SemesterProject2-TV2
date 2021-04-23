@@ -19,7 +19,7 @@ public class addCreditsController {
     }
 
     public void switchToAddProduction(ActionEvent actionEvent) throws IOException {
-        App.setRoot("addProductions");
+        App.setRoot("addProduction");
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
