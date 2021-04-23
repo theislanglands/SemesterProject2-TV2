@@ -38,11 +38,10 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TextArea layoutX="406.0" layoutY="162.0" prefHeight="12.0" prefWidth="391.0" promptText="Produktionsselskab" text="Nordisk film" />
-      <TextArea layoutX="406.0" layoutY="219.0" prefHeight="12.0" prefWidth="391.0" promptText="Producent" />
-      <TextArea layoutX="406.0" layoutY="275.0" prefHeight="12.0" prefWidth="391.0" promptText="Instruktør" />
-      <TextArea layoutX="406.0" layoutY="333.0" prefHeight="12.0" prefWidth="391.0" promptText="Produktionstitel" />
-      <Button fx:id="saveButton" layoutX="955.0" layoutY="572.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE">
+      <TextArea fx:id="title" layoutX="406.0" layoutY="162.0" prefHeight="12.0" prefWidth="391.0" promptText="Titel" />
+      <TextArea fx:id="producent" layoutX="406.0" layoutY="219.0" prefHeight="12.0" prefWidth="391.0" promptText="Producent" />
+      <TextArea fx:id="director" layoutX="406.0" layoutY="275.0" prefHeight="12.0" prefWidth="391.0" promptText="Instruktør" />
+      <Button fx:id="saveButton" layoutX="955.0" layoutY="572.0" mnemonicParsing="false" onAction="#saveProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -77,7 +76,7 @@
             <Font name="AlrightSans-Regular" size="15.0" />
          </font>
       </Label>
-      <CheckBox layoutX="404.0" layoutY="669.0" mnemonicParsing="false" text="Undertekster" textFill="WHITE">
+      <CheckBox fx:id="subtitles" layoutX="404.0" layoutY="669.0" mnemonicParsing="false" text="Undertekster" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -87,69 +86,39 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="395.0" layoutY="211.0" text="*" textFill="RED">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="395.0" layoutY="268.0" text="*" textFill="RED">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="395.0" layoutY="331.0" text="*" textFill="RED">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <CheckBox layoutX="404.0" layoutY="703.0" mnemonicParsing="false" text="Teksttolkning" textFill="WHITE">
+      <CheckBox fx:id="CC" layoutX="404.0" layoutY="703.0" mnemonicParsing="false" text="Teksttolkning" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <DatePicker layoutX="406.0" layoutY="391.0" prefHeight="42.0" prefWidth="188.0" promptText="Release dato" />
-      <TextArea layoutX="620.0" layoutY="391.0" prefHeight="43.0" prefWidth="176.0" promptText="Længde" />
-      <ChoiceBox layoutX="573.0" layoutY="573.0" prefHeight="27.0" prefWidth="224.0" />
+      <DatePicker fx:id="date" layoutX="407.0" layoutY="341.0" prefHeight="42.0" prefWidth="188.0" promptText="Release dato" />
+      <TextArea fx:id="length" layoutX="621.0" layoutY="341.0" prefHeight="43.0" prefWidth="176.0" promptText="Længde" />
+      <ChoiceBox fx:id="typeDropdown" layoutX="573.0" layoutY="573.0" prefHeight="27.0" prefWidth="224.0" />
       <Label layoutX="406.0" layoutY="559.0" prefHeight="54.0" prefWidth="149.0" text="Produktionstype" textFill="WHITE">
          <font>
             <Font name="System Font" size="19.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="573.0" layoutY="614.0" prefHeight="27.0" prefWidth="224.0" />
+      <ChoiceBox fx:id="languageDropdown" layoutX="573.0" layoutY="614.0" prefHeight="27.0" prefWidth="224.0" />
       <Label layoutX="406.0" layoutY="600.0" prefHeight="54.0" prefWidth="149.0" text="Sprog" textFill="WHITE">
          <font>
             <Font name="System Font" size="19.0" />
          </font>
       </Label>
-      <TextArea layoutX="694.0" layoutY="104.0" prefHeight="43.0" prefWidth="102.0" promptText="Produktions-ID" />
+      <TextArea fx:id="productionID" layoutX="694.0" layoutY="104.0" prefHeight="43.0" prefWidth="102.0" promptText="Produktions-ID" />
       <Label layoutX="681.0" layoutY="104.0" text="*" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea layoutX="406.0" layoutY="450.0" prefHeight="43.0" prefWidth="188.0" promptText="Sæson" />
-      <Label layoutX="499.0" layoutY="445.0" prefHeight="54.0" prefWidth="126.0" text="Længde" textFill="WHITE">
-         <font>
-            <Font name="System Font" size="19.0" />
-         </font>
-      </Label>
-      <TextArea layoutX="622.0" layoutY="450.0" prefHeight="43.0" prefWidth="176.0" promptText="Episode" />
-      <Label layoutX="395.0" layoutY="391.0" text="*" textFill="RED">
+      <TextArea fx:id="season" layoutX="407.0" layoutY="400.0" prefHeight="43.0" prefWidth="188.0" promptText="Sæson" />
+      <TextArea fx:id="episode" layoutX="623.0" layoutY="400.0" prefHeight="43.0" prefWidth="176.0" promptText="Episode" />
+      <Label layoutX="395.0" layoutY="348.0" text="*" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="611.0" layoutY="391.0" text="*" textFill="RED">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <TextArea layoutX="404.0" layoutY="509.0" prefHeight="43.0" prefWidth="188.0" promptText="Aldersrekommendering" />
-      <Label layoutX="391.0" layoutY="509.0" text="*" textFill="RED">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
+      <TextArea fx:id="age" layoutX="405.0" layoutY="459.0" prefHeight="43.0" prefWidth="188.0" promptText="Aldersrekommendering" />
       <Button fx:id="myProductionsButton" layoutX="-34.0" layoutY="196.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
          <font>
             <Font size="26.0" />
@@ -165,5 +134,11 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <ChoiceBox fx:id="genreDropdown" layoutX="573.0" layoutY="526.0" prefHeight="27.0" prefWidth="224.0" />
+      <Label layoutX="406.0" layoutY="512.0" prefHeight="54.0" prefWidth="149.0" text="Genre" textFill="WHITE">
+         <font>
+            <Font name="System Font" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

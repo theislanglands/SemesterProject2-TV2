@@ -1,11 +1,9 @@
 package domain;
 
 import Interfaces.*;
-import data.DataFacade;
 import data.DataMain;
 import domain.enums.CreditType;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +17,6 @@ public final class TvCredits {
 
     private TvCredits(){
         dataconnect = new DataMain();
-
     }
 
     public static TvCredits getInstance(){
@@ -30,7 +27,7 @@ public final class TvCredits {
         return dataconnect.getProductions();
     }
 
-    public Production createProduction(int id, String name, Date releaseDate) {
+    public Production createProduction(String id, String name, Date releaseDate) {
         return new Production(id, name, releaseDate);
     }
 
@@ -41,6 +38,7 @@ public final class TvCredits {
     public void addCredit (Production production, Credit credit) {
         production.addCredit(credit);
     }
+
 
 
     public static void main(String[] args) {

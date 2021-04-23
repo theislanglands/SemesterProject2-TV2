@@ -11,7 +11,6 @@ public class addCreditsController {
 
     public void initialize(){
         addCreditButton.setDisable(true);
-
     }
 
 
