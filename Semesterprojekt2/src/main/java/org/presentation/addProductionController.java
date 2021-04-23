@@ -1,6 +1,7 @@
 package org.presentation;
 
 import domain.Production;
+import domain.TvCredits;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
@@ -10,6 +11,8 @@ import java.util.Date;
 
 public class addProductionController {
 
+
+    TvCredits tvCredits;
 
     public Button addProductionButton;
     public TextArea title;
@@ -29,6 +32,9 @@ public class addProductionController {
     public ChoiceBox genreDropdown;
 
     public void initialize(){
+
+        tvCredits = TvCredits.getInstance();
+
         addProductionButton.setDisable(true);
         typeDropdown.getItems().add("Film");
         typeDropdown.getItems().add("Serie");
@@ -54,6 +60,8 @@ public class addProductionController {
     }
 
     public void saveProduction(ActionEvent actionEvent) {
-        Production production = new Production(productionID.getText(), title.getText(), Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        Production production = tvCredits.createProduction(productionID.getText(), title.getText(), Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+        
     }
 }
