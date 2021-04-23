@@ -38,7 +38,11 @@ public final class TvCredits {
         dataconnect.saveProduction(prod);
     }
 
-    public Credit createCredit(Person person, String role, CreditType creditType) {
+    public boolean updateProduction(String productionID, Production replaceProduction) {
+        return dataconnect.updateProduction(productionID, replaceProduction);
+    }
+
+        public Credit createCredit(Person person, String role, CreditType creditType) {
         return new Credit(person, role, creditType);
     }
 

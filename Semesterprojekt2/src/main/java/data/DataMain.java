@@ -29,9 +29,27 @@ public class DataMain implements DataLayerInterface {
         productionPersistence.add(prod);
     }
 
+    @Override
+    public boolean updateProduction(String productionID, Production replaceProduction) {
+
+        // fidner index af produktion med produktionID
+        int index = -1;
+        for (int i = 0; i < productionPersistence.size(); i++ ) {
+            if (productionPersistence.get(i).getId().equals(productionID)) index = i;
+        }
+
+        // produktionsID ikke fundet
+        if (index == -1) {
+            System.out.println("Produktion ikke fundet");
+            return false;
+        }
+
+        productionPersistence.set(index, replaceProduction);
+        System.out.println("Produktion ændret");
+        return true;
+    }
+
     public void createTestProductions() {
-
-
         // Opretter produktion 1: "Badehotellet"
         // Opretter personer
         Person person1 = new Person();
@@ -107,6 +125,8 @@ public class DataMain implements DataLayerInterface {
         saveProduction(dateMigNoegen);
     }
 
+
+    // test af Data-Main
     public static void main(String[] args) {
         DataLayerInterface dataconnect = new DataMain();
         dataconnect.createTestProductions();
