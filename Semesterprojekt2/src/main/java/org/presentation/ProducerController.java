@@ -30,11 +30,11 @@ public class ProducerController {
 
     @FXML
     private void switchToAddProduction() throws IOException {
-        App.setRoot("AddProduction");
+        App.setRoot("addProduction");
     }
 
     @FXML
     private void switchToAddCredits() throws IOException {
-        App.setRoot("AddCredits");
+        App.setRoot("addCredits");
     }
 }
