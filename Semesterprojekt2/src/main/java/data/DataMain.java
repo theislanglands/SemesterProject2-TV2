@@ -64,7 +64,7 @@ public class DataMain implements DataLayerInterface {
 
         // Opretter krediteringer
         Credit credit1 = new Credit();
-        credit1.setRole("Far til en eller anden");
+        credit1.setRole("Far til Simon");
         credit1.setValidated(true);
         credit1.setPerson(person1);
 
