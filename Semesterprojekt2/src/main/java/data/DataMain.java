@@ -59,7 +59,7 @@ public class DataMain implements DataLayerInterface {
 
         // Opretter produktion
         Production badehotellet = new Production();
-        badehotellet.setId(1);
+        badehotellet.setId("1");
         badehotellet.setName("Badehotellet");
         badehotellet.setReleaseDate(new Date(1000));
         badehotellet.setLength(42);
@@ -99,7 +99,7 @@ public class DataMain implements DataLayerInterface {
         // Oprette produktion 2
         ArrayList<Genre> genres = new ArrayList<>();
         genres.add(Genre.DRAMA);
-        Production dateMigNoegen = new Production(2, "Date mig nøgen", new Date(4000), genres,
+        Production dateMigNoegen = new Production("NF2", "Date mig nøgen", new Date(4000), genres,
                 ProductionType.SERIES, 20, Language.DANISH, true, true,
                 dateMigNoegenCredits, true, true);
 
