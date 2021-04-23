@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class Production implements Serializable {
 
-
     //Enums: genre, type, language
     private int id;
     private String name;
@@ -80,8 +79,6 @@ public class Production implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
-
 
     public Date getReleaseDate() {
         return releaseDate;
