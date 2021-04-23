@@ -56,4 +56,8 @@ public class Credit {
     public void setValidated(boolean validated) {
         isValidated = validated;
     }
+
+    public String toString(){
+        return (person +" - " + role + "\n");
+    }
 }

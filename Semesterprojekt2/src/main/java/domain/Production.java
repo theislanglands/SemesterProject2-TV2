@@ -31,6 +31,8 @@ public class Production implements Serializable {
 
     private ArrayList<Credit> credits;
 
+
+
     public Production(String id, String name, Date releaseDate, ArrayList<Genre> genre,
                       ProductionType productionType, int length, Language language, boolean hasSubtitle,
                       boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, int recommendedAge, boolean isValidated) {
@@ -61,6 +63,7 @@ public class Production implements Serializable {
 
     public Production(String nf2, String date_mig_nøgen, Date date, ArrayList<Genre> genres, ProductionType series, int i, Language danish, boolean b, boolean b1, ArrayList<Credit> dateMigNoegenCredits, boolean b2, boolean b3) {
     }
+
 
     public void addCredit(Credit credit){
         credits.add(credit);
@@ -176,6 +179,6 @@ public class Production implements Serializable {
 
     @Override
     public String toString() {
-        return name + "," + id + "," + releaseDate + ",";
+        return id + ", " + name + ", " + productionType + ", " + genre + ", " + length + "min, " + language + ", " + releaseDate + "\n" + credits + "\n" ;
     }
 }

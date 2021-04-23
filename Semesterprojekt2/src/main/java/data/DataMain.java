@@ -101,7 +101,7 @@ public class DataMain implements DataLayerInterface {
         genres.add(Genre.DRAMA);
         Production dateMigNoegen = new Production("NF2", "Date mig nøgen", new Date(4000), genres,
                 ProductionType.SERIES, 20, Language.DANISH, true, true,
-                dateMigNoegenCredits, true, true);
+                dateMigNoegenCredits, true, 18, true);
 
         // Tilføjer produktion produktionslisten
         saveProduction(dateMigNoegen);
