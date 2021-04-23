@@ -22,6 +22,11 @@ public class Credit {
         this.creditType = creditType;
     }
 
+    public Credit(Person person, String role) {
+        this.person = person;
+        this.role = role;
+    }
+
     public Credit() {
     }
 
