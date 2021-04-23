@@ -58,6 +58,6 @@ public class Credit {
     }
 
     public String toString(){
-        return (person +" - " + role + "\n");
+        return (role +" - " + person + "\n");
     }
 }
