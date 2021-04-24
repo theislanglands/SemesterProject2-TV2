@@ -18,6 +18,7 @@ public class addCreditsController {
 
     public Button deleteCredit;
     public Button showCredits;
+
     TvCredits tvCredits;
 
     public Button addCreditButton;
@@ -27,11 +28,6 @@ public class addCreditsController {
     public Button addRoleButton;
     public ListView listViewRoles;
 
-    public void saveButtonHandler(ActionEvent actionEvent) {
-        Person myPerson = new Person(nameTextField.getText());
-        Credit myCredit = new Credit(myPerson, roleChoiceBox.getValue().toString());
-        
-    }
 
 
     public void initialize(){
@@ -70,7 +66,6 @@ public class addCreditsController {
 
     public void showCredit(ActionEvent actionEvent) {
         Production production = tvCredits.getProduction(productionIdText.getText());
-        
         listViewRoles.getItems().addAll(production.getCredits());
     }
 }

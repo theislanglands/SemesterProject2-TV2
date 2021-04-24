@@ -27,17 +27,7 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <Button fx:id="saveButton" layoutX="965.0" layoutY="582.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <Button fx:id="addCreditButton" layoutX="965.0" layoutY="222.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj kreditering" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="saveAndSubmitButton" layoutX="966.0" layoutY="732.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Godkend og aflevere" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
