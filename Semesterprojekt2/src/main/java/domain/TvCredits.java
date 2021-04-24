@@ -4,6 +4,7 @@ import Interfaces.*;
 import data.DataMain;
 import domain.enums.CreditType;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +51,37 @@ public final class TvCredits {
         production.addCredit(credit);
     }
 
+    public void addCredit (String productionId, Credit credit){
+        List<Production> productions = dataconnect.getProductions();
+        for (Production prod :
+                productions) {
+            if(prod.getId().equals(productionId)){
+                prod.addCredit(credit);
+                break;
+            }
+        }
+    }
+    public void deleteCredit(Credit credit) {
+        List<Production> productions = dataconnect.getProductions();
+        for (Production prod :
+                productions) {
+            if(prod.hasCredit(credit)){
+                prod.removeCredit(credit);
+            }
+        }
+    }
+
+    public Production getProduction(String text) {
+        List<Production> productions = dataconnect.getProductions();
+        for (Production prod :
+                productions) {
+            if (prod.getId().equals(text)) {
+               return prod;
+            }
+        }
+        return null;
+    }
+
 
 
     public static void main(String[] args) {
@@ -59,6 +91,10 @@ public final class TvCredits {
         List<Production> testProductions = tvCredits.getProductions();
         System.out.println(testProductions);
     }
+
+
+
+
 
 
 /*

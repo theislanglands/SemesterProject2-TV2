@@ -1,5 +1,9 @@
 package domain.enums;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+
 public enum CreditType {
     Billedkunstner,
     BilledOgLydRedigering,
@@ -42,6 +46,16 @@ public enum CreditType {
     TegnefilmEllerAnimation,
     Tekster,
     TekstOgMusik,
-    UhonoreretEkstraordinærIndsats
+    UhonoreretEkstraordinærIndsats;
 
+
+    public static ArrayList<CreditType> getEnum() {
+        EnumSet<CreditType> all = EnumSet.allOf(CreditType.class);
+        ArrayList<CreditType> list = new ArrayList<>(all.size());
+        for (CreditType ct :
+                all) {
+            list.add(ct);
+        }
+        return list;
+    }
 }

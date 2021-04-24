@@ -181,4 +181,14 @@ public class Production implements Serializable {
     public String toString() {
         return id + ", " + name + ", " + productionType + ", " + genre + ", " + length + "min, " + language + ", " + releaseDate + "\n" + credits + "\n" ;
     }
+
+    public boolean hasCredit(Credit credit) {
+        for (Credit cred :
+                credits) {
+            if(cred == credit){
+                return true;
+            }
+        }
+        return false;
+    }
 }
