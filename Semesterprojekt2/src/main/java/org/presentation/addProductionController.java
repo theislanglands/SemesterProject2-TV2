@@ -18,6 +18,7 @@ public class addProductionController {
 
     public ChoiceBox genreDropdown2;
     public ChoiceBox genreDropdown3;
+    public Button activeCreditsButton;
     TvCredits tvCredits;
 
     public Button addProductionButton;
@@ -60,6 +61,8 @@ public class addProductionController {
 
         //mangler
         languageDropdown.getItems().add("Dansk");
+        activeCreditsButton.setDisable(true);
+
     }
 
     public void switchToAddCredits(ActionEvent actionEvent) throws IOException {
@@ -74,6 +77,8 @@ public class addProductionController {
     }
 
     public void saveProduction(ActionEvent actionEvent) {
+
+        
         Production production = new Production(
                 productionID.getText(),
                 title.getText(),

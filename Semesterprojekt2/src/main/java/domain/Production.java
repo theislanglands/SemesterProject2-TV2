@@ -55,14 +55,13 @@ public class Production implements Serializable {
         this.id = id;
         this.name = name;
         this.releaseDate = date;
+        credits = new ArrayList<>();
     }
 
     public Production(){
-
+        credits = new ArrayList<>();
     }
 
-    public Production(String nf2, String date_mig_nøgen, Date date, ArrayList<Genre> genres, ProductionType series, int i, Language danish, boolean b, boolean b1, ArrayList<Credit> dateMigNoegenCredits, boolean b2, boolean b3) {
-    }
 
 
     public void addCredit(Credit credit){

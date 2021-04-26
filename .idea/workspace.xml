@@ -24,12 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Credit.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Credit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/CreditType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/CreditType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addCredits.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addCredits.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addProduction.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/addProduction.fxml" afterDir="false" />
     </list>
     <list id="0eabd785-16f1-4efa-a95d-283dba47f371" name="Changes by eemiiil" comment="" />
     <list id="d2fb45a6-ec1b-4449-96ac-6c42362ddedb" name="Changes by theislanglands" comment="" />
@@ -161,7 +159,9 @@
       <workItem from="1618306704507" duration="7337000" />
       <workItem from="1618918736542" duration="2859000" />
       <workItem from="1619184718791" duration="1205000" />
-      <workItem from="1619256353530" duration="2421000" />
+      <workItem from="1619256353530" duration="2695000" />
+      <workItem from="1619379274638" duration="149000" />
+      <workItem from="1619424194762" duration="718000" />
     </task>
     <servers />
   </component>

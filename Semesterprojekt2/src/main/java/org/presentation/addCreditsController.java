@@ -18,6 +18,7 @@ public class addCreditsController {
 
     public Button deleteCredit;
     public Button showCredits;
+    public Button activeCreditsButton;
 
     TvCredits tvCredits;
 
@@ -34,6 +35,7 @@ public class addCreditsController {
         addCreditButton.setDisable(true);
         roleChoiceBox.getItems().setAll(CreditType.getEnum());
         tvCredits = TvCredits.getInstance();
+        activeCreditsButton.setDisable(true);
     }
 
 
@@ -66,6 +68,9 @@ public class addCreditsController {
 
     public void showCredit(ActionEvent actionEvent) {
         Production production = tvCredits.getProduction(productionIdText.getText());
-        listViewRoles.getItems().addAll(production.getCredits());
+        if(production.getCredits() != null){
+            listViewRoles.getItems().addAll(production.getCredits());
+        }
+
     }
 }
