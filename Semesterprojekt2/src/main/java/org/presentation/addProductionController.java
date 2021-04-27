@@ -84,7 +84,7 @@ public class addProductionController {
                 title.getText(),
                 Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
-        production.setLength(length.getLength());
+        production.setLength(Integer.parseInt(length.getText()));
 
         if(typeDropdown.getValue() != null){
             if(typeDropdown.getValue().equals("Serie"))
@@ -136,6 +136,17 @@ public class addProductionController {
         production.setValidated(false);
 
         tvCredits.saveProduction(production);
+        clearFields();
+    }
+
+    private void clearFields() {
+        length.setText("");
+        productionID.setText("");
+        season.setText("");
+        episode.setText("");
+        title.setText("");
+        producent.setText("");
+        subtitles.setSelected(false);
     }
 
     private Genre genreSwitch(String in){

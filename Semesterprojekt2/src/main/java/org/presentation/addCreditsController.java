@@ -57,7 +57,6 @@ public class addCreditsController {
         credit.setRole(nameTextField.getText());
         tvCredits.addCredit(productionIdText.getText(), credit);
         listViewRoles.getItems().add(credit);
-
     }
 
     public void deleteCredit(ActionEvent actionEvent) {
@@ -69,6 +68,7 @@ public class addCreditsController {
     public void showCredit(ActionEvent actionEvent) {
         Production production = tvCredits.getProduction(productionIdText.getText());
         if(production.getCredits() != null){
+            listViewRoles.getItems().add("ID: " + production.getId());
             listViewRoles.getItems().addAll(production.getCredits());
         }
 
