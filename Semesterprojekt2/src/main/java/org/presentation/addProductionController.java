@@ -40,9 +40,15 @@ public class addProductionController {
 
     public void initialize(){
 
+        //singleton obj
         tvCredits = TvCredits.getInstance();
 
         addProductionButton.setDisable(true);
+
+        //might not need this button
+        activeCreditsButton.setDisable(true);
+
+        //adding values to dropdowns. This should be extracted to a method
         typeDropdown.getItems().add("Film");
         typeDropdown.getItems().add("Serie");
 
@@ -61,7 +67,8 @@ public class addProductionController {
 
         //mangler
         languageDropdown.getItems().add("Dansk");
-        activeCreditsButton.setDisable(true);
+
+
 
     }
 
@@ -78,14 +85,16 @@ public class addProductionController {
 
     public void saveProduction(ActionEvent actionEvent) {
 
-
+        //When button is pressed initialize a prodcution object with 3 arguments
         Production production = new Production(
                 productionID.getText(),
                 title.getText(),
+                //this maybe works for setting Date from calendar
                 Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
         production.setLength(Integer.parseInt(length.getText()));
 
+        //sets type if any is selected
         if(typeDropdown.getValue() != null){
             if(typeDropdown.getValue().equals("Serie"))
                 production.setType(ProductionType.SERIES);
@@ -93,6 +102,8 @@ public class addProductionController {
                 production.setType(ProductionType.FILM);
             }
         }
+
+        //sets language if any is selected
         if(languageDropdown.getValue() != null){
             switch((String)languageDropdown.getValue()){
                 case "Dansk":
@@ -108,6 +119,7 @@ public class addProductionController {
             }
         }
 
+        //Sets genres from a dropdown through an array. This could be refactored in a method
         ArrayList<Genre> genres = new ArrayList<>();
         if(genreDropdown1.getValue() != null){
             genres.add(genreSwitch((String) genreDropdown1.getValue()));
@@ -119,6 +131,7 @@ public class addProductionController {
             genres.add(genreSwitch((String)genreDropdown3.getValue()));
         }
         production.setGenre(genres);
+
 
         if(subtitles.isSelected()){
             production.setHasSubtitle(true);
@@ -135,7 +148,10 @@ public class addProductionController {
         production.setActive(false);
         production.setValidated(false);
 
+        //saves production through singleton obj
         tvCredits.saveProduction(production);
+
+        //clears the fields where user entered info
         clearFields();
     }
 

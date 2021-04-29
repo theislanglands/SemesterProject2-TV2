@@ -12,6 +12,8 @@ import java.util.List;
 
 public final class TvCredits {
 
+
+    //Singleton object that is acessed in all controllers
     private static final TvCredits INSTANCE = new TvCredits();
 
     private static DataLayerInterface dataconnect;
@@ -31,6 +33,7 @@ public final class TvCredits {
         return dataconnect.getProductions();
     }
 
+    //base case of *required fields
     public Production createProduction(String id, String name, Date releaseDate) {
         return new Production(id, name, releaseDate);
     }
@@ -71,6 +74,7 @@ public final class TvCredits {
         }
     }
 
+    //get production from ID
     public Production getProduction(String text) {
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :

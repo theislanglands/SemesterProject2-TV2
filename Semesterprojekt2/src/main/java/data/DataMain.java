@@ -21,7 +21,7 @@ public class DataMain implements DataLayerInterface {
 
     @Override
     public List<Production> getProductions() {
-    return productionPersistence;
+        return productionPersistence;
     }
 
     @Override

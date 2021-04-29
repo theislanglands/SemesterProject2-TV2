@@ -32,10 +32,14 @@ public class addCreditsController {
 
 
     public void initialize(){
-        addCreditButton.setDisable(true);
-        roleChoiceBox.getItems().setAll(CreditType.getEnum());
         tvCredits = TvCredits.getInstance();
+
+        addCreditButton.setDisable(true);
         activeCreditsButton.setDisable(true);
+
+        //sets roles from enum. We need to rethink what we call role etc.
+        roleChoiceBox.getItems().setAll(CreditType.getEnum());
+
     }
 
 
@@ -51,22 +55,39 @@ public class addCreditsController {
     }
 
 
+    //Mixing addRole and credit. Confusing to read
+
     public void addRole(ActionEvent actionEvent) {
+        //Create credit obj
         Credit credit = new Credit();
+
+        //set parameters
         credit.setCreditType((CreditType) roleChoiceBox.getValue());
         credit.setRole(nameTextField.getText());
+
+        //save through singleton
         tvCredits.addCredit(productionIdText.getText(), credit);
+
+        //show it to user
         listViewRoles.getItems().add(credit);
     }
 
     public void deleteCredit(ActionEvent actionEvent) {
+        //Find selected obj
         Object selectedItem = listViewRoles.getSelectionModel().getSelectedItem();
+
+        //delete through singleton
         tvCredits.deleteCredit((Credit) selectedItem);
+
+        //delete from gui
         listViewRoles.getItems().remove(selectedItem);
     }
 
     public void showCredit(ActionEvent actionEvent) {
+        //Finds the production with productionID through singleton obj.
         Production production = tvCredits.getProduction(productionIdText.getText());
+
+        //if production has credits show them in GUI
         if(production.getCredits() != null){
             listViewRoles.getItems().add("ID: " + production.getId());
             listViewRoles.getItems().addAll(production.getCredits());

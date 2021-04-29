@@ -22,8 +22,11 @@ public class ProductionsController {
 
 
     public void initialize(){
-        productionsTextArea.setText("Productions \n");
+        //Singleton object initialized
         tvCredits = TvCredits.getInstance();
+
+        //Displays all current productions
+        productionsTextArea.setText("Productions \n");
         List<Production> productions = tvCredits.getProductions();
         for (Production prod :
                 productions) {

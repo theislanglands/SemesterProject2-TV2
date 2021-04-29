@@ -24,6 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProductionsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ProductionsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" afterDir="false" />
     </list>
@@ -122,19 +125,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App (1)" />
@@ -162,7 +152,9 @@
       <workItem from="1619256353530" duration="2695000" />
       <workItem from="1619379274638" duration="149000" />
       <workItem from="1619424194762" duration="2580000" />
-      <workItem from="1619513249191" duration="4538000" />
+      <workItem from="1619513249191" duration="5133000" />
+      <workItem from="1619554158948" duration="35000" />
+      <workItem from="1619734377696" duration="819000" />
     </task>
     <servers />
   </component>
