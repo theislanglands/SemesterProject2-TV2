@@ -40,7 +40,7 @@ public class ProductionsController {
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
-        App.setRoot("productions");
+        App.setRoot("search");
     }
 
     @FXML

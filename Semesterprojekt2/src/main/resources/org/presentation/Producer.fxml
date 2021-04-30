@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerController">
    <children>
       <MenuButton fx:id="bruger" layoutX="1084.0" layoutY="4.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;">
          <items>
@@ -53,7 +53,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="backButton1121" layoutX="-39.0" layoutY="264.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Søg produktion" textFill="WHITE">
+      <Button fx:id="search" layoutX="-39.0" layoutY="264.0" mnemonicParsing="false" onAction="#switchToSearch" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Søg" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>

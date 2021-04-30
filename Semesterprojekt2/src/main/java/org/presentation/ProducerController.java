@@ -8,6 +8,7 @@ import domain.TvCredits;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -36,5 +37,9 @@ public class ProducerController {
     @FXML
     private void switchToAddCredits() throws IOException {
         App.setRoot("addCredits");
+    }
+
+    public void switchToSearch(ActionEvent actionEvent) throws IOException {
+        App.setRoot("search");
     }
 }
