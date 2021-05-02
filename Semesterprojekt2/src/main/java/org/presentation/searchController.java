@@ -1,6 +1,7 @@
 package org.presentation;
 
 
+import domain.Credit;
 import domain.Production;
 import domain.TvCredits;
 
@@ -51,12 +52,14 @@ public class searchController {
     }
 
     public void searchCredit(ActionEvent actionEvent) {
-        //missing implementation
-        //same procedure as searchProduction()
-
+        searchCredit.setDisable(true);
+        searchProduction.setDisable(false);
+        setTableViewCredits();
     }
 
     public void searchProduction(ActionEvent actionEvent) {
+        searchProduction.setDisable(true);
+        searchCredit.setDisable(false);
         setTableViewProduction();
     }
 
@@ -84,9 +87,29 @@ public class searchController {
         tableView.getItems().addAll(newProds);
     }
 
+    public void showSelected(ActionEvent actionEvent) {
+        searchProduction.setDisable(false);
+        searchCredit.setDisable(false);
+
+        Object selected = tableView.getSelectionModel().getSelectedItem();
+        tableView.getItems().clear();
+        if(selected instanceof Production){
+
+            //dont think this actually works atm. Maybe we have bad data, not sure
+
+            List<Credit> credits = ((Production) selected).getCredits();
+            setTableViewCredits();
+            tableView.getItems().clear();
+            tableView.getItems().add(credits);
+        }else if(selected instanceof Credit){
+            //Show Person
+        }
+    }
+
     private void setTableViewProduction(){
 
-        //missing columns
+        tableView.getColumns().clear();
+        tableView.getItems().clear();
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
         TableColumn<Production, String> col1 = new TableColumn<>("ID");
@@ -103,6 +126,7 @@ public class searchController {
         col4.setCellValueFactory(new PropertyValueFactory<>("length"));
 
         //adding columns to the tableview
+        tableView.getColumns().clear();
         tableView.getColumns().add(col1);
         tableView.getColumns().add(col2);
         tableView.getColumns().add(col3);
@@ -114,4 +138,45 @@ public class searchController {
 
 
     }
+
+    private void setTableViewCredits(){
+
+        tableView.getColumns().clear();
+        tableView.getItems().clear();
+
+
+        //creates a new column in the TableView with header "ID", type Production and cellValue String
+        TableColumn<Credit, String> col1 = new TableColumn<>("First Name");
+        //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
+        col1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+
+        TableColumn<Credit, String> col2 = new TableColumn<>("Last Name");
+        col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        TableColumn<Credit, String> col3 = new TableColumn<>("Role");
+        col3.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+        TableColumn<Credit, String> col4 = new TableColumn<>("Credit Type");
+        col4.setCellValueFactory(new PropertyValueFactory<>("creditType"));
+
+        //adding columns to the tableview
+
+        tableView.getColumns().add(col1);
+        tableView.getColumns().add(col2);
+        tableView.getColumns().add(col3);
+        tableView.getColumns().add(col4);
+
+        //adding data to the table view
+        List<Production> productionList = tvCredits.getProductions();
+        List<Credit> credits = new ArrayList<>();
+        for (Production prod :
+                productionList) {
+            credits.addAll(prod.getCredits());
+            credits.add(null);
+        }
+        tableView.getItems().addAll(credits);
+
+    }
+
+
 }

@@ -62,6 +62,13 @@ public class Credit {
         isValidated = validated;
     }
 
+    public String getFirstName(){
+        return this.person.getFirstName();
+    }
+    public String getLastName(){
+        return this.person.getLastName();
+    }
+
     public String toString(){
         return (creditType +" - " + role + "\n");
     }

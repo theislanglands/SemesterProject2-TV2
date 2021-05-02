@@ -72,5 +72,10 @@
          </font>
       </Button>
       <TableView fx:id="tableView" layoutX="316.0" layoutY="184.0" prefHeight="679.0" prefWidth="612.0" />
+      <Button fx:id="selectedButton" layoutX="763.0" layoutY="124.0" mnemonicParsing="false" onAction="#showSelected" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Se valgte" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
