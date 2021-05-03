@@ -1,99 +1,33 @@
 package data;
-
-import Interfaces.DataLayerInterface;
-import domain.Production;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import Interfaces.RDBMapper;
+import domain.TVCreditsPersistance.CreditRDBMapper;
+import domain.TVCreditsPersistance.ProductionRDBMapper;
 
 public class DataFacade  {
-/*
-    String fileName = "src/main/resources/Persistence/productions.tvc";
-    File file = new File(fileName);
-
-    @Override
-    public void saveProduction(Production prod) {
-
-    // open file
+    // laves til singelton
 
 
+    public Object get(String ObjektID, Class<?> persistenceClass) {
 
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(
-                new FileOutputStream(fileName, true)) {
-            @Override
-            protected void writeStreamHeader() throws IOException {
-                if (file.exists()) {
-                } else
-                    super.writeStreamHeader();
-            }
-        }) {
-            outputStream.writeObject(prod);
-            outputStream.close();
-        } catch(FileNotFoundException e) {
-            System.out.println("file not found");
-        } catch(IOException e) {
-            System.out.println("IOException");
+        RDBMapper mapper = null;
+
+        // TODO: kan evt. laves lidt mere fiks så den tager en klasse og returnerer tilhørende mapper uden en lang række af if!
+        if (persistenceClass.getName().equals("Credit")) {
+            mapper = (RDBMapper) new CreditRDBMapper();
         }
 
-    }
 
-
-
-    @Override
-    public List<Production> getProductions() {
-        Production readOne;
-        List<Production> readProductions = new ArrayList<>();
-
-        try (ObjectInputStream inputStream = new ObjectInputStream(
-                new FileInputStream(fileName))) {
-
-            while (true) {  //Reads untill EOF
-                readOne = (Production) inputStream.readObject();
-                readProductions.add(readOne);
-                //System.out.println(readOne);
-                //System.out.println();
-            }
-
-        } catch (EOFException eof) {
-            System.out.println("Reading Done! ");
-
-        } catch (IOException e) {
-            System.err.println("Error opening input file "
-                    + fileName + ": " + e.getMessage());
-            System.exit(0);
+        if (persistenceClass.getName().equals("Production")) {
+            mapper = (RDBMapper) new ProductionRDBMapper();
         }
-        catch (ClassNotFoundException ex) {
-            System.err.println(ex);
-        }
-        return readProductions;
+
+
+        // uddeleger til relevant mapper!
+
+        return mapper.get(ObjektID);
     }
 
-
-    public static void main(String[] args) {
-/*
-        // tester læs & skriv
-        Production testProduktion = new Production("Badehotellet", "sæson1", new Date(5000));
-        Production testProduktion2 = new Production("Tilbage til fremtiden", "del 3", new Date(100000));
-
-        // opretter arrays med produktioner
-        List<Production> production = new ArrayList<>();
-        production.add(testProduktion);
-        production.add(testProduktion2);
-
-        // Gemmer produktion
-        DataFacade saveData = new DataFacade();
-        saveData.saveProduction(testProduktion);
-        saveData.saveProduction(testProduktion2);
-
-        // læser produktion
-        DataFacade getData = new DataFacade();
-        production = getData.getProductions();
-        System.out.println(production);
-
+    public void put(String OID, Object o) {
 
     }
-
- */
 }
