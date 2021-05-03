@@ -1,20 +1,35 @@
 package org.presentation;
 
 import java.io.IOException;
+import java.util.List;
 
+import domain.Production;
 import domain.TvCredits;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class PrimaryController {
 
-    TvCredits facade = new TvCredits();
+    TvCredits facade = TvCredits.getInstance();
 
 
     @FXML
-    private void switchToSecondary() throws IOException {
+    private void switchToProducer() throws IOException {
+        App.setRoot("producer");
 
-        facade.search("Test");
-
-        App.setRoot("secondary");
     }
+
+    /*Bliver brugt senere med roller
+    @FXML
+    private void switchToAdministration() throws IOException {
+        App.setRoot("administration");
+    }
+
+    Bilver brugt senere med roller
+    @FXML
+    private void switchToViewer() throws IOException {
+        App.setRoot("viewer");
+    }*/
+
+
 }
