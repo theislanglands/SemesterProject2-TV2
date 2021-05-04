@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 //toString-metoder for at sende information til databasen.
 
-public class Person {
+public class CreditName {
 
     private int id;
     private String firstName;
@@ -13,7 +13,7 @@ public class Person {
     private int phone;
     private String email;
 
-    public Person(int id, String firstName, String lastName, String address, int phone, String email) {
+    public CreditName(int id, String firstName, String lastName, String address, int phone, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,11 +22,11 @@ public class Person {
         this.email = email;
     }
 
-    public Person(){
+    public CreditName(){
 
     };
 
-    public Person(String name){
+    public CreditName(String name){
         this.firstName = name;
     }
 

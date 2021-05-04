@@ -1,11 +1,9 @@
 package org.presentation;
 
 import domain.Credit;
-import domain.Person;
 import domain.Production;
 import domain.TvCredits;
 import domain.enums.CreditType;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;

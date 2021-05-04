@@ -25,7 +25,7 @@
       </Label>
       <ImageView fitHeight="69.0" fitWidth="72.0" layoutX="1095.0" layoutY="16.0">
          <image>
-            <Image url="@Logo/person-icon-white.png" />
+            <Image url="@Logo/creditName-icon-white.png" />
          </image>
       </ImageView>
       <Button fx:id="profileButton" layoutX="1099.0" layoutY="20.0" mnemonicParsing="false" opacity="0.0" prefHeight="61.0" prefWidth="64.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="BACK" textFill="WHITE">

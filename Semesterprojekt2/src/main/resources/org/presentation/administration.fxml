@@ -90,7 +90,7 @@
          <graphic>
             <ImageView fitHeight="52.0" fitWidth="56.0">
                <image>
-                  <Image url="@Logo/person-icon-white.png" />
+                  <Image url="@Logo/creditName-icon-white.png" />
                </image>
             </ImageView>
          </graphic>

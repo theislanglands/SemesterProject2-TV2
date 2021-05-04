@@ -30,9 +30,10 @@ public class Production implements Serializable {
     private int recommendedAge;
     private int season;
     private int episode;
+    private String companyProductionName;
 
 
-    private String companyProductionId;
+    private String productionReference;
     private String productionName;
 
     private ArrayList<Credit> credits;
@@ -59,7 +60,7 @@ public class Production implements Serializable {
         this.isActive = isActive;
         this.isValidated = false;
 
-        this.companyProductionId = "";
+        this.companyProductionName = "";
         this.productionName = "";
     }
 
@@ -166,7 +167,7 @@ public class Production implements Serializable {
         return recommendedAge;
     }
 
-    public void setRecommendedAge() {
+    public void setRecommendedAge(int recommendedAge) {
         this.recommendedAge = recommendedAge;
     }
 
@@ -217,12 +218,9 @@ public class Production implements Serializable {
         return false;
     }
 
-    public String getProductionCompanyId() {
-        return "Replace me";
-    }
 
-    public int getProductionCompanyProductionId() {
-        return 10;
+    public String getProductionReference() {
+        return this.productionReference;
     }
 
     public int getProductionTypeId() {
@@ -235,5 +233,13 @@ public class Production implements Serializable {
 
     public int getNameInt(){
         return 13;
+    }
+
+    public String getProductionCompanyName() {
+        return "some company name";
+    }
+
+    public String getProductionType() {
+        return this.productionType.toString();
     }
 }

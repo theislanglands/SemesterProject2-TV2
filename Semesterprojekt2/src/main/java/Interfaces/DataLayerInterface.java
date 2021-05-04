@@ -1,9 +1,8 @@
 package Interfaces;
 
 import domain.Credit;
-import domain.Person;
+import domain.CreditName;
 import domain.Production;
-import domain.User;
 
 import java.util.List;
 
@@ -19,18 +18,32 @@ public interface DataLayerInterface {
     boolean updateProduction(String productionID, Production replaceProduction);
 
     // Credits
-    void createCredits(Credit cred);
+    void createCredits(Credit cred, Production prod);
     List<Credit> getCredits();
     Credit getCredit(int creditID);
     void deleteCredit(int creditID);
     boolean updateCredit(int creditID, Credit replaceCredit);
 
+    // Metoder der erstatter ENUMS
+    // Credit types (erstatter enum)
+    List<String> getCreditTypes();
+
+    // Production types (erstatter enum)
+    List<String> getProductionTypes();
+
+    // Language Type (erstatter enum)
+    List<String> getLanguages();
+
+    // Genre Types (erstatter enum)
+    List<String> getGenres();
+
     // Person
-    void createPerson(Person pers);
-    List<Person> getPerson();
-    Person getPerson(int personID);
+    void createPerson(CreditName pers);
+    List<CreditName> getPerson();
+    CreditName getPerson(int personID);
     void deletePerson(int personID);
-    boolean updatePerson(int personID, Person replacePerson);
+    boolean updatePerson(int personID, CreditName replaceCreditName);
+
 
 
     /*

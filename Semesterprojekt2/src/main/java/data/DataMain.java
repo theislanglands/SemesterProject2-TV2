@@ -1,13 +1,11 @@
 package data;
 
 import Interfaces.DataLayerInterface;
-import domain.Person;
+import domain.CreditName;
 import domain.Production;
 import domain.Credit;
 import domain.enums.CreditType;
 import domain.enums.Genre;
-import domain.enums.Language;
-import domain.enums.ProductionType;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +43,7 @@ public class DataMain implements DataLayerInterface {
     }
 
     @Override
-    public boolean updateProduction(String productionID, Production replaceProduction) {
+    public boolean updateProduction(java.lang.String productionID, Production replaceProduction) {
 
         // fidner index af produktion med produktionID
         int index = -1;
@@ -65,7 +63,7 @@ public class DataMain implements DataLayerInterface {
     }
 
     @Override
-    public void createCredits(Credit cred) {
+    public void createCredits(Credit cred, Production prod) {
 
     }
 
@@ -90,17 +88,37 @@ public class DataMain implements DataLayerInterface {
     }
 
     @Override
-    public void createPerson(Person pers) {
-
-    }
-
-    @Override
-    public List<Person> getPerson() {
+    public List<String> getCreditTypes() {
         return null;
     }
 
     @Override
-    public Person getPerson(int personID) {
+    public List<String> getProductionTypes() {
+        return null;
+    }
+
+    @Override
+    public List<String> getLanguages() {
+        return null;
+    }
+
+    @Override
+    public List<String> getGenres() {
+        return null;
+    }
+
+    @Override
+    public void createPerson(CreditName pers) {
+
+    }
+
+    @Override
+    public List<CreditName> getPerson() {
+        return null;
+    }
+
+    @Override
+    public CreditName getPerson(int personID) {
         return null;
     }
 
@@ -110,30 +128,30 @@ public class DataMain implements DataLayerInterface {
     }
 
     @Override
-    public boolean updatePerson(int personID, Person replacePerson) {
+    public boolean updatePerson(int personID, CreditName replaceCreditName) {
         return false;
     }
 
     public void createTestProductions() {
         // Opretter produktion 1: "Badehotellet"
         // Opretter personer
-        Person person1 = new Person();
-        person1.setId(1234);
-        person1.setFirstName("Bodil");
-        person1.setLastName("Jørgensen");
-        person1.setAddress(null);
-        person1.setPhone(65926104);
-        person1.setEmail("BodilJoergensen@badehotellet.dk");
+        CreditName creditName1 = new CreditName();
+        creditName1.setId(1234);
+        creditName1.setFirstName("Bodil");
+        creditName1.setLastName("Jørgensen");
+        creditName1.setAddress(null);
+        creditName1.setPhone(65926104);
+        creditName1.setEmail("BodilJoergensen@badehotellet.dk");
 
-        Person person2 = new Person(1235, "Amalie", "Dollerup", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
+        CreditName creditName2 = new CreditName(1235, "Amalie", "Dollerup", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
 
         // Opretter krediteringer
         Credit credit1 = new Credit();
         credit1.setRole("Far til Simon");
         credit1.setValidated(true);
-        credit1.setPerson(person1);
+        credit1.setPerson(creditName1);
 
-        Credit credit2 = new Credit(person2, "Mor til Hans", CreditType.Medvirkende);
+        Credit credit2 = new Credit(creditName2, "Mor til Hans", CreditType.Medvirkende);
 
         // Opretter liste med krediteringer
         ArrayList<Credit> badehotelletCredits = new ArrayList<>();
@@ -156,23 +174,23 @@ public class DataMain implements DataLayerInterface {
         saveProduction(badehotellet);
 
         //Opretter personer
-        Person person3 = new Person();
-        person3.setId(1236);
-        person3.setFirstName("Jacob");
-        person3.setLastName("Jacobsen");
-        person3.setAddress("København");
-        person3.setPhone(20568095);
-        person3.setEmail("JacobJacobsen@DateMigNoegen.dk");
+        CreditName creditName3 = new CreditName();
+        creditName3.setId(1236);
+        creditName3.setFirstName("Jacob");
+        creditName3.setLastName("Jacobsen");
+        creditName3.setAddress("København");
+        creditName3.setPhone(20568095);
+        creditName3.setEmail("JacobJacobsen@DateMigNoegen.dk");
 
-        Person person4 = new Person(1237, "Laura", "Laurasen", "Vejle", 52674582, "LauraLaurasen@DateMigNoegen.dk");
+        CreditName creditName4 = new CreditName(1237, "Laura", "Laurasen", "Vejle", 52674582, "LauraLaurasen@DateMigNoegen.dk");
 
         // Opretter krediteringer
         Credit credit3 = new Credit();
         credit3.setRole("Medvirkende");
         credit3.setValidated(true);
-        credit3.setPerson(person3);
+        credit3.setPerson(creditName3);
 
-        Credit credit4 = new Credit(person4, "En ny rolle", CreditType.Medvirkende);
+        Credit credit4 = new Credit(creditName4, "En ny rolle", CreditType.Medvirkende);
 
         // Oprette liste med krediteringer
         ArrayList<Credit> dateMigNoegenCredits = new ArrayList<>();
@@ -192,7 +210,7 @@ public class DataMain implements DataLayerInterface {
 
 
     // test af Data-Main
-    public static void main(String[] args) {
+    public static void main(java.lang.String[] args) {
 //        DataLayerInterface dataconnect = new DataMain();
 //        dataconnect.createTestProductions();
 //

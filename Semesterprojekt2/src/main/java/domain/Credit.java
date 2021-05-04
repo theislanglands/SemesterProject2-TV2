@@ -4,38 +4,39 @@ import domain.enums.CreditType;
 
 public class Credit {
 
-    private Person person;
+    private CreditName creditName;
     private String role;
     private CreditType creditType;
     private boolean isValidated = false;
+    private String address, phone, email;
 
-    public Credit(Person person, String role, CreditType creditType, boolean isValidated) {
-        this.person = person;
+    public Credit(CreditName creditName, String role, CreditType creditType, boolean isValidated) {
+        this.creditName = creditName;
         this.role = role;
         this.creditType = creditType;
         this.isValidated = isValidated;
     }
 
-    public Credit(Person person, String role, CreditType creditType) {
-        this.person = person;
+    public Credit(CreditName creditName, String role, CreditType creditType) {
+        this.creditName = creditName;
         this.role = role;
         this.creditType = creditType;
     }
 
-    public Credit(Person person, String role) {
-        this.person = person;
+    public Credit(CreditName creditName, String role) {
+        this.creditName = creditName;
         this.role = role;
     }
 
     public Credit() {
     }
 
-    public Person getPerson() {
-        return person;
+    public CreditName getPerson() {
+        return creditName;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPerson(CreditName creditName) {
+        this.creditName = creditName;
     }
 
     public String getRole() {
@@ -63,13 +64,25 @@ public class Credit {
     }
 
     public String getFirstName(){
-        return this.person.getFirstName();
+        return this.creditName.getFirstName();
     }
     public String getLastName(){
-        return this.person.getLastName();
+        return this.creditName.getLastName();
     }
 
     public String toString(){
         return (creditType +" - " + role + "\n");
+    }
+
+    public String getAddress() {
+        return this.creditName.getAddress();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }

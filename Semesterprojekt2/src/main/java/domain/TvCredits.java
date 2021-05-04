@@ -2,7 +2,6 @@ package domain;
 
 import Interfaces.*;
 import data.DataFacade;
-import data.DataMain;
 import domain.enums.CreditType;
 
 import java.util.Date;
@@ -34,7 +33,7 @@ public final class TvCredits {
     }
 
     //base case of *required fields
-    public Production createProduction(String id, String name, Date releaseDate) {
+    public Production createProduction(java.lang.String id, java.lang.String name, Date releaseDate) {
         return new Production(id, name, releaseDate);
     }
 
@@ -42,19 +41,19 @@ public final class TvCredits {
         dataconnect.createProduction(prod);
     }
 
-    public boolean updateProduction(String productionID, Production replaceProduction) {
+    public boolean updateProduction(java.lang.String productionID, Production replaceProduction) {
         return dataconnect.updateProduction(productionID, replaceProduction);
     }
 
-        public Credit createCredit(Person person, String role, CreditType creditType) {
-        return new Credit(person, role, creditType);
+        public Credit createCredit(CreditName creditName, java.lang.String role, CreditType creditType) {
+        return new Credit(creditName, role, creditType);
     }
 
     public void addCredit (Production production, Credit credit) {
         production.addCredit(credit);
     }
 
-    public void addCredit (String productionId, Credit credit){
+    public void addCredit (java.lang.String productionId, Credit credit){
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {
@@ -75,7 +74,7 @@ public final class TvCredits {
     }
 
     //get production from ID
-    public Production getProduction(String text) {
+    public Production getProduction(java.lang.String text) {
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {
@@ -88,7 +87,7 @@ public final class TvCredits {
 
 
 
-    public static void main(String[] args) {
+    public static void main(java.lang.String[] args) {
 
         TvCredits tvCredits = TvCredits.getInstance();
 
