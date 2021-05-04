@@ -54,8 +54,50 @@ public class DataFacade implements DataLayerInterface {
     // Her implementeres metoder fra interface!
 
     @Override
-    public void createProduction(Production prod) {
-        
+    public boolean createProduction(Production prod) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "INSERT INTO production (season, episode, release_date, subtitle, sign_Language, " +
+                            "active, validated, production_company_production_Id, production_company_id, " +
+                            "production_type_id, language_id, production_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            stmt.setInt(1, prod.getSeason());
+            stmt.setInt(2, prod.getEpisode());
+            stmt.setDate(3, prod.getDate());
+            stmt.setBoolean(4, prod.hasSubtitle());
+            stmt.setBoolean(5, prod.hasSignLanguage());
+            stmt.setBoolean(6, prod.isActive());
+            stmt.setBoolean(7, prod.isValidated());
+            stmt.setString(8, prod.getCompanyProductionId());
+            stmt.setString(9, prod.getCompanyProductionId);
+            stmt.setInt(10, prod.getProductionName);
+        } catch (SQLException throwables){
+            throwables.printStackTrace();
+            System.out.println("Error, could not create production.");
+            return false;
+        }
+
+
+
+//        public boolean createEmployee(Employee employee) {
+//            try {
+//                PreparedStatement stmt = connection.prepareStatement(
+//                        "INSERT INTO employees (name, phone, position_id, department_id, room_id) VALUES (?, ?, ?, ?, ?)");
+//                stmt.setString(1, employee.getName());
+//                stmt.setInt(2, employee.getPhone());
+//                stmt.setInt(3, employee.getPosition_id());
+//                stmt.setInt(4, employee.getDepartment_id());
+//                stmt.setInt(5, employee.getRoom_id());
+//                stmt.execute();
+//                return true;
+//            } catch (SQLException throwables) {
+//                throwables.printStackTrace();
+//                return false;
+//            }
+//        }
+
+
+
+
     }
 
     @Override

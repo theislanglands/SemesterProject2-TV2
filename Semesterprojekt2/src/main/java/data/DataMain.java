@@ -20,8 +20,8 @@ public class DataMain implements DataLayerInterface {
     private List<Production> productionPersistence = new ArrayList<>();
 
     @Override
-    public void createProduction(Production prod) {
-
+    public boolean createProduction(Production prod) {
+        return false;
     }
 
     @Override
