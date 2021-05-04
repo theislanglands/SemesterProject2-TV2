@@ -21,11 +21,11 @@ public class DataFacade implements DataLayerInterface {
     private static DataFacade instance;
 
     // database setup
-    private String url = "localhost";
+    private String url = "hattie.db.elephantsql.com";
     private int port = 5432;
-    private String databaseName = "";
-    private String username = "";
-    private String password = "";
+    private String databaseName = "hdzfvhcu";
+    private String username = "hdzfvhcu";
+    private String password = "5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd";
 
     private Connection connection = null;
 
@@ -126,6 +126,11 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public boolean updatePerson(int personID, Person replacePerson) {
         return false;
+    }
+
+    public static void main(String[] args) {
+        DataFacade dbFacade = new DataFacade();
+        dbFacade.initializePostgresqlDatabase();
     }
 }
 

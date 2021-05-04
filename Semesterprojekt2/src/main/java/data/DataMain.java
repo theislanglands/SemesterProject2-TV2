@@ -20,11 +20,26 @@ public class DataMain implements DataLayerInterface {
     private List<Production> productionPersistence = new ArrayList<>();
 
     @Override
+    public void createProduction(Production prod) {
+
+    }
+
+    @Override
     public List<Production> getProductions() {
         return productionPersistence;
     }
 
     @Override
+    public Production getProduction(int id) {
+        return null;
+    }
+
+    @Override
+    public void deleteProduction(Production prod) {
+
+    }
+
+    //@Override
     public void saveProduction(Production prod) {
         productionPersistence.add(prod);
     }
@@ -47,6 +62,56 @@ public class DataMain implements DataLayerInterface {
         productionPersistence.set(index, replaceProduction);
         System.out.println("Produktion ændret");
         return true;
+    }
+
+    @Override
+    public void createCredits(Credit cred) {
+
+    }
+
+    @Override
+    public List<Credit> getCredits() {
+        return null;
+    }
+
+    @Override
+    public Credit getCredit(int creditID) {
+        return null;
+    }
+
+    @Override
+    public void deleteCredit(int creditID) {
+
+    }
+
+    @Override
+    public boolean updateCredit(int creditID, Credit replaceCredit) {
+        return false;
+    }
+
+    @Override
+    public void createPerson(Person pers) {
+
+    }
+
+    @Override
+    public List<Person> getPerson() {
+        return null;
+    }
+
+    @Override
+    public Person getPerson(int personID) {
+        return null;
+    }
+
+    @Override
+    public void deletePerson(int personID) {
+
+    }
+
+    @Override
+    public boolean updatePerson(int personID, Person replacePerson) {
+        return false;
     }
 
     public void createTestProductions() {
@@ -128,11 +193,11 @@ public class DataMain implements DataLayerInterface {
 
     // test af Data-Main
     public static void main(String[] args) {
-        DataLayerInterface dataconnect = new DataMain();
-        dataconnect.createTestProductions();
-
-        List<Production> testList = dataconnect.getProductions();
-        System.out.println(testList);
+//        DataLayerInterface dataconnect = new DataMain();
+//        dataconnect.createTestProductions();
+//
+//        List<Production> testList = dataconnect.getProductions();
+//        System.out.println(testList);
     }
 }
 

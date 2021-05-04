@@ -21,7 +21,7 @@ public final class TvCredits {
         dataconnect = new DataMain();
 
         // bruges til test af program - opretter 2 produktioner.
-        dataconnect.createTestProductions();
+        //dataconnect.createTestProductions();
     }
 
     public static TvCredits getInstance(){
