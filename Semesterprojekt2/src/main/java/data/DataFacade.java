@@ -128,3 +128,57 @@ public class DataFacade implements DataLayerInterface {
         return false;
     }
 }
+
+/*
+  @Override
+    public List<Employee> getEmployees() {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM employees");
+            ResultSet sqlReturnValues = stmt.executeQuery();
+            int rowcount = 0;
+            List<Employee> returnValue = new ArrayList<>();
+            while (sqlReturnValues.next()){
+                returnValue.add(new Employee(sqlReturnValues.getInt(1), sqlReturnValues.getString(2), sqlReturnValues.getInt(3), sqlReturnValues.getInt(4), sqlReturnValues.getInt(5), sqlReturnValues.getInt(6)));
+            }
+            return returnValue;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Employee getEmployee(int id) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM employees WHERE id = ?");
+            stmt.setInt(1, id);
+            ResultSet sqlReturnValues = stmt.executeQuery();
+            if (!sqlReturnValues.next()){
+               return null;
+            }
+            return new Employee(sqlReturnValues.getInt(1), sqlReturnValues.getString(2), sqlReturnValues.getInt(3), sqlReturnValues.getInt(4), sqlReturnValues.getInt(5), sqlReturnValues.getInt(6));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+
+    @Override
+    public boolean createEmployee(Employee employee) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "INSERT INTO employees (name, phone, position_id, department_id, room_id) VALUES (?, ?, ?, ?, ?)");
+            stmt.setString(1, employee.getName());
+            stmt.setInt(2, employee.getPhone());
+            stmt.setInt(3, employee.getPosition_id());
+            stmt.setInt(4, employee.getDepartment_id());
+            stmt.setInt(5, employee.getRoom_id());
+            stmt.execute();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+    }
+ */
