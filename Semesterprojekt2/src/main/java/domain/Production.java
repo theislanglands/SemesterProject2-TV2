@@ -30,12 +30,14 @@ public class Production implements Serializable {
     private boolean isActive;
     private boolean isValidated;
     private int recommendedAge;
+    private int season;
+    private int episode;
 
     private ArrayList<Credit> credits;
 
     public Production(String id, String name, Date releaseDate, ArrayList<Genre> genre,
                       ProductionType productionType, int length, Language language, boolean hasSubtitle,
-                      boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, int recommendedAge, boolean isValidated) {
+                      boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, boolean isValidated, int recommendedAge, int season, int episode) {
         this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
@@ -48,6 +50,8 @@ public class Production implements Serializable {
 
 
         this.recommendedAge = recommendedAge;
+        this.season = season;
+        this.episode = episode;
         this.credits = credits;
 
         this.isActive = isActive;
@@ -176,6 +180,22 @@ public class Production implements Serializable {
 
     public void setValidated(boolean validated) {
         isValidated = validated;
+    }
+
+    public int getSeason() {
+        return season;
+    }
+
+    public void setSeason(int season) {
+        this.season = season;
+    }
+
+    public int getEpisode() {
+        return episode;
+    }
+
+    public void setEpisode(int episode) {
+        this.episode = episode;
     }
 
     @Override
