@@ -2,8 +2,6 @@ package domain;
 import domain.enums.Genre;
 import domain.enums.Language;
 import domain.enums.ProductionType;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -33,6 +31,10 @@ public class Production implements Serializable {
     private int season;
     private int episode;
 
+
+    private String companyProductionId;
+    private String productionName;
+
     private ArrayList<Credit> credits;
 
     public Production(String id, String name, Date releaseDate, ArrayList<Genre> genre,
@@ -57,6 +59,8 @@ public class Production implements Serializable {
         this.isActive = isActive;
         this.isValidated = false;
 
+        this.companyProductionId = "";
+        this.productionName = "";
     }
 
     public Production(String id, String name, Date date){
@@ -211,5 +215,25 @@ public class Production implements Serializable {
             }
         }
         return false;
+    }
+
+    public String getProductionCompanyId() {
+        return "Replace me";
+    }
+
+    public int getProductionCompanyProductionId() {
+        return 10;
+    }
+
+    public int getProductionTypeId() {
+        return 11;
+    }
+
+    public int getlanguageId() {
+        return 12;
+    }
+
+    public int getNameInt(){
+        return 13;
     }
 }

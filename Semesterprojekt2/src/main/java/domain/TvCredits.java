@@ -1,6 +1,7 @@
 package domain;
 
 import Interfaces.*;
+import data.DataFacade;
 import data.DataMain;
 import domain.enums.CreditType;
 
@@ -18,7 +19,7 @@ public final class TvCredits {
     private static DataLayerInterface dataconnect;
 
     private TvCredits(){
-        dataconnect = new DataMain();
+        dataconnect = DataFacade.getInstance();
 
         // bruges til test af program - opretter 2 produktioner.
         //dataconnect.createTestProductions();

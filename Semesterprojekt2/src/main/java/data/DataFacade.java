@@ -57,26 +57,31 @@ public class DataFacade implements DataLayerInterface {
     public boolean createProduction(Production prod) {
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO production (season, episode, release_date, subtitle, sign_Language, " +
+                    "INSERT INTO production (season, episode, release_date, length, subtitle, sign_Language, " +
                             "active, validated, production_company_production_Id, production_company_id, " +
-                            "production_type_id, language_id, production_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            "production_type_id, language_id, production_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ? ?, ?, ?)");
             stmt.setInt(1, prod.getSeason());
             stmt.setInt(2, prod.getEpisode());
-            stmt.setDate(3, prod.getDate());
-            stmt.setBoolean(4, prod.hasSubtitle());
-            stmt.setBoolean(5, prod.hasSignLanguage());
-            stmt.setBoolean(6, prod.isActive());
-            stmt.setBoolean(7, prod.isValidated());
-            stmt.setString(8, prod.getCompanyProductionId());
-            stmt.setString(9, prod.getCompanyProductionId);
-            stmt.setInt(10, prod.getProductionName);
+            stmt.setDate(3, (java.sql.Date) prod.getReleaseDate());
+            stmt.setInt(4, prod.getLength());
+            stmt.setBoolean(5, prod.isHasSubtitle());
+            stmt.setBoolean(6, prod.isHasSignLanguage());
+
+            stmt.setBoolean(7, prod.isActive());
+            stmt.setBoolean(8, prod.isValidated());
+            stmt.setInt(9, prod.getProductionCompanyProductionId());
+            stmt.setString(10, prod.getProductionCompanyId());
+
+            stmt.setInt(11, prod.getProductionTypeId());
+            stmt.setInt(12, prod.getlanguageId());
+            stmt.setInt(13, prod.getNameInt());
         } catch (SQLException throwables){
             throwables.printStackTrace();
             System.out.println("Error, could not create production.");
             return false;
         }
 
-
+        return true;
 
 //        public boolean createEmployee(Employee employee) {
 //            try {
@@ -102,7 +107,12 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public List<Production> getProductions() {
-        return null;
+        List<Production> productions = new ArrayList<>();
+        Production prodTest = new Production();
+        prodTest.setLength(40);
+        prodTest.setName("Test");
+        productions.add(prodTest);
+        return productions;
     }
 
     @Override

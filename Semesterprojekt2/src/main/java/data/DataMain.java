@@ -182,12 +182,12 @@ public class DataMain implements DataLayerInterface {
         // Oprette produktion 2
         ArrayList<Genre> genres = new ArrayList<>();
         genres.add(Genre.DRAMA);
-        Production dateMigNoegen = new Production("NF2", "Date mig nøgen", new Date(4000), genres,
-                ProductionType.SERIES, 20, Language.DANISH, true, true,
-                dateMigNoegenCredits, true, 18, true);
+        //Production dateMigNoegen = new Production("NF2", "Date mig nøgen", new Date(4000), genres,
+                //ProductionType.SERIES, 20, Language.DANISH, true, true,
+                //dateMigNoegenCredits, true, 18, true);
 
         // Tilføjer produktion produktionslisten
-        saveProduction(dateMigNoegen);
+        //saveProduction(dateMigNoegen);
     }
 
 
