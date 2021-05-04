@@ -4,7 +4,6 @@ import Interfaces.*;
 import data.DataMain;
 import domain.enums.CreditType;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +38,7 @@ public final class TvCredits {
     }
 
     public void saveProduction(Production prod) {
-        dataconnect.saveProduction(prod);
+        dataconnect.createProduction(prod);
     }
 
     public boolean updateProduction(String productionID, Production replaceProduction) {

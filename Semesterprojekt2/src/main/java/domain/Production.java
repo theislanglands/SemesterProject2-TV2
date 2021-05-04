@@ -33,8 +33,6 @@ public class Production implements Serializable {
 
     private ArrayList<Credit> credits;
 
-
-
     public Production(String id, String name, Date releaseDate, ArrayList<Genre> genre,
                       ProductionType productionType, int length, Language language, boolean hasSubtitle,
                       boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, int recommendedAge, boolean isValidated) {
@@ -67,8 +65,6 @@ public class Production implements Serializable {
     public Production(){
         credits = new ArrayList<>();
     }
-
-
 
     public void addCredit(Credit credit){
         credits.add(credit);
