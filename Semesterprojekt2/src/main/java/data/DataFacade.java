@@ -76,11 +76,11 @@ public class DataFacade implements DataLayerInterface {
             // hjælpemetoder til at finde ID på foreign keys
             stmt1.setInt(10, getProdCompanyId(prod.getProductionCompanyName()));
             stmt1.setInt(11, getProdTypeId(prod.getProductionType()));
-            stmt1.setInt(12, prod.getlanguageId());
+            stmt1.setInt(12, getLanguageId(prod.getLanguage()));
             stmt1.setInt(13, getNameId(prod.getName()));
 
+            // commit changes
             connection.commit();
-
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -113,7 +113,60 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public Production getProduction(int id) {
-        return null;
+
+        Production returnProduction = new Production();
+
+        try {
+            // henter alt der ikke er foreign keys
+            PreparedStatement stmt = connection.prepareStatement(
+                        "SELECT " +
+                                "production.season, " +         // 1
+                                "production.episode, " +        // 2
+                                "production.release_date, " +   // 3
+                                "production.length, " +         // 4
+                                "production.subtitle, " +       // 5
+                                "production.sign_language, " +  // 6
+                                "production.active, " +         // 7
+                                "production.validated, " +      // 8
+                                "production.production_reference, " +   // 9
+                                "production_company.name, " +   //10
+                                "production_type.type, "  +     // 11
+                                "language.language, " +         // 12
+                                "production_name.name " +       // 13
+                            "FROM production " +
+                            "INNER JOIN production_company ON production_company.id = production.production_company_id " +
+                            "INNER JOIN production_type ON production_type.id = production.production_type_id " +
+                            "INNER JOIN language ON language.id = production.language_id " +
+                            "INNER JOIN production_name ON production_name.id = production.production_name_id " +
+                            "WHERE production.id = ?");
+
+            stmt.setInt(1, id);
+
+            ResultSet sqlReturnValues = stmt.executeQuery();
+            returnProduction.setSeason(sqlReturnValues.getInt(1));
+            returnProduction.setEpisode(sqlReturnValues.getInt(2));
+
+            returnProduction.setReleaseDate(sqlReturnValues.getDate(3));
+            returnProduction.setLength(sqlReturnValues.getInt(4));
+            returnProduction.setHasSubtitle(sqlReturnValues.getBoolean(5));
+            returnProduction.setHasSignLanguage(sqlReturnValues.getBoolean(6));
+            returnProduction.setActive(sqlReturnValues.getBoolean(7));
+            returnProduction.setValidated(sqlReturnValues.getBoolean(8));
+            returnProduction.setProductionReference(sqlReturnValues.getInt(9));
+            returnProduction.setSeason(sqlReturnValues.getInt(10));
+            returnProduction.setSeason(sqlReturnValues.getInt(11));
+
+
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        returnProduction.setName("");
+
+        return returnProduction;
     }
 
     @Override
@@ -324,11 +377,21 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
+    private int getLanguageId(String language) {
+        try {
+            PreparedStatement stmtGetNameId = connection.prepareStatement("SELECT * FROM language WHERE language = ?");
+            stmtGetNameId.setString(1, language);
+            ResultSet sqlReturnValues = stmtGetNameId.executeQuery();
+            return sqlReturnValues.getInt(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
 
 
 
 
-    //Does this ever run?
     public static void main(String[] args) {
         DataFacade dbFacade = new DataFacade();
         dbFacade.initializePostgresqlDatabase();
