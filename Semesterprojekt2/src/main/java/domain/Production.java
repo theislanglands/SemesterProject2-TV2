@@ -28,6 +28,9 @@ public class Production implements Serializable {
     private int recommendedAge;
     private int season;
     private int episode;
+
+
+
     private String companyProductionName;
 
 
@@ -216,6 +219,13 @@ public class Production implements Serializable {
         return false;
     }
 
+    public String getCompanyProductionName() {
+        return companyProductionName;
+    }
+
+    public void setCompanyProductionName(String companyProductionName) {
+        this.companyProductionName = companyProductionName;
+    }
 
     public String getProductionReference() {
         return this.productionReference;

@@ -142,19 +142,25 @@ public class DataFacade implements DataLayerInterface {
 
             stmt.setInt(1, id);
 
-            ResultSet sqlReturnValues = stmt.executeQuery();
-            returnProduction.setSeason(sqlReturnValues.getInt(1));
-            returnProduction.setEpisode(sqlReturnValues.getInt(2));
 
-            returnProduction.setReleaseDate(sqlReturnValues.getDate(3));
-            returnProduction.setLength(sqlReturnValues.getInt(4));
-            returnProduction.setHasSubtitle(sqlReturnValues.getBoolean(5));
-            returnProduction.setHasSignLanguage(sqlReturnValues.getBoolean(6));
-            returnProduction.setActive(sqlReturnValues.getBoolean(7));
-            returnProduction.setValidated(sqlReturnValues.getBoolean(8));
-            returnProduction.setProductionReference(sqlReturnValues.getInt(9));
-            returnProduction.setSeason(sqlReturnValues.getInt(10));
-            returnProduction.setSeason(sqlReturnValues.getInt(11));
+            ResultSet sqlReturnValues = stmt.executeQuery();
+
+            while (sqlReturnValues.next()) {
+                returnProduction.setSeason(sqlReturnValues.getInt(1));
+                returnProduction.setEpisode(sqlReturnValues.getInt(2));
+                returnProduction.setReleaseDate(sqlReturnValues.getDate(3));
+                returnProduction.setLength(sqlReturnValues.getInt(4));
+                returnProduction.setHasSubtitle(sqlReturnValues.getBoolean(5));
+                returnProduction.setHasSignLanguage(sqlReturnValues.getBoolean(6));
+                returnProduction.setActive(sqlReturnValues.getBoolean(7));
+                returnProduction.setValidated(sqlReturnValues.getBoolean(8));
+                returnProduction.setId(sqlReturnValues.getString(9));
+                returnProduction.setCompanyProductionName(sqlReturnValues.getString(10));
+                returnProduction.setType(sqlReturnValues.getString(11));
+                returnProduction.setLanguage(sqlReturnValues.getString(12));
+                returnProduction.setName(sqlReturnValues.getString(13));
+            }
+
 
 
 
@@ -395,6 +401,10 @@ public class DataFacade implements DataLayerInterface {
     public static void main(String[] args) {
         DataFacade dbFacade = new DataFacade();
         dbFacade.initializePostgresqlDatabase();
+
+        Production test = dbFacade.getProduction(1);
+        System.out.println(test);
+
     }
 }
 
