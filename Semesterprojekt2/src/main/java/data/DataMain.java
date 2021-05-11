@@ -151,7 +151,7 @@ public class DataMain implements DataLayerInterface {
         credit1.setValidated(true);
         credit1.setPerson(creditName1);
 
-        Credit credit2 = new Credit(creditName2, "Mor til Hans", CreditType.Medvirkende);
+        Credit credit2 = new Credit(creditName2, "Mor til Hans", "CreditType.Medvirkende");
 
         // Opretter liste med krediteringer
         ArrayList<Credit> badehotelletCredits = new ArrayList<>();
@@ -190,7 +190,7 @@ public class DataMain implements DataLayerInterface {
         credit3.setValidated(true);
         credit3.setPerson(creditName3);
 
-        Credit credit4 = new Credit(creditName4, "En ny rolle", CreditType.Medvirkende);
+        Credit credit4 = new Credit(creditName4, "En ny rolle", "CreditType.Medvirkende");
 
         // Oprette liste med krediteringer
         ArrayList<Credit> dateMigNoegenCredits = new ArrayList<>();

@@ -26,8 +26,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Credit.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Credit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/searchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/searchController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataFacade.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataMain.class" afterDir="false" />
     </list>

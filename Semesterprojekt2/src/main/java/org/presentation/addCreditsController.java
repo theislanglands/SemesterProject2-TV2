@@ -60,7 +60,7 @@ public class addCreditsController {
         Credit credit = new Credit();
 
         //set parameters
-        credit.setCreditType((CreditType) roleChoiceBox.getValue());
+        credit.setCreditType((String) roleChoiceBox.getValue());
         credit.setRole(nameTextField.getText());
 
         //save through singleton

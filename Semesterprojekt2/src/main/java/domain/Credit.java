@@ -1,23 +1,21 @@
 package domain;
 
-import domain.enums.CreditType;
-
 public class Credit {
 
     private CreditName creditName;
     private String role;
-    private CreditType creditType;
+    private String creditType;
     private boolean isValidated = false;
     private String address, phone, email;
 
-    public Credit(CreditName creditName, String role, CreditType creditType, boolean isValidated) {
+    public Credit(CreditName creditName, String role, String creditType, boolean isValidated) {
         this.creditName = creditName;
         this.role = role;
         this.creditType = creditType;
         this.isValidated = isValidated;
     }
 
-    public Credit(CreditName creditName, String role, CreditType creditType) {
+    public Credit(CreditName creditName, String role, String creditType) {
         this.creditName = creditName;
         this.role = role;
         this.creditType = creditType;
@@ -47,11 +45,11 @@ public class Credit {
         this.role = role;
     }
 
-    public CreditType getCreditType() {
-        return creditType;
+    public String getCreditType() {
+        return this.creditType;
     }
 
-    public void setCreditType(CreditType creditType) {
+    public void setCreditType(String creditType) {
         this.creditType = creditType;
     }
 

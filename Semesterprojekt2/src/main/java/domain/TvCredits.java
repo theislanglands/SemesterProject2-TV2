@@ -2,7 +2,6 @@ package domain;
 
 import Interfaces.*;
 import data.DataFacade;
-import domain.enums.CreditType;
 
 import java.util.Date;
 import java.util.List;
@@ -45,7 +44,7 @@ public final class TvCredits {
         return dataconnect.updateProduction(productionID, replaceProduction);
     }
 
-        public Credit createCredit(CreditName creditName, java.lang.String role, CreditType creditType) {
+        public Credit createCredit(CreditName creditName, java.lang.String role, String creditType) {
         return new Credit(creditName, role, creditType);
     }
 

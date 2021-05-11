@@ -81,6 +81,7 @@ public class DataFacade implements DataLayerInterface {
 
             connection.commit();
 
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("Error, could not create production.");
@@ -327,6 +328,7 @@ public class DataFacade implements DataLayerInterface {
 
 
 
+    //Does this ever run?
     public static void main(String[] args) {
         DataFacade dbFacade = new DataFacade();
         dbFacade.initializePostgresqlDatabase();

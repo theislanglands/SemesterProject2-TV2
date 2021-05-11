@@ -125,6 +125,9 @@ public class searchController {
         TableColumn<Production, String> col4 = new TableColumn<>("Length");
         col4.setCellValueFactory(new PropertyValueFactory<>("length"));
 
+        TableColumn<Production, String> col5 = new TableColumn<>("Højde");
+        col5.setCellValueFactory(new PropertyValueFactory<>("højde"));
+
         //adding columns to the tableview
         tableView.getColumns().clear();
         tableView.getColumns().add(col1);

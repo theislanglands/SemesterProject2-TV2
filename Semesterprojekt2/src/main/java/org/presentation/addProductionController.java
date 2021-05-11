@@ -97,9 +97,9 @@ public class addProductionController {
         //sets type if any is selected
         if(typeDropdown.getValue() != null){
             if(typeDropdown.getValue().equals("Serie"))
-                production.setType(ProductionType.SERIES);
+                production.setType("Serie");
             else if(typeDropdown.getValue().equals("Film")){
-                production.setType(ProductionType.FILM);
+                production.setType("Film");
             }
         }
 
@@ -107,28 +107,28 @@ public class addProductionController {
         if(languageDropdown.getValue() != null){
             switch((String)languageDropdown.getValue()){
                 case "Dansk":
-                    production.setLanguage(Language.DANISH);
+                    production.setLanguage("Dansk");
                     break;
                 case "Engelsk":
-                    production.setLanguage(Language.ENGLISH);
+                    production.setLanguage("Engelsk");
                     break;
                 case "Spansk":
-                    production.setLanguage(Language.SPANISH);
+                    production.setLanguage("Spansk");
                     break;
                 //mangler resten
             }
         }
 
         //Sets genres from a dropdown through an array. This could be refactored in a method
-        ArrayList<Genre> genres = new ArrayList<>();
+        ArrayList<String> genres = new ArrayList<>();
         if(genreDropdown1.getValue() != null){
-            genres.add(genreSwitch((String) genreDropdown1.getValue()));
+            genres.add((String) genreDropdown1.getValue());
         }
         if(genreDropdown2.getValue() != null){
-            genres.add(genreSwitch((String)genreDropdown2.getValue()));
+            genres.add((String)genreDropdown2.getValue());
         }
         if(genreDropdown3.getValue() != null){
-            genres.add(genreSwitch((String)genreDropdown3.getValue()));
+            genres.add((String)genreDropdown3.getValue());
         }
         production.setGenre(genres);
 
@@ -165,6 +165,7 @@ public class addProductionController {
         subtitles.setSelected(false);
     }
 
+    //Tror ikke den bruges
     private Genre genreSwitch(String in){
         switch(in){
             case "Drama":

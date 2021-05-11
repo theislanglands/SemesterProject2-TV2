@@ -1,7 +1,5 @@
 package domain;
 import domain.enums.Genre;
-import domain.enums.Language;
-import domain.enums.ProductionType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,10 +17,10 @@ public class Production implements Serializable {
     private String id; //e.g. nf221
     private String name;
     private Date releaseDate;
-    private ArrayList<Genre> genre;
-    private ProductionType productionType;
+    private ArrayList<String> genre;
+    private String productionType;
     private int length;
-    private Language language;
+    private String language;
     private boolean hasSubtitle;
     private boolean hasSignLanguage;
     private boolean isActive;
@@ -38,8 +36,8 @@ public class Production implements Serializable {
 
     private ArrayList<Credit> credits;
 
-    public Production(String id, String name, Date releaseDate, ArrayList<Genre> genre,
-                      ProductionType productionType, int length, Language language, boolean hasSubtitle,
+    public Production(String id, String name, Date releaseDate, ArrayList<String> genre,
+                      String productionType, int length, String language, boolean hasSubtitle,
                       boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, boolean isValidated, int recommendedAge, int season, int episode) {
         this.id = id;
         this.name = name;
@@ -107,19 +105,19 @@ public class Production implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    public ArrayList<Genre> getGenre() {
-        return genre;
+    public ArrayList<String> getGenre() {
+        return this.genre;
     }
 
-    public void setGenre(ArrayList<Genre> genre) {
+    public void setGenre(ArrayList<String> genre) {
         this.genre = genre;
     }
 
-    public ProductionType getType() {
+    public String getType() {
         return productionType;
     }
 
-    public void setType(ProductionType type) {
+    public void setType(String type) {
         this.productionType = type;
     }
 
@@ -131,11 +129,11 @@ public class Production implements Serializable {
         this.length = length;
     }
 
-    public Language getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
-    public void setLanguage(Language language) {
+    public void setLanguage(String language) {
         this.language = language;
     }
 
