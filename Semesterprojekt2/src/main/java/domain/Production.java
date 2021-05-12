@@ -1,5 +1,4 @@
 package domain;
-import domain.enums.Genre;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +13,8 @@ import java.util.ArrayList;
 public class Production implements Serializable {
 
     //Enums: genre, type, language
-    private String id; //e.g. nf221
+
+    private String productionReference; //e.g. nf221
     private String name;
     private Date releaseDate;
     private ArrayList<String> genre;
@@ -31,15 +31,12 @@ public class Production implements Serializable {
 
     private String companyProductionName;
 
-    private String productionReference;
-    private String productionName;
-
     private ArrayList<Credit> credits;
 
-    public Production(String id, String name, Date releaseDate, ArrayList<String> genre,
+    public Production(String productionReference, String name, Date releaseDate, ArrayList<String> genre,
                       String productionType, int length, String language, boolean hasSubtitle,
                       boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, boolean isValidated, int recommendedAge, int season, int episode) {
-        this.id = id;
+        this.productionReference = productionReference;
         this.name = name;
         this.releaseDate = releaseDate;
         this.length = length;
@@ -48,22 +45,18 @@ public class Production implements Serializable {
         this.language = language;
         this.hasSubtitle = hasSubtitle;
         this.hasSignLanguage = hasSignLanguage;
-
-
         this.recommendedAge = recommendedAge;
         this.season = season;
         this.episode = episode;
         this.credits = credits;
-
         this.isActive = isActive;
         this.isValidated = false;
-
         this.companyProductionName = "";
-        this.productionName = "";
+
     }
 
-    public Production(String id, String name, Date date){
-        this.id = id;
+    public Production(String productionReference, String name, Date date){
+        this.productionReference = productionReference;
         this.name = name;
         this.releaseDate = date;
         credits = new ArrayList<>();
@@ -81,12 +74,12 @@ public class Production implements Serializable {
         credits.remove(credit);
     }
 
-    public String getId() {
-        return id;
+    public String getProductionReference() {
+        return productionReference;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setProductionReference(String productionReference) {
+        this.productionReference = productionReference;
     }
 
     public String getName() {
@@ -203,7 +196,7 @@ public class Production implements Serializable {
 
     @Override
     public String toString() {
-        return id + ", " + name + ", " + productionType + ", " + genre + ", " + length + "min, " + language + ", " + releaseDate + "\n" + credits + "\n" ;
+        return productionReference + ", " + name + ", " + productionType + ", " + genre + ", " + length + "min, " + language + ", " + releaseDate + "\n" + credits + "\n" ;
     }
 
     public boolean hasCredit(Credit credit) {
@@ -222,10 +215,6 @@ public class Production implements Serializable {
 
     public void setCompanyProductionName(String companyProductionName) {
         this.companyProductionName = companyProductionName;
-    }
-
-    public String getProductionReference() {
-        return this.productionReference;
     }
 
     public int getProductionTypeId() {
