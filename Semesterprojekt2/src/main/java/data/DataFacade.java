@@ -490,8 +490,10 @@ public class DataFacade implements DataLayerInterface {
         badehotellet.setSignLanguage(false);
         badehotellet.setActive(true);
         badehotellet.setValidated(true);
-
-
+        badehotellet.setLanguage("dansk");
+        badehotellet.setProductionBio("En ny spændende sæson af badehotellet");
+        badehotellet.setType("serie");
+        badehotellet.setCompanyProductionName("SF Film Production ApS");
         /*
 
         public void createTestProductions() {
