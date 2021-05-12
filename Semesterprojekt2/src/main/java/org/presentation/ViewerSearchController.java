@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,6 +27,7 @@ public class ViewerSearchController {
         setTableViewCredits();
 
         addAllProductions();
+        addAllCredits();
     }
 
 
@@ -84,6 +86,7 @@ public class ViewerSearchController {
     private void addAllProductions(){
         //adding data to the table view
         List<Production> productionList = tvCredits.getProductions();
+        System.out.println(productionList.get(0).getCredits());
         listviewProductions.getItems().addAll(productionList);
     }
 
@@ -115,7 +118,6 @@ public class ViewerSearchController {
         listviewCredits.getColumns().add(col4);
 
 
-
     }
 
     private void addAllCredits(){
@@ -128,5 +130,48 @@ public class ViewerSearchController {
             credits.add(null);
         }
         listviewCredits.getItems().addAll(credits);
+    }
+
+    private void searchProduction(String s){
+        if(s.length()>0){
+            listviewProductions.getItems().clear();
+            List<Production> productionList = tvCredits.getProductions();
+            List<Production> searchList = new ArrayList<>();
+            for (Production prod :
+                    productionList) {
+                if(prod.toString().toLowerCase().contains(s.toLowerCase())){
+                    searchList.add(prod);
+                }
+            }
+            listviewProductions.getItems().addAll(searchList);
+        }
+    }
+
+    private void searchCredits(String s){
+        //adding data to the table view
+        List<Production> productionList = tvCredits.getProductions();
+        List<Credit> credits = new ArrayList<>();
+        for (Production prod :
+                productionList) {
+            List<Credit> currentCredits = prod.getCredits();
+            if(prod.toString().toLowerCase().contains(s.toLowerCase())){
+                credits.addAll(currentCredits);
+                continue;
+            }
+            for (Credit cred :
+                    currentCredits) {
+                if (cred.toString().toLowerCase().contains(s.toLowerCase())) {
+                    credits.add(cred);
+                }
+            }
+
+        }
+        listviewCredits.getItems().addAll(credits);
+    }
+
+    public void search(KeyEvent keyEvent) {
+        String s = textSearchBar.getText();
+        searchProduction(s);
+        searchCredits(s);
     }
 }

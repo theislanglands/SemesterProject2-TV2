@@ -36,7 +36,7 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" onAction="#switchToSearch" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg på produktioner">
+      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" onAction="#switchToSearch" prefHeight="40.0" prefWidth="200.0" promptText="Søg på produktioner" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;">
          <font>
             <Font size="20.0" />
          </font>
