@@ -33,7 +33,7 @@ public class ViewerSearchController {
 
     private void setTableViewProduction(){
 
-//        private ArrayList<String> genre;
+//        private ArrayList<String> genre missing
 
 
         listviewProductions.getColumns().clear();
@@ -86,7 +86,6 @@ public class ViewerSearchController {
     private void addAllProductions(){
         //adding data to the table view
         List<Production> productionList = tvCredits.getProductions();
-        System.out.println(productionList.get(0).getCredits());
         listviewProductions.getItems().addAll(productionList);
     }
 
@@ -133,41 +132,68 @@ public class ViewerSearchController {
     }
 
     private void searchProduction(String s){
-        //if(s.length()>0){
-            listviewProductions.getItems().clear();
-            List<Production> productionList = tvCredits.getProductions();
-            List<Production> searchList = new ArrayList<>();
-            for (Production prod :
-                    productionList) {
-                String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
 
-                if(productionInfo.contains(s.toLowerCase())){
-                    searchList.add(prod);
-                }
-            }
-            if(!searchList.isEmpty()){
-                listviewProductions.getItems().addAll(searchList);
-            }else{
-                listviewProductions.getItems().add(new Production());
-            }
+        listviewProductions.getItems().clear();
 
-        //}
+        //getting all productions to search through
+        List<Production> productionList = tvCredits.getProductions();
+
+        //productions that match will be added to this list
+        List<Production> searchList = new ArrayList<>();
+
+        //looping through all productions and adding if they match the search String
+        for (Production prod :
+                productionList) {
+
+            //using toString from production, to lowerCase and replacing all whitespace
+            //better user experience
+            String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
+
+            //if serach String is a substring of production info add it to the list
+            if(productionInfo.contains(s.toLowerCase())){
+                searchList.add(prod);
+            }
+        }
+
+        //if we ahve matches add them to the view
+        if(!searchList.isEmpty()){
+            listviewProductions.getItems().addAll(searchList);
+        }else{
+            listviewProductions.getItems().add(new Production());
+        }
+
+
     }
 
     private void searchCredits(String s){
-        //adding data to the table view
+
+        listviewCredits.getItems().clear();
+
+        //getting all productions
         List<Production> productionList = tvCredits.getProductions();
+        //initializing list that will be filled with matches
         List<Credit> credits = new ArrayList<>();
+
+        //looping through all productions
         for (Production prod :
                 productionList) {
-            List<Credit> currentCredits = prod.getCredits();
+
+            //using toString from production, to lowerCase and replacing all whitespace
+            //better user experience
             String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
+
             if(productionInfo.contains(s.toLowerCase())){
-                credits.addAll(currentCredits);
+                //if the searchstring is a substring of production toString add all credits to the list
+                credits.addAll(prod.getCredits());
+                //avoiding dublicate credits
+                //moves to next production
                 continue;
             }
+
+            //looping through all credits in the production
             for (Credit cred :
-                    currentCredits) {
+                    prod.getCredits()) {
+                //same ass productionInfo, but for this specific credit
                 String creditInfo = cred.toString().toLowerCase().replaceAll("\\s","");
                 if (creditInfo.contains(s.toLowerCase())) {
                     credits.add(cred);
@@ -175,7 +201,7 @@ public class ViewerSearchController {
             }
 
         }
-        
+        //if list is not empty add all to the view, else add an empty object
         if(!credits.isEmpty()){
             listviewCredits.getItems().addAll(credits);
         }else{
@@ -184,6 +210,8 @@ public class ViewerSearchController {
     }
 
     public void search(KeyEvent keyEvent) {
+
+        //on key pressed get the text, remove whitespace and search productions and credits for matches
         String s = textSearchBar.getText();
         s = s.replaceAll("\\s","");
 
