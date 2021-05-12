@@ -52,7 +52,7 @@ public final class TvCredits {
         production.addCredit(credit);
     }
 
-    public void addCredit (java.lang.String productionId, Credit credit){
+    public void addCredit (String productionId, Credit credit){
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {

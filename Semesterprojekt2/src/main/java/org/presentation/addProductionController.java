@@ -48,11 +48,20 @@ public class addProductionController {
         //might not need this button
         activeCreditsButton.setDisable(true);
 
-        //adding values to dropdowns. This should be extracted to a method
-        typeDropdown.getItems().add("Film");
-        typeDropdown.getItems().add("Serie");
+        //adding values to dropdowns
+        //mangler data
+        //should be taken from database
+        setCreditTypeDropdown();
+        setGenreDropdown();
+        setLanguageDropdown();
 
-        //mangler
+    }
+
+    private void setLanguageDropdown() {
+        languageDropdown.getItems().add("Dansk");
+    }
+
+    private void setGenreDropdown() {
         genreDropdown1.getItems().add("Krimi");
         genreDropdown1.getItems().add("Drama");
         genreDropdown1.getItems().add("Komedie");
@@ -64,12 +73,11 @@ public class addProductionController {
         genreDropdown3.getItems().add("Krimi");
         genreDropdown3.getItems().add("Drama");
         genreDropdown3.getItems().add("Komedie");
+    }
 
-        //mangler
-        languageDropdown.getItems().add("Dansk");
-
-
-
+    private void setCreditTypeDropdown() {
+        typeDropdown.getItems().add("Film");
+        typeDropdown.getItems().add("Serie");
     }
 
     public void switchToAddCredits(ActionEvent actionEvent) throws IOException {
