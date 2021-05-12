@@ -4,7 +4,6 @@ import Interfaces.DataLayerInterface;
 import domain.CreditName;
 import domain.Production;
 import domain.Credit;
-import domain.enums.CreditType;
 import domain.enums.Genre;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class DataMain implements DataLayerInterface {
     }
 
     @Override
-    public void deleteProduction(Production prod) {
+    public void deleteProduction(int prod) {
 
     }
 
@@ -48,7 +47,7 @@ public class DataMain implements DataLayerInterface {
         // fidner index af produktion med produktionID
         int index = -1;
         for (int i = 0; i < productionPersistence.size(); i++ ) {
-            if (productionPersistence.get(i).getId().equals(productionID)) index = i;
+            if (productionPersistence.get(i).getProductionReference().equals(productionID)) index = i;
         }
 
         // produktionsID ikke fundet
@@ -160,7 +159,7 @@ public class DataMain implements DataLayerInterface {
 
         // Opretter produktion
         Production badehotellet = new Production();
-        badehotellet.setId("1");
+        badehotellet.setProductionReference("1");
         badehotellet.setName("Badehotellet");
         badehotellet.setReleaseDate(new Date(1000));
         badehotellet.setLength(42);
