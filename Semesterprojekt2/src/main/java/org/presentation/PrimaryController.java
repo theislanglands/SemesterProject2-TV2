@@ -19,6 +19,13 @@ public class PrimaryController {
 
     }
 
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerForside");
+    }
+
+    public void switchToAdmin(ActionEvent actionEvent) {
+    }
+
     /*Bliver brugt senere med roller
     @FXML
     private void switchToAdministration() throws IOException {
