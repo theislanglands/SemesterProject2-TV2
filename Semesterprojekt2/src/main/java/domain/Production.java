@@ -29,10 +29,7 @@ public class Production implements Serializable {
     private int season;
     private int episode;
 
-
-
     private String companyProductionName;
-
 
     private String productionReference;
     private String productionName;

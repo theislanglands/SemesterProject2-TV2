@@ -10,10 +10,10 @@ public class CreditName {
     private String firstName;
     private String lastName;
     private String address;
-    private int phone;
+    private String phone;
     private String email;
 
-    public CreditName(int id, String firstName, String lastName, String address, int phone, String email) {
+    public CreditName(int id, String firstName, String lastName, String address, String phone, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,16 +62,16 @@ public class CreditName {
         this.address = address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {

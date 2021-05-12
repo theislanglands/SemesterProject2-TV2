@@ -29,7 +29,7 @@ public class Credit {
     public Credit() {
     }
 
-    public CreditName getPerson() {
+    public CreditName getCreditName() {
         return creditName;
     }
 
@@ -69,7 +69,7 @@ public class Credit {
     }
 
     public String toString(){
-        return (creditType +" - " + role + "\n");
+        return (this.creditType + " " + this.role + " " + this.creditName.toString());
     }
 
     public String getAddress() {
@@ -77,10 +77,26 @@ public class Credit {
     }
 
     public String getEmail() {
-        return email;
+        return this.creditName.getEmail();
     }
 
     public String getPhone() {
-        return phone;
+        return this.creditName.getPhone();
     }
+
+
+
+    public void setAddress(String address) {
+        this.creditName.setAddress(address);
+    }
+
+    public void setPhone(String phone) {
+       this.creditName.setPhone(phone);
+    }
+
+    public void setEmail(String email) {
+        this.creditName.setEmail(email);
+    }
+
+
 }

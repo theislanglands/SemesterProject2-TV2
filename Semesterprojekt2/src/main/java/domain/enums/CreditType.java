@@ -3,6 +3,11 @@ package domain.enums;
 import java.util.ArrayList;
 import java.util.EnumSet;
 
+
+
+//Not is use currently. Was used in iteration 1. Replaced by Database in iteration 2
+
+
 public enum CreditType {
     Billedkunstner,
     BilledOgLydRedigering,
