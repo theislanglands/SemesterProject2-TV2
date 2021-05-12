@@ -20,7 +20,7 @@ public class PrimaryController {
     }
 
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
-        App.setRoot("viewerForside");
+        App.setRoot("viewerLanding");
     }
 
     public void switchToAdmin(ActionEvent actionEvent) {
