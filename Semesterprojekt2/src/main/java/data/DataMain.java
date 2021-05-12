@@ -140,10 +140,10 @@ public class DataMain implements DataLayerInterface {
         creditName1.setFirstName("Bodil");
         creditName1.setLastName("Jørgensen");
         creditName1.setAddress(null);
-        creditName1.setPhone(65926104);
+        creditName1.setPhone("65926104");
         creditName1.setEmail("BodilJoergensen@badehotellet.dk");
 
-        CreditName creditName2 = new CreditName(1235, "Amalie", "Dollerup", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
+        CreditName creditName2 = new CreditName(1235, "Amalie", "Dollerup", "Bamsevej 4, 5600", "27201117", "AmalieDollerup@badehotellet.dk");
 
         // Opretter krediteringer
         Credit credit1 = new Credit();
@@ -179,10 +179,10 @@ public class DataMain implements DataLayerInterface {
         creditName3.setFirstName("Jacob");
         creditName3.setLastName("Jacobsen");
         creditName3.setAddress("København");
-        creditName3.setPhone(20568095);
+        creditName3.setPhone("20568095");
         creditName3.setEmail("JacobJacobsen@DateMigNoegen.dk");
 
-        CreditName creditName4 = new CreditName(1237, "Laura", "Laurasen", "Vejle", 52674582, "LauraLaurasen@DateMigNoegen.dk");
+        CreditName creditName4 = new CreditName(1237, "Laura", "Laurasen", "Vejle", "52674582", "LauraLaurasen@DateMigNoegen.dk");
 
         // Opretter krediteringer
         Credit credit3 = new Credit();

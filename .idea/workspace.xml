@@ -24,16 +24,13 @@
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataFacade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/data/DataMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Credit.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Credit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/Production.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addCreditsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/addProductionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/searchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/searchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataFacade.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataFacade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataMain.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/data/DataMain.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/CreditName.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/CreditName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/CreditType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/CreditType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/Genre.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/Genre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/Language.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/Language.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/ProductionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/enums/ProductionType.java" afterDir="false" />
     </list>
     <list id="0eabd785-16f1-4efa-a95d-283dba47f371" name="Changes by eemiiil" comment="" />
     <list id="d2fb45a6-ec1b-4449-96ac-6c42362ddedb" name="Changes by theislanglands" comment="" />
@@ -130,15 +127,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -178,6 +173,7 @@
       <workItem from="1619772920077" duration="7211000" />
       <workItem from="1619791565610" duration="595000" />
       <workItem from="1619949991965" duration="2023000" />
+      <workItem from="1620803151267" duration="931000" />
     </task>
     <servers />
   </component>

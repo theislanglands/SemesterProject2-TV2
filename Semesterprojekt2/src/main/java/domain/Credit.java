@@ -29,7 +29,7 @@ public class Credit {
     public Credit() {
     }
 
-    public CreditName getPerson() {
+    public CreditName getCreditName() {
         return creditName;
     }
 
@@ -77,10 +77,10 @@ public class Credit {
     }
 
     public String getEmail() {
-        return email;
+        return this.creditName.getEmail();
     }
 
     public String getPhone() {
-        return phone;
+        return this.creditName.getPhone();
     }
 }
