@@ -103,17 +103,20 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public List<Production> getProductions() {
 
+        // liste af produktioner der returneres
         List<Production> productions = new ArrayList<>();
-        // for loop, løber igennem alle produktioner
-        int count=0;
+
+        // Laver liste med alle id'er til alle produktioner
+        List<Integer> production_ids = new ArrayList<>();
 
         try {
-            // Find ud af hvor mange produktioner vi har
-            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM production");
+            //Eksiverer at vi vælger kun id fra production-table
+            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM production");
             ResultSet sqlReturnValues = stmt.executeQuery();
 
+            //Tilføjer alle id'er til production_ids-listen
             while (sqlReturnValues.next()) {
-                count = sqlReturnValues.getInt(1);
+                production_ids.add(sqlReturnValues.getInt(1));
             }
 
         } catch (SQLException ex) {
@@ -121,14 +124,13 @@ public class DataFacade implements DataLayerInterface {
             return null;
         }
 
-        System.out.println("antal produktioner "+ count);
+        // test
+        // System.out.println("produktions id "+ production_ids);
 
-        /*
-        Production prodTest = new Production();
-        prodTest.setLength(40);
-        prodTest.setName("Test");
-        productions.add(prodTest);
-        */
+        //Tilføjer produktionsobjekter til listen
+        for (int id: production_ids) {
+            productions.add(getProduction(id));
+        }
         return productions;
     }
 
@@ -416,10 +418,13 @@ public class DataFacade implements DataLayerInterface {
         DataFacade dbFacade = new DataFacade();
         dbFacade.initializePostgresqlDatabase();
 
+        // test af getProduction
         Production test = dbFacade.getProduction(1);
         System.out.println(test);
 
-        dbFacade.getProductions();
+        // test af getProductions
+        List<Production> productionTest = dbFacade.getProductions();
+        System.out.println(productionTest);
     }
 }
 
