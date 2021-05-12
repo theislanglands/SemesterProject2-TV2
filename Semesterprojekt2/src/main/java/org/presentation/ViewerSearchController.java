@@ -133,18 +133,25 @@ public class ViewerSearchController {
     }
 
     private void searchProduction(String s){
-        if(s.length()>0){
+        //if(s.length()>0){
             listviewProductions.getItems().clear();
             List<Production> productionList = tvCredits.getProductions();
             List<Production> searchList = new ArrayList<>();
             for (Production prod :
                     productionList) {
-                if(prod.toString().toLowerCase().contains(s.toLowerCase())){
+                String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
+
+                if(productionInfo.contains(s.toLowerCase())){
                     searchList.add(prod);
                 }
             }
-            listviewProductions.getItems().addAll(searchList);
-        }
+            if(!searchList.isEmpty()){
+                listviewProductions.getItems().addAll(searchList);
+            }else{
+                listviewProductions.getItems().add(new Production());
+            }
+
+        //}
     }
 
     private void searchCredits(String s){
@@ -154,23 +161,32 @@ public class ViewerSearchController {
         for (Production prod :
                 productionList) {
             List<Credit> currentCredits = prod.getCredits();
-            if(prod.toString().toLowerCase().contains(s.toLowerCase())){
+            String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
+            if(productionInfo.contains(s.toLowerCase())){
                 credits.addAll(currentCredits);
                 continue;
             }
             for (Credit cred :
                     currentCredits) {
-                if (cred.toString().toLowerCase().contains(s.toLowerCase())) {
+                String creditInfo = cred.toString().toLowerCase().replaceAll("\\s","");
+                if (creditInfo.contains(s.toLowerCase())) {
                     credits.add(cred);
                 }
             }
 
         }
-        listviewCredits.getItems().addAll(credits);
+        
+        if(!credits.isEmpty()){
+            listviewCredits.getItems().addAll(credits);
+        }else{
+            listviewCredits.getItems().add(new Credit());
+        }
     }
 
     public void search(KeyEvent keyEvent) {
         String s = textSearchBar.getText();
+        s = s.replaceAll("\\s","");
+
         searchProduction(s);
         searchCredits(s);
     }

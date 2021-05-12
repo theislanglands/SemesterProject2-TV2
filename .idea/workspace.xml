@@ -25,11 +25,8 @@
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ViewerSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ViewerSearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/viewerLanding.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/viewerLanding.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/viewerSearch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/resources/org/presentation/viewerSearch.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/SQL-dokumenter/Tabeller.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/SQL-dokumenter/Tabeller.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ViewerSearchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/ViewerSearchController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/viewerLanding.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/viewerLanding.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/viewerSearch.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/target/classes/org/presentation/viewerSearch.fxml" afterDir="false" />
     </list>
     <list id="0eabd785-16f1-4efa-a95d-283dba47f371" name="Changes by eemiiil" comment="" />
