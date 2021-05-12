@@ -300,9 +300,14 @@ public class DataFacade implements DataLayerInterface {
             stmtCreditName.setInt(4, cred.getPhone());
             stmtCreditName.setString(5, cred.getEmail());
             connection.commit();
+
+
+            // vi skal bruge nummeret på den nyligt oprettede kreditering!
+            int idOfRecentCreditInsertion;
+
 /*
             PreparedStatement stmtCreditNameAssociation = connection.prepareStatement(
-                    "INSERT INTO credit_name_credit_type_associaton(" +
+                    "INSERT INTO credit_name_credit_type_association(" +
                             "role, " +              //1
                             "validated, " +         //2
                             "production_id) " +     //3
