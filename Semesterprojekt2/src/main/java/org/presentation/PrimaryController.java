@@ -10,7 +10,7 @@ import javafx.fxml.FXML;
 
 public class PrimaryController {
 
-    TvCredits facade = TvCredits.getInstance();
+    TvCredits tvCredits = TvCredits.getInstance();
 
 
     @FXML

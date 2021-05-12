@@ -73,7 +73,7 @@ public final class TvCredits {
     }
 
     //get production from ID
-    public Production getProduction(java.lang.String text) {
+    public Production getProduction(String text) {
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {
@@ -82,6 +82,22 @@ public final class TvCredits {
             }
         }
         return null;
+    }
+
+    public List<String> getCreditTypes(){
+        return dataconnect.getCreditTypes();
+    }
+
+    public List<String> getProductionTypes(){
+        return dataconnect.getProductionTypes();
+    }
+
+    public List<String> getLanguages(){
+        return dataconnect.getLanguages();
+    }
+
+    public List<String> getGenres(){
+        return dataconnect.getGenres();
     }
 
 
@@ -93,6 +109,8 @@ public final class TvCredits {
         List<Production> testProductions = tvCredits.getProductions();
         System.out.println(testProductions);
     }
+
+
 
 
 
