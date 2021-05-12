@@ -40,7 +40,7 @@ public final class TvCredits {
         dataconnect.createProduction(prod);
     }
 
-    public boolean updateProduction(java.lang.String productionID, Production replaceProduction) {
+    public boolean updateProduction(int productionID, Production replaceProduction) {
         return dataconnect.updateProduction(productionID, replaceProduction);
     }
 

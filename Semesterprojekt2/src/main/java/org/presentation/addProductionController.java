@@ -166,15 +166,15 @@ public class addProductionController {
 
 
         if(subtitles.isSelected()){
-            production.setHasSubtitle(true);
+            production.setSubtitle(true);
         }else{
-            production.setHasSubtitle(false);
+            production.setSubtitle(false);
         }
         //maybe change this from subtitle?
         if(CC.isSelected()){
-            production.setHasSignLanguage(true);
+            production.setSignLanguage(true);
         }else{
-            production.setHasSignLanguage(false);
+            production.setSignLanguage(false);
         }
 
         production.setActive(false);
