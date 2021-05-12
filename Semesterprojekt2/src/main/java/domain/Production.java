@@ -150,19 +150,19 @@ public class Production implements Serializable {
         this.language = language;
     }
 
-    public boolean isHasSubtitle() {
+    public boolean hasSubtitle() {
         return hasSubtitle;
     }
 
-    public void setHasSubtitle(boolean hasSubtitle) {
+    public void setSubtitle(boolean hasSubtitle) {
         this.hasSubtitle = hasSubtitle;
     }
 
-    public boolean isHasSignLanguage() {
+    public boolean hasSignLanguage() {
         return hasSignLanguage;
     }
 
-    public void setHasSignLanguage(boolean hasSignLanguage) {
+    public void setSignLanguage(boolean hasSignLanguage) {
         this.hasSignLanguage = hasSignLanguage;
     }
 

@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DataFacade implements DataLayerInterface {
@@ -66,8 +67,8 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setInt(2, prod.getEpisode());
             stmt1.setDate(3, (java.sql.Date) prod.getReleaseDate());
             stmt1.setInt(4, prod.getLength());
-            stmt1.setBoolean(5, prod.isHasSubtitle());
-            stmt1.setBoolean(6, prod.isHasSignLanguage());
+            stmt1.setBoolean(5, prod.hasSubtitle());
+            stmt1.setBoolean(6, prod.hasSignLanguage());
             stmt1.setBoolean(7, prod.isActive());
             stmt1.setBoolean(8, prod.isValidated());
             stmt1.setString(9, prod.getProductionReference());
@@ -125,7 +126,7 @@ public class DataFacade implements DataLayerInterface {
         }
 
         //Tilføjer produktionsobjekter til listen
-        for (int id: production_ids) {
+        for (int id : production_ids) {
             productions.add(getProduction(id));
         }
         return productions;
@@ -139,20 +140,20 @@ public class DataFacade implements DataLayerInterface {
         try {
             // query for alle parametre i en production
             PreparedStatement stmt = connection.prepareStatement(
-                        "SELECT " +
-                                "production.season, " +         // 1
-                                "production.episode, " +        // 2
-                                "production.release_date, " +   // 3
-                                "production.length, " +         // 4
-                                "production.subtitle, " +       // 5
-                                "production.sign_language, " +  // 6
-                                "production.active, " +         // 7
-                                "production.validated, " +      // 8
-                                "production.production_reference, " +   // 9
-                                "production_company.name, " +   //10
-                                "production_type.type, "  +     // 11
-                                "language.language, " +         // 12
-                                "production_name.name " +       // 13
+                    "SELECT " +
+                            "production.season, " +                 // 1
+                            "production.episode, " +                // 2
+                            "production.release_date, " +           // 3
+                            "production.length, " +                 // 4
+                            "production.subtitle, " +               // 5
+                            "production.sign_language, " +          // 6
+                            "production.active, " +                 // 7
+                            "production.validated, " +              // 8
+                            "production.production_reference, " +   // 9
+                            "production_company.name, " +           // 10
+                            "production_type.type, " +             // 11
+                            "language.language, " +                 // 12
+                            "production_name.name " +               // 13
                             "FROM production " +
                             "INNER JOIN production_company ON production_company.id = production.production_company_id " +
                             "INNER JOIN production_type ON production_type.id = production.production_type_id " +
@@ -169,8 +170,8 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setEpisode(sqlReturnValues.getInt(2));
                 returnProduction.setReleaseDate(sqlReturnValues.getDate(3));
                 returnProduction.setLength(sqlReturnValues.getInt(4));
-                returnProduction.setHasSubtitle(sqlReturnValues.getBoolean(5));
-                returnProduction.setHasSignLanguage(sqlReturnValues.getBoolean(6));
+                returnProduction.setSubtitle(sqlReturnValues.getBoolean(5));
+                returnProduction.setSignLanguage(sqlReturnValues.getBoolean(6));
                 returnProduction.setActive(sqlReturnValues.getBoolean(7));
                 returnProduction.setValidated(sqlReturnValues.getBoolean(8));
                 returnProduction.setProductionReference(sqlReturnValues.getString(9));
@@ -193,17 +194,60 @@ public class DataFacade implements DataLayerInterface {
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "DELETE FROM production WHERE id = ?");
-            stmt.setInt(1,id);
+            stmt.setInt(1, id);
             stmt.execute();
-    } catch (SQLException throwable) {
-        throwable.printStackTrace();
-    }
-    // 2: slet relevant produktion i tabel
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
     }
 
     @Override
-    public boolean updateProduction(String productionID, Production replaceProduction) {
-        return false;
+    public boolean updateProduction(int sourceProductionID, Production replaceProduction) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE production " +
+                            "SET season = ?, " +                // 1
+                            "episode = ?, " +               // 2
+                            "release_date = ?, " +          // 3
+                            "length = ?, " +                //4
+                            "subtitle = ?, " +              // 5
+                            "sign_language = ?, " +         // 6
+                            "active = ?, " +                // 7
+                            "validated = ?, " +             // 8
+                            "production_reference = ?, " +  // 9
+                            "production_bio = ?, " +        //10
+                            "production_company_id = ?, " + //11
+                            "production_type_id = ?, " +    //12
+                            "language_id = ?, " +           //13
+                            "production_name_id = ? " +     //14
+                            "WHERE production.id = ?");
+
+            ResultSet sqlResult = stmt.executeQuery();
+
+            while (sqlResult.next()) {
+                stmt.setInt(1, replaceProduction.getSeason());
+                stmt.setInt(2, replaceProduction.getEpisode());
+                stmt.setDate(3, (java.sql.Date) replaceProduction.getReleaseDate());
+                stmt.setInt(4, replaceProduction.getLength());
+                stmt.setBoolean(5, replaceProduction.hasSubtitle());
+                stmt.setBoolean(6, replaceProduction.hasSignLanguage());
+                stmt.setBoolean(7, replaceProduction.isActive());
+                stmt.setBoolean(8, replaceProduction.isValidated());
+                stmt.setString(9, replaceProduction.getProductionReference());
+                stmt.setString(10, replaceProduction.getProductionBio());
+                // slår op i andre tabeller, og finder den korrekte foreign key
+                stmt.setInt(11, getProdCompanyId(replaceProduction.getProductionCompanyName()));
+                stmt.setInt(12, getProdTypeId(replaceProduction.getProductionType()));
+                stmt.setInt(13, getLanguageId(replaceProduction.getLanguage()));
+                stmt.setInt(14, getNameId(replaceProduction.getName()));
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -323,7 +367,7 @@ public class DataFacade implements DataLayerInterface {
     }
 
     // Language Type (erstatter enum)
-    public List<String> getLanguages(){
+    public List<String> getLanguages() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM language");
             ResultSet sqlReturnValues = stmt.executeQuery();
@@ -360,8 +404,7 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // Interne metoder til at finde ID på foreign keys i tabeller
-
+    // private metoder til at finde ID på foreign keys i tabeller
     private int getProdCompanyId(String productionCompany) {
         try {
             PreparedStatement stmtGetCompanyId = connection.prepareStatement("SELECT * FROM production_company WHERE name = ?");
@@ -411,7 +454,11 @@ public class DataFacade implements DataLayerInterface {
     }
 
     public static void main(String[] args) {
+        // ** DATA FACADE TEST CENTER ** //
+        // instants af datafacade
         DataFacade dbFacade = new DataFacade();
+
+        // opretter forbindelse til DB
         dbFacade.initializePostgresqlDatabase();
 
         // test af getProduction
@@ -422,57 +469,104 @@ public class DataFacade implements DataLayerInterface {
         List<Production> productionTest = dbFacade.getProductions();
         System.out.println(productionTest);
 
-        // test af deleteProduction
+        // test af deleteProduction - VIRKER!!!!!!!!!!!
+        /*
         dbFacade.deleteProduction(1);
-
-        // test af getProduction
         test = dbFacade.getProduction(1);
         System.out.println(test);
+         */
+
+        // test af update produktion
+
+        // Opretter produktion
+        Production badehotellet = new Production();
+        badehotellet.setProductionReference("SF");
+        badehotellet.setName("Badehotellet");
+        badehotellet.setSeason(2);
+        badehotellet.setEpisode(5);
+        badehotellet.setReleaseDate(new Date(100000));
+        badehotellet.setLength(47);
+        badehotellet.setSubtitle(true);
+        badehotellet.setSignLanguage(false);
+        badehotellet.setActive(true);
+        badehotellet.setValidated(true);
+
+
+        /*
+
+        public void createTestProductions() {
+            // Opretter produktion 1: "Badehotellet"
+
+            // Opretter personer
+            CreditName creditName1 = new CreditName();
+            creditName1.setId(1234);
+            creditName1.setFirstName("Bodil");
+            creditName1.setLastName("Jørgensen");
+            creditName1.setAddress(null);
+            creditName1.setPhone("65926104");
+            creditName1.setEmail("BodilJoergensen@badehotellet.dk");
+
+            CreditName creditName2 = new CreditName(1235, "Amalie", "Dollerup", "Bamsevej 4, 5600", "27201117", "AmalieDollerup@badehotellet.dk");
+
+            // Opretter krediteringer
+            Credit credit1 = new Credit();
+            credit1.setRole("Far til Simon");
+            credit1.setValidated(true);
+            credit1.setPerson(creditName1);
+
+            Credit credit2 = new Credit(creditName2, "Mor til Hans", "CreditType.Medvirkende");
+
+            // Opretter liste med krediteringer
+            ArrayList<Credit> badehotelletCredits = new ArrayList<>();
+            badehotelletCredits.add(credit1);
+            badehotelletCredits.add(credit2);
+
+
+            // Opretter produktion
+            Production badehotellet = new Production();
+            badehotellet.setProductionReference("1");
+            badehotellet.setName("Badehotellet");
+            badehotellet.setReleaseDate(new Date(1000));
+            badehotellet.setLength(42);
+            badehotellet.setSubtitle(true);
+            badehotellet.setSignLanguage(false);
+            badehotellet.setCredits(badehotelletCredits);
+            badehotellet.setActive(true);
+            badehotellet.setValidated(true);
+
+            //Opretter personer
+            CreditName creditName3 = new CreditName();
+            creditName3.setId(1236);
+            creditName3.setFirstName("Jacob");
+            creditName3.setLastName("Jacobsen");
+            creditName3.setAddress("København");
+            creditName3.setPhone("20568095");
+            creditName3.setEmail("JacobJacobsen@DateMigNoegen.dk");
+
+            CreditName creditName4 = new CreditName(1237, "Laura", "Laurasen", "Vejle", "52674582", "LauraLaurasen@DateMigNoegen.dk");
+
+            // Opretter krediteringer
+            Credit credit3 = new Credit();
+            credit3.setRole("Medvirkende");
+            credit3.setValidated(true);
+            credit3.setPerson(creditName3);
+
+            Credit credit4 = new Credit(creditName4, "En ny rolle", "CreditType.Medvirkende");
+
+            // Oprette liste med krediteringer
+            ArrayList<Credit> dateMigNoegenCredits = new ArrayList<>();
+            dateMigNoegenCredits.add(credit3);
+            dateMigNoegenCredits.add(credit4);
+
+            // Oprette produktion 2
+            ArrayList<Genre> genres = new ArrayList<>();
+            genres.add(Genre.DRAMA);
+            //Production dateMigNoegen = new Production("NF2", "Date mig nøgen", new Date(4000), genres,
+            //ProductionType.SERIES, 20, Language.DANISH, true, true,
+            //dateMigNoegenCredits, true, 18, true);
+
+            // Tilføjer produktion produktionslisten
+            //saveProduction(dateMigNoegen);
+            */
     }
 }
-
-/*
-  @Override
-
-
-
-    @Override
-    public Employee getEmployee(int id) {
-        try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM employees WHERE id = ?");
-            stmt.setInt(1, id);
-            ResultSet sqlReturnValues = stmt.executeQuery();
-            if (!sqlReturnValues.next()){
-               return null;
-            }
-            return new Employee(sqlReturnValues.getInt(1), sqlReturnValues.getString(2), sqlReturnValues.getInt(3), sqlReturnValues.getInt(4), sqlReturnValues.getInt(5), sqlReturnValues.getInt(6));
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-
-    @Override
-    public boolean createEmployee(Employee employee) {
-        try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO employees (name, phone, position_id, department_id, room_id) VALUES (?, ?, ?, ?, ?)");
-            stmt.setString(1, employee.getName());
-            stmt.setInt(2, employee.getPhone());
-            stmt.setInt(3, employee.getPosition_id());
-            stmt.setInt(4, employee.getDepartment_id());
-            stmt.setInt(5, employee.getRoom_id());
-            stmt.execute();
-            return true;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-            return false;
-        }
-    }
-
-
-
-
-
- */
