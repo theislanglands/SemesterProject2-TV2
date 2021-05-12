@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class addProductionController {
 
@@ -58,14 +59,27 @@ public class addProductionController {
     }
 
     private void setLanguageDropdown() {
-        // tvCredits.getLanguageList()
-        languageDropdown.getItems().add("Dansk");
+        List<String> languages = tvCredits.getLanguages();
+
+        for (String s :
+                languages) {
+            languageDropdown.getItems().add(s);
+        }
+        
+        //languageDropdown.getItems().add("Dansk");
     }
 
     private void setGenreDropdown() {
-        // tvCredits.getGenreList()
+        List<String> genres = tvCredits.getGenres();
 
-        genreDropdown1.getItems().add("Krimi");
+        for (String s :
+                genres) {
+            genreDropdown1.getItems().add(s);
+            genreDropdown2.getItems().add(s);
+            genreDropdown3.getItems().add(s);
+        }
+
+       /* genreDropdown1.getItems().add("Krimi");
         genreDropdown1.getItems().add("Drama");
         genreDropdown1.getItems().add("Komedie");
 
@@ -75,14 +89,19 @@ public class addProductionController {
 
         genreDropdown3.getItems().add("Krimi");
         genreDropdown3.getItems().add("Drama");
-        genreDropdown3.getItems().add("Komedie");
+        genreDropdown3.getItems().add("Komedie");*/
     }
 
     private void setCreditTypeDropdown() {
-        // tvCredits.getTypeList()
+        List<String> creditTypes = tvCredits.getCreditTypes();
 
-        typeDropdown.getItems().add("Film");
-        typeDropdown.getItems().add("Serie");
+        for (String s :
+                creditTypes) {
+            typeDropdown.getItems().add(s);
+        }
+
+        // typeDropdown.getItems().add("Film");
+        // typeDropdown.getItems().add("Serie");
     }
 
     public void switchToAddCredits(ActionEvent actionEvent) throws IOException {
