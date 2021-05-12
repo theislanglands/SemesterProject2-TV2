@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerController">
    <children>
@@ -38,24 +39,48 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="listviewProductions" layoutX="57.0" layoutY="176.0" prefHeight="593.0" prefWidth="524.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
+      <Text fill="WHITE" layoutX="129.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="225.0" fitWidth="269.0" layoutX="129.0" layoutY="238.0">
+         <image>
+            <Image url="@Logo/Screenshot%202021-05-11%20at%2014.35.48.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="129.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skuespiller">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="129.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1965">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="129.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danmark">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="129.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jagten, Hannibal, Druk">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <TableView fx:id="listviewProductions" layoutX="578.0" layoutY="254.0" prefHeight="593.0" prefWidth="524.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TableView fx:id="listviewProductions1" layoutX="622.0" layoutY="175.0" prefHeight="593.0" prefWidth="524.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
-         <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-         </columns>
-      </TableView>
-      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg på produktioner">
+      <TextField fx:id="textSearchBar" layoutX="980.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg på produktioner">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="951.0" layoutY="43.0">
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="941.0" layoutY="43.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
