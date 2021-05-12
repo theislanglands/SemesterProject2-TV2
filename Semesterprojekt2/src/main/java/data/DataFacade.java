@@ -98,26 +98,47 @@ public class DataFacade implements DataLayerInterface {
         }
 
         return true;
-
     }
 
     @Override
     public List<Production> getProductions() {
+
         List<Production> productions = new ArrayList<>();
+        // for loop, løber igennem alle produktioner
+        int count=0;
+
+        try {
+            // Find ud af hvor mange produktioner vi har
+            PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(*) FROM production");
+            ResultSet sqlReturnValues = stmt.executeQuery();
+
+            while (sqlReturnValues.next()) {
+                count = sqlReturnValues.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        System.out.println("antal produktioner "+ count);
+
+        /*
         Production prodTest = new Production();
         prodTest.setLength(40);
         prodTest.setName("Test");
         productions.add(prodTest);
+        */
         return productions;
     }
 
     @Override
     public Production getProduction(int id) {
-
+        // create new empty production
         Production returnProduction = new Production();
 
         try {
-            // henter alt der ikke er foreign keys
+            // query for alle parametre i en production
             PreparedStatement stmt = connection.prepareStatement(
                         "SELECT " +
                                 "production.season, " +         // 1
@@ -142,7 +163,6 @@ public class DataFacade implements DataLayerInterface {
 
             stmt.setInt(1, id);
 
-
             ResultSet sqlReturnValues = stmt.executeQuery();
 
             while (sqlReturnValues.next()) {
@@ -161,16 +181,10 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setName(sqlReturnValues.getString(13));
             }
 
-
-
-
-
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-
-        returnProduction.setName("");
 
         return returnProduction;
     }
@@ -405,6 +419,7 @@ public class DataFacade implements DataLayerInterface {
         Production test = dbFacade.getProduction(1);
         System.out.println(test);
 
+        dbFacade.getProductions();
     }
 }
 
