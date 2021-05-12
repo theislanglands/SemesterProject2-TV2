@@ -159,7 +159,9 @@ INSERT INTO production_type (type) VALUES ('Serie');
 INSERT INTO production_company (name, address, phone, email, country) VALUES ('SF Film Production ApS', 'filmbyen 1, 5000 Oense', 62856381, 'sffilm@badhotellet.dk', 'Denmark');
 
 INSERT INTO production_name (name) VALUES ('Badehotellet');
+
 INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1978-06-23 00:00:00.000000', 43, true, false, true, true, 'SF102', 1, 2, 1, 1);
+UPDATE production SET production_bio='badehotellet er en helt fantastisk serie om et badehotel' WHERE production.id = 1;
 
-
-
+-- tilføjer kolonne til production tabel
+ALTER TABLE production ADD COLUMN production_bio VARCHAR(2000);
