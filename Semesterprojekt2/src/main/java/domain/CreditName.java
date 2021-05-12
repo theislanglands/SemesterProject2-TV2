@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-
 //toString-metoder for at sende information til databasen.
 
 public class CreditName {
@@ -10,10 +8,10 @@ public class CreditName {
     private String firstName;
     private String lastName;
     private String address;
-    private String phone;
+    private int phone;
     private String email;
 
-    public CreditName(int id, String firstName, String lastName, String address, String phone, String email) {
+    public CreditName(int id, String firstName, String lastName, String address, int phone, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -62,11 +60,11 @@ public class CreditName {
         this.address = address;
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 

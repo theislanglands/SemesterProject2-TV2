@@ -151,9 +151,11 @@ public class DataFacade implements DataLayerInterface {
                             "production.validated, " +              // 8
                             "production.production_reference, " +   // 9
                             "production_company.name, " +           // 10
-                            "production_type.type, " +             // 11
+                            "production_type.type, " +              // 11
                             "language.language, " +                 // 12
-                            "production_name.name " +               // 13
+                            "production_name.name, " +              // 13
+                            "production.id, " +                     // 14
+                            "production.production_bio " +         // 15
                             "FROM production " +
                             "INNER JOIN production_company ON production_company.id = production.production_company_id " +
                             "INNER JOIN production_type ON production_type.id = production.production_type_id " +
@@ -179,9 +181,25 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setType(sqlReturnValues.getString(11));
                 returnProduction.setLanguage(sqlReturnValues.getString(12));
                 returnProduction.setName(sqlReturnValues.getString(13));
+                returnProduction.setId(sqlReturnValues.getInt(14));
+                returnProduction.setProductionBio(sqlReturnValues.getString(15));
             }
 
-        } catch (SQLException ex) {
+            PreparedStatement stmt2 = connection.prepareStatement(
+                    "SELECT " +
+                            "genre.genre " +    // 1
+                            "FROM genre " +
+                            "INNER JOIN genres_production_association ON genres_production_association.genre_id = genre.id " +
+                            "WHERE genres_production_association.production_id = ?");
+
+            ResultSet sqlReturnValues2 = stmt2.executeQuery();
+
+            while (sqlReturnValues.next()) {
+                returnProduction.addGenre(sqlReturnValues2.getString(1));
+            }
+
+
+            } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
@@ -207,10 +225,10 @@ public class DataFacade implements DataLayerInterface {
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "UPDATE production " +
-                            "SET season = ?, " +                // 1
+                            "SET season = ?, " +            // 1
                             "episode = ?, " +               // 2
                             "release_date = ?, " +          // 3
-                            "length = ?, " +                //4
+                            "length = ?, " +                // 4
                             "subtitle = ?, " +              // 5
                             "sign_language = ?, " +         // 6
                             "active = ?, " +                // 7
@@ -221,7 +239,7 @@ public class DataFacade implements DataLayerInterface {
                             "production_type_id = ?, " +    //12
                             "language_id = ?, " +           //13
                             "production_name_id = ? " +     //14
-                            "WHERE production.id = ?");
+                            "WHERE id = ?");                //15
 
             ResultSet sqlResult = stmt.executeQuery();
 
@@ -241,6 +259,8 @@ public class DataFacade implements DataLayerInterface {
                 stmt.setInt(12, getProdTypeId(replaceProduction.getProductionType()));
                 stmt.setInt(13, getLanguageId(replaceProduction.getLanguage()));
                 stmt.setInt(14, getNameId(replaceProduction.getName()));
+                // Source ID
+                stmt.setInt(15, sourceProductionID);
             }
 
         } catch (SQLException ex) {
@@ -253,33 +273,51 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public void createCredits(Credit cred, Production prod) {
         try {
-            //credit_name
+            //Begin statement - Transaction
+            connection.setAutoCommit(false);
 
-            cred.getCreditType();
+            PreparedStatement stmtCredit = connection.prepareStatement(
+                    "INSERT INTO credit(" +
+                            "role, " +              //1
+                            "validated, " +         //2
+                            "production_id) " +     //3
+                            "VALUES (?,?,?)");
+            stmtCredit.setString(1, cred.getRole());
+            stmtCredit.setBoolean(2, cred.isValidated());
+            stmtCredit.setInt(3, prod.getId());
 
             PreparedStatement stmtCreditName = connection.prepareStatement(
-                    "INSERT INTO credit_name (first_name,last_name,address,phone,email) VALUES (?,?,?,?,?)");
+                    "INSERT INTO credit_name(" +
+                            "first_name, " +        //1
+                            "last_name, " +         //2
+                            "address, " +           //3
+                            "phone, " +             //4
+                            "email) " +             //5
+                            "VALUES (?,?,?,?,?)");
             stmtCreditName.setString(1, cred.getFirstName());
             stmtCreditName.setString(2, cred.getLastName());
             stmtCreditName.setString(3, cred.getAddress());
-            stmtCreditName.setString(4, cred.getPhone());
+            stmtCreditName.setInt(4, cred.getPhone());
             stmtCreditName.setString(5, cred.getEmail());
-
-            PreparedStatement stmtCredit = connection.prepareStatement(
-                    "INSERT INTO credit (role, validated, production_id) VALUES (?, ?, ?)");
+            connection.commit();
+/*
+            PreparedStatement stmtCreditNameAssociation = connection.prepareStatement(
+                    "INSERT INTO credit_name_credit_type_associaton(" +
+                            "role, " +              //1
+                            "validated, " +         //2
+                            "production_id) " +     //3
+                            "VALUES (?,?,?)");
             stmtCredit.setString(1, cred.getRole());
             stmtCredit.setBoolean(2, cred.isValidated());
-            //stmtCredit.setInt(3, prod.get)
-
-
-            //credit_name_credit_type_association
-            // Vi laver denne, når der er fundet en løsning!
-
-            //credit
+            stmtCredit.setInt(3, prod.getId());
+*/
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
+        
+
     }
+
 
     @Override
     public List<Credit> getCredits() {
@@ -455,17 +493,18 @@ public class DataFacade implements DataLayerInterface {
 
     public static void main(String[] args) {
         // ** DATA FACADE TEST CENTER ** //
+
         // instants af datafacade
         DataFacade dbFacade = new DataFacade();
 
         // opretter forbindelse til DB
         dbFacade.initializePostgresqlDatabase();
 
-        // test af getProduction
+        // 1 test af getProduction
         Production test = dbFacade.getProduction(1);
         System.out.println(test);
 
-        // test af getProductions
+        // 2 test af getProductions
         List<Production> productionTest = dbFacade.getProductions();
         System.out.println(productionTest);
 
@@ -480,7 +519,7 @@ public class DataFacade implements DataLayerInterface {
 
         // Opretter produktion
         Production badehotellet = new Production();
-        badehotellet.setProductionReference("SF");
+        badehotellet.setProductionReference("SF666");
         badehotellet.setName("Badehotellet");
         badehotellet.setSeason(2);
         badehotellet.setEpisode(5);
@@ -494,6 +533,13 @@ public class DataFacade implements DataLayerInterface {
         badehotellet.setProductionBio("En ny spændende sæson af badehotellet");
         badehotellet.setType("serie");
         badehotellet.setCompanyProductionName("SF Film Production ApS");
+
+        System.out.println(badehotellet);
+
+        dbFacade.updateProduction(1, badehotellet);
+
+        test = dbFacade.getProduction(1);
+        System.out.println(test);
         /*
 
         public void createTestProductions() {

@@ -6,7 +6,6 @@ public class Credit {
     private String role;
     private String creditType;
     private boolean isValidated = false;
-    private String address, phone, email;
 
     public Credit(CreditName creditName, String role, String creditType, boolean isValidated) {
         this.creditName = creditName;
@@ -64,6 +63,7 @@ public class Credit {
     public String getFirstName(){
         return this.creditName.getFirstName();
     }
+
     public String getLastName(){
         return this.creditName.getLastName();
     }
@@ -80,17 +80,15 @@ public class Credit {
         return this.creditName.getEmail();
     }
 
-    public String getPhone() {
+    public int getPhone() {
         return this.creditName.getPhone();
     }
-
-
 
     public void setAddress(String address) {
         this.creditName.setAddress(address);
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(int phone) {
        this.creditName.setPhone(phone);
     }
 

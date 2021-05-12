@@ -34,7 +34,7 @@ CREATE TABLE credit_name (
     last_name VARCHAR(100),
     address VARCHAR(100),
     phone INTEGER,
-    email VA0)RCHAR(10
+    email VARCHAR(10
 );
 
 CREATE TABLE credit_type(
@@ -73,7 +73,7 @@ CREATE TABLE credit (
     production_id INTEGER NOT NULL REFERENCES production(id)
 );
 
-CREATE TABLE credit_name_credit_type_associaton (
+CREATE TABLE credit_name_credit_type_association (
     credit_name_id INTEGER NOT NULL REFERENCES credit_name(id),
     credit_type_id INTEGER NOT NULL REFERENCES credit_type(id),
     credit_id INTEGER NOT NULL REFERENCES credit(id)

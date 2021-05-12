@@ -17,7 +17,7 @@ public class Production implements Serializable {
     private String productionReference; //e.g. nf221
     private String name;
     private Date releaseDate;
-    private ArrayList<String> genre;
+    private ArrayList<String> genre = new ArrayList<>();
     private String productionType;
     private int length;
     private String language;
@@ -126,6 +126,10 @@ public class Production implements Serializable {
         this.genre = genre;
     }
 
+    public void addGenre(String genre) {
+        this.genre.add(genre);
+    }
+
     public String getType() {
         return productionType;
     }
@@ -214,11 +218,6 @@ public class Production implements Serializable {
         this.episode = episode;
     }
 
-    @Override
-    public String toString() {
-        return productionReference + ", " + name + ", " + productionType + ", " + genre + ", " + length + "min, " + language + ", " + releaseDate + "\n" + credits + "\n" ;
-    }
-
     public boolean hasCredit(Credit credit) {
         for (Credit cred :
                 credits) {
@@ -256,4 +255,30 @@ public class Production implements Serializable {
     public String getProductionType() {
         return this.productionType.toString();
     }
+
+    @Override
+    public String toString() {
+        return "Production{" +
+                "id=" + id +
+                ", productionReference='" + productionReference + '\'' +
+                ", name='" + name + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", genre=" + genre +
+                ", productionType='" + productionType + '\'' +
+                ", length=" + length +
+                ", language='" + language + '\'' +
+                ", hasSubtitle=" + hasSubtitle +
+                ", hasSignLanguage=" + hasSignLanguage +
+                ", isActive=" + isActive +
+                ", isValidated=" + isValidated +
+                ", recommendedAge=" + recommendedAge +
+                ", season=" + season +
+                ", episode=" + episode +
+                ", productionBio='" + productionBio + '\'' +
+                ", companyProductionName='" + companyProductionName + '\'' +
+                ", credits=" + credits +
+                '}';
+    }
 }
+
+
