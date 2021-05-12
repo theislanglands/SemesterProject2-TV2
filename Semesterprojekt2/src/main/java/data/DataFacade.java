@@ -60,8 +60,8 @@ public class DataFacade implements DataLayerInterface {
             //
             PreparedStatement stmt1 = connection.prepareStatement(
                     "INSERT INTO production (season, episode, release_date, length, subtitle, sign_Language, " +
-                            "active, validated, production_reference, production_company_id, " +
-                            "production_type_id, language_id, production_name_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            "active, validated, production_reference, production_bio, production_company_id, " +
+                            "production_type_id, language_id, production_name_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             stmt1.setInt(1, prod.getSeason());
             stmt1.setInt(2, prod.getEpisode());
             stmt1.setDate(3, (java.sql.Date) prod.getReleaseDate());
@@ -71,13 +71,13 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setBoolean(7, prod.isActive());
             stmt1.setBoolean(8, prod.isValidated());
             stmt1.setString(9, prod.getProductionReference());
-
+            stmt1.setString(10, prod.getProductionBio());
 
             // hjælpemetoder til at finde ID på foreign keys
-            stmt1.setInt(10, getProdCompanyId(prod.getProductionCompanyName()));
-            stmt1.setInt(11, getProdTypeId(prod.getProductionType()));
-            stmt1.setInt(12, getLanguageId(prod.getLanguage()));
-            stmt1.setInt(13, getNameId(prod.getName()));
+            stmt1.setInt(11, getProdCompanyId(prod.getProductionCompanyName()));
+            stmt1.setInt(12, getProdTypeId(prod.getProductionType()));
+            stmt1.setInt(13, getLanguageId(prod.getLanguage()));
+            stmt1.setInt(14, getNameId(prod.getName()));
 
             // commit changes
             connection.commit();
@@ -123,9 +123,6 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace();
             return null;
         }
-
-        // test
-        // System.out.println("produktions id "+ production_ids);
 
         //Tilføjer produktionsobjekter til listen
         for (int id: production_ids) {
@@ -176,7 +173,7 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setHasSignLanguage(sqlReturnValues.getBoolean(6));
                 returnProduction.setActive(sqlReturnValues.getBoolean(7));
                 returnProduction.setValidated(sqlReturnValues.getBoolean(8));
-                returnProduction.setId(sqlReturnValues.getString(9));
+                returnProduction.setProductionReference(sqlReturnValues.getString(9));
                 returnProduction.setCompanyProductionName(sqlReturnValues.getString(10));
                 returnProduction.setType(sqlReturnValues.getString(11));
                 returnProduction.setLanguage(sqlReturnValues.getString(12));
@@ -193,7 +190,8 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public void deleteProduction(Production prod) {
-
+    // 1: find id til relevant produktion (navn, prod_id)
+    // 2: slet relevant produktion i tabel
     }
 
     @Override
@@ -205,7 +203,6 @@ public class DataFacade implements DataLayerInterface {
     public void createCredits(Credit cred, Production prod) {
         try {
             //credit_name
-
 
             cred.getCreditType();
 
@@ -224,9 +221,6 @@ public class DataFacade implements DataLayerInterface {
             //stmtCredit.setInt(3, prod.get)
 
 
-
-
-
             //credit_name_credit_type_association
             // Vi laver denne, når der er fundet en løsning!
 
@@ -234,7 +228,6 @@ public class DataFacade implements DataLayerInterface {
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-
     }
 
     @Override
@@ -359,7 +352,6 @@ public class DataFacade implements DataLayerInterface {
             return null;
         }
     }
-
 
     // Interne metoder til at finde ID på foreign keys i tabeller
 
