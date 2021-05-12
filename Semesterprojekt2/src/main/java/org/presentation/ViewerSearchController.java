@@ -4,11 +4,13 @@ import domain.Credit;
 import domain.Production;
 import domain.TvCredits;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +22,9 @@ public class ViewerSearchController {
 
     private TvCredits tvCredits;
 
+    public static Production productionChosen;
+    public static Credit creditChosen;
+
     public void initialize(){
         tvCredits = TvCredits.getInstance();
 
@@ -28,6 +33,8 @@ public class ViewerSearchController {
 
         addAllProductions();
         addAllCredits();
+
+        activateDoubleClick();
     }
 
 
@@ -125,8 +132,9 @@ public class ViewerSearchController {
         List<Credit> credits = new ArrayList<>();
         for (Production prod :
                 productionList) {
-            credits.addAll(prod.getCredits());
-            credits.add(null);
+            if(prod != null){
+                credits.addAll(prod.getCredits());
+            }
         }
         listviewCredits.getItems().addAll(credits);
     }
@@ -217,5 +225,41 @@ public class ViewerSearchController {
 
         searchProduction(s);
         searchCredits(s);
+    }
+
+    public void activateDoubleClick(){
+        listviewProductions.setRowFactory(tv -> {
+            TableRow<Production> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Production rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getName());
+                    productionChosen = rowData;
+                    try {
+                        App.setRoot("viewerProductions");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
+
+        listviewCredits.setRowFactory(tv -> {
+            TableRow<Credit> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Credit rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getFirstName());
+                    creditChosen = rowData;
+                    try {
+                        App.setRoot("viewerCredits");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
     }
 }
