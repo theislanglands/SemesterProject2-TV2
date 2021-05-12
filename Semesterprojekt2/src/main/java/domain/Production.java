@@ -29,10 +29,7 @@ public class Production implements Serializable {
     private int season;
     private int episode;
     private String productionBio;
-
-
     private String companyProductionName;
-
     private ArrayList<Credit> credits;
 
     public Production(int id, String productionReference, String name, Date releaseDate, ArrayList<String> genre, String productionType, int length,

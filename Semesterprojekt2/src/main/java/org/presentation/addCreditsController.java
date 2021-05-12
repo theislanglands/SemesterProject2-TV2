@@ -87,7 +87,7 @@ public class addCreditsController {
 
         //if production has credits show them in GUI
         if(production.getCredits() != null){
-            listViewRoles.getItems().add("ID: " + production.getId());
+            listViewRoles.getItems().add("ID: " + production.getProductionReference());
             listViewRoles.getItems().addAll(production.getCredits());
         }
 

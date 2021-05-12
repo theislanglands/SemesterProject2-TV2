@@ -56,7 +56,7 @@ public final class TvCredits {
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {
-            if(prod.getId().equals(productionId)){
+            if(prod.getProductionReference().equals(productionId)){
                 prod.addCredit(credit);
                 break;
             }
@@ -77,7 +77,7 @@ public final class TvCredits {
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {
-            if (prod.getId().equals(text)) {
+            if (prod.getProductionReference().equals(text)) {
                return prod;
             }
         }
