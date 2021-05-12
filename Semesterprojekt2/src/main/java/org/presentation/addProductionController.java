@@ -58,10 +58,13 @@ public class addProductionController {
     }
 
     private void setLanguageDropdown() {
+        // tvCredits.getLanguageList()
         languageDropdown.getItems().add("Dansk");
     }
 
     private void setGenreDropdown() {
+        // tvCredits.getGenreList()
+
         genreDropdown1.getItems().add("Krimi");
         genreDropdown1.getItems().add("Drama");
         genreDropdown1.getItems().add("Komedie");
@@ -76,6 +79,8 @@ public class addProductionController {
     }
 
     private void setCreditTypeDropdown() {
+        // tvCredits.getTypeList()
+
         typeDropdown.getItems().add("Film");
         typeDropdown.getItems().add("Serie");
     }
