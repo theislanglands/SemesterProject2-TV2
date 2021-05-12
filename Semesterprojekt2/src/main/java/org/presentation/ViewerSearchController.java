@@ -24,10 +24,15 @@ public class ViewerSearchController {
 
         setTableViewProduction();
         setTableViewCredits();
+
+        addAllProductions();
     }
 
 
     private void setTableViewProduction(){
+
+//        private ArrayList<String> genre;
+
 
         listviewProductions.getColumns().clear();
         listviewProductions.getItems().clear();
@@ -43,18 +48,35 @@ public class ViewerSearchController {
         TableColumn<Production, Date> col3 = new TableColumn<>("Release Date");
         col3.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
 
-        TableColumn<Production, String> col4 = new TableColumn<>("Length");
-        col4.setCellValueFactory(new PropertyValueFactory<>("length"));
+        TableColumn<Production, String> col4 = new TableColumn<>("Type");
+        col4.setCellValueFactory(new PropertyValueFactory<>("productionType"));
 
-        TableColumn<Production, String> col5 = new TableColumn<>("Højde");
-        col5.setCellValueFactory(new PropertyValueFactory<>("højde"));
+        TableColumn<Production, String> col5 = new TableColumn<>("Episode");
+        col5.setCellValueFactory(new PropertyValueFactory<>("episode"));
+
+        TableColumn<Production, String> col6 = new TableColumn<>("Season");
+        col6.setCellValueFactory(new PropertyValueFactory<>("season"));
+
+        TableColumn<Production, String> col7 = new TableColumn<>("Length");
+        col7.setCellValueFactory(new PropertyValueFactory<>("length"));
+
+        TableColumn<Production, String> col8 = new TableColumn<>("Language");
+        col8.setCellValueFactory(new PropertyValueFactory<>("language"));
+
+        TableColumn<Production, String> col9 = new TableColumn<>("Company");
+        col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
         //adding columns to the tableview
-        listviewProductions.getColumns().clear();
+
         listviewProductions.getColumns().add(col1);
         listviewProductions.getColumns().add(col2);
         listviewProductions.getColumns().add(col3);
         listviewProductions.getColumns().add(col4);
+        listviewProductions.getColumns().add(col5);
+        listviewProductions.getColumns().add(col6);
+        listviewProductions.getColumns().add(col7);
+        listviewProductions.getColumns().add(col8);
+        listviewProductions.getColumns().add(col9);
 
 
     }
