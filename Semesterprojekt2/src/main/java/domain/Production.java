@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Production implements Serializable {
 
     //Enums: genre, type, language
-
+    private int id;
     private String productionReference; //e.g. nf221
     private String name;
     private Date releaseDate;
@@ -28,31 +28,34 @@ public class Production implements Serializable {
     private int recommendedAge;
     private int season;
     private int episode;
+    private String productionBio;
+
 
     private String companyProductionName;
 
     private ArrayList<Credit> credits;
 
-    public Production(String productionReference, String name, Date releaseDate, ArrayList<String> genre,
-                      String productionType, int length, String language, boolean hasSubtitle,
-                      boolean hasSignLanguage, ArrayList<Credit> credits, boolean isActive, boolean isValidated, int recommendedAge, int season, int episode) {
+    public Production(int id, String productionReference, String name, Date releaseDate, ArrayList<String> genre, String productionType, int length,
+                      String language, boolean hasSubtitle, boolean hasSignLanguage, boolean isActive, boolean isValidated, int recommendedAge,
+                      int season, int episode, String productionBio, String companyProductionName, ArrayList<Credit> credits) {
+        this.id = id;
         this.productionReference = productionReference;
         this.name = name;
         this.releaseDate = releaseDate;
-        this.length = length;
         this.genre = genre;
         this.productionType = productionType;
+        this.length = length;
         this.language = language;
         this.hasSubtitle = hasSubtitle;
         this.hasSignLanguage = hasSignLanguage;
+        this.isActive = isActive;
+        this.isValidated = isValidated;
         this.recommendedAge = recommendedAge;
         this.season = season;
         this.episode = episode;
+        this.productionBio = productionBio;
+        this.companyProductionName = companyProductionName;
         this.credits = credits;
-        this.isActive = isActive;
-        this.isValidated = false;
-        this.companyProductionName = "";
-
     }
 
     public Production(String productionReference, String name, Date date){
@@ -64,6 +67,26 @@ public class Production implements Serializable {
 
     public Production(){
         credits = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setProductionType(String productionType) {
+        this.productionType = productionType;
+    }
+
+    public String getProductionBio() {
+        return productionBio;
+    }
+
+    public void setProductionBio(String productionBio) {
+        this.productionBio = productionBio;
     }
 
     public void addCredit(Credit credit){
