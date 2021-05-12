@@ -1,5 +1,6 @@
 package org.presentation;
 
+import domain.Credit;
 import domain.Production;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,47 +15,30 @@ public class ViewerProductionsController {
 
     public void initialize(){
         production = ViewerSearchController.productionChosen;
-        setTableViewProduction();
-        listviewProductions.getItems().add(production);
+        setTableViewCredits();
+        listviewProductions.getItems().addAll(production.getCredits());
     }
 
 
-    private void setTableViewProduction(){
-
-//        private ArrayList<String> genre missing
-
+    private void setTableViewCredits(){
 
         listviewProductions.getColumns().clear();
         listviewProductions.getItems().clear();
 
+
         //creates a new column in the TableView with header "ID", type Production and cellValue String
-        TableColumn<Production, String> col1 = new TableColumn<>("ID");
+        TableColumn<Credit, String> col1 = new TableColumn<>("First Name");
         //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
-        col1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        col1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
 
-        TableColumn<Production, String> col2 = new TableColumn<>("Title");
-        col2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        TableColumn<Credit, String> col2 = new TableColumn<>("Last Name");
+        col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 
-        TableColumn<Production, Date> col3 = new TableColumn<>("Release Date");
-        col3.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        TableColumn<Credit, String> col3 = new TableColumn<>("Role");
+        col3.setCellValueFactory(new PropertyValueFactory<>("role"));
 
-        TableColumn<Production, String> col4 = new TableColumn<>("Type");
-        col4.setCellValueFactory(new PropertyValueFactory<>("productionType"));
-
-        TableColumn<Production, String> col5 = new TableColumn<>("Episode");
-        col5.setCellValueFactory(new PropertyValueFactory<>("episode"));
-
-        TableColumn<Production, String> col6 = new TableColumn<>("Season");
-        col6.setCellValueFactory(new PropertyValueFactory<>("season"));
-
-        TableColumn<Production, String> col7 = new TableColumn<>("Length");
-        col7.setCellValueFactory(new PropertyValueFactory<>("length"));
-
-        TableColumn<Production, String> col8 = new TableColumn<>("Language");
-        col8.setCellValueFactory(new PropertyValueFactory<>("language"));
-
-        TableColumn<Production, String> col9 = new TableColumn<>("Company");
-        col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
+        TableColumn<Credit, String> col4 = new TableColumn<>("Credit Type");
+        col4.setCellValueFactory(new PropertyValueFactory<>("creditType"));
 
         //adding columns to the tableview
 
@@ -62,11 +46,6 @@ public class ViewerProductionsController {
         listviewProductions.getColumns().add(col2);
         listviewProductions.getColumns().add(col3);
         listviewProductions.getColumns().add(col4);
-        listviewProductions.getColumns().add(col5);
-        listviewProductions.getColumns().add(col6);
-        listviewProductions.getColumns().add(col7);
-        listviewProductions.getColumns().add(col8);
-        listviewProductions.getColumns().add(col9);
 
 
     }
