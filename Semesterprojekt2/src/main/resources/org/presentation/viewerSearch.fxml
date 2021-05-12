@@ -38,13 +38,13 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="listviewProductions" layoutX="57.0" layoutY="176.0" prefHeight="593.0" prefWidth="524.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
+      <TableView fx:id="listviewProductions" layoutX="57.0" layoutY="176.0" prefHeight="593.0" prefWidth="697.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TableView fx:id="listviewCredits" layoutX="622.0" layoutY="175.0" prefHeight="593.0" prefWidth="524.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
+      <TableView fx:id="listviewCredits" layoutX="769.0" layoutY="175.0" prefHeight="593.0" prefWidth="377.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
