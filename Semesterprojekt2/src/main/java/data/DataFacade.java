@@ -189,8 +189,15 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void deleteProduction(Production prod) {
-    // 1: find id til relevant produktion (navn, prod_id)
+    public void deleteProduction(int id) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "DELETE FROM production WHERE id = ?");
+            stmt.setInt(1,id);
+            stmt.execute();
+    } catch (SQLException throwable) {
+        throwable.printStackTrace();
+    }
     // 2: slet relevant produktion i tabel
     }
 
@@ -403,9 +410,6 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-
-
-
     public static void main(String[] args) {
         DataFacade dbFacade = new DataFacade();
         dbFacade.initializePostgresqlDatabase();
@@ -417,6 +421,13 @@ public class DataFacade implements DataLayerInterface {
         // test af getProductions
         List<Production> productionTest = dbFacade.getProductions();
         System.out.println(productionTest);
+
+        // test af deleteProduction
+        dbFacade.deleteProduction(1);
+
+        // test af getProduction
+        test = dbFacade.getProduction(1);
+        System.out.println(test);
     }
 }
 
