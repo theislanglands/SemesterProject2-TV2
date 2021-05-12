@@ -23,8 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daef0408-6247-4a34-b3df-884099aaa3f1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/domain/TvCredits.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ViewerSearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Semesterprojekt2/src/main/java/org/presentation/ViewerSearchController.java" afterDir="false" />
     </list>
     <list id="0eabd785-16f1-4efa-a95d-283dba47f371" name="Changes by eemiiil" comment="" />
     <list id="d2fb45a6-ec1b-4449-96ac-6c42362ddedb" name="Changes by theislanglands" comment="" />
@@ -74,12 +73,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Application.App (1)">
-    <configuration name="App (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.presentation.App" />
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.presentation.App" />
       <module name="Semesterprojekt2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.presentation.*" />
+          <option name="PATTERN" value="org.example.presentation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -88,11 +87,11 @@
       </method>
     </configuration>
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.presentation.App" />
+      <option name="MAIN_CLASS_NAME" value="org.presentation.App" />
       <module name="Semesterprojekt2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.presentation.*" />
+          <option name="PATTERN" value="org.presentation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
