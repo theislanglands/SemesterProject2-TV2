@@ -83,4 +83,16 @@ public class Credit {
     public String getPhone() {
         return this.creditName.getPhone();
     }
+
+    public void setAddress(String address) {
+        this.creditName.setAddress(address);
+    }
+
+    public void setPhone(String phone) {
+       this.creditName.setPhone(phone);
+    }
+
+    public void setEmail(String email) {
+        this.creditName.setEmail(email);
+    }
 }
