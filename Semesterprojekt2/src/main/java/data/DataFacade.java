@@ -342,7 +342,9 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public List<Credit> getCredits() {
+    public List<Credit> getCredits(Production prod) {
+        // returnerer en liste med credits der høre til produktion
+        
         return null;
     }
 
@@ -412,18 +414,17 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public List<CreditName> getCreditName() {
+    public List<CreditName> getCreditNames() {
         return null;
     }
 
     @Override
-    public CreditName getCreditName(int creditNameID) {
+    public CreditName getCreditNames(int creditNameID) {
         return null;
     }
 
     @Override
     public void deleteCreditName(int creditNameID) {
-
     }
 
     @Override

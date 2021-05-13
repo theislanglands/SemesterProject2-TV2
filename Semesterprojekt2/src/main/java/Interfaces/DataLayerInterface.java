@@ -19,7 +19,7 @@ public interface DataLayerInterface {
 
     // Credits
     void createCredits(Credit cred, Production prod);
-    List<Credit> getCredits();
+    List<Credit> getCredits(Production prod);
     Credit getCredit(int creditID);
     void deleteCredit(int creditID);
     boolean updateCredit(int creditID, Credit replaceCredit);
@@ -39,8 +39,8 @@ public interface DataLayerInterface {
 
     // CreditName
     void createCreditName(CreditName creditName);
-    List<CreditName> getCreditName();
-    CreditName getCreditName(int creditNameID);
+    List<CreditName> getCreditNames();
+    CreditName getCreditNames(int creditNameID);
     void deleteCreditName(int creditNameID);
     boolean updateCreditName(int creditNameID, CreditName replaceCreditName);
 
