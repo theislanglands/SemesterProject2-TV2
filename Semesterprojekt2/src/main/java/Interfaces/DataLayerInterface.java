@@ -37,12 +37,12 @@ public interface DataLayerInterface {
     // Genre Types (erstatter enum)
     List<String> getGenres();
 
-    // Person
-    void createPerson(CreditName pers);
-    List<CreditName> getPerson();
-    CreditName getPerson(int personID);
-    void deletePerson(int personID);
-    boolean updatePerson(int personID, CreditName replaceCreditName);
+    // CreditName
+    void createCreditName(CreditName creditName);
+    List<CreditName> getCreditName();
+    CreditName getCreditName(int creditNameID);
+    void deleteCreditName(int creditNameID);
+    boolean updateCreditName(int creditNameID, CreditName replaceCreditName);
 
 
 

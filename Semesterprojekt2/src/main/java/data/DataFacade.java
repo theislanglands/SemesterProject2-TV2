@@ -407,27 +407,27 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void createPerson(CreditName pers) {
+    public void createCreditName(CreditName pers) {
 
     }
 
     @Override
-    public List<CreditName> getPerson() {
+    public List<CreditName> getCreditName() {
         return null;
     }
 
     @Override
-    public CreditName getPerson(int personID) {
+    public CreditName getCreditName(int creditNameID) {
         return null;
     }
 
     @Override
-    public void deletePerson(int personID) {
+    public void deleteCreditName(int creditNameID) {
 
     }
 
     @Override
-    public boolean updatePerson(int personID, CreditName replaceCreditName) {
+    public boolean updateCreditName(int creditNameID, CreditName replaceCreditName) {
         return false;
     }
 
