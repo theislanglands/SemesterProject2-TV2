@@ -98,5 +98,4 @@ public class Credit {
         this.creditName.setEmail(email);
     }
 
-
 }

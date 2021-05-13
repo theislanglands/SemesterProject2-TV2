@@ -203,7 +203,8 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace();
             return null;
         }
-
+        returnProduction.setCredits((ArrayList<Credit>) getCredits(id));
+        
         return returnProduction;
     }
 
