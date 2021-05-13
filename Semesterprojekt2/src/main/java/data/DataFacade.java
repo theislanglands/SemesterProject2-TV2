@@ -185,18 +185,18 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setProductionBio(sqlReturnValues.getString(15));
             }
 
-//            PreparedStatement stmt2 = connection.prepareStatement(
-//                    "SELECT " +
-//                            "genre.genre " +    // 1
-//                            "FROM genre " +
-//                            "INNER JOIN genres_production_association ON genres_production_association.genre_id = genre.id " +
-//                            "WHERE genres_production_association.production_id = ?");
-//
-//            ResultSet sqlReturnValues2 = stmt2.executeQuery();
-//
-//            while (sqlReturnValues.next()) {
-//                returnProduction.addGenre(sqlReturnValues2.getString(1));
-//            }
+            PreparedStatement stmt2 = connection.prepareStatement(
+                    "SELECT " +
+                            "genre.genre " +    // 1
+                            "FROM genre " +
+                            "INNER JOIN genres_production_association ON genres_production_association.genre_id = genre.id " +
+                            "WHERE genres_production_association.production_id = ?");
+
+            ResultSet sqlReturnValues2 = stmt2.executeQuery();
+
+            while (sqlReturnValues.next()) {
+                returnProduction.addGenre(sqlReturnValues2.getString(1));
+            }
 
 
             } catch (SQLException ex) {
@@ -326,7 +326,7 @@ public class DataFacade implements DataLayerInterface {
                     "INSERT INTO credit_name_credit_type_association(" +
                             "credit_name_id, " +        //1
                             "credit_type_id, " +         //2
-                            "credit_id, " +           //3
+                            "credit_id)" +           //3
                             "VALUES (?,?,?)"
             );
 
