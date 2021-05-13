@@ -353,7 +353,7 @@ public class DataFacade implements DataLayerInterface {
         Credit returnCredit = new Credit();
         CreditName associatedName = new CreditName();
 
-        // henter rolle og validated
+        // henter data fra tabeller
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT\n" +
@@ -375,19 +375,20 @@ public class DataFacade implements DataLayerInterface {
 
             ResultSet resultSet = stmt.executeQuery();
 
-            // henter parametre til CreditName og tilføjer et objekt til credit
-            associatedName.setFirstName(resultSet.getString(1));
-            associatedName.setLastName(resultSet.getString(2));
-            associatedName.setAddress(resultSet.getString(3));
-            associatedName.setPhone(resultSet.getInt(4));
-            associatedName.setEmail(resultSet.getString(5));
-            returnCredit.setCreditName(associatedName);
+            while (resultSet.next()) {
+                // henter parametre til CreditName og tilføjer et objekt til credit
+                associatedName.setFirstName(resultSet.getString(1));
+                associatedName.setLastName(resultSet.getString(2));
+                associatedName.setAddress(resultSet.getString(3));
+                associatedName.setPhone(resultSet.getInt(4));
+                associatedName.setEmail(resultSet.getString(5));
+                returnCredit.setCreditName(associatedName);
 
-            // tilføjer resterende parametre
-            returnCredit.setCreditType(resultSet.getString(6));
-            returnCredit.setRole(resultSet.getString(7));
-            returnCredit.setValidated(resultSet.getBoolean(8));
-
+                // tilføjer resterende parametre
+                returnCredit.setCreditType(resultSet.getString(6));
+                returnCredit.setRole(resultSet.getString(7));
+                returnCredit.setValidated(resultSet.getBoolean(8));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -599,9 +600,11 @@ public class DataFacade implements DataLayerInterface {
         System.out.println(test);
          */
 
-        // test af update produktion
+        // test af update produktion - VIRKER IKKE PT!
 
-        // Opretter produktion
+        // Opretter produktion der skal ersttte den gamle
+
+        /*
         Production badehotellet = new Production();
         badehotellet.setProductionReference("SF666");
         badehotellet.setName("Badehotellet");
@@ -619,12 +622,26 @@ public class DataFacade implements DataLayerInterface {
         badehotellet.setCompanyProductionName("SF Film Production ApS");
 
         System.out.println(badehotellet);
-
         dbFacade.updateProduction(1, badehotellet);
-
         test = dbFacade.getProduction(1);
         System.out.println(test);
-        /*
+        */
+
+        Credit testGetCredit = dbFacade.getCredit(4);
+        System.out.println("\ntester hent af kreditering fra db");
+        System.out.println(testGetCredit);
+
+
+
+
+
+
+
+
+
+
+
+        /* KOPIERET FRA GAMLE DATA MAIN
 
         public void createTestProductions() {
             // Opretter produktion 1: "Badehotellet"
