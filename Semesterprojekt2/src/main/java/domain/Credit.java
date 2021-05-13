@@ -1,12 +1,13 @@
 package domain;
 
 public class Credit {
-
+    // Attributes
     private CreditName creditName;
     private String role;
     private String creditType;
     private boolean isValidated = false;
 
+    // Constructors
     public Credit(CreditName creditName, String role, String creditType, boolean isValidated) {
         this.creditName = creditName;
         this.role = role;
@@ -28,11 +29,12 @@ public class Credit {
     public Credit() {
     }
 
+    // Methods
     public CreditName getCreditName() {
         return creditName;
     }
 
-    public void setPerson(CreditName creditName) {
+    public void setCreditName(CreditName creditName) {
         this.creditName = creditName;
     }
 

@@ -348,7 +348,51 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public Credit getCredit(int creditID) {
-        return null;
+
+        // opretter tom kreditering
+        Credit returnCredit = new Credit();
+        CreditName associatedName = new CreditName();
+
+        // henter rolle og validated
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT\n" +
+                            "    credit_name.first_name,\n" +   //1
+                            "    credit_name.last_name,\n" +    //2
+                            "    credit_name.address,\n" +      //3
+                            "    credit_name.phone,\n" +        //4
+                            "    credit_name.email,\n" +        //5
+                            "    credit_type.type,\n" +         //6
+                            "    credit.role,\n" +              //7
+                            "    credit.validated\n" +          //8
+                            "FROM credit_name_credit_type_association\n" +
+                            "JOIN credit_type ON credit_name_credit_type_association.credit_type_id = credit_type.id\n" +
+                            "JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id\n" +
+                            "JOIN credit ON credit_name_credit_type_association.credit_id = credit.id\n" +
+                            "WHERE credit.id = ?;");
+
+            stmt.setInt(1,creditID);
+
+            ResultSet resultSet = stmt.executeQuery();
+
+            // henter parametre til CreditName og tilføjer et objekt til credit
+            associatedName.setFirstName(resultSet.getString(1));
+            associatedName.setLastName(resultSet.getString(2));
+            associatedName.setAddress(resultSet.getString(3));
+            associatedName.setPhone(resultSet.getInt(4));
+            associatedName.setEmail(resultSet.getString(5));
+            returnCredit.setCreditName(associatedName);
+
+            // tilføjer resterende parametre
+            returnCredit.setCreditType(resultSet.getString(6));
+            returnCredit.setRole(resultSet.getString(7));
+            returnCredit.setValidated(resultSet.getBoolean(8));
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return returnCredit;
     }
 
     @Override
@@ -385,6 +429,7 @@ public class DataFacade implements DataLayerInterface {
     public boolean updatePerson(int personID, CreditName replaceCreditName) {
         return false;
     }
+
 
     //ERSTATTER ENUMS
     // CreditType
@@ -512,6 +557,7 @@ public class DataFacade implements DataLayerInterface {
             return -1;
         }
     }
+
     // Returnerer id på creditType der matcher navnet
     // - returnerer -1 hvis det ikke findes
     private int getCreditTypeId(String creditType) {
