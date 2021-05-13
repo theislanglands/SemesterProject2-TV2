@@ -254,6 +254,8 @@ public class DataFacade implements DataLayerInterface {
                 stmt.setBoolean(8, replaceProduction.isValidated());
                 stmt.setString(9, replaceProduction.getProductionReference());
                 stmt.setString(10, replaceProduction.getProductionBio());
+
+                // måske det er her det går galt, hvis den nye indsætning ikke står i en tabel!
                 // slår op i andre tabeller, og finder den korrekte foreign key
                 stmt.setInt(11, getProdCompanyId(replaceProduction.getProductionCompanyName()));
                 stmt.setInt(12, getProdTypeId(replaceProduction.getProductionType()));
@@ -276,16 +278,27 @@ public class DataFacade implements DataLayerInterface {
             //Begin statement - Transaction
             connection.setAutoCommit(false);
 
+            // indætter credit
             PreparedStatement stmtCredit = connection.prepareStatement(
                     "INSERT INTO credit(" +
                             "role, " +              //1
                             "validated, " +         //2
                             "production_id) " +     //3
-                            "VALUES (?,?,?)");
+                            "VALUES (?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+            );
             stmtCredit.setString(1, cred.getRole());
             stmtCredit.setBoolean(2, cred.isValidated());
             stmtCredit.setInt(3, prod.getId());
+            stmtCredit.execute();
 
+            // henter primary key genereret fra indsat credit
+            ResultSet resultSet = stmtCredit.getGeneratedKeys();
+            resultSet.next();
+            int lastInsertedCreditID = resultSet.getInt(1);
+
+
+            // Indsætter navn TODO: (tjek om eksisterer???)
             PreparedStatement stmtCreditName = connection.prepareStatement(
                     "INSERT INTO credit_name(" +
                             "first_name, " +        //1
@@ -293,36 +306,40 @@ public class DataFacade implements DataLayerInterface {
                             "address, " +           //3
                             "phone, " +             //4
                             "email) " +             //5
-                            "VALUES (?,?,?,?,?)");
+                            "VALUES (?,?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+                    );
             stmtCreditName.setString(1, cred.getFirstName());
             stmtCreditName.setString(2, cred.getLastName());
             stmtCreditName.setString(3, cred.getAddress());
             stmtCreditName.setInt(4, cred.getPhone());
             stmtCreditName.setString(5, cred.getEmail());
+
+            // henter id på indsatte CreditName
+            resultSet = stmtCreditName.getGeneratedKeys();
+            resultSet.next();
+            int lastInsertedCreditNameID = resultSet.getInt(1);
+
+            // INDSÆTTER I TABEL: credit_name_credit_type_association
+            // Assosierer credit og creditname samt type
+            PreparedStatement stmtCNT = connection.prepareStatement(
+                    "INSERT INTO credit_name_credit_type_association(" +
+                            "credit_name_id, " +        //1
+                            "credit_type_id, " +         //2
+                            "credit_id, " +           //3
+                            "VALUES (?,?,?)"
+            );
+
+            stmtCNT.setInt(1,lastInsertedCreditNameID);
+            stmtCNT.setInt(2,getCreditTypeId(cred.getCreditType()));
+            stmtCNT.setInt(3,lastInsertedCreditID);
+
             connection.commit();
 
-
-            // vi skal bruge nummeret på den nyligt oprettede kreditering!
-            int idOfRecentCreditInsertion;
-
-/*
-            PreparedStatement stmtCreditNameAssociation = connection.prepareStatement(
-                    "INSERT INTO credit_name_credit_type_association(" +
-                            "role, " +              //1
-                            "validated, " +         //2
-                            "production_id) " +     //3
-                            "VALUES (?,?,?)");
-            stmtCredit.setString(1, cred.getRole());
-            stmtCredit.setBoolean(2, cred.isValidated());
-            stmtCredit.setInt(3, prod.getId());
-*/
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-        
-
     }
-
 
     @Override
     public List<Credit> getCredits() {
@@ -490,6 +507,22 @@ public class DataFacade implements DataLayerInterface {
             stmtGetNameId.setString(1, language);
             ResultSet sqlReturnValues = stmtGetNameId.executeQuery();
             return sqlReturnValues.getInt(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+    // Returnerer id på creditType der matcher navnet
+    // - returnerer -1 hvis det ikke findes
+    private int getCreditTypeId(String creditType) {
+        try {
+            PreparedStatement stmtGetTypeId = connection.prepareStatement("SELECT * FROM credit_type WHERE type = ?");
+            stmtGetTypeId.setString(1, creditType);
+            ResultSet sqlReturnValues = stmtGetTypeId.executeQuery();
+
+            // returnerer id fra column 1
+            return sqlReturnValues.getInt(1);
+
         } catch (SQLException ex) {
             ex.printStackTrace();
             return -1;
