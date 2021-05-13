@@ -47,7 +47,7 @@ CREATE TABLE production (
     id SERIAL PRIMARY KEY,
     season INTEGER,
     episode INTEGER,
-    release_date TIMESTAMP NOT NULL,
+    release_date DATE NOT NULL,
     length INTEGER,
     subtitle BOOLEAN,
     sign_language BOOLEAN,
@@ -166,7 +166,7 @@ INSERT INTO production_company (name, address, phone, email, country) VALUES ('S
 
 INSERT INTO production_name (name) VALUES ('Badehotellet');
 
-INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1978-06-23 00:00:00.000000', 43, true, false, true, true, 'SF102', 'badehotellet er en helt fantastisk serie om et badehotel', 1, 2, 1, 1);
+INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1999-01-08 04:05:06', 43, true, false, true, true, 'SF102', 'badehotellet er en helt fantastisk serie om et badehotel', 1, 2, 1, 1);
 
 -- indsætter skuespillere i credit_name
 INSERT INTO credit_name (first_name, last_name, address, phone, email) VALUES ('Rosalinde', 'Mynster', 'Poulstrupvej 8', 80997397, 'rosalinde@credits.dk');
@@ -247,43 +247,43 @@ INSERT INTO credit (role, validated, production_id) VALUES ('Fru Skibsreder Holm
 INSERT INTO credit (role, validated, production_id) VALUES ('Arne Kokholm', true, 1);
 
 -- indsætter foreign keys i credit_name_credit_type_association
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (1, 23, 1);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (2, 23, 2);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (3, 23, 3);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (4, 23, 4);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (5, 23, 5);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (6, 23, 6);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (7, 23, 7);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (8, 23, 8);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (9, 23, 9);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (10, 23, 10);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (11, 23, 11);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (12, 23, 12);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (13, 23, 13);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (14, 23, 14);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (15, 23, 15);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (16, 23, 16);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (17, 23, 17);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (18, 23, 18);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (19, 23, 19);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (20, 23, 20);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (21, 23, 21);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (22, 23, 22);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (23, 23, 23);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (24, 23, 24);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (25, 23, 25);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (26, 23, 26);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (27, 23, 27);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (28, 23, 28);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (29, 23, 29);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (30, 23, 30);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (31, 23, 31);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (32, 23, 32);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (33, 23, 33);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (34, 23, 34);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (35, 23, 35);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (36, 23, 36);
-INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (37, 23, 37);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (1, 24, 1);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (2, 24, 2);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (3, 24, 3);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (4, 24, 4);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (5, 24, 5);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (6, 24, 6);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (7, 24, 7);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (8, 24, 8);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (9, 24, 9);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (10, 24, 10);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (11, 24, 11);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (12, 24, 12);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (13, 24, 13);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (14, 24, 14);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (15, 24, 15);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (16, 24, 16);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (17, 24, 17);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (18, 24, 18);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (19, 24, 19);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (20, 24, 20);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (21, 24, 21);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (22, 24, 22);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (23, 24, 23);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (24, 24, 24);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (25, 24, 25);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (26, 24, 26);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (27, 24, 27);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (28, 24, 28);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (29, 24, 29);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (30, 24, 30);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (31, 24, 31);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (32, 24, 32);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (33, 24, 33);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (34, 24, 34);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (35, 24, 35);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (36, 24, 36);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (37, 24, 37);
 
 
 -- inserting relation between production and genres

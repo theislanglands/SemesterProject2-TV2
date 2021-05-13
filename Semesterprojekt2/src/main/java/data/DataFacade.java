@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 public class DataFacade implements DataLayerInterface {
 
@@ -44,7 +45,9 @@ public class DataFacade implements DataLayerInterface {
     private void initializePostgresqlDatabase() {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
-            connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName, username, password);
+            //connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName, username, password);
+            connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName + "?" + "user=hdzfvhcu"+ "&password=5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd"+"&stringtype=unspecified");
+
         } catch (SQLException | IllegalArgumentException ex) {
             ex.printStackTrace(System.err);
         } finally {
@@ -216,12 +219,12 @@ public class DataFacade implements DataLayerInterface {
 
             stmt2.setInt(1, id);
 
-            ResultSet sqlReturnValues2 = stmt2.executeQuery();
-
-            while (sqlReturnValues2.next()) {
-                returnProduction.addGenre(sqlReturnValues2.getString(1));
-            }
-            stmt2.close();
+//            ResultSet sqlReturnValues2 = stmt2.executeQuery();
+//
+//            while (sqlReturnValues2.next()) {
+//                returnProduction.addGenre(sqlReturnValues2.getString(1));
+//            }
+//            stmt2.close();
 
             } catch (SQLException ex) {
             ex.printStackTrace();
@@ -248,8 +251,9 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public boolean updateProduction(int sourceProductionID, Production replaceProduction) {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss.SSSSSSX");
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String text = formatter.format(replaceProduction.getReleaseDate());
+        System.out.println(text);
 
         try {
             PreparedStatement stmt = connection.prepareStatement(
@@ -263,16 +267,13 @@ public class DataFacade implements DataLayerInterface {
                             "active = ?, " +                // 7
                             "validated = ?, " +             // 8
                             "production_reference = ?, " +  // 9
-                            "production_bio = ?, " +        //10
-                            "production_company_id = ?, " + //11
-                            "production_type_id = ?, " +    //12
-                            "language_id = ?, " +           //13
-                            "production_name_id = ? " +     //14
-                            "WHERE id = ?");                //15
+                            "production_bio = ?, " +        // 10
+                            "production_company_id = ?, " + // 11
+                            "production_type_id = ?, " +    // 12
+                            "language_id = ?, " +           // 13
+                            "production_name_id = ? " +     // 14
+                            "WHERE id = ?");                // 15
 
-            //ResultSet sqlResult = stmt.executeQuery();
-
-            //while (sqlResult.next()) {
                 stmt.setInt(1, replaceProduction.getSeason());
                 stmt.setInt(2, replaceProduction.getEpisode());
                 stmt.setString(3, text);
@@ -292,9 +293,8 @@ public class DataFacade implements DataLayerInterface {
                 stmt.setInt(14, getNameId(replaceProduction.getName()));
                 // Source ID
                 stmt.setInt(15, sourceProductionID);
-            //}
 
-            //ResultSet sqlResult = stmt.executeQuery();
+            int rowAffected =  stmt.executeUpdate();
 
 
         } catch (SQLException ex) {
@@ -598,7 +598,7 @@ public class DataFacade implements DataLayerInterface {
             //  denne metode og dermed updateProduciton() og createProduction() til at virke (Simon)
             int i = -1;
             while (sqlReturnValues.next()) {
-                return sqlReturnValues.getInt(1);
+                i = sqlReturnValues.getInt(1);
             }
             return i;
         } catch (SQLException ex) {
@@ -707,11 +707,11 @@ public class DataFacade implements DataLayerInterface {
 
         // 1 test af getProduction
         Production test = dbFacade.getProduction(1);
-        System.out.println(test);
+        //System.out.println(test);
 
         // 2 test af getProductions
         List<Production> productionTest = dbFacade.getProductions();
-        System.out.println(productionTest);
+        //System.out.println(productionTest);
 
         // test af deleteProduction - VIRKER!!!!!!!!!!!
         /*
@@ -724,7 +724,7 @@ public class DataFacade implements DataLayerInterface {
 
         // Opretter produktion der skal ersttte den gamle
 
-        /*
+
         Production badehotellet = new Production();
         badehotellet.setProductionReference("SF666");
         badehotellet.setName("Badehotellet");
@@ -745,17 +745,17 @@ public class DataFacade implements DataLayerInterface {
         dbFacade.updateProduction(1, badehotellet);
         test = dbFacade.getProduction(1);
         System.out.println(test);
-        */
+
 
         // tester getCredit
         Credit testGetCredit = dbFacade.getCredit(4);
         System.out.println("\ntester hent af kreditering fra db");
-        System.out.println(testGetCredit);
+        //System.out.println(testGetCredit);
 
         // tester getCredits
-        System.out.println("\ntester liste af credits");
         List<Credit> testList = dbFacade.getCredits(1);
-        System.out.println(testList);
+        System.out.println("\ntester liste af credits");
+        //System.out.println(testList);
 
 
 
