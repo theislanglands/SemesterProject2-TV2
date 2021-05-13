@@ -71,7 +71,7 @@ public class Credit {
     }
 
     public String toString(){
-        return (this.creditType + "\nrolle: " + this.role + "\nNavn: " + this.creditName.toString());
+        return ("\n" + this.creditType + "\nrolle: " + this.role + "\nNavn: " + this.creditName.toString() + "\n");
     }
 
     public String getAddress() {

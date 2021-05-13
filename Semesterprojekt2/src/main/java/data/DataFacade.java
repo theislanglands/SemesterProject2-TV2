@@ -342,10 +342,28 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public List<Credit> getCredits(Production prod) {
+    public List<Credit> getCredits(int prodID) {
         // returnerer en liste med credits der høre til produktion
-        
-        return null;
+        List<Credit> returnCredits = new ArrayList<>();
+
+        try {
+        PreparedStatement stmt = connection.prepareStatement(
+                "SELECT id FROM credit WHERE production_id = ?;");
+
+        stmt.setInt(1,prodID);
+
+        ResultSet resultSet = stmt.executeQuery();
+
+            while (resultSet.next()){
+                int readID = resultSet.getInt(1);
+                returnCredits.add(getCredit(readID));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return returnCredits;
     }
 
     @Override
@@ -628,9 +646,15 @@ public class DataFacade implements DataLayerInterface {
         System.out.println(test);
         */
 
+        // tester getCredit
         Credit testGetCredit = dbFacade.getCredit(4);
         System.out.println("\ntester hent af kreditering fra db");
         System.out.println(testGetCredit);
+
+        // tester getCredits
+        System.out.println("\ntester liste af credits");
+        List<Credit> testList = dbFacade.getCredits(1);
+        System.out.println(testList);
 
 
 
