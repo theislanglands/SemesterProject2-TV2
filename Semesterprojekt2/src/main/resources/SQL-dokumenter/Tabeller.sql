@@ -1,22 +1,22 @@
 
 CREATE TABLE production_type(
     id serial PRIMARY KEY,
-    type VARCHAR(100)
+    type UNIQUE VARCHAR(100)
 );
 
 CREATE TABLE production_name(
     id serial PRIMARY KEY,
-    name VARCHAR(100)
+    name UNIQUE VARCHAR(100)
 );
 
 CREATE TABLE language(
     id serial PRIMARY KEY,
-    language VARCHAR(100)
+    language UNIQUE VARCHAR(100)
 );
 
 CREATE TABLE production_company (
     id serial PRIMARY KEY,
-    name VARCHAR(100),
+    name UNIQUE VARCHAR(100),
     address VARCHAR(100),
     phone INTEGER,
     email VARCHAR(100),
@@ -25,7 +25,7 @@ CREATE TABLE production_company (
 
 CREATE TABLE genre(
     id serial PRIMARY KEY,
-    genre VARCHAR(100)
+    genre UNIQUE VARCHAR(100)
 );
 
 CREATE TABLE credit_name (
@@ -34,12 +34,13 @@ CREATE TABLE credit_name (
     last_name VARCHAR(100),
     address VARCHAR(100),
     phone INTEGER,
-    email VARCHAR(10
+    email VARCHAR(10),
+    UNIQUE (first_name, last_name);
 );
 
 CREATE TABLE credit_type(
     id SERIAL PRIMARY KEY,
-    type VARCHAR(100)
+    type UNIQUE VARCHAR(100)
 );
 
 CREATE TABLE production (
@@ -53,17 +54,20 @@ CREATE TABLE production (
     active BOOLEAN,
     validated BOOLEAN,
     production_reference VARCHAR(100),
-    production_bio VARCHAR(2000);
+    production_bio VARCHAR(2000),
 
-production_company_id INTEGER NOT NULL REFERENCES production_company(id),
+    production_company_id INTEGER NOT NULL REFERENCES production_company(id),
     production_type_id INTEGER NOT NULL REFERENCES production_type(id),
     language_id INTEGER NOT NULL REFERENCES language(id),
-    production_name_id INTEGER NOT NULL REFERENCES production_name(id)
+    production_name_id INTEGER NOT NULL REFERENCES production_name(id),
+
+    UNIQUE (season, episode, production_name_id)
 );
 
 CREATE TABLE genres_production_association(
     production_id INTEGER NOT NULL REFERENCES production(id),
-    genre_id INTEGER NOT NULL REFERENCES genre(id)
+    genre_id INTEGER NOT NULL REFERENCES genre(id),
+    UNIQUE (production_id, genre_id)
 );
 
 CREATE TABLE credit (
@@ -76,7 +80,8 @@ CREATE TABLE credit (
 CREATE TABLE credit_name_credit_type_association (
     credit_name_id INTEGER NOT NULL REFERENCES credit_name(id),
     credit_type_id INTEGER NOT NULL REFERENCES credit_type(id),
-    credit_id INTEGER NOT NULL REFERENCES credit(id)
+    credit_id INTEGER NOT NULL REFERENCES credit(id),
+    UNIQUE (credit_name_id, credit_type_id, credit_id)
 );
 
 INSERT INTO credit_type (type) VALUES ('Billedkunstner');
@@ -161,8 +166,7 @@ INSERT INTO production_company (name, address, phone, email, country) VALUES ('S
 
 INSERT INTO production_name (name) VALUES ('Badehotellet');
 
-INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1978-06-23 00:00:00.000000', 43, true, false, true, true, 'SF102', 1, 2, 1, 1);
-UPDATE production SET production_bio='badehotellet er en helt fantastisk serie om et badehotel' WHERE production.id = 1;
+INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1978-06-23 00:00:00.000000', 43, true, false, true, true, 'SF102', 'badehotellet er en helt fantastisk serie om et badehotel', 1, 2, 1, 1);
 
 -- indsætter skuespillere i credit_name
 INSERT INTO credit_name (first_name, last_name, address, phone, email) VALUES ('Rosalinde', 'Mynster', 'Poulstrupvej 8', 80997397, 'rosalinde@credits.dk');
@@ -281,6 +285,10 @@ INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id,
 INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (36, 23, 36);
 INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (37, 23, 37);
 
+
+-- inserting relation between production and genres
+INSERT INTO genres_production_association (production_id, genre_id) VALUES (1, 2);
+INSERT INTO genres_production_association (production_id, genre_id) VALUES (1, 8);
 
 
 
