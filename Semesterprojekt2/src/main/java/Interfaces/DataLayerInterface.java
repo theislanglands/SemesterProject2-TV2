@@ -25,16 +25,10 @@ public interface DataLayerInterface {
     boolean updateCredit(int creditID, Credit replaceCredit);
 
     // Metoder der erstatter ENUMS
-    // Credit types (erstatter enum)
+
     List<String> getCreditTypes();
-
-    // Production types (erstatter enum)
     List<String> getProductionTypes();
-
-    // Language Type (erstatter enum)
     List<String> getLanguages();
-
-    // Genre Types (erstatter enum)
     List<String> getGenres();
 
     // CreditName
