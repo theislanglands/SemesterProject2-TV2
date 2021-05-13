@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -184,6 +186,7 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setId(sqlReturnValues.getInt(14));
                 returnProduction.setProductionBio(sqlReturnValues.getString(15));
             }
+            stmt.close();
 
             PreparedStatement stmt2 = connection.prepareStatement(
                     "SELECT " +
@@ -192,18 +195,19 @@ public class DataFacade implements DataLayerInterface {
                             "INNER JOIN genres_production_association ON genres_production_association.genre_id = genre.id " +
                             "WHERE genres_production_association.production_id = ?");
 
+            stmt2.setInt(1, id);
+
             ResultSet sqlReturnValues2 = stmt2.executeQuery();
 
-            while (sqlReturnValues.next()) {
+            while (sqlReturnValues2.next()) {
                 returnProduction.addGenre(sqlReturnValues2.getString(1));
             }
-
+            stmt2.close();
 
             } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-
         return returnProduction;
     }
 
@@ -222,6 +226,9 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public boolean updateProduction(int sourceProductionID, Production replaceProduction) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss.SSSSSSX");
+        String text = formatter.format(replaceProduction.getReleaseDate());
+
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "UPDATE production " +
@@ -241,12 +248,12 @@ public class DataFacade implements DataLayerInterface {
                             "production_name_id = ? " +     //14
                             "WHERE id = ?");                //15
 
-            ResultSet sqlResult = stmt.executeQuery();
+            //ResultSet sqlResult = stmt.executeQuery();
 
-            while (sqlResult.next()) {
+            //while (sqlResult.next()) {
                 stmt.setInt(1, replaceProduction.getSeason());
                 stmt.setInt(2, replaceProduction.getEpisode());
-                stmt.setDate(3, (java.sql.Date) replaceProduction.getReleaseDate());
+                stmt.setString(3, text);
                 stmt.setInt(4, replaceProduction.getLength());
                 stmt.setBoolean(5, replaceProduction.hasSubtitle());
                 stmt.setBoolean(6, replaceProduction.hasSignLanguage());
@@ -263,7 +270,10 @@ public class DataFacade implements DataLayerInterface {
                 stmt.setInt(14, getNameId(replaceProduction.getName()));
                 // Source ID
                 stmt.setInt(15, sourceProductionID);
-            }
+            //}
+
+            //ResultSet sqlResult = stmt.executeQuery();
+
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -271,6 +281,7 @@ public class DataFacade implements DataLayerInterface {
         }
         return true;
     }
+
 
     @Override
     public void createCredits(Credit cred, Production prod) {
@@ -515,7 +526,14 @@ public class DataFacade implements DataLayerInterface {
             PreparedStatement stmtGetCompanyId = connection.prepareStatement("SELECT * FROM production_company WHERE name = ?");
             stmtGetCompanyId.setString(1, productionCompany);
             ResultSet sqlReturnValues = stmtGetCompanyId.executeQuery();
-            return sqlReturnValues.getInt(1);
+
+            // TODO: Det her burde nok kunne løses mere elegant, men det var et quick fix for at få
+            //  denne metode og dermed updateProduciton() og createProduction() til at virke (Simon)
+            int i = -1;
+            while (sqlReturnValues.next()) {
+                return sqlReturnValues.getInt(1);
+            }
+            return i;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return -1;
@@ -527,7 +545,14 @@ public class DataFacade implements DataLayerInterface {
             PreparedStatement stmtGetTypeId = connection.prepareStatement("SELECT * FROM production_type WHERE type = ?");
             stmtGetTypeId.setString(1, productionType);
             ResultSet sqlReturnValues = stmtGetTypeId.executeQuery();
-            return sqlReturnValues.getInt(1);
+
+            // TODO: Det her burde nok kunne løses mere elegant, men det var et quick fix for at få
+            //  denne metode og dermed updateProduciton() og createProduction() til at virke (Simon)
+            int i = -1;
+            while (sqlReturnValues.next()) {
+                i = sqlReturnValues.getInt(1);
+            }
+            return i;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return -1;
@@ -539,7 +564,14 @@ public class DataFacade implements DataLayerInterface {
             PreparedStatement stmtGetNameId = connection.prepareStatement("SELECT * FROM production_name WHERE name = ?");
             stmtGetNameId.setString(1, productionName);
             ResultSet sqlReturnValues = stmtGetNameId.executeQuery();
-            return sqlReturnValues.getInt(1);
+
+            // TODO: Det her burde nok kunne løses mere elegant, men det var et quick fix for at få
+            //  denne metode og dermed updateProduciton() og createProduction() til at virke (Simon)
+            int i = -1;
+            while (sqlReturnValues.next()) {
+                i = sqlReturnValues.getInt(1);
+            }
+            return i;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return -1;
@@ -551,7 +583,14 @@ public class DataFacade implements DataLayerInterface {
             PreparedStatement stmtGetNameId = connection.prepareStatement("SELECT * FROM language WHERE language = ?");
             stmtGetNameId.setString(1, language);
             ResultSet sqlReturnValues = stmtGetNameId.executeQuery();
-            return sqlReturnValues.getInt(1);
+
+            // TODO: Det her burde nok kunne løses mere elegant, men det var et quick fix for at få
+            //  denne metode og dermed updateProduciton() og createProduction() til at virke (Simon)
+            int i = -1;
+            while (sqlReturnValues.next()) {
+                i = sqlReturnValues.getInt(1);
+            }
+            return i;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return -1;
@@ -619,6 +658,7 @@ public class DataFacade implements DataLayerInterface {
         badehotellet.setCompanyProductionName("SF Film Production ApS");
 
         System.out.println(badehotellet);
+
 
         dbFacade.updateProduction(1, badehotellet);
 
