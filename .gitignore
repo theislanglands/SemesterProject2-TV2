@@ -4,3 +4,7 @@
 Semesterprojekt2/.idea/vcs.xml
 
 *.xml
+
+*.meta
+
+.idea/

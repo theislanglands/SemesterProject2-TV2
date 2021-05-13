@@ -71,7 +71,7 @@ public class Credit {
     }
 
     public String toString(){
-        return (this.creditType + " " + this.role + " " + this.creditName.toString());
+        return ("\n" + this.creditType + "\nrolle: " + this.role + "\nNavn: " + this.creditName.toString() + "\n");
     }
 
     public String getAddress() {
@@ -97,6 +97,5 @@ public class Credit {
     public void setEmail(String email) {
         this.creditName.setEmail(email);
     }
-
 
 }

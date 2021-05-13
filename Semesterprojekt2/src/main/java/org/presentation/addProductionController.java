@@ -3,8 +3,6 @@ package org.presentation;
 import domain.Production;
 import domain.TvCredits;
 import domain.enums.Genre;
-import domain.enums.Language;
-import domain.enums.ProductionType;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
@@ -162,7 +160,7 @@ public class addProductionController {
         if(genreDropdown3.getValue() != null){
             genres.add((String)genreDropdown3.getValue());
         }
-        production.setGenre(genres);
+        production.setGenres(genres);
 
 
         if(subtitles.isSelected()){

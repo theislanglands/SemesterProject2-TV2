@@ -19,30 +19,24 @@ public interface DataLayerInterface {
 
     // Credits
     void createCredits(Credit cred, Production prod);
-    List<Credit> getCredits();
+    List<Credit> getCredits(int prodId);
     Credit getCredit(int creditID);
     void deleteCredit(int creditID);
     boolean updateCredit(int creditID, Credit replaceCredit);
 
     // Metoder der erstatter ENUMS
-    // Credit types (erstatter enum)
+
     List<String> getCreditTypes();
-
-    // Production types (erstatter enum)
     List<String> getProductionTypes();
-
-    // Language Type (erstatter enum)
     List<String> getLanguages();
+    List<String> getAllGenres();
 
-    // Genre Types (erstatter enum)
-    List<String> getGenres();
-
-    // Person
-    void createPerson(CreditName pers);
-    List<CreditName> getPerson();
-    CreditName getPerson(int personID);
-    void deletePerson(int personID);
-    boolean updatePerson(int personID, CreditName replaceCreditName);
+    // CreditName
+    void createCreditName(CreditName creditName);
+    List<CreditName> getCreditNames();
+    CreditName getCreditNames(int creditNameID);
+    void deleteCreditName(int creditNameID);
+    boolean updateCreditName(int creditNameID, CreditName replaceCreditName);
 
 
 

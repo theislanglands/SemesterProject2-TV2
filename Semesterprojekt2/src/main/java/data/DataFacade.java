@@ -52,8 +52,7 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // Her implementeres metoder fra interface!
-
+    // metoder fra interface!
     @Override
     public boolean createProduction(Production prod) {
         try {
@@ -64,7 +63,7 @@ public class DataFacade implements DataLayerInterface {
             PreparedStatement stmt1 = connection.prepareStatement(
                     "INSERT INTO production (season, episode, release_date, length, subtitle, sign_Language, " +
                             "active, validated, production_reference, production_bio, production_company_id, " +
-                            "production_type_id, language_id, production_name_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                            "production_type_id, language_id, production_name_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             stmt1.setInt(1, prod.getSeason());
             stmt1.setInt(2, prod.getEpisode());
             stmt1.setDate(3, (java.sql.Date) prod.getReleaseDate());
@@ -82,8 +81,28 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setInt(13, getLanguageId(prod.getLanguage()));
             stmt1.setInt(14, getNameId(prod.getName()));
 
+            // henter det generede production id
+            ResultSet resultSet = stmt1.executeQuery();
+            resultSet.next();
+            int prod_id = resultSet.getInt(1);
+
+            // associerer med genrer
+            for (String genre : prod.getGenres()) {
+
+                PreparedStatement stmt2 = connection.prepareStatement(
+                        "INSERT INTO genres_production_association (" +
+                                "production_id, " +     //1
+                                "genre_id) " +          //2
+                                "VALUES (?, ?);");
+
+                stmt2.setInt(1, prod_id);
+                stmt2.setInt(2, getGenreId(genre));
+                stmt2.execute();
+            }
             // commit changes
             connection.commit();
+
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -208,6 +227,9 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace();
             return null;
         }
+        returnProduction.setGenres((ArrayList<String>) getGenres(id));
+        returnProduction.setCredits((ArrayList<Credit>) getCredits(id));
+
         return returnProduction;
     }
 
@@ -353,8 +375,28 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public List<Credit> getCredits() {
-        return null;
+    public List<Credit> getCredits(int prodID) {
+        // returnerer en liste med credits der høre til produktion
+        List<Credit> returnCredits = new ArrayList<>();
+
+        try {
+        PreparedStatement stmt = connection.prepareStatement(
+                "SELECT id FROM credit WHERE production_id = ?;");
+
+        stmt.setInt(1,prodID);
+
+        ResultSet resultSet = stmt.executeQuery();
+
+            while (resultSet.next()){
+                int readID = resultSet.getInt(1);
+                returnCredits.add(getCredit(readID));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return returnCredits;
     }
 
     @Override
@@ -364,7 +406,7 @@ public class DataFacade implements DataLayerInterface {
         Credit returnCredit = new Credit();
         CreditName associatedName = new CreditName();
 
-        // henter rolle og validated
+        // henter data fra tabeller
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT\n" +
@@ -386,19 +428,20 @@ public class DataFacade implements DataLayerInterface {
 
             ResultSet resultSet = stmt.executeQuery();
 
-            // henter parametre til CreditName og tilføjer et objekt til credit
-            associatedName.setFirstName(resultSet.getString(1));
-            associatedName.setLastName(resultSet.getString(2));
-            associatedName.setAddress(resultSet.getString(3));
-            associatedName.setPhone(resultSet.getInt(4));
-            associatedName.setEmail(resultSet.getString(5));
-            returnCredit.setCreditName(associatedName);
+            while (resultSet.next()) {
+                // henter parametre til CreditName og tilføjer et objekt til credit
+                associatedName.setFirstName(resultSet.getString(1));
+                associatedName.setLastName(resultSet.getString(2));
+                associatedName.setAddress(resultSet.getString(3));
+                associatedName.setPhone(resultSet.getInt(4));
+                associatedName.setEmail(resultSet.getString(5));
+                returnCredit.setCreditName(associatedName);
 
-            // tilføjer resterende parametre
-            returnCredit.setCreditType(resultSet.getString(6));
-            returnCredit.setRole(resultSet.getString(7));
-            returnCredit.setValidated(resultSet.getBoolean(8));
-
+                // tilføjer resterende parametre
+                returnCredit.setCreditType(resultSet.getString(6));
+                returnCredit.setRole(resultSet.getString(7));
+                returnCredit.setValidated(resultSet.getBoolean(8));
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -417,28 +460,52 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void createPerson(CreditName pers) {
+    public void createCreditName(CreditName pers) {
 
     }
 
     @Override
-    public List<CreditName> getPerson() {
+    public List<CreditName> getCreditNames() {
         return null;
     }
 
     @Override
-    public CreditName getPerson(int personID) {
+    public CreditName getCreditNames(int creditNameID) {
         return null;
     }
 
     @Override
-    public void deletePerson(int personID) {
-
+    public void deleteCreditName(int creditNameID) {
     }
 
     @Override
-    public boolean updatePerson(int personID, CreditName replaceCreditName) {
+    public boolean updateCreditName(int creditNameID, CreditName replaceCreditName) {
         return false;
+    }
+
+    public List<String> getGenres(int prod_id) {
+
+        List<String> returnList = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                        "SELECT genre " +
+                             "FROM genre "+
+                             "JOIN genres_production_association ON genre.id = genres_production_association.genre_id " +
+                            "WHERE production_id = ?;");
+            stmt.setInt(1, prod_id);
+
+            ResultSet resultSet = stmt.executeQuery();
+
+            while(resultSet.next()) {
+                returnList.add(resultSet.getString(1));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return returnList;
     }
 
 
@@ -502,7 +569,7 @@ public class DataFacade implements DataLayerInterface {
     }
 
     // Genre Types (erstatter enum)
-    public List<String> getGenres() {
+    public List<String> getAllGenres() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM genre");
             ResultSet sqlReturnValues = stmt.executeQuery();
@@ -520,7 +587,7 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // private metoder til at finde ID på foreign keys i tabeller
+    // private metoder til at finde ID på foreign keys i tabeller, -1 hvis ikke findes
     private int getProdCompanyId(String productionCompany) {
         try {
             PreparedStatement stmtGetCompanyId = connection.prepareStatement("SELECT * FROM production_company WHERE name = ?");
@@ -598,7 +665,6 @@ public class DataFacade implements DataLayerInterface {
     }
 
     // Returnerer id på creditType der matcher navnet
-    // - returnerer -1 hvis det ikke findes
     private int getCreditTypeId(String creditType) {
         try {
             PreparedStatement stmtGetTypeId = connection.prepareStatement("SELECT * FROM credit_type WHERE type = ?");
@@ -613,6 +679,22 @@ public class DataFacade implements DataLayerInterface {
             return -1;
         }
     }
+
+    private int getGenreId(String genre) {
+        try {
+            PreparedStatement stmtGenreId = connection.prepareStatement("SELECT * FROM genre WHERE genre = ?");
+            stmtGenreId.setString(1, genre);
+            ResultSet sqlReturnValues = stmtGenreId.executeQuery();
+
+            // returnerer id fra column 1
+            return sqlReturnValues.getInt(1);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+
 
     public static void main(String[] args) {
         // ** DATA FACADE TEST CENTER ** //
@@ -638,9 +720,11 @@ public class DataFacade implements DataLayerInterface {
         System.out.println(test);
          */
 
-        // test af update produktion
+        // test af update produktion - VIRKER IKKE PT!
 
-        // Opretter produktion
+        // Opretter produktion der skal ersttte den gamle
+
+        /*
         Production badehotellet = new Production();
         badehotellet.setProductionReference("SF666");
         badehotellet.setName("Badehotellet");
@@ -658,13 +742,32 @@ public class DataFacade implements DataLayerInterface {
         badehotellet.setCompanyProductionName("SF Film Production ApS");
 
         System.out.println(badehotellet);
-
-
         dbFacade.updateProduction(1, badehotellet);
-
         test = dbFacade.getProduction(1);
         System.out.println(test);
-        /*
+        */
+
+        // tester getCredit
+        Credit testGetCredit = dbFacade.getCredit(4);
+        System.out.println("\ntester hent af kreditering fra db");
+        System.out.println(testGetCredit);
+
+        // tester getCredits
+        System.out.println("\ntester liste af credits");
+        List<Credit> testList = dbFacade.getCredits(1);
+        System.out.println(testList);
+
+
+
+
+
+
+
+
+
+
+
+        /* KOPIERET FRA GAMLE DATA MAIN
 
         public void createTestProductions() {
             // Opretter produktion 1: "Badehotellet"

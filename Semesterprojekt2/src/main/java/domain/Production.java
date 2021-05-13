@@ -17,7 +17,7 @@ public class Production implements Serializable {
     private String productionReference; //e.g. nf221
     private String name;
     private Date releaseDate;
-    private ArrayList<String> genre = new ArrayList<>();
+    private ArrayList<String> genres;
     private String productionType;
     private int length;
     private String language;
@@ -32,14 +32,14 @@ public class Production implements Serializable {
     private String companyProductionName;
     private ArrayList<Credit> credits;
 
-    public Production(int id, String productionReference, String name, Date releaseDate, ArrayList<String> genre, String productionType, int length,
+    public Production(int id, String productionReference, String name, Date releaseDate, ArrayList<String> genres, String productionType, int length,
                       String language, boolean hasSubtitle, boolean hasSignLanguage, boolean isActive, boolean isValidated, int recommendedAge,
                       int season, int episode, String productionBio, String companyProductionName, ArrayList<Credit> credits) {
         this.id = id;
         this.productionReference = productionReference;
         this.name = name;
         this.releaseDate = releaseDate;
-        this.genre = genre;
+        this.genres = genres;
         this.productionType = productionType;
         this.length = length;
         this.language = language;
@@ -118,16 +118,16 @@ public class Production implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    public ArrayList<String> getGenre() {
-        return this.genre;
+    public ArrayList<String> getGenres() {
+        return this.genres;
     }
 
-    public void setGenre(ArrayList<String> genre) {
-        this.genre = genre;
+    public void setGenres(ArrayList<String> genres) {
+        this.genres = genres;
     }
 
     public void addGenre(String genre) {
-        this.genre.add(genre);
+        this.genres.add(genre);
     }
 
     public String getType() {
@@ -263,7 +263,7 @@ public class Production implements Serializable {
                 ", productionReference='" + productionReference + '\'' +
                 ", name='" + name + '\'' +
                 ", releaseDate=" + releaseDate +
-                ", genre=" + genre +
+                ", genre=" + genres +
                 ", productionType='" + productionType + '\'' +
                 ", length=" + length +
                 ", language='" + language + '\'' +
