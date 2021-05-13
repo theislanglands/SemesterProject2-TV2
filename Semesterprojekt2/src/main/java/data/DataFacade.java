@@ -81,6 +81,7 @@ public class DataFacade implements DataLayerInterface {
 
             // henter det generede production id
             ResultSet resultSet = stmt1.executeQuery();
+            resultSet.next();
             int prod_id = resultSet.getInt(1);
 
             // associerer med genrer
@@ -221,6 +222,7 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace();
             return null;
         }
+        returnProduction.setGenres((ArrayList<String>) getGenres(id));
         returnProduction.setCredits((ArrayList<Credit>) getCredits(id));
 
         return returnProduction;
@@ -469,6 +471,31 @@ public class DataFacade implements DataLayerInterface {
         return false;
     }
 
+    public List<String> getGenres(int prod_id) {
+
+        List<String> returnList = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                        "SELECT genre " +
+                             "FROM genre "+
+                             "JOIN genres_production_association ON genre.id = genres_production_association.genre_id " +
+                            "WHERE production_id = ?;");
+            stmt.setInt(1, prod_id);
+
+            ResultSet resultSet = stmt.executeQuery();
+
+            while(resultSet.next()) {
+                returnList.add(resultSet.getString(1));
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return returnList;
+    }
+
 
     //ERSTATTER ENUMS
     // CreditType
@@ -530,7 +557,7 @@ public class DataFacade implements DataLayerInterface {
     }
 
     // Genre Types (erstatter enum)
-    public List<String> getGenres() {
+    public List<String> getAllGenres() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM genre");
             ResultSet sqlReturnValues = stmt.executeQuery();
@@ -627,6 +654,7 @@ public class DataFacade implements DataLayerInterface {
             return -1;
         }
     }
+
 
     public static void main(String[] args) {
         // ** DATA FACADE TEST CENTER ** //

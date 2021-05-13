@@ -29,7 +29,7 @@ public interface DataLayerInterface {
     List<String> getCreditTypes();
     List<String> getProductionTypes();
     List<String> getLanguages();
-    List<String> getGenres();
+    List<String> getAllGenres();
 
     // CreditName
     void createCreditName(CreditName creditName);

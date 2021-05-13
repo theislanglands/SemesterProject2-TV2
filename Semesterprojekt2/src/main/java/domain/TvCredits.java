@@ -97,7 +97,7 @@ public final class TvCredits {
     }
 
     public List<String> getGenres(){
-        return dataconnect.getGenres();
+        return dataconnect.getAllGenres();
     }
 
 
