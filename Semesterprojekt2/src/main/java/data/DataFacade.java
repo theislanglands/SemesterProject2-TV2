@@ -39,6 +39,12 @@ public class DataFacade implements DataLayerInterface {
     }
 
     private void initializePostgresqlDatabase() {
+        // TODO: Jeg var nødt til at skrive vores url om og tilføje stringtype=unspecified.
+        //  ELlers kan man ikke fodre preparedStatements med String-variable når man skal
+        //  sætte et TIMESTAMP i databasen. Det kan skrives mere smooth med attributter ligesom
+        //  det var gjort før med noget som hedder Properties, men jeg kunne ikke få det til at virke,
+        //  så jeg skrev bare det hele ind i URL-en i første omgang
+        //  (Simon)
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
             //connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName, username, password);
@@ -56,16 +62,30 @@ public class DataFacade implements DataLayerInterface {
     public boolean createProduction(Production prod) {
         try {
             //Begin statement - Transaction
-            connection.setAutoCommit(false);
+            //connection.setAutoCommit(false);
 
             //
             PreparedStatement stmt1 = connection.prepareStatement(
-                    "INSERT INTO production (season, episode, release_date, length, subtitle, sign_Language, " +
-                            "active, validated, production_reference, production_bio, production_company_id, " +
-                            "production_type_id, language_id, production_name_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    "INSERT INTO production (" +
+                            "season, " +                // 1
+                            "episode, " +               // 2
+                            "release_date, " +          // 3
+                            "length, " +                // 4
+                            "subtitle, " +              // 5
+                            "sign_Language, " +         // 6
+                            "active, " +                // 7
+                            "validated, " +             // 8
+                            "production_reference, " +  // 9
+                            "production_bio, " +        // 10
+                            "production_company_id, " + // 11
+                            "production_type_id, " +    // 12
+                            "language_id, " +           // 13
+                            "production_name_id) " +    // 14
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
             stmt1.setInt(1, prod.getSeason());
             stmt1.setInt(2, prod.getEpisode());
-            stmt1.setDate(3, (java.sql.Date) prod.getReleaseDate());
+            stmt1.setString(3, dateFormatter(prod.getReleaseDate()));
             stmt1.setInt(4, prod.getLength());
             stmt1.setBoolean(5, prod.hasSubtitle());
             stmt1.setBoolean(6, prod.hasSignLanguage());
@@ -81,7 +101,8 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setInt(14, getNameId(prod.getName()));
 
             // henter det generede production id
-            ResultSet resultSet = stmt1.executeQuery();
+            int affectedRows = stmt1.executeUpdate();
+            ResultSet resultSet = stmt1.getGeneratedKeys();
             resultSet.next();
             int prod_id = resultSet.getInt(1);
 
@@ -99,7 +120,7 @@ public class DataFacade implements DataLayerInterface {
                 stmt2.execute();
             }
             // commit changes
-            connection.commit();
+            //connection.commit();
 
 
 
@@ -236,8 +257,10 @@ public class DataFacade implements DataLayerInterface {
     public void deleteProduction(int id) {
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                    "DELETE FROM production WHERE id = ?");
+                    "DELETE FROM genres_production_association WHERE production_id = ?;" +
+                            "DELETE FROM production WHERE id = ?");
             stmt.setInt(1, id);
+            stmt.setInt(2, id);
             stmt.execute();
         } catch (SQLException throwable) {
             throwable.printStackTrace();
@@ -245,12 +268,9 @@ public class DataFacade implements DataLayerInterface {
 
     }
 
+
     @Override
     public boolean updateProduction(int sourceProductionID, Production replaceProduction) {
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String text = formatter.format(replaceProduction.getReleaseDate());
-        System.out.println(text);
-
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "UPDATE production " +
@@ -272,7 +292,7 @@ public class DataFacade implements DataLayerInterface {
 
                 stmt.setInt(1, replaceProduction.getSeason());
                 stmt.setInt(2, replaceProduction.getEpisode());
-                stmt.setString(3, text);
+                stmt.setString(3, dateFormatter(replaceProduction.getReleaseDate()));
                 stmt.setInt(4, replaceProduction.getLength());
                 stmt.setBoolean(5, replaceProduction.hasSubtitle());
                 stmt.setBoolean(6, replaceProduction.hasSignLanguage());
@@ -505,6 +525,14 @@ public class DataFacade implements DataLayerInterface {
     }
 
 
+    // Metode som tager et Date-objekt og formaterer det til et dataformat som kan
+    // bruges som TIMESTAMP i databasen
+    public String dateFormatter(Date date) {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return formatter.format(date);
+    }
+
+
     //ERSTATTER ENUMS
     // CreditType
     public List<String> getCreditTypes() {
@@ -585,7 +613,6 @@ public class DataFacade implements DataLayerInterface {
 
     // private metoder til at finde ID på foreign keys i tabeller, -1 hvis ikke findes
     private int getProdCompanyId(String productionCompany) {
-        System.out.println(productionCompany);
         try {
             PreparedStatement stmtGetCompanyId = connection.prepareStatement("SELECT id FROM production_company WHERE name = ?");
             stmtGetCompanyId.setString(1, productionCompany);
@@ -703,10 +730,7 @@ public class DataFacade implements DataLayerInterface {
          */
 
         // test af update produktion - VIRKER!
-
         // Opretter produktion der skal ersttte den gamle
-
-
         Production badehotellet = new Production();
         badehotellet.setProductionReference("SF666");
         badehotellet.setName("Badehotellet");
@@ -720,25 +744,50 @@ public class DataFacade implements DataLayerInterface {
         badehotellet.setValidated(true);
         badehotellet.setLanguage("Dansk");
         badehotellet.setProductionBio("En ny spændende sæson af badehotellet");
-        badehotellet.setType("serie");
+        badehotellet.setType("Serie");
         badehotellet.setCompanyProductionName("SF Film Production ApS");
         badehotellet.setProductionType("Serie");
-
 
         System.out.println(badehotellet);
         dbFacade.updateProduction(1, badehotellet);
         test = dbFacade.getProduction(1);
         System.out.println(test);
 
+        // test af createProduction()
+        Production badehotelletWrong = new Production();
+        badehotelletWrong.setProductionReference("WRONG123");
+        badehotelletWrong.setName("Wrong name");
+        badehotelletWrong.setSeason(99);
+        badehotelletWrong.setEpisode(99);
+        badehotelletWrong.setReleaseDate(new Date(100000));
+        badehotelletWrong.setLength(99);
+        badehotelletWrong.setSubtitle(true);
+        badehotelletWrong.setSignLanguage(false);
+        badehotelletWrong.setActive(true);
+        badehotelletWrong.setValidated(true);
+        badehotelletWrong.setLanguage("Dansk");
+        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
+        badehotelletWrong.setType("Serie");
+        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
+        badehotelletWrong.setProductionType("Serie");
+
+        ArrayList<String> genres = new ArrayList<>();
+        genres.add("Thriller");
+        genres.add("Animation");
+        badehotelletWrong.setGenres(genres);
+
+        System.out.println("\n\nTester createProduction()");
+        dbFacade.createProduction(badehotelletWrong);
+
 
         // tester getCredit
-        Credit testGetCredit = dbFacade.getCredit(4);
-        System.out.println("\ntester hent af kreditering fra db");
+        //Credit testGetCredit = dbFacade.getCredit(4);
+        //System.out.println("\ntester hent af kreditering fra db");
         //System.out.println(testGetCredit);
 
         // tester getCredits
-        List<Credit> testList = dbFacade.getCredits(1);
-        System.out.println("\ntester liste af credits");
+        //List<Credit> testList = dbFacade.getCredits(1);
+        //System.out.println("\ntester liste af credits");
         //System.out.println(testList);
 
 
