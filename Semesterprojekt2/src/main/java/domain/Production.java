@@ -249,11 +249,11 @@ public class Production implements Serializable {
     }
 
     public String getProductionCompanyName() {
-        return "some company name";
+        return companyProductionName;
     }
 
     public String getProductionType() {
-        return this.productionType.toString();
+        return productionType;
     }
 
     @Override
