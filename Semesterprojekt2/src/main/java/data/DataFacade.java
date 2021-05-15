@@ -911,7 +911,7 @@ public class DataFacade implements DataLayerInterface {
 
 
         // test af deleteCreditName
-        dbFacade.deleteCreditName(1);
+        //dbFacade.deleteCreditName(1);
 
         // test af updateCredit()
         CreditName creditName = new CreditName();
