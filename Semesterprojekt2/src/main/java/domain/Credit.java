@@ -6,13 +6,17 @@ public class Credit {
     private String role;
     private String creditType;
     private boolean isValidated = false;
+    private String productionName;
+
+
 
     // Constructors
-    public Credit(CreditName creditName, String role, String creditType, boolean isValidated) {
+    public Credit(CreditName creditName, String role, String creditType, boolean isValidated, String productionName) {
         this.creditName = creditName;
         this.role = role;
         this.creditType = creditType;
         this.isValidated = isValidated;
+        this.productionName = productionName;
     }
 
     public Credit(CreditName creditName, String role, String creditType) {
@@ -97,5 +101,14 @@ public class Credit {
     public void setEmail(String email) {
         this.creditName.setEmail(email);
     }
+
+    public String getProductionName() {
+        return productionName;
+    }
+
+    public void setProductionName(String productionName) {
+        this.productionName = productionName;
+    }
+
 
 }

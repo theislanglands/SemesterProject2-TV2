@@ -256,12 +256,20 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public void deleteProduction(int id) {
         try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "DELETE FROM genres_production_association WHERE production_id = ?;" +
-                            "DELETE FROM production WHERE id = ?");
-            stmt.setInt(1, id);
-            stmt.setInt(2, id);
-            stmt.execute();
+            connection.setAutoCommit(false);
+
+            PreparedStatement stmt1 = connection.prepareStatement(
+                    "DELETE FROM genres_production_association WHERE production_id = ?");
+            stmt1.setInt(1, id);
+            stmt1.execute();
+
+            PreparedStatement stmt2 = connection.prepareStatement(
+                    "DELETE FROM production WHERE id = ?");
+            stmt2.setInt(1, id);
+            stmt2.execute();
+
+            connection.commit();
+
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
@@ -274,7 +282,8 @@ public class DataFacade implements DataLayerInterface {
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "UPDATE production " +
-                            "SET season = ?, " +            // 1
+                            "SET " +
+                            "season = ?, " +                // 1
                             "episode = ?, " +               // 2
                             "release_date = ?, " +          // 3
                             "length = ?, " +                // 4
@@ -472,8 +481,45 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public boolean updateCredit(int creditID, Credit replaceCredit) {
-        return false;
+        try {
+            connection.setAutoCommit(false);
+
+            PreparedStatement stmt1 = connection.prepareStatement(
+                    "UPDATE credit " +
+                            "SET " +
+                            "role = ?, " +              // 1
+                            "validated = ?, " +         // 2
+                            "production_id = ? " +      // 3
+                            "WHERE id = ?");            // 4
+
+            stmt1.setString(1, replaceCredit.getRole());
+            stmt1.setBoolean(2, replaceCredit.isValidated());
+            stmt1.setInt(3, getProductionId(getNameId(replaceCredit.getProductionName())));
+            stmt1.setInt(4, creditID);
+
+
+            PreparedStatement stmt2 = connection.prepareStatement(
+                    "UPDATE credit_name_credit_type_association " +
+                            "SET " +
+                            "credit_name_id = ?, " +    // 1
+                            "credit_type_id = ? " +     // 2
+                            "WHERE credit_id = ?;");    // 3
+
+
+            stmt2.setInt(1, getCreditNameId(replaceCredit.getCreditName().getFirstName(), replaceCredit.getCreditName().getLastName()));
+            stmt2.setInt(3, getCreditTypeId(replaceCredit.getCreditType()));
+            stmt2.setInt(3, creditID);
+
+            connection.commit();
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
+
 
     @Override
     public void createCreditName(CreditName pers) {
@@ -688,6 +734,22 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
+    private int getCreditNameId(String creditFirstName, String creditLastName) {
+        try {
+            PreparedStatement stmtGetTypeId = connection.prepareStatement("SELECT id FROM credit_name WHERE first_name = ? AND last_name = ?");
+            stmtGetTypeId.setString(1, creditFirstName);
+            stmtGetTypeId.setString(2, creditLastName);
+            ResultSet sqlReturnValues = stmtGetTypeId.executeQuery();
+
+            sqlReturnValues.next();
+            return sqlReturnValues.getInt(1);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+
     private int getGenreId(String genre) {
         try {
             PreparedStatement stmtGenreId = connection.prepareStatement("SELECT id FROM genre WHERE genre = ?");
@@ -703,6 +765,20 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
+    private int getProductionId(int productionNameId) {
+        try {
+            PreparedStatement stmtGenreId = connection.prepareStatement("SELECT id FROM production WHERE production_name_id = ?");
+            stmtGenreId.setInt(1, productionNameId);
+            ResultSet sqlReturnValues = stmtGenreId.executeQuery();
+
+            sqlReturnValues.next();
+            return sqlReturnValues.getInt(1);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -753,10 +829,14 @@ public class DataFacade implements DataLayerInterface {
         test = dbFacade.getProduction(1);
         System.out.println(test);
 
+
+//        dbFacade.deleteProduction(2);
+//        dbFacade.deleteProduction(3);
+
         // test af createProduction()
         Production badehotelletWrong = new Production();
         badehotelletWrong.setProductionReference("WRONG123");
-        badehotelletWrong.setName("Wrong name");
+        badehotelletWrong.setName("Badehotellet");
         badehotelletWrong.setSeason(99);
         badehotelletWrong.setEpisode(99);
         badehotelletWrong.setReleaseDate(new Date(100000));
