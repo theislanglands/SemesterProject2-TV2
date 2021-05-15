@@ -523,7 +523,29 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public void createCreditName(CreditName pers) {
+        try {
+        PreparedStatement stmtCreditName = connection.prepareStatement(
+                "INSERT INTO credit_name(" +
+                        "first_name, " +        //1
+                        "last_name, " +         //2
+                        "address, " +           //3
+                        "phone, " +             //4
+                        "email) " +             //5
+                        "VALUES (?,?,?,?,?)",
+                PreparedStatement.RETURN_GENERATED_KEYS
+        );
+        stmtCreditName.setString(1, pers.getFirstName());
+        stmtCreditName.setString(2, pers.getLastName());
+        stmtCreditName.setString(3, pers.getAddress());
+        stmtCreditName.setInt(4, pers.getPhone());
+        stmtCreditName.setString(5, pers.getEmail());
 
+        stmtCreditName.execute();
+        stmtCreditName.close();
+
+    } catch (SQLException throwable) {
+        throwable.printStackTrace();
+    }
     }
 
     @Override
@@ -830,34 +852,43 @@ public class DataFacade implements DataLayerInterface {
         System.out.println(test);
 
 
-//        dbFacade.deleteProduction(2);
-//        dbFacade.deleteProduction(3);
 
         // test af createProduction()
-        Production badehotelletWrong = new Production();
-        badehotelletWrong.setProductionReference("WRONG123");
-        badehotelletWrong.setName("Badehotellet");
-        badehotelletWrong.setSeason(99);
-        badehotelletWrong.setEpisode(99);
-        badehotelletWrong.setReleaseDate(new Date(100000));
-        badehotelletWrong.setLength(99);
-        badehotelletWrong.setSubtitle(true);
-        badehotelletWrong.setSignLanguage(false);
-        badehotelletWrong.setActive(true);
-        badehotelletWrong.setValidated(true);
-        badehotelletWrong.setLanguage("Dansk");
-        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
-        badehotelletWrong.setType("Serie");
-        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
-        badehotelletWrong.setProductionType("Serie");
+//        Production badehotelletWrong = new Production();
+//        badehotelletWrong.setProductionReference("WRONG123");
+//        badehotelletWrong.setName("Badehotellet");
+//        badehotelletWrong.setSeason(99);
+//        badehotelletWrong.setEpisode(99);
+//        badehotelletWrong.setReleaseDate(new Date(100000));
+//        badehotelletWrong.setLength(99);
+//        badehotelletWrong.setSubtitle(true);
+//        badehotelletWrong.setSignLanguage(false);
+//        badehotelletWrong.setActive(true);
+//        badehotelletWrong.setValidated(true);
+//        badehotelletWrong.setLanguage("Dansk");
+//        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
+//        badehotelletWrong.setType("Serie");
+//        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
+//        badehotelletWrong.setProductionType("Serie");
+//
+//        ArrayList<String> genres = new ArrayList<>();
+//        genres.add("Thriller");
+//        genres.add("Animation");
+//        badehotelletWrong.setGenres(genres);
+//
+//        System.out.println("\n\nTester createProduction()");
+//        dbFacade.createProduction(badehotelletWrong);
 
-        ArrayList<String> genres = new ArrayList<>();
-        genres.add("Thriller");
-        genres.add("Animation");
-        badehotelletWrong.setGenres(genres);
 
-        System.out.println("\n\nTester createProduction()");
-        dbFacade.createProduction(badehotelletWrong);
+        // test af updateCredit()
+        CreditName creditName = new CreditName();
+        creditName.setFirstName("First Name (TEST)");
+        creditName.setLastName("Last Name (TEST)");
+        creditName.setPhone(99999999);
+        creditName.setEmail("testperson@testperson.dk");
+
+        dbFacade.createCreditName(creditName);
+
 
 
         // tester getCredit
