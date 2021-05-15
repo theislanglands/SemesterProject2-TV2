@@ -292,8 +292,12 @@ INSERT INTO genres_production_association (production_id, genre_id) VALUES (1, 8
 
 
 -- inserting entries for handling credits not assigned to a production
-INSERT INTO production_name (id, name) VALUES (-1, 'UNASSIGNED Production Name');
-INSERT INTO language (id, language) VALUES (-1, 'UNASSIGNED Language');
-INSERT INTO production_company (id, name, address, phone, email, country) VALUES (-1, 'UNASSIGNED Production Company Name', 'UNASSIGNED Address', -1, 'UNASSIGNED Email', 'UNASSIGNED Country');
-INSERT INTO production_type (id, type) VALUES (-1, 'UNASSIGNED Production Type');
+INSERT INTO production_name (id) VALUES (-1);
+INSERT INTO language (id) VALUES (-1);
+INSERT INTO production_company (id) VALUES (-1);
+INSERT INTO production_type (id) VALUES (-1);
 INSERT INTO production (id, production_company_id, production_type_id, production_name_id, language_id) VALUES (-1, -1, -1, -1, -1);
+INSERT INTO genre (id) VALUES (-1);
+INSERT INTO credit_type (id) VALUES (-1);
+INSERT INTO credit_name (id) VALUES (-1);
+INSERT INTO credit (id, production_id) VALUES (-1, -1);

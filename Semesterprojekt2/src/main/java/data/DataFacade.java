@@ -270,6 +270,9 @@ public class DataFacade implements DataLayerInterface {
 
             connection.commit();
 
+            stmt1.close();
+            stmt2.close();
+
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
@@ -560,6 +563,33 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public void deleteCreditName(int creditNameID) {
+        try {
+            connection.setAutoCommit(false);
+
+            PreparedStatement stmt2 = connection.prepareStatement(
+                    "UPDATE credit_name_credit_type_association " +
+                            "SET credit_name_id = ? " +
+                            "WHERE credit_name_id = ?");
+            stmt2.setInt(1, -1);
+            stmt2.setInt(2, creditNameID);
+
+            stmt2.execute();
+
+            PreparedStatement stmt1 = connection.prepareStatement(
+                    "DELETE FROM credit_name WHERE id = ?");
+            stmt1.setInt(1, creditNameID);
+            stmt1.execute();
+
+            connection.commit();
+
+            stmt1.close();
+            stmt2.close();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+
     }
 
     @Override
@@ -879,6 +909,9 @@ public class DataFacade implements DataLayerInterface {
 //        System.out.println("\n\nTester createProduction()");
 //        dbFacade.createProduction(badehotelletWrong);
 
+
+        // test af deleteCreditName
+        dbFacade.deleteCreditName(1);
 
         // test af updateCredit()
         CreditName creditName = new CreditName();
