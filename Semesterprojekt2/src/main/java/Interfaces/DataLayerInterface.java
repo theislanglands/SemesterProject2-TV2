@@ -16,6 +16,8 @@ public interface DataLayerInterface {
     Production getProduction(int id);
     void deleteProduction(int id);
     boolean updateProduction(int sourceProductionID, Production replaceProduction);
+    void validateProduction(int productionID);
+    void invalidateProduction(int productionID);
 
     // Credits
     void createCredits(Credit cred, Production prod);
@@ -23,6 +25,8 @@ public interface DataLayerInterface {
     Credit getCredit(int creditID);
     void deleteCredit(int creditID);
     boolean updateCredit(int creditID, Credit replaceCredit);
+    void validateCredit(int creditID);
+    void invalidateCredit(int creditID);
 
     // Metoder der erstatter ENUMS
 
