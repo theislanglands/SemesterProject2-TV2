@@ -982,8 +982,13 @@ public class DataFacade implements DataLayerInterface {
             stmtGetTypeId.setString(2, creditLastName);
             ResultSet sqlReturnValues = stmtGetTypeId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                    return sqlReturnValues.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
