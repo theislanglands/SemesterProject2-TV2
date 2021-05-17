@@ -1,3 +1,15 @@
+DROP TABLE IF EXISTS credit_name_credit_type_association;
+DROP TABLE IF EXISTS credit;
+DROP TABLE IF EXISTS genres_production_association;
+DROP TABLE IF EXISTS production;
+DROP TABLE IF EXISTS credit_type;
+DROP TABLE IF EXISTS credit_name;
+DROP TABLE IF EXISTS genre;
+DROP TABLE IF EXISTS production_company;
+DROP TABLE IF EXISTS language;
+DROP TABLE IF EXISTS production_name;
+DROP TABLE IF EXISTS production_type;
+
 
 CREATE TABLE production_type(
     id serial PRIMARY KEY,
@@ -65,7 +77,7 @@ CREATE TABLE production (
 );
 
 CREATE TABLE genres_production_association(
-    production_id INTEGER NOT NULL REFERENCES production(id),
+    production_id INTEGER NOT NULL REFERENCES production(id) ON DELETE CASCADE,
     genre_id INTEGER NOT NULL REFERENCES genre(id),
     UNIQUE (production_id, genre_id)
 );
@@ -74,13 +86,13 @@ CREATE TABLE credit (
     id SERIAL PRIMARY KEY,
     role VARCHAR(100),
     validated BOOLEAN,
-    production_id INTEGER NOT NULL REFERENCES production(id)
+    production_id INTEGER NOT NULL REFERENCES production(id) ON DELETE CASCADE
 );
 
 CREATE TABLE credit_name_credit_type_association (
     credit_name_id INTEGER NOT NULL REFERENCES credit_name(id),
     credit_type_id INTEGER NOT NULL REFERENCES credit_type(id),
-    credit_id INTEGER NOT NULL REFERENCES credit(id),
+    credit_id INTEGER NOT NULL REFERENCES credit(id) ON DELETE CASCADE,
     UNIQUE (credit_name_id, credit_type_id, credit_id)
 );
 
@@ -292,12 +304,12 @@ INSERT INTO genres_production_association (production_id, genre_id) VALUES (1, 8
 
 
 -- inserting entries for handling credits not assigned to a production
-INSERT INTO production_name (id) VALUES (-1);
-INSERT INTO language (id) VALUES (-1);
-INSERT INTO production_company (id) VALUES (-1);
-INSERT INTO production_type (id) VALUES (-1);
-INSERT INTO production (id, production_company_id, production_type_id, production_name_id, language_id) VALUES (-1, -1, -1, -1, -1);
-INSERT INTO genre (id) VALUES (-1);
-INSERT INTO credit_type (id) VALUES (-1);
-INSERT INTO credit_name (id) VALUES (-1);
-INSERT INTO credit (id, production_id) VALUES (-1, -1);
+-- INSERT INTO production_name (id) VALUES (-1);
+-- INSERT INTO language (id) VALUES (-1);
+-- INSERT INTO production_company (id) VALUES (-1);
+-- INSERT INTO production_type (id) VALUES (-1);
+-- INSERT INTO production (id, production_company_id, production_type_id, production_name_id, language_id) VALUES (-1, -1, -1, -1, -1);
+-- INSERT INTO genre (id) VALUES (-1);
+-- INSERT INTO credit_type (id) VALUES (-1);
+-- INSERT INTO credit_name (id) VALUES (-1);
+-- INSERT INTO credit (id, production_id) VALUES (-1, -1);

@@ -4,10 +4,12 @@ import domain.Credit;
 import domain.Production;
 import domain.enums.Genre;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class ViewerProductionsController {
@@ -24,19 +26,34 @@ public class ViewerProductionsController {
     public Text textDirector;
     private Production production;
 
+    public static Credit creditChosen;
+
+
     public void initialize(){
-        production = ViewerSearchController.productionChosen;
+
+        if(ViewerSearchController.productionChosen != null){
+            production = ViewerSearchController.productionChosen;
+            ViewerSearchController.productionChosen = null;
+        }else if(ViewerCreditsController.productionChosen != null){
+            production = ViewerCreditsController.productionChosen;
+            ViewerCreditsController.productionChosen = null;
+        }
+
         setTableViewCredits();
         listviewProductions.getItems().addAll(production.getCredits());
         textProductionBio.setText(production.getProductionBio());
         textFilmTitel.setText(production.getName());
         textGenre1.setText(production.getGenres().get(0));
-        textGenre2.setText(production.getGenres().get(1));
-        textGenre3.setText(production.getGenres().get(2));
+       // textGenre2.setText(production.getGenres().get(1));
+        //textGenre3.setText(production.getGenres().get(2));
         textLength.setText(String.valueOf(production.getLength()));
         textProductionCompany.setText(production.getProductionCompanyName());
         textYear.setText(String.valueOf(production.getReleaseDate().getYear()));
         //textDirector.setText(production.getProducer());
+
+        listviewProductions.setStyle("-fx-background-color:gray");
+
+        activateDoubleClick();
 
     }
 
@@ -69,5 +86,25 @@ public class ViewerProductionsController {
         listviewProductions.getColumns().add(col4);
 
 
+    }
+
+    private void activateDoubleClick(){
+
+        listviewProductions.setRowFactory(tv -> {
+            TableRow<Credit> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Credit rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getFirstName());
+                    creditChosen = rowData;
+                    try {
+                        App.setRoot("viewerCredits");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
     }
 }
