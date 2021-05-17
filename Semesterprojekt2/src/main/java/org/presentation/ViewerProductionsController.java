@@ -21,6 +21,7 @@ public class ViewerProductionsController {
     public Text textLength;
     public Text textProductionCompany;
     public Text textYear;
+    public Text textDirector;
     private Production production;
 
     public void initialize(){
@@ -35,6 +36,7 @@ public class ViewerProductionsController {
         textLength.setText(String.valueOf(production.getLength()));
         textProductionCompany.setText(production.getProductionCompanyName());
         textYear.setText(String.valueOf(production.getReleaseDate().getYear()));
+        //textDirector.setText(production.getProducer());
 
     }
 
