@@ -401,15 +401,16 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public List<Credit> getCredits(int prodID) {
-        // returnerer en liste med credits der høre til produktion
+    public List<Credit> getCredits(int productionId) {
+        // returns a list of credits associated with production
+
         List<Credit> returnCredits = new ArrayList<>();
 
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT id FROM credit WHERE production_id = ?;");
 
-            stmt.setInt(1, prodID);
+            stmt.setInt(1, productionId);
 
             ResultSet resultSet = stmt.executeQuery();
 
@@ -428,11 +429,10 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public Credit getCredit(int creditID) {
 
-        // opretter tom kreditering
         Credit returnCredit = new Credit();
         CreditName associatedName = new CreditName();
 
-        // henter data fra tabeller
+        // retrieves data from tables
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT\n" +
@@ -455,7 +455,7 @@ public class DataFacade implements DataLayerInterface {
             ResultSet resultSet = stmt.executeQuery();
 
             while (resultSet.next()) {
-                // henter parametre til CreditName og tilføjer et objekt til credit
+                // retrieves parameters for CreditName and adds CreditName object associatedName to credit
                 associatedName.setFirstName(resultSet.getString(1));
                 associatedName.setLastName(resultSet.getString(2));
                 associatedName.setAddress(resultSet.getString(3));
@@ -463,11 +463,14 @@ public class DataFacade implements DataLayerInterface {
                 associatedName.setEmail(resultSet.getString(5));
                 returnCredit.setCreditName(associatedName);
 
-                // tilføjer resterende parametre
+                // adding remaining parameters to Credit
                 returnCredit.setCreditType(resultSet.getString(6));
                 returnCredit.setRole(resultSet.getString(7));
                 returnCredit.setValidated(resultSet.getBoolean(8));
             }
+
+            stmt.close();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -481,8 +484,8 @@ public class DataFacade implements DataLayerInterface {
             PreparedStatement stmt = connection.prepareStatement(
                     "DELETE FROM credit WHERE id = ?;");
             stmt.setInt(1, creditID);
-
-
+            stmt.execute();
+            stmt.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -490,6 +493,8 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public boolean updateCredit(int creditID, Credit replaceCredit) {
+        // returns true if succesfull!
+
         try {
             connection.setAutoCommit(false);
 
@@ -503,9 +508,17 @@ public class DataFacade implements DataLayerInterface {
 
             stmt1.setString(1, replaceCredit.getRole());
             stmt1.setBoolean(2, replaceCredit.isValidated());
-            stmt1.setInt(3, getProductionId(getNameId(replaceCredit.getProductionName())));
+            stmt1.setInt(3, replaceCredit.getProductionId());
             stmt1.setInt(4, creditID);
+            stmt1.execute();
+            stmt1.close();
 
+            // Checks if name exist in table - and return id if exist, -1 if not!
+            int creditNameId = getCreditNameId(replaceCredit.getFirstName(), replaceCredit.getLastName());
+
+            if (creditNameId == -1) {
+                creditNameId = createCreditName(replaceCredit.getCreditName());  // if creditName doesn't exist, create a new one and return it's ID
+            }
 
             PreparedStatement stmt2 = connection.prepareStatement(
                     "UPDATE credit_name_credit_type_association " +
@@ -514,13 +527,14 @@ public class DataFacade implements DataLayerInterface {
                             "credit_type_id = ? " +     // 2
                             "WHERE credit_id = ?;");    // 3
 
-
-            stmt2.setInt(1, getCreditNameId(replaceCredit.getCreditName().getFirstName(), replaceCredit.getCreditName().getLastName()));
-            stmt2.setInt(3, getCreditTypeId(replaceCredit.getCreditType()));
+            //stmt2.setInt(1, getCreditNameId(replaceCredit.getCreditName().getFirstName(), replaceCredit.getCreditName().getLastName()));
+            stmt2.setInt(1, creditNameId);
+            stmt2.setInt(2, getCreditTypeId(replaceCredit.getCreditType()));
             stmt2.setInt(3, creditID);
+            stmt2.execute();
+            stmt2.close();
 
             connection.commit();
-
 
         } catch (SQLException ex) {
             ex.printStackTrace();

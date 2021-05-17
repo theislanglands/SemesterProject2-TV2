@@ -17,11 +17,11 @@ public class DataFacadeTest {
         DataFacade dbFacade = DataFacade.getInstance();
 
         // 1 test af getProduction
-        Production test = dbFacade.getProduction(1);
+        //Production test = dbFacade.getProduction(1);
         //System.out.println(test);
 
         // 2 test af getProductions
-        List<Production> productionTest = dbFacade.getProductions();
+        //List<Production> productionTest = dbFacade.getProductions();
         //System.out.println(productionTest);
 
         // test af deleteProduction - VIRKER!
@@ -33,66 +33,66 @@ public class DataFacadeTest {
 
         // test af update produktion - VIRKER!
         // Opretter produktion der skal ersttte den gamle
-        Production badehotellet = new Production();
-        badehotellet.setProductionReference("SF666");
-        badehotellet.setName("Badehotellet");
-        badehotellet.setSeason(2);
-        badehotellet.setEpisode(5);
-        badehotellet.setReleaseDate(new Date(100000));
-        badehotellet.setLength(46);
-        badehotellet.setSubtitle(true);
-        badehotellet.setSignLanguage(false);
-        badehotellet.setActive(true);
-        badehotellet.setValidated(true);
-        badehotellet.setLanguage("Dansk");
-        badehotellet.setProductionBio("En ny spændende sæson af badehotellet");
-        badehotellet.setType("Serie");
-        badehotellet.setCompanyProductionName("SF Film Production ApS");
-        badehotellet.setProductionType("Serie");
-
-        ArrayList<String> genres2 = new ArrayList<>();
-        genres2.add("Reality");
-        genres2.add("Fantasy");
-        badehotellet.setGenres(genres2);
-
-        System.out.println(badehotellet);
-        dbFacade.updateProduction(1, badehotellet);
-        test = dbFacade.getProduction(1);
-        System.out.println(test);
+//        Production badehotellet = new Production();
+//        badehotellet.setProductionReference("SF666");
+//        badehotellet.setName("Badehotellet");
+//        badehotellet.setSeason(2);
+//        badehotellet.setEpisode(5);
+//        badehotellet.setReleaseDate(new Date(100000));
+//        badehotellet.setLength(46);
+//        badehotellet.setSubtitle(true);
+//        badehotellet.setSignLanguage(false);
+//        badehotellet.setActive(true);
+//        badehotellet.setValidated(true);
+//        badehotellet.setLanguage("Dansk");
+//        badehotellet.setProductionBio("En ny spændende sæson af badehotellet");
+//        badehotellet.setType("Serie");
+//        badehotellet.setCompanyProductionName("SF Film Production ApS");
+//        badehotellet.setProductionType("Serie");
+//
+//        ArrayList<String> genres2 = new ArrayList<>();
+//        genres2.add("Reality");
+//        genres2.add("Fantasy");
+//        badehotellet.setGenres(genres2);
+//
+//        System.out.println(badehotellet);
+//        dbFacade.updateProduction(1, badehotellet);
+//        test = dbFacade.getProduction(1);
+//        System.out.println(test);
 
         // delete production test
         //dbFacade.deleteProduction(7);
 
         // test af createProduction()
-        Production badehotelletWrong = new Production();
-        badehotelletWrong.setProductionReference("WRONG123");
-        badehotelletWrong.setName("Badehotellet");
-        badehotelletWrong.setSeason(99);
-        badehotelletWrong.setEpisode(99);
-        badehotelletWrong.setReleaseDate(new Date(100000));
-        badehotelletWrong.setLength(99);
-        badehotelletWrong.setSubtitle(true);
-        badehotelletWrong.setSignLanguage(false);
-        badehotelletWrong.setActive(true);
-        badehotelletWrong.setValidated(true);
-        badehotelletWrong.setLanguage("Dansk");
-        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
-        badehotelletWrong.setType("Serie");
-        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
-        badehotelletWrong.setProductionType("Serie");
-
-        ArrayList<String> genres = new ArrayList<>();
-        genres.add("Thriller");
-        genres.add("Animation");
-        badehotelletWrong.setGenres(genres);
-
-        System.out.println("\n\nTester createProduction()");
-        dbFacade.createProduction(badehotelletWrong);
+//        Production badehotelletWrong = new Production();
+//        badehotelletWrong.setProductionReference("WRONG123");
+//        badehotelletWrong.setName("Badehotellet");
+//        badehotelletWrong.setSeason(99);
+//        badehotelletWrong.setEpisode(99);
+//        badehotelletWrong.setReleaseDate(new Date(100000));
+//        badehotelletWrong.setLength(99);
+//        badehotelletWrong.setSubtitle(true);
+//        badehotelletWrong.setSignLanguage(false);
+//        badehotelletWrong.setActive(true);
+//        badehotelletWrong.setValidated(true);
+//        badehotelletWrong.setLanguage("Dansk");
+//        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
+//        badehotelletWrong.setType("Serie");
+//        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
+//        badehotelletWrong.setProductionType("Serie");
+//
+//        ArrayList<String> genres = new ArrayList<>();
+//        genres.add("Thriller");
+//        genres.add("Animation");
+//        badehotelletWrong.setGenres(genres);
+//
+//        System.out.println("\n\nTester createProduction()");
+//        dbFacade.createProduction(badehotelletWrong);
 
 
         // Test af getProductions og print til konsol
-        System.out.println("\n\n tester getProduction");
-        System.out.println(dbFacade.getProductions());
+//        System.out.println("\n\n tester getProduction");
+//        System.out.println(dbFacade.getProductions());
 
 
 
@@ -101,7 +101,7 @@ public class DataFacadeTest {
         // test af deleteCreditName
         //dbFacade.deleteCreditName(1);
 
-        // test af updateCredit()
+        // test af createCreditName()
 //        CreditName creditName = new CreditName();
 //        creditName.setFirstName("First Name (TEST)");
 //        creditName.setLastName("Last Name (TEST)");
@@ -112,38 +112,59 @@ public class DataFacadeTest {
 
 
         // tester getCredit
-        //Credit testGetCredit = dbFacade.getCredit(4);
-        //System.out.println("\ntester hent af kreditering fra db");
-        //System.out.println(testGetCredit);
+//        Credit testGetCredit = dbFacade.getCredit(4);
+//        System.out.println("\ntester hent af kreditering fra db");
+//        System.out.println(testGetCredit);
 
         // tester getCredits
         //List<Credit> testList = dbFacade.getCredits(1);
         //System.out.println("\ntester liste af credits");
         //System.out.println(testList);
 
-        //Tester getCreditName
-        System.out.println("Tester getCreditNames");
-        List<CreditName> testName = dbFacade.getCreditNames();
-        for (CreditName i : testName) {
-            System.out.println(i);
-        }
+        //Tester getCreditNames
+//        System.out.println("Tester getCreditNames");
+//        List<CreditName> testName = dbFacade.getCreditNames();
+//        for (CreditName i : testName) {
+//            System.out.println(i);
+//        }
 
         // tester createCredits
 
-        System.out.println("\n\n Test af createCredits: ");
-
-        CreditName creditName2 = new CreditName(1235, "Lars", "Larsen", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
-
-        Credit credit1 = new Credit();
-        credit1.setRole("Far til Simon");
-        credit1.setValidated(true);
-        credit1.setCreditName(creditName2);
-        credit1.setCreditType("Dukkefører");
-        dbFacade.createCredits(credit1, 1);
-
-
+//        System.out.println("\n\n Test af createCredits: ");
+//
+//        CreditName creditName2 = new CreditName(1235, "Lars", "Larsen", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
+//
+//        Credit credit1 = new Credit();
+//        credit1.setRole("Far til Simon");
+//        credit1.setValidated(true);
+//        credit1.setCreditName(creditName2);
+//        credit1.setCreditType("Dukkefører");
+//        dbFacade.createCredits(credit1, 1);
 
 
+        // Test af deleteCredit()
+//        System.out.println("\n\nTest af delete credit");
+//        dbFacade.deleteCredit(38);
+
+
+
+        // Test af updateCredit()
+        System.out.println("\n\nTest af updateCredit()");
+        CreditName creditName1 = new CreditName();
+        creditName1.setFirstName("Bodille");
+        creditName1.setLastName("Jensen");
+        creditName1.setAddress("nullway 07");
+        creditName1.setPhone(65926774);
+        creditName1.setEmail("BJn@badehotellet.dk");
+
+        Credit credit2 = new Credit();
+        credit2.setRole("EN FED ROLLE ALTSÅ!");
+        credit2.setValidated(false);
+        credit2.setProductionId(1);
+        credit2.setCreditName(creditName1);
+        credit2.setCreditType("Lys");
+
+        dbFacade.updateCredit(4, credit2);
 
         /* KOPIERET FRA GAMLE DATA MAIN
 
@@ -151,13 +172,13 @@ public class DataFacadeTest {
             // Opretter produktion 1: "Badehotellet"
 
             // Opretter personer
-            CreditName creditName1 = new CreditName();
-            creditName1.setId(1234);
-            creditName1.setFirstName("Bodil");
-            creditName1.setLastName("Jørgensen");
-            creditName1.setAddress(null);
-            creditName1.setPhone("65926104");
-            creditName1.setEmail("BodilJoergensen@badehotellet.dk");
+            CreditName creditName2 = new CreditName();
+            creditName2.setId(1234);
+            creditName2.setFirstName("Bodil");
+            creditName2.setLastName("Jørgensen");
+            creditName2.setAddress(null);
+            creditName2.setPhone("65926104");
+            creditName2.setEmail("BodilJoergensen@badehotellet.dk");
 
             CreditName creditName2 = new CreditName(1235, "Amalie", "Dollerup", "Bamsevej 4, 5600", "27201117", "AmalieDollerup@badehotellet.dk");
 
@@ -165,7 +186,7 @@ public class DataFacadeTest {
             Credit credit1 = new Credit();
             credit1.setRole("Far til Simon");
             credit1.setValidated(true);
-            credit1.setPerson(creditName1);
+            credit1.setPerson(creditName2);
 
             Credit credit2 = new Credit(creditName2, "Mor til Hans", "CreditType.Medvirkende");
 
