@@ -5,6 +5,9 @@ import domain.Credit;
 import domain.CreditName;
 import domain.Production;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,7 +29,7 @@ public class DataFacade implements DataLayerInterface {
     private String password = "5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd";
     private String stringType = "unspecified";  // If stringtype is set to varchar (the default),
                                                 // such parameters will be sent to the server as
-                                                //varchar parameters. If stringtype is set to unspecified,
+                                                // varchar parameters. If stringtype is set to unspecified,
                                                 // parameters will be sent to the server as untyped values,
                                                 // and the server will attempt to infer an appropriate type.
 
@@ -46,7 +49,8 @@ public class DataFacade implements DataLayerInterface {
     private void initializePostgresqlDatabase() {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
-            connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" +
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://" + url + ":" +
                     port + "/" +
                     databaseName + "?" +
                     "user=" + username +
@@ -1026,6 +1030,35 @@ public class DataFacade implements DataLayerInterface {
             return -1;
         }
     }
+
+
+    // method for adding production images to database
+    public void insertImage(String imageUrl, String imageText, int productionId) {
+        // TODO: Det er nok kun når vi tester den, at vi kan bruge en url til
+        //  at finde filen. Ved ikke hvordan det fungerer med at uploade et billede
+        //  i GUI'en (Simon)
+        try {
+            File file = new File(imageUrl);
+            FileInputStream inputStream = new FileInputStream(file);
+            PreparedStatement stmt = connection.prepareStatement(
+                    "INSERT INTO production_images (" +
+                            "image_text, " +
+                            "image, " +
+                            "production_id) " +
+                            "VALUES (?, ?, ?)"
+            );
+            stmt.setString(1, imageText);
+            stmt.setBinaryStream(2, inputStream, (int)file.length());
+            stmt.setInt(3, productionId);
+            stmt.execute();
+            stmt.close();
+
+        }
+        catch (FileNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 }
 
 // TODO: ret danske kommentarer til engelsk

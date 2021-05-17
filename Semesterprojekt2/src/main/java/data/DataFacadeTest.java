@@ -179,6 +179,11 @@ public class DataFacadeTest {
 //        dbFacade.updateCreditName(22, creditName3);
 
 
+        // Test af insertImage()
+        // dbFacade.insertImage("Semesterprojekt2/src/main/resources/org/presentation/Logo/drukplakat.jpeg", "Druk",1);
+
+
+
 
 
 
