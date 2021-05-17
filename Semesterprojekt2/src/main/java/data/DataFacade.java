@@ -556,40 +556,58 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public List<CreditName> getCreditName() {
-        return null;
     public List<CreditName> getCreditNames() {
 
-            try {
-                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM credit_name");
-                ResultSet sqlReturnValues = stmt.executeQuery();
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM credit_name");
+            ResultSet sqlReturnValues = stmt.executeQuery();
 
-                List<CreditName> returnValue = new ArrayList<>();
+            List<CreditName> returnValue = new ArrayList<>();
 
-                sqlReturnValues.next();
-                while (sqlReturnValues.next()) {
-                    CreditName creditName = new CreditName();
-                    creditName.setId(sqlReturnValues.getInt(1));
-                    creditName.setFirstName(sqlReturnValues.getString(2));
-                    creditName.setLastName(sqlReturnValues.getString(3));
-                    creditName.setAddress(sqlReturnValues.getString(4));
-                    creditName.setPhone(sqlReturnValues.getInt(5));
-                    creditName.setEmail(sqlReturnValues.getString(6));
-                    returnValue.add(creditName);
-                }
-                return returnValue;
-
-            } catch (SQLException exception) {
-                exception.printStackTrace();
-                return null;
+            sqlReturnValues.next();
+            while (sqlReturnValues.next()) {
+                CreditName creditName = new CreditName();
+                creditName.setId(sqlReturnValues.getInt(1));
+                creditName.setFirstName(sqlReturnValues.getString(2));
+                creditName.setLastName(sqlReturnValues.getString(3));
+                creditName.setAddress(sqlReturnValues.getString(4));
+                creditName.setPhone(sqlReturnValues.getInt(5));
+                creditName.setEmail(sqlReturnValues.getString(6));
+                returnValue.add(creditName);
             }
+            return returnValue;
 
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return null;
+        }
     }
 
 
     @Override
     public CreditName getCreditName(int creditNameID) {
-        return null;
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT * from credit_name WHERE id = ?");
+            stmt.setInt(1,creditNameID);
+
+            ResultSet resultSet = stmt.executeQuery();
+            CreditName creditName = new CreditName();
+
+            while(resultSet.next()) {
+                creditName.setId(resultSet.getInt(1));
+                creditName.setFirstName(resultSet.getString(2));
+                creditName.setLastName(resultSet.getString(3));
+                creditName.setAddress(resultSet.getString(4));
+                creditName.setPhone(resultSet.getInt(5));
+                creditName.setEmail(resultSet.getString(6));
+            }
+
+            return creditName;
+            
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return null;
+        }
     }
 
     @Override

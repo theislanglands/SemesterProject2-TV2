@@ -33,7 +33,7 @@ public interface DataLayerInterface {
 
     // CreditName
     void createCreditName(CreditName creditName);
-    List<CreditName> getCreditName();
+    List<CreditName> getCreditNames();
     CreditName getCreditName(int creditNameID);
     void deleteCreditName(int creditNameID);
     boolean updateCreditName(int creditNameID, CreditName replaceCreditName);
