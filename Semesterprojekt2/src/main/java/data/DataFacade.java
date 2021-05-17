@@ -269,8 +269,8 @@ public class DataFacade implements DataLayerInterface {
             throwable.printStackTrace();
         }
 
+        
     }
-
 
     @Override
     public boolean updateProduction(int sourceProductionID, Production replaceProduction) {
@@ -323,7 +323,6 @@ public class DataFacade implements DataLayerInterface {
         }
         return true;
     }
-
 
     @Override
     public void createCredits(Credit cred, Production prod) {
@@ -471,7 +470,15 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public void deleteCredit(int creditID) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "DELETE FROM credit WHERE id = ?;");
+            stmt.setInt(1, creditID);
 
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
@@ -514,7 +521,6 @@ public class DataFacade implements DataLayerInterface {
         }
         return true;
     }
-
 
     @Override
     public void createCreditName(CreditName pers) {
