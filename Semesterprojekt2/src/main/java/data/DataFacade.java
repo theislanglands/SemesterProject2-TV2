@@ -539,22 +539,7 @@ public class DataFacade implements DataLayerInterface {
                             "email) " +             //5
                             "VALUES (?,?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
-                    // HVORFOR RETURNERE GENERATED KEYS HVIS DEN IKKE BRUGES?
-            );
-            stmtCreditName.setString(1, pers.getFirstName());
-            stmtCreditName.setString(2, pers.getLastName());
-            stmtCreditName.setString(3, pers.getAddress());
-            stmtCreditName.setInt(4, pers.getPhone());
-            stmtCreditName.setString(5, pers.getEmail());
-            PreparedStatement stmtCreditName = connection.prepareStatement(
-                    "INSERT INTO credit_name(" +
-                            "first_name, " +        //1
-                            "last_name, " +         //2
-                            "address, " +           //3
-                            "phone, " +             //4
-                            "email) " +             //5
-                            "VALUES (?,?,?,?,?)",
-                    PreparedStatement.RETURN_GENERATED_KEYS
+                    // hvorfor retrn generaterd keys når den ikke bruges?
             );
             stmtCreditName.setString(1, pers.getFirstName());
             stmtCreditName.setString(2, pers.getLastName());
