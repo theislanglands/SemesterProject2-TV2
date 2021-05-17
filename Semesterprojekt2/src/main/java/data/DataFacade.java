@@ -13,6 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import static org.postgresql.core.SqlCommandType.SELECT;
+
 public class DataFacade implements DataLayerInterface {
 
     // singeltion instance
@@ -48,7 +50,7 @@ public class DataFacade implements DataLayerInterface {
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
             //connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName, username, password);
-            connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName + "?" + "user=hdzfvhcu"+ "&password=5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd"+"&stringtype=unspecified");
+            connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName + "?" + "user=hdzfvhcu" + "&password=5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd" + "&stringtype=unspecified");
 
         } catch (SQLException | IllegalArgumentException ex) {
             ex.printStackTrace(System.err);
@@ -241,7 +243,7 @@ public class DataFacade implements DataLayerInterface {
 //            }
 //            stmt2.close();
 
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
@@ -300,27 +302,27 @@ public class DataFacade implements DataLayerInterface {
                             "production_name_id = ? " +     // 14
                             "WHERE id = ?");                // 15
 
-                stmt.setInt(1, replaceProduction.getSeason());
-                stmt.setInt(2, replaceProduction.getEpisode());
-                stmt.setString(3, dateFormatter(replaceProduction.getReleaseDate()));
-                stmt.setInt(4, replaceProduction.getLength());
-                stmt.setBoolean(5, replaceProduction.hasSubtitle());
-                stmt.setBoolean(6, replaceProduction.hasSignLanguage());
-                stmt.setBoolean(7, replaceProduction.isActive());
-                stmt.setBoolean(8, replaceProduction.isValidated());
-                stmt.setString(9, replaceProduction.getProductionReference());
-                stmt.setString(10, replaceProduction.getProductionBio());
+            stmt.setInt(1, replaceProduction.getSeason());
+            stmt.setInt(2, replaceProduction.getEpisode());
+            stmt.setString(3, dateFormatter(replaceProduction.getReleaseDate()));
+            stmt.setInt(4, replaceProduction.getLength());
+            stmt.setBoolean(5, replaceProduction.hasSubtitle());
+            stmt.setBoolean(6, replaceProduction.hasSignLanguage());
+            stmt.setBoolean(7, replaceProduction.isActive());
+            stmt.setBoolean(8, replaceProduction.isValidated());
+            stmt.setString(9, replaceProduction.getProductionReference());
+            stmt.setString(10, replaceProduction.getProductionBio());
 
-                // måske det er her det går galt, hvis den nye indsætning ikke står i en tabel!
-                // slår op i andre tabeller, og finder den korrekte foreign key
-                stmt.setInt(11, getProdCompanyId(replaceProduction.getProductionCompanyName()));
-                stmt.setInt(12, getProdTypeId(replaceProduction.getProductionType()));
-                stmt.setInt(13, getLanguageId(replaceProduction.getLanguage()));
-                stmt.setInt(14, getNameId(replaceProduction.getName()));
-                // Source ID
-                stmt.setInt(15, sourceProductionID);
+            // måske det er her det går galt, hvis den nye indsætning ikke står i en tabel!
+            // slår op i andre tabeller, og finder den korrekte foreign key
+            stmt.setInt(11, getProdCompanyId(replaceProduction.getProductionCompanyName()));
+            stmt.setInt(12, getProdTypeId(replaceProduction.getProductionType()));
+            stmt.setInt(13, getLanguageId(replaceProduction.getLanguage()));
+            stmt.setInt(14, getNameId(replaceProduction.getName()));
+            // Source ID
+            stmt.setInt(15, sourceProductionID);
 
-            int rowAffected =  stmt.executeUpdate();
+            int rowAffected = stmt.executeUpdate();
 
 
         } catch (SQLException ex) {
@@ -367,7 +369,7 @@ public class DataFacade implements DataLayerInterface {
                             "email) " +             //5
                             "VALUES (?,?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
-                    );
+            );
             stmtCreditName.setString(1, cred.getFirstName());
             stmtCreditName.setString(2, cred.getLastName());
             stmtCreditName.setString(3, cred.getAddress());
@@ -389,9 +391,9 @@ public class DataFacade implements DataLayerInterface {
                             "VALUES (?,?,?)"
             );
 
-            stmtCNT.setInt(1,lastInsertedCreditNameID);
-            stmtCNT.setInt(2,getCreditTypeId(cred.getCreditType()));
-            stmtCNT.setInt(3,lastInsertedCreditID);
+            stmtCNT.setInt(1, lastInsertedCreditNameID);
+            stmtCNT.setInt(2, getCreditTypeId(cred.getCreditType()));
+            stmtCNT.setInt(3, lastInsertedCreditID);
 
             connection.commit();
 
@@ -406,14 +408,14 @@ public class DataFacade implements DataLayerInterface {
         List<Credit> returnCredits = new ArrayList<>();
 
         try {
-        PreparedStatement stmt = connection.prepareStatement(
-                "SELECT id FROM credit WHERE production_id = ?;");
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT id FROM credit WHERE production_id = ?;");
 
-        stmt.setInt(1,prodID);
+            stmt.setInt(1, prodID);
 
-        ResultSet resultSet = stmt.executeQuery();
+            ResultSet resultSet = stmt.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int readID = resultSet.getInt(1);
                 returnCredits.add(getCredit(readID));
             }
@@ -450,7 +452,7 @@ public class DataFacade implements DataLayerInterface {
                             "JOIN credit ON credit_name_credit_type_association.credit_id = credit.id\n" +
                             "WHERE credit.id = ?;");
 
-            stmt.setInt(1,creditID);
+            stmt.setInt(1, creditID);
 
             ResultSet resultSet = stmt.executeQuery();
 
@@ -525,34 +527,59 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public void createCreditName(CreditName pers) {
         try {
-        PreparedStatement stmtCreditName = connection.prepareStatement(
-                "INSERT INTO credit_name(" +
-                        "first_name, " +        //1
-                        "last_name, " +         //2
-                        "address, " +           //3
-                        "phone, " +             //4
-                        "email) " +             //5
-                        "VALUES (?,?,?,?,?)",
-                PreparedStatement.RETURN_GENERATED_KEYS
-        );
-        stmtCreditName.setString(1, pers.getFirstName());
-        stmtCreditName.setString(2, pers.getLastName());
-        stmtCreditName.setString(3, pers.getAddress());
-        stmtCreditName.setInt(4, pers.getPhone());
-        stmtCreditName.setString(5, pers.getEmail());
+            PreparedStatement stmtCreditName = connection.prepareStatement(
+                    "INSERT INTO credit_name(" +
+                            "first_name, " +        //1
+                            "last_name, " +         //2
+                            "address, " +           //3
+                            "phone, " +             //4
+                            "email) " +             //5
+                            "VALUES (?,?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+            );
+            stmtCreditName.setString(1, pers.getFirstName());
+            stmtCreditName.setString(2, pers.getLastName());
+            stmtCreditName.setString(3, pers.getAddress());
+            stmtCreditName.setInt(4, pers.getPhone());
+            stmtCreditName.setString(5, pers.getEmail());
 
-        stmtCreditName.execute();
-        stmtCreditName.close();
+            stmtCreditName.execute();
+            stmtCreditName.close();
 
-    } catch (SQLException throwable) {
-        throwable.printStackTrace();
-    }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
     }
 
     @Override
     public List<CreditName> getCreditNames() {
-        return null;
+
+            try {
+                PreparedStatement stmt = connection.prepareStatement("SELECT * FROM credit_name");
+                ResultSet sqlReturnValues = stmt.executeQuery();
+
+                List<CreditName> returnValue = new ArrayList<>();
+
+                sqlReturnValues.next();
+                while (sqlReturnValues.next()) {
+                    CreditName creditName = new CreditName();
+                    creditName.setId(sqlReturnValues.getInt(1));
+                    creditName.setFirstName(sqlReturnValues.getString(2));
+                    creditName.setLastName(sqlReturnValues.getString(3));
+                    creditName.setAddress(sqlReturnValues.getString(4));
+                    creditName.setPhone(sqlReturnValues.getInt(5));
+                    creditName.setEmail(sqlReturnValues.getString(6));
+                    returnValue.add(creditName);
+                }
+                return returnValue;
+
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+                return null;
+            }
+
     }
+
 
     @Override
     public CreditName getCreditNames(int creditNameID) {
@@ -931,6 +958,13 @@ public class DataFacade implements DataLayerInterface {
         //List<Credit> testList = dbFacade.getCredits(1);
         //System.out.println("\ntester liste af credits");
         //System.out.println(testList);
+
+        //Tester getCreditName
+        System.out.println("Tester getCreditNames");
+        List<CreditName> testName = dbFacade.getCreditNames();
+        for (CreditName i: testName) {
+            System.out.println(i);
+        }
 
 
 
