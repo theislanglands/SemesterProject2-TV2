@@ -2,6 +2,7 @@ package org.presentation;
 
 import domain.Credit;
 import domain.Production;
+import domain.enums.Genre;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,6 +14,13 @@ public class ViewerProductionsController {
 
     public TableView listviewProductions;
     public Text textProductionBio;
+    public Text textFilmTitel;
+    public Text textGenre1;
+    public Text textGenre2;
+    public Text textGenre3;
+    public Text textLength;
+    public Text textProductionCompany;
+    public Text textYear;
     private Production production;
 
     public void initialize(){
@@ -20,6 +28,14 @@ public class ViewerProductionsController {
         setTableViewCredits();
         listviewProductions.getItems().addAll(production.getCredits());
         textProductionBio.setText(production.getProductionBio());
+        textFilmTitel.setText(production.getName());
+        textGenre1.setText(production.getGenres().get(0));
+        textGenre2.setText(production.getGenres().get(1));
+        textGenre3.setText(production.getGenres().get(2));
+        textLength.setText(String.valueOf(production.getLength()));
+        textProductionCompany.setText(production.getProductionCompanyName());
+        textYear.setText(String.valueOf(production.getReleaseDate().getYear()));
+
     }
 
 
