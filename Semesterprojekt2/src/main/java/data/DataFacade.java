@@ -224,7 +224,8 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setProductionBio(sqlReturnValues.getString(15));
             }
             stmt.close();
-
+            // skal det her ikke slettes?
+/*
             PreparedStatement stmt2 = connection.prepareStatement(
                     "SELECT " +
                             "genre.genre " +    // 1
@@ -233,6 +234,8 @@ public class DataFacade implements DataLayerInterface {
                             "WHERE genres_production_association.production_id = ?");
 
             stmt2.setInt(1, id);
+
+ */
 
 //            ResultSet sqlReturnValues2 = stmt2.executeQuery();
 //
@@ -269,7 +272,7 @@ public class DataFacade implements DataLayerInterface {
             throwable.printStackTrace();
         }
 
-        
+
     }
 
     @Override
@@ -525,37 +528,38 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public void createCreditName(CreditName pers) {
         try {
-        PreparedStatement stmtCreditName = connection.prepareStatement(
-                "INSERT INTO credit_name(" +
-                        "first_name, " +        //1
-                        "last_name, " +         //2
-                        "address, " +           //3
-                        "phone, " +             //4
-                        "email) " +             //5
-                        "VALUES (?,?,?,?,?)",
-                PreparedStatement.RETURN_GENERATED_KEYS
-        );
-        stmtCreditName.setString(1, pers.getFirstName());
-        stmtCreditName.setString(2, pers.getLastName());
-        stmtCreditName.setString(3, pers.getAddress());
-        stmtCreditName.setInt(4, pers.getPhone());
-        stmtCreditName.setString(5, pers.getEmail());
+            PreparedStatement stmtCreditName = connection.prepareStatement(
+                    "INSERT INTO credit_name(" +
+                            "first_name, " +        //1
+                            "last_name, " +         //2
+                            "address, " +           //3
+                            "phone, " +             //4
+                            "email) " +             //5
+                            "VALUES (?,?,?,?,?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+                    // HVORFOR RETURNERE GENERATED KEYS HVIS DEN IKKE BRUGES?
+            );
+            stmtCreditName.setString(1, pers.getFirstName());
+            stmtCreditName.setString(2, pers.getLastName());
+            stmtCreditName.setString(3, pers.getAddress());
+            stmtCreditName.setInt(4, pers.getPhone());
+            stmtCreditName.setString(5, pers.getEmail());
 
-        stmtCreditName.execute();
-        stmtCreditName.close();
+            stmtCreditName.execute();
+            stmtCreditName.close();
 
-    } catch (SQLException throwable) {
-        throwable.printStackTrace();
-    }
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
     }
 
     @Override
-    public List<CreditName> getCreditNames() {
+    public List<CreditName> getCreditName() {
         return null;
     }
 
     @Override
-    public CreditName getCreditNames(int creditNameID) {
+    public CreditName getCreditName(int creditNameID) {
         return null;
     }
 
