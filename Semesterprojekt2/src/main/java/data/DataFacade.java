@@ -253,23 +253,17 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public void deleteProduction(int id) {
+
         try {
-            connection.setAutoCommit(false);
 
-            PreparedStatement stmt1 = connection.prepareStatement(
-                    "DELETE FROM genres_production_association WHERE production_id = ?");
-            stmt1.setInt(1, id);
-            stmt1.execute();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "DELETE FROM production WHERE id = ?"
+            );
 
-            PreparedStatement stmt2 = connection.prepareStatement(
-                    "DELETE FROM production WHERE id = ?");
-            stmt2.setInt(1, id);
-            stmt2.execute();
+            stmt.setInt(1, id);
+            stmt.execute();
+            stmt.close();
 
-            connection.commit();
-
-            stmt1.close();
-            stmt2.close();
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
@@ -562,32 +556,17 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public void deleteCreditName(int creditNameID) {
         try {
-            connection.setAutoCommit(false);
 
-            PreparedStatement stmt2 = connection.prepareStatement(
-                    "UPDATE credit_name_credit_type_association " +
-                            "SET credit_name_id = ? " +
-                            "WHERE credit_name_id = ?");
-            stmt2.setInt(1, -1);
-            stmt2.setInt(2, creditNameID);
-
-            stmt2.execute();
-
-            PreparedStatement stmt1 = connection.prepareStatement(
+            PreparedStatement stmt = connection.prepareStatement(
                     "DELETE FROM credit_name WHERE id = ?");
-            stmt1.setInt(1, creditNameID);
-            stmt1.execute();
+            stmt.setInt(1, creditNameID);
+            stmt.execute();
 
-            connection.commit();
-
-            stmt1.close();
-            stmt2.close();
+            stmt.close();
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-
-
     }
 
     @Override
@@ -880,7 +859,6 @@ public class DataFacade implements DataLayerInterface {
         System.out.println(test);
 
 
-
         // test af createProduction()
 //        Production badehotelletWrong = new Production();
 //        badehotelletWrong.setProductionReference("WRONG123");
@@ -912,13 +890,13 @@ public class DataFacade implements DataLayerInterface {
         //dbFacade.deleteCreditName(1);
 
         // test af updateCredit()
-        CreditName creditName = new CreditName();
-        creditName.setFirstName("First Name (TEST)");
-        creditName.setLastName("Last Name (TEST)");
-        creditName.setPhone(99999999);
-        creditName.setEmail("testperson@testperson.dk");
-
-        dbFacade.createCreditName(creditName);
+//        CreditName creditName = new CreditName();
+//        creditName.setFirstName("First Name (TEST)");
+//        creditName.setLastName("Last Name (TEST)");
+//        creditName.setPhone(99999999);
+//        creditName.setEmail("testperson@testperson.dk");
+//
+//        dbFacade.createCreditName(creditName);
 
 
 
