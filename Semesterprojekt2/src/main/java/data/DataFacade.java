@@ -122,8 +122,6 @@ public class DataFacade implements DataLayerInterface {
             // commit changes
             //connection.commit();
 
-
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("Error, could not create production.");
