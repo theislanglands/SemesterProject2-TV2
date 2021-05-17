@@ -11,21 +11,24 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 
-import static org.postgresql.core.SqlCommandType.SELECT;
 
 public class DataFacade implements DataLayerInterface {
 
     // singeltion instance
     private static DataFacade instance;
 
-    // database setup
+    // database connection setup
     private String url = "hattie.db.elephantsql.com";
     private int port = 5432;
     private String databaseName = "hdzfvhcu";
     private String username = "hdzfvhcu";
     private String password = "5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd";
+    private String stringType = "unspecified";  // If stringtype is set to varchar (the default),
+                                                // such parameters will be sent to the server as
+                                                //varchar parameters. If stringtype is set to unspecified,
+                                                // parameters will be sent to the server as untyped values,
+                                                // and the server will attempt to infer an appropriate type.
 
     private Connection connection = null;
 
@@ -41,32 +44,33 @@ public class DataFacade implements DataLayerInterface {
     }
 
     private void initializePostgresqlDatabase() {
-        // TODO: Jeg var nødt til at skrive vores url om og tilføje stringtype=unspecified.
-        //  ELlers kan man ikke fodre preparedStatements med String-variable når man skal
-        //  sætte et TIMESTAMP i databasen. Det kan skrives mere smooth med attributter ligesom
-        //  det var gjort før med noget som hedder Properties, men jeg kunne ikke få det til at virke,
-        //  så jeg skrev bare det hele ind i URL-en i første omgang
-        //  (Simon)
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
-            //connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName, username, password);
-            connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" + port + "/" + databaseName + "?" + "user=hdzfvhcu" + "&password=5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd" + "&stringtype=unspecified");
+            connection = DriverManager.getConnection("jdbc:postgresql://" + url + ":" +
+                    port + "/" +
+                    databaseName + "?" +
+                    "user=" + username +
+                    "&password=" + password +
+                    "&stringtype=" + stringType
+            );
 
         } catch (SQLException | IllegalArgumentException ex) {
             ex.printStackTrace(System.err);
         } finally {
+            // TODO: Aksel: Lukker hele programmet hvis connection = null?
             if (connection == null) System.exit(-1);
         }
     }
 
-    // metoder fra interface!
     @Override
     public boolean createProduction(Production prod) {
+
+        // returns true if succesful
+
         try {
             //Begin statement - Transaction
-            //connection.setAutoCommit(false);
+            connection.setAutoCommit(false);
 
-            //
             PreparedStatement stmt1 = connection.prepareStatement(
                     "INSERT INTO production (" +
                             "season, " +                // 1
@@ -96,19 +100,21 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setString(9, prod.getProductionReference());
             stmt1.setString(10, prod.getProductionBio());
 
-            // hjælpemetoder til at finde ID på foreign keys
+            // inserting foreign keys
             stmt1.setInt(11, getProdCompanyId(prod.getProductionCompanyName()));
             stmt1.setInt(12, getProdTypeId(prod.getProductionType()));
             stmt1.setInt(13, getLanguageId(prod.getLanguage()));
             stmt1.setInt(14, getNameId(prod.getName()));
 
-            // henter det generede production id
-            int affectedRows = stmt1.executeUpdate();
+            // execute SQL queries
+            stmt1.executeUpdate();
+
+            // gets the generated production id
             ResultSet resultSet = stmt1.getGeneratedKeys();
             resultSet.next();
             int prod_id = resultSet.getInt(1);
 
-            // associerer med genrer
+            // associate production with genres
             for (String genre : prod.getGenres()) {
 
                 PreparedStatement stmt2 = connection.prepareStatement(
@@ -121,12 +127,15 @@ public class DataFacade implements DataLayerInterface {
                 stmt2.setInt(2, getGenreId(genre));
                 stmt2.execute();
             }
-            // commit changes
-            //connection.commit();
+
+            // commit changes to db.
+            connection.commit();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             System.out.println("Error, could not create production.");
+
+            // TODO: Er det den rigtig måde at Rollback på i JAVA?
             if (connection != null) {
                 try {
                     connection.rollback();
@@ -145,20 +154,15 @@ public class DataFacade implements DataLayerInterface {
     @Override
     public List<Production> getProductions() {
 
-        // liste af produktioner der returneres
         List<Production> productions = new ArrayList<>();
 
-        // Laver liste med alle id'er til alle produktioner
-        List<Integer> production_ids = new ArrayList<>();
-
         try {
-            //Eksiverer at vi vælger kun id fra production-table
             PreparedStatement stmt = connection.prepareStatement("SELECT id FROM production");
             ResultSet sqlReturnValues = stmt.executeQuery();
 
-            //Tilføjer alle id'er til production_ids-listen
+            // Query Id's of all productions and add production to list.
             while (sqlReturnValues.next()) {
-                production_ids.add(sqlReturnValues.getInt(1));
+                productions.add(getProduction(sqlReturnValues.getInt(1)));
             }
 
         } catch (SQLException ex) {
@@ -166,10 +170,6 @@ public class DataFacade implements DataLayerInterface {
             return null;
         }
 
-        //Tilføjer produktionsobjekter til listen
-        for (int id : production_ids) {
-            productions.add(getProduction(id));
-        }
         return productions;
     }
 
@@ -730,6 +730,7 @@ public class DataFacade implements DataLayerInterface {
 
     //ERSTATTER ENUMS
     // CreditType
+    @Override
     public List<String> getCreditTypes() {
 
         try {
@@ -750,6 +751,7 @@ public class DataFacade implements DataLayerInterface {
     }
 
     // Production types (erstatter enum)
+    @Override
     public List<String> getProductionTypes() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM production_type");
@@ -769,6 +771,7 @@ public class DataFacade implements DataLayerInterface {
     }
 
     // Language Type (erstatter enum)
+    @Override
     public List<String> getLanguages() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM language");
@@ -788,6 +791,7 @@ public class DataFacade implements DataLayerInterface {
     }
 
     // Genre Types (erstatter enum)
+    @Override
     public List<String> getAllGenres() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM genre");

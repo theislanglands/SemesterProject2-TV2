@@ -3,6 +3,7 @@ package data;
 import domain.CreditName;
 import domain.Production;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,31 +54,42 @@ public class DataFacadeTest {
         test = dbFacade.getProduction(1);
         System.out.println(test);
 
+        // delete production test
+        dbFacade.deleteProduction(7);
+
         // test af createProduction()
-//        Production badehotelletWrong = new Production();
-//        badehotelletWrong.setProductionReference("WRONG123");
-//        badehotelletWrong.setName("Badehotellet");
-//        badehotelletWrong.setSeason(99);
-//        badehotelletWrong.setEpisode(99);
-//        badehotelletWrong.setReleaseDate(new Date(100000));
-//        badehotelletWrong.setLength(99);
-//        badehotelletWrong.setSubtitle(true);
-//        badehotelletWrong.setSignLanguage(false);
-//        badehotelletWrong.setActive(true);
-//        badehotelletWrong.setValidated(true);
-//        badehotelletWrong.setLanguage("Dansk");
-//        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
-//        badehotelletWrong.setType("Serie");
-//        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
-//        badehotelletWrong.setProductionType("Serie");
-//
-//        ArrayList<String> genres = new ArrayList<>();
-//        genres.add("Thriller");
-//        genres.add("Animation");
-//        badehotelletWrong.setGenres(genres);
-//
-//        System.out.println("\n\nTester createProduction()");
-//        dbFacade.createProduction(badehotelletWrong);
+        Production badehotelletWrong = new Production();
+        badehotelletWrong.setProductionReference("WRONG123");
+        badehotelletWrong.setName("Badehotellet");
+        badehotelletWrong.setSeason(99);
+        badehotelletWrong.setEpisode(99);
+        badehotelletWrong.setReleaseDate(new Date(100000));
+        badehotelletWrong.setLength(99);
+        badehotelletWrong.setSubtitle(true);
+        badehotelletWrong.setSignLanguage(false);
+        badehotelletWrong.setActive(true);
+        badehotelletWrong.setValidated(true);
+        badehotelletWrong.setLanguage("Dansk");
+        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
+        badehotelletWrong.setType("Serie");
+        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
+        badehotelletWrong.setProductionType("Serie");
+
+        ArrayList<String> genres = new ArrayList<>();
+        genres.add("Thriller");
+        genres.add("Animation");
+        badehotelletWrong.setGenres(genres);
+
+        System.out.println("\n\nTester createProduction()");
+        dbFacade.createProduction(badehotelletWrong);
+
+
+        // Test af getProductions og print til konsol
+        System.out.println("\n\n tester getProduction");
+        System.out.println(dbFacade.getProductions());
+
+
+
 
 
         // test af deleteCreditName
