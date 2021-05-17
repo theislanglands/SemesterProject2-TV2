@@ -149,22 +149,34 @@ public class DataFacadeTest {
 
 
         // Test af updateCredit()
-        System.out.println("\n\nTest af updateCredit()");
-        CreditName creditName1 = new CreditName();
-        creditName1.setFirstName("Bodille");
-        creditName1.setLastName("Jensen");
-        creditName1.setAddress("nullway 07");
-        creditName1.setPhone(65926774);
-        creditName1.setEmail("BJn@badehotellet.dk");
+//        System.out.println("\n\nTest af updateCredit()");
+//        CreditName creditName1 = new CreditName();
+//        creditName1.setFirstName("Bodille");
+//        creditName1.setLastName("Jensen");
+//        creditName1.setAddress("nullway 07");
+//        creditName1.setPhone(65926774);
+//        creditName1.setEmail("BJn@badehotellet.dk");
+//
+//        Credit credit2 = new Credit();
+//        credit2.setRole("EN FED ROLLE ALTSÅ!");
+//        credit2.setValidated(false);
+//        credit2.setProductionId(1);
+//        credit2.setCreditName(creditName1);
+//        credit2.setCreditType("Lys");
+//
+//        dbFacade.updateCredit(4, credit2);
 
-        Credit credit2 = new Credit();
-        credit2.setRole("EN FED ROLLE ALTSÅ!");
-        credit2.setValidated(false);
-        credit2.setProductionId(1);
-        credit2.setCreditName(creditName1);
-        credit2.setCreditType("Lys");
 
-        dbFacade.updateCredit(4, credit2);
+        // Test af updateCreditName()
+        System.out.println("\n\nTest af updateCreditName()");
+        CreditName creditName3 = new CreditName();
+        creditName3.setFirstName("Frank");
+        creditName3.setLastName("ErIGodtHumør");
+        creditName3.setAddress("Regnvejrsvej 12");
+        creditName3.setPhone(10101010);
+        creditName3.setEmail("FrankHappy@badehotellet.dk");
+
+        dbFacade.updateCreditName(22, creditName3);
 
         /* KOPIERET FRA GAMLE DATA MAIN
 

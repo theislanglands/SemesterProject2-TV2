@@ -544,12 +544,12 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public int createCreditName(CreditName pers) {
-
+    public int createCreditName(CreditName creditName) {
+        // returns - 1 if CreditName doen't exist
         int creditNameId = -1;
 
         try {
-            PreparedStatement stmtCreditName = connection.prepareStatement(
+            PreparedStatement stmt = connection.prepareStatement(
                     "INSERT INTO credit_name(" +
                             "first_name, " +        //1
                             "last_name, " +         //2
@@ -559,17 +559,20 @@ public class DataFacade implements DataLayerInterface {
                             "VALUES (?,?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
             );
-            stmtCreditName.setString(1, pers.getFirstName());
-            stmtCreditName.setString(2, pers.getLastName());
-            stmtCreditName.setString(3, pers.getAddress());
-            stmtCreditName.setInt(4, pers.getPhone());
-            stmtCreditName.setString(5, pers.getEmail());
+            stmt.setString(1, creditName.getFirstName());
+            stmt.setString(2, creditName.getLastName());
+            stmt.setString(3, creditName.getAddress());
+            stmt.setInt(4, creditName.getPhone());
+            stmt.setString(5, creditName.getEmail());
 
-            stmtCreditName.execute();
-            ResultSet resultSet = stmtCreditName.getGeneratedKeys();
+            stmt.execute();
+
+            // retrieves id of inserted creditName
+            ResultSet resultSet = stmt.getGeneratedKeys();
             resultSet.next();
             creditNameId = resultSet.getInt(1);
-            stmtCreditName.close();
+
+            stmt.close();
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
@@ -581,7 +584,7 @@ public class DataFacade implements DataLayerInterface {
     public List<CreditName> getCreditNames() {
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM credit_name");
+            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM credit_name");
             ResultSet sqlReturnValues = stmt.executeQuery();
 
             List<CreditName> returnValue = new ArrayList<>();
@@ -649,11 +652,38 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public boolean updateCreditName(int creditNameID, CreditName replaceCreditName) {
-        return false;
+    public boolean updateCreditName(int creditNameId, CreditName replaceCreditName) {
+
+        // returns true if succesful!
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE credit_name SET " +
+                            "first_name = ?, " +        // 1
+                            "last_name = ?, " +         // 2
+                            "address = ?, "+            // 3
+                            "phone = ?, " +             // 4
+                            "email = ? " +              // 5
+                        "WHERE id = ?");                // 6
+            stmt.setString(1, replaceCreditName.getFirstName());
+            stmt.setString(2, replaceCreditName.getLastName());
+            stmt.setString(3, replaceCreditName.getAddress());
+            stmt.setInt(4, replaceCreditName.getPhone());
+            stmt.setString(5, replaceCreditName.getEmail());
+            stmt.setInt(6, creditNameId);
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
+
     public List<String> getGenres(int prod_id) {
+        // returns all genres associated with an production
 
         List<String> returnList = new ArrayList<>();
 
