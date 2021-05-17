@@ -85,15 +85,15 @@ public final class TvCredits {
     }
 
     public List<String> getCreditTypes(){
-        return dataconnect.getCreditTypes();
+        return dataconnect.getAllCreditTypes();
     }
 
     public List<String> getProductionTypes(){
-        return dataconnect.getProductionTypes();
+        return dataconnect.getAllProductionTypes();
     }
 
     public List<String> getLanguages(){
-        return dataconnect.getLanguages();
+        return dataconnect.getAllLanguages();
     }
 
     public List<String> getGenres(){

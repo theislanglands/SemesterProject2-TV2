@@ -66,9 +66,9 @@ public class DataFacadeTest {
         // test af createProduction()
 //        Production badehotelletWrong = new Production();
 //        badehotelletWrong.setProductionReference("WRONG123");
-//        badehotelletWrong.setName("Badehotellet");
-//        badehotelletWrong.setSeason(99);
-//        badehotelletWrong.setEpisode(99);
+//        badehotelletWrong.setName("Badehotellet 2");
+//        badehotelletWrong.setSeason(2);
+//        badehotelletWrong.setEpisode(6);
 //        badehotelletWrong.setReleaseDate(new Date(100000));
 //        badehotelletWrong.setLength(99);
 //        badehotelletWrong.setSubtitle(true);
@@ -168,15 +168,19 @@ public class DataFacadeTest {
 
 
         // Test af updateCreditName()
-        System.out.println("\n\nTest af updateCreditName()");
-        CreditName creditName3 = new CreditName();
-        creditName3.setFirstName("Frank");
-        creditName3.setLastName("ErIGodtHumør");
-        creditName3.setAddress("Regnvejrsvej 12");
-        creditName3.setPhone(10101010);
-        creditName3.setEmail("FrankHappy@badehotellet.dk");
+//        System.out.println("\n\nTest af updateCreditName()");
+//        CreditName creditName3 = new CreditName();
+//        creditName3.setFirstName("Frank");
+//        creditName3.setLastName("ErIGodtHumør");
+//        creditName3.setAddress("Regnvejrsvej 12");
+//        creditName3.setPhone(10101010);
+//        creditName3.setEmail("FrankHappy@badehotellet.dk");
+//
+//        dbFacade.updateCreditName(22, creditName3);
 
-        dbFacade.updateCreditName(22, creditName3);
+
+
+
 
         /* KOPIERET FRA GAMLE DATA MAIN
 
@@ -208,7 +212,7 @@ public class DataFacadeTest {
             badehotelletCredits.add(credit2);
 
 
-            // Opretter produktion
+            //Opretter produktion
             Production badehotellet = new Production();
             badehotellet.setProductionReference("1");
             badehotellet.setName("Badehotellet");

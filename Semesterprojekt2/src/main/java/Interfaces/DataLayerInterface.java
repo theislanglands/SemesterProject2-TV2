@@ -30,9 +30,9 @@ public interface DataLayerInterface {
 
     // Metoder der erstatter ENUMS
 
-    List<String> getCreditTypes();
-    List<String> getProductionTypes();
-    List<String> getLanguages();
+    List<String> getAllCreditTypes();
+    List<String> getAllProductionTypes();
+    List<String> getAllLanguages();
     List<String> getAllGenres();
 
     // CreditName

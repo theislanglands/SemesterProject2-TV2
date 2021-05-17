@@ -104,7 +104,14 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setInt(11, getProdCompanyId(prod.getProductionCompanyName()));
             stmt1.setInt(12, getProdTypeId(prod.getProductionType()));
             stmt1.setInt(13, getLanguageId(prod.getLanguage()));
-            stmt1.setInt(14, getNameId(prod.getName()));
+
+            int productionNameId = getProductionNameId(prod.getName()); // if production name exist retrieve ID!
+
+            if (productionNameId == -1) { // if production name doesn't exist - create a new one, return id.
+                productionNameId = createProductionName(prod.getName());
+            }
+
+            stmt1.setInt(14, productionNameId);
 
             // execute SQL queries
             stmt1.executeUpdate();
@@ -303,7 +310,7 @@ public class DataFacade implements DataLayerInterface {
             stmt.setInt(11, getProdCompanyId(replaceProduction.getProductionCompanyName()));
             stmt.setInt(12, getProdTypeId(replaceProduction.getProductionType()));
             stmt.setInt(13, getLanguageId(replaceProduction.getLanguage()));
-            stmt.setInt(14, getNameId(replaceProduction.getName()));
+            stmt.setInt(14, getProductionNameId(replaceProduction.getName()));
 
             // Source ID
             stmt.setInt(15, sourceProductionId);
@@ -545,7 +552,7 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public int createCreditName(CreditName creditName) {
-        // returns - 1 if CreditName doen't exist
+        // returns - 1 if CreditName exist
         int creditNameId = -1;
 
         try {
@@ -681,6 +688,33 @@ public class DataFacade implements DataLayerInterface {
         return true;
     }
 
+    public int createProductionName(String productionName) {
+        // returns - 1 if Production name exist
+        int productionNameId = -1;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "INSERT INTO production_name(" +
+                            "name) " +             //1
+                            "VALUES (?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+            );
+            stmt.setString(1, productionName);
+
+            stmt.execute();
+
+            // retrieves id of inserted production Name
+            ResultSet resultSet = stmt.getGeneratedKeys();
+            resultSet.next();
+            productionNameId = resultSet.getInt(1);
+
+            stmt.close();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return productionNameId;
+    }
 
     public List<String> getGenres(int prod_id) {
         // returns all genres associated with an production
@@ -772,8 +806,9 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // Metode som tager et Date-objekt og formaterer det til et dataformat som kan
-    // bruges som TIMESTAMP i databasen
+
+    // Method which recieves a Date-object og converts to a dataformat which can be used as TIMESTAMP in database
+
     public String dateFormatter(Date date) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return formatter.format(date);
@@ -783,7 +818,7 @@ public class DataFacade implements DataLayerInterface {
     //ERSTATTER ENUMS
     // CreditType
     @Override
-    public List<String> getCreditTypes() {
+    public List<String> getAllCreditTypes() {
 
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM credit_type");
@@ -802,9 +837,9 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // Production types (erstatter enum)
+    // Production types
     @Override
-    public List<String> getProductionTypes() {
+    public List<String> getAllProductionTypes() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM production_type");
             ResultSet sqlReturnValues = stmt.executeQuery();
@@ -822,9 +857,9 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // Language Type (erstatter enum)
+    // Language
     @Override
-    public List<String> getLanguages() {
+    public List<String> getAllLanguages() {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM language");
             ResultSet sqlReturnValues = stmt.executeQuery();
@@ -842,7 +877,7 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // Genre Types (erstatter enum)
+    // Genres
     @Override
     public List<String> getAllGenres() {
         try {
@@ -861,6 +896,7 @@ public class DataFacade implements DataLayerInterface {
             return null;
         }
     }
+
 
     // private metoder til at finde ID på foreign keys i tabeller, -1 hvis ikke findes
     private int getProdCompanyId(String productionCompany) {
@@ -893,7 +929,7 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    private int getNameId(String productionName) {
+    private int getProductionNameId(String productionName) {
         try {
             PreparedStatement stmtGetNameId = connection.prepareStatement("SELECT id FROM production_name WHERE name = ?");
             stmtGetNameId.setString(1, productionName);
@@ -986,3 +1022,5 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 }
+
+// TODO: ret danske kommentarer til engelsk
