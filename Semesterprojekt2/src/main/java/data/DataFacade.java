@@ -599,6 +599,65 @@ public class DataFacade implements DataLayerInterface {
         return returnList;
     }
 
+    public void validateProduction(int productionID) {
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE production SET validated = true WHERE id = ?");
+            stmt.setInt(1, productionID);
+            stmt.execute();
+
+            stmt.close();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    public void invalidateProduction(int productionID) {
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE production SET validated = false WHERE id = ?");
+            stmt.setInt(1, productionID);
+            stmt.execute();
+
+            stmt.close();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    public void validateCredit(int creditID) {
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE credit SET validated = true WHERE id = ?");
+            stmt.setInt(1, creditID);
+            stmt.execute();
+
+            stmt.close();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
+
+    public void invalidateCredit(int creditID) {
+        try {
+
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE credit SET validated = false WHERE id = ?");
+            stmt.setInt(1, creditID);
+            stmt.execute();
+
+            stmt.close();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+    }
 
     // Metode som tager et Date-objekt og formaterer det til et dataformat som kan
     // bruges som TIMESTAMP i databasen
