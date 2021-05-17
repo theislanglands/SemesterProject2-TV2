@@ -5,18 +5,21 @@ import domain.Production;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.util.Date;
 
 public class ViewerProductionsController {
 
     public TableView listviewProductions;
+    public Text textProductionBio;
     private Production production;
 
     public void initialize(){
         production = ViewerSearchController.productionChosen;
         setTableViewCredits();
         listviewProductions.getItems().addAll(production.getCredits());
+        textProductionBio.setText(production.getProductionBio());
     }
 
 
