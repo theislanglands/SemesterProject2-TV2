@@ -1,5 +1,6 @@
 package data;
 
+import domain.Credit;
 import domain.CreditName;
 import domain.Production;
 
@@ -49,13 +50,18 @@ public class DataFacadeTest {
         badehotellet.setCompanyProductionName("SF Film Production ApS");
         badehotellet.setProductionType("Serie");
 
+        ArrayList<String> genres2 = new ArrayList<>();
+        genres2.add("Reality");
+        genres2.add("Fantasy");
+        badehotellet.setGenres(genres2);
+
         System.out.println(badehotellet);
         dbFacade.updateProduction(1, badehotellet);
         test = dbFacade.getProduction(1);
         System.out.println(test);
 
         // delete production test
-        dbFacade.deleteProduction(7);
+        //dbFacade.deleteProduction(7);
 
         // test af createProduction()
         Production badehotelletWrong = new Production();
@@ -122,6 +128,18 @@ public class DataFacadeTest {
             System.out.println(i);
         }
 
+        // tester createCredits
+
+        System.out.println("\n\n Test af createCredits: ");
+
+        CreditName creditName2 = new CreditName(1235, "Lars", "Larsen", "Bamsevej 4, 5600", 27201117, "AmalieDollerup@badehotellet.dk");
+
+        Credit credit1 = new Credit();
+        credit1.setRole("Far til Simon");
+        credit1.setValidated(true);
+        credit1.setCreditName(creditName2);
+        credit1.setCreditType("Dukkefører");
+        dbFacade.createCredits(credit1, 1);
 
 
 

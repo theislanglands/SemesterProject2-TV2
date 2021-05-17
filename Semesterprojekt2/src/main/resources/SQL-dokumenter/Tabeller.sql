@@ -86,7 +86,8 @@ CREATE TABLE credit (
     id SERIAL PRIMARY KEY,
     role VARCHAR(100),
     validated BOOLEAN,
-    production_id INTEGER NOT NULL REFERENCES production(id) ON DELETE CASCADE
+    production_id INTEGER NOT NULL REFERENCES production(id) ON DELETE CASCADE,
+    UNIQUE (role, production_id)
 );
 
 CREATE TABLE credit_name_credit_type_association (

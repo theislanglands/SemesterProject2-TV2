@@ -112,7 +112,9 @@ public class DataFacade implements DataLayerInterface {
             // gets the generated production id
             ResultSet resultSet = stmt1.getGeneratedKeys();
             resultSet.next();
-            int prod_id = resultSet.getInt(1);
+            int productionId = resultSet.getInt(1);
+            stmt1.close();
+
 
             // associate production with genres
             for (String genre : prod.getGenres()) {
@@ -123,13 +125,15 @@ public class DataFacade implements DataLayerInterface {
                                 "genre_id) " +          //2
                                 "VALUES (?, ?);");
 
-                stmt2.setInt(1, prod_id);
+                stmt2.setInt(1, productionId);
                 stmt2.setInt(2, getGenreId(genre));
                 stmt2.execute();
+                stmt2.close();
             }
 
             // commit changes to db.
             connection.commit();
+
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -164,6 +168,7 @@ public class DataFacade implements DataLayerInterface {
             while (sqlReturnValues.next()) {
                 productions.add(getProduction(sqlReturnValues.getInt(1)));
             }
+            stmt.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -174,12 +179,12 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public Production getProduction(int id) {
-        // create new empty production
+    public Production getProduction(int productionId) {
+
         Production returnProduction = new Production();
 
+        // query for all parameters production
         try {
-            // query for alle parametre i en production
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT " +
                             "production.season, " +                 // 1
@@ -198,13 +203,13 @@ public class DataFacade implements DataLayerInterface {
                             "production.id, " +                     // 14
                             "production.production_bio " +         // 15
                             "FROM production " +
-                            "INNER JOIN production_company ON production_company.id = production.production_company_id " +
-                            "INNER JOIN production_type ON production_type.id = production.production_type_id " +
-                            "INNER JOIN language ON language.id = production.language_id " +
-                            "INNER JOIN production_name ON production_name.id = production.production_name_id " +
+                            "JOIN production_company ON production_company.id = production.production_company_id " +
+                            "JOIN production_type ON production_type.id = production.production_type_id " +
+                            "JOIN language ON language.id = production.language_id " +
+                            "JOIN production_name ON production_name.id = production.production_name_id " +
                             "WHERE production.id = ?");
 
-            stmt.setInt(1, id);
+            stmt.setInt(1, productionId);
 
             ResultSet sqlReturnValues = stmt.executeQuery();
 
@@ -225,61 +230,45 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setId(sqlReturnValues.getInt(14));
                 returnProduction.setProductionBio(sqlReturnValues.getString(15));
             }
+
             stmt.close();
-            // skal det her ikke slettes?
-/*
-            PreparedStatement stmt2 = connection.prepareStatement(
-                    "SELECT " +
-                            "genre.genre " +    // 1
-                            "FROM genre " +
-                            "INNER JOIN genres_production_association ON genres_production_association.genre_id = genre.id " +
-                            "WHERE genres_production_association.production_id = ?");
-
-            stmt2.setInt(1, id);
-
- */
-
-//            ResultSet sqlReturnValues2 = stmt2.executeQuery();
-//
-//            while (sqlReturnValues2.next()) {
-//                returnProduction.addGenre(sqlReturnValues2.getString(1));
-//            }
-//            stmt2.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-        returnProduction.setGenres((ArrayList<String>) getGenres(id));
-        returnProduction.setCredits((ArrayList<Credit>) getCredits(id));
+
+        // setting arrays: genres & credits by calling helper methods.
+        returnProduction.setGenres((ArrayList<String>) getGenres(productionId));
+        returnProduction.setCredits((ArrayList<Credit>) getCredits(productionId));
 
         return returnProduction;
     }
 
     @Override
-    public void deleteProduction(int id) {
+    public void deleteProduction(int productionId) {
 
         try {
-
             PreparedStatement stmt = connection.prepareStatement(
                     "DELETE FROM production WHERE id = ?"
             );
 
-            stmt.setInt(1, id);
+            stmt.setInt(1, productionId);
             stmt.execute();
             stmt.close();
-
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
-
-
     }
 
     @Override
-    public boolean updateProduction(int sourceProductionID, Production replaceProduction) {
+    public boolean updateProduction(int sourceProductionId, Production replaceProduction) {
+
+        // returns true if succesful
+
         try {
+            connection.setAutoCommit(false);
             PreparedStatement stmt = connection.prepareStatement(
                     "UPDATE production " +
                             "SET " +
@@ -310,17 +299,45 @@ public class DataFacade implements DataLayerInterface {
             stmt.setString(9, replaceProduction.getProductionReference());
             stmt.setString(10, replaceProduction.getProductionBio());
 
-            // måske det er her det går galt, hvis den nye indsætning ikke står i en tabel!
-            // slår op i andre tabeller, og finder den korrekte foreign key
+            // Finding correct foreign key in associated tabkes
             stmt.setInt(11, getProdCompanyId(replaceProduction.getProductionCompanyName()));
             stmt.setInt(12, getProdTypeId(replaceProduction.getProductionType()));
             stmt.setInt(13, getLanguageId(replaceProduction.getLanguage()));
             stmt.setInt(14, getNameId(replaceProduction.getName()));
+
             // Source ID
-            stmt.setInt(15, sourceProductionID);
+            stmt.setInt(15, sourceProductionId);
 
-            int rowAffected = stmt.executeUpdate();
+            stmt.executeUpdate();
+            stmt.close();
 
+            // TODO: Burde kunne løses mere enkelt med et "DELETE ON UPDATE CASCADE"-agtig ting i SQL-scriptet
+
+            // Deleting existing genre associations
+            PreparedStatement stmt2 = connection.prepareStatement(
+                    "DELETE FROM genres_production_association WHERE production_id = ?"
+            );
+
+            stmt2.setInt(1, sourceProductionId);
+            stmt2.execute();
+
+            // associate production with genres
+            for (String genre : replaceProduction.getGenres()) {
+
+                PreparedStatement stmt3= connection.prepareStatement(
+                        "INSERT INTO genres_production_association " +
+                                "(genre_id, " +
+                                "production_id) " +
+                                "VALUES (?, ?)");
+
+                stmt3.setInt(1, getGenreId(genre));
+                stmt3.setInt(2, sourceProductionId);
+
+                stmt3.execute();
+                stmt3.close();
+            }
+
+            connection.commit();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -330,66 +347,51 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void createCredits(Credit cred, Production prod) {
+    public void createCredits(Credit cred, int productionId) {
         try {
-            //Begin statement - Transaction
             connection.setAutoCommit(false);
 
-            // indætter credit
-            PreparedStatement stmtCredit = connection.prepareStatement(
+            // inserting credit in table
+            PreparedStatement stmt1 = connection.prepareStatement(
                     "INSERT INTO credit(" +
                             "role, " +              //1
                             "validated, " +         //2
                             "production_id) " +     //3
                             "VALUES (?,?,?)",
-                    PreparedStatement.RETURN_GENERATED_KEYS
+                    PreparedStatement.RETURN_GENERATED_KEYS  // returns the id of the inserted credit
             );
-            stmtCredit.setString(1, cred.getRole());
-            stmtCredit.setBoolean(2, cred.isValidated());
-            stmtCredit.setInt(3, prod.getId());
-            stmtCredit.execute();
+            stmt1.setString(1, cred.getRole());
+            stmt1.setBoolean(2, cred.isValidated());
+            stmt1.setInt(3, productionId);
+            stmt1.execute();
 
-            // henter primary key genereret fra indsat credit
-            ResultSet resultSet = stmtCredit.getGeneratedKeys();
+            // retrieves primary key from the new insertion
+            ResultSet resultSet = stmt1.getGeneratedKeys();
             resultSet.next();
             int lastInsertedCreditID = resultSet.getInt(1);
+            stmt1.close();
 
+            // Checks if name exist in table - and return id if exist, -1 if not!
+            int creditNameId = getCreditNameId(cred.getFirstName(), cred.getLastName());
 
-            // Indsætter navn TODO: (tjek om eksisterer???)
-            PreparedStatement stmtCreditName = connection.prepareStatement(
-                    "INSERT INTO credit_name(" +
-                            "first_name, " +        //1
-                            "last_name, " +         //2
-                            "address, " +           //3
-                            "phone, " +             //4
-                            "email) " +             //5
-                            "VALUES (?,?,?,?,?)",
-                    PreparedStatement.RETURN_GENERATED_KEYS
-            );
-            stmtCreditName.setString(1, cred.getFirstName());
-            stmtCreditName.setString(2, cred.getLastName());
-            stmtCreditName.setString(3, cred.getAddress());
-            stmtCreditName.setInt(4, cred.getPhone());
-            stmtCreditName.setString(5, cred.getEmail());
+            if (creditNameId == -1) {
+                creditNameId = createCreditName(cred.getCreditName());  // if creditName doesn't exist, create a new one and return it's ID
+            }
 
-            // henter id på indsatte CreditName
-            resultSet = stmtCreditName.getGeneratedKeys();
-            resultSet.next();
-            int lastInsertedCreditNameID = resultSet.getInt(1);
-
-            // INDSÆTTER I TABEL: credit_name_credit_type_association
-            // Assosierer credit og creditname samt type
-            PreparedStatement stmtCNT = connection.prepareStatement(
+            // Insert in table: credit_name_credit_type_association
+            PreparedStatement stmt2 = connection.prepareStatement(
                     "INSERT INTO credit_name_credit_type_association(" +
-                            "credit_name_id, " +        //1
-                            "credit_type_id, " +         //2
-                            "credit_id)" +           //3
+                            "credit_name_id, " +    // 1
+                            "credit_type_id, " +    // 2
+                            "credit_id)" +          // 3
                             "VALUES (?,?,?)"
             );
 
-            stmtCNT.setInt(1, lastInsertedCreditNameID);
-            stmtCNT.setInt(2, getCreditTypeId(cred.getCreditType()));
-            stmtCNT.setInt(3, lastInsertedCreditID);
+            stmt2.setInt(1, creditNameId);
+            stmt2.setInt(2, getCreditTypeId(cred.getCreditType()));
+            stmt2.setInt(3, lastInsertedCreditID);
+            stmt2.execute();
+            stmt2.close();
 
             connection.commit();
 
@@ -528,7 +530,10 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void createCreditName(CreditName pers) {
+    public int createCreditName(CreditName pers) {
+
+        int creditNameId = -1;
+
         try {
             PreparedStatement stmtCreditName = connection.prepareStatement(
                     "INSERT INTO credit_name(" +
@@ -539,7 +544,6 @@ public class DataFacade implements DataLayerInterface {
                             "email) " +             //5
                             "VALUES (?,?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
-                    // hvorfor retrn generaterd keys når den ikke bruges?
             );
             stmtCreditName.setString(1, pers.getFirstName());
             stmtCreditName.setString(2, pers.getLastName());
@@ -548,11 +552,15 @@ public class DataFacade implements DataLayerInterface {
             stmtCreditName.setString(5, pers.getEmail());
 
             stmtCreditName.execute();
+            ResultSet resultSet = stmtCreditName.getGeneratedKeys();
+            resultSet.next();
+            creditNameId = resultSet.getInt(1);
             stmtCreditName.close();
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
+        return creditNameId;
     }
 
     @Override
@@ -899,6 +907,7 @@ public class DataFacade implements DataLayerInterface {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            System.out.println("person eksisterer ikke");
             return -1;
         }
     }

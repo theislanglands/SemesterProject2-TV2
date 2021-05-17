@@ -20,7 +20,7 @@ public interface DataLayerInterface {
     void invalidateProduction(int productionID);
 
     // Credits
-    void createCredits(Credit cred, Production prod);
+    void createCredits(Credit cred, int productionId);
     List<Credit> getCredits(int prodId);
     Credit getCredit(int creditID);
     void deleteCredit(int creditID);
@@ -36,7 +36,7 @@ public interface DataLayerInterface {
     List<String> getAllGenres();
 
     // CreditName
-    void createCreditName(CreditName creditName);
+    int createCreditName(CreditName creditName);
     List<CreditName> getCreditNames();
     CreditName getCreditName(int creditNameID);
     void deleteCreditName(int creditNameID);
