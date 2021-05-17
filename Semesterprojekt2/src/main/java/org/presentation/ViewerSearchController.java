@@ -190,13 +190,13 @@ public class ViewerSearchController {
             //better user experience
             String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
 
-            if(productionInfo.contains(s.toLowerCase())){
+           /* if(productionInfo.contains(s.toLowerCase())){
                 //if the searchstring is a substring of production toString add all credits to the list
                 credits.addAll(prod.getCredits());
                 //avoiding dublicate credits
                 //moves to next production
                 continue;
-            }
+            }*/
 
             //looping through all credits in the production
             for (Credit cred :
