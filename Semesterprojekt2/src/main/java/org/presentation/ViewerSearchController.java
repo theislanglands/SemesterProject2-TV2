@@ -3,6 +3,10 @@ package org.presentation;
 import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -25,6 +29,9 @@ public class ViewerSearchController {
     public static Production productionChosen;
     public static Credit creditChosen;
 
+    private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
+
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
@@ -35,6 +42,72 @@ public class ViewerSearchController {
         addAllCredits();
 
         activateDoubleClick();
+
+        activateSearchbar();
+
+
+    }
+
+    //Example from youtube: https://www.youtube.com/watch?v=FeTrcNBVWtg
+    //same concept: https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
+    //Dont know if we wanna do this. seems very complicated
+    private void activateSearchbar() {
+
+        FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
+        FilteredList<Credit> creditFilteredList = new FilteredList<>(creditObservableList, b -> true);
+
+        textSearchBar.textProperty().addListener((observable, oldValue, newValue) ->{
+            productionFilteredList.setPredicate(production -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCase = newValue.toLowerCase();
+
+                //id, name, releaseDate, productionType, episode, season, length, language, companyProdcutionName
+                if(String.valueOf(production.getId()).toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(production.getName().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else return false;
+            });
+
+            SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
+            productionSortedList.comparatorProperty().bind(listviewProductions.comparatorProperty());
+            listviewProductions.setItems(productionSortedList);
+
+            creditFilteredList.setPredicate(credit -> {
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCase = newValue.toLowerCase();
+
+                //first, last, role, creditType
+                if(credit.getFirstName().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(credit.getLastName().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(credit.getRole().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(credit.getCreditType().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            });
+
+        } );
+
+        SortedList<Credit> creditSortedList = new SortedList<>(creditFilteredList);
+        creditSortedList.comparatorProperty().bind(listviewCredits.comparatorProperty());
+        listviewCredits.setItems(creditSortedList);
     }
 
 
@@ -75,6 +148,7 @@ public class ViewerSearchController {
         TableColumn<Production, String> col9 = new TableColumn<>("Company");
         col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
+
         //adding columns to the tableview
 
         listviewProductions.getColumns().add(col1);
@@ -92,8 +166,9 @@ public class ViewerSearchController {
 
     private void addAllProductions(){
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getProductions();
-        listviewProductions.getItems().addAll(productionList);
+        //List<Production> productionList = tvCredits.getProductions();
+        productionObservableList.addAll(tvCreditsFacade.getProductions());
+        listviewProductions.getItems().addAll(productionObservableList);
     }
 
     private void setTableViewCredits(){
@@ -136,7 +211,8 @@ public class ViewerSearchController {
                 credits.addAll(prod.getCredits());
             }
         }
-        listviewCredits.getItems().addAll(credits);
+        creditObservableList.addAll(credits);
+        listviewCredits.getItems().addAll(creditObservableList);
     }
 
     private void searchProduction(String s){
@@ -170,17 +246,18 @@ public class ViewerSearchController {
             listviewProductions.getItems().add(new Production());
         }
 
-
     }
 
     private void searchCredits(String s){
 
         listviewCredits.getItems().clear();
+        listviewProductions.getItems().clear();
 
         //getting all productions
         List<Production> productionList = tvCreditsFacade.getProductions();
         //initializing list that will be filled with matches
         List<Credit> credits = new ArrayList<>();
+        List<Production> productions = new ArrayList<>();
 
         //looping through all productions
         for (Production prod :
@@ -189,16 +266,16 @@ public class ViewerSearchController {
             //using toString from production, to lowerCase and replacing all whitespace
             //better user experience
 
-            //because credits are a part of the production string, this is not possible
-            //String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
+            String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
 
-           /* if(productionInfo.contains(s.toLowerCase())){
+            if(productionInfo.contains(s.toLowerCase())){
                 //if the searchstring is a substring of production toString add all credits to the list
                 credits.addAll(prod.getCredits());
+                productions.add(prod);
                 //avoiding dublicate credits
                 //moves to next production
                 continue;
-            }*/
+            }
 
             //looping through all credits in the production
             for (Credit cred :
@@ -217,6 +294,11 @@ public class ViewerSearchController {
         }else{
             listviewCredits.getItems().add(new Credit());
         }
+        if(!productions.isEmpty()){
+            listviewProductions.getItems().addAll(productions);
+        }else{
+            listviewProductions.getItems().add(new Production());
+        }
     }
 
     public void search(KeyEvent keyEvent) {
@@ -225,7 +307,6 @@ public class ViewerSearchController {
         String s = textSearchBar.getText();
         s = s.replaceAll("\\s","");
 
-        searchProduction(s);
         searchCredits(s);
     }
 
@@ -264,4 +345,6 @@ public class ViewerSearchController {
             return row ;
         });
     }
+
+
 }

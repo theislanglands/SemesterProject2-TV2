@@ -50,7 +50,7 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" onKeyReleased="#search" prefHeight="40.0" prefWidth="200.0" promptText="Søg på produktioner" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;">
+      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0"  prefHeight="40.0" prefWidth="200.0" promptText="Søg på produktioner" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;">
          <font>
             <Font size="20.0" />
          </font>
