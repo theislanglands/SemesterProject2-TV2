@@ -276,7 +276,6 @@ public class Production implements Serializable {
                 ", episode=" + episode +
                 ", productionBio='" + productionBio + '\'' +
                 ", companyProductionName='" + companyProductionName + '\'' +
-                ", credits=" + credits +
                 '}';
     }
 }

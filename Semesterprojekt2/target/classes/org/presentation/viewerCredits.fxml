@@ -39,7 +39,7 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="129.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
+      <Text fx:id="textSurname" fill="WHITE" layoutX="310.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
          <font>
             <Font size="26.0" />
          </font>
@@ -49,22 +49,22 @@
             <Image url="@Logo/Screenshot%202021-05-11%20at%2014.35.48.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="129.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skuespiller">
+      <Text fx:id="textRole" fill="WHITE" layoutX="129.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skuespiller">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="129.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1965">
+      <Text fx:id="textPersonBirthyear" fill="WHITE" layoutX="129.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1965">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="129.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danmark">
+      <Text fx:id="textPersonBirthplace" fill="WHITE" layoutX="129.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danmark">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="129.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jagten, Hannibal, Druk">
+      <Text fx:id="textPersonBio" fill="WHITE" layoutX="129.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hej jag heter Mads Mikkelsen.">
          <font>
             <Font size="20.0" />
          </font>
@@ -85,5 +85,10 @@
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
       </ImageView>
+      <Text fx:id="textName" fill="WHITE" layoutX="132.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

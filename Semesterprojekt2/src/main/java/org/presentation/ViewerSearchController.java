@@ -188,7 +188,9 @@ public class ViewerSearchController {
 
             //using toString from production, to lowerCase and replacing all whitespace
             //better user experience
-            String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
+
+            //because credits are a part of the production string, this is not possible
+            //String productionInfo = prod.toString().toLowerCase().replaceAll("\\s","");
 
            /* if(productionInfo.contains(s.toLowerCase())){
                 //if the searchstring is a substring of production toString add all credits to the list
