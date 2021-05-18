@@ -74,10 +74,6 @@ public class Production implements Serializable {
         this.id = id;
     }
 
-    public void setProductionType(String productionType) {
-        this.productionType = productionType;
-    }
-
     public String getProductionBio() {
         return productionBio;
     }
@@ -130,11 +126,11 @@ public class Production implements Serializable {
         this.genres.add(genre);
     }
 
-    public String getType() {
-        return productionType;
-    }
+//    public String getType() {
+//        return productionType;
+//    }
 
-    public void setType(String type) {
+    public void setProductionType(String type) {
         this.productionType = type;
     }
 
@@ -219,9 +215,8 @@ public class Production implements Serializable {
     }
 
     public boolean hasCredit(Credit credit) {
-        for (Credit cred :
-                credits) {
-            if(cred == credit){
+        for (Credit cred : credits) {
+            if(cred.equals(credit)) {
                 return true;
             }
         }

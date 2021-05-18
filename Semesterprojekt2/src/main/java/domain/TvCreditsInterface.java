@@ -8,16 +8,25 @@ import java.util.List;
 
 public interface TvCreditsInterface {
 
+    // getters for Productions
     Production getProduction(int productionId);
     List<Production> getAllProductions();
     List<Production> getValidatedProductions();
     List<Production> getUnValidatedProductions();
 
+    // save & update production (for producers)
     boolean saveProduction(Production prod);
-
     boolean updateProduction(int productionID, Production replaceProduction);
 
-    void addCredit(int productionId, Credit credit);
+    // validate productions & credits(for admin)
+    void validateProduction(Production prod);
+    void invalidateProduction(Production prod);
+    // void validateCredit(Credit);
+    // void invalidateCredit(int creditID);
+
+    // Credits
+    void addCredit(Credit credit);
+    void deleteCredit(Credit credit);
 
     // Methods for Enums
     List<String> getCreditTypes();

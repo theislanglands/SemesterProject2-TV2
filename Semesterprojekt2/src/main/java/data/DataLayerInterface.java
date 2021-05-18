@@ -23,7 +23,7 @@ public interface DataLayerInterface {
     void createCredits(Credit cred, int productionId);
     List<Credit> getCredits(int prodId);
     Credit getCredit(int creditID);
-    void deleteCredit(int creditID);
+    void deleteCredit(int prodId, Credit credit);
     boolean updateCredit(int creditID, Credit replaceCredit);
     void validateCredit(int creditID);
     void invalidateCredit(int creditID);

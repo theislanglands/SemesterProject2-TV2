@@ -35,7 +35,7 @@ public class addCreditsController {
         activeCreditsButton.setDisable(true);
 
         //sets roles from enum. We need to rethink what we call role etc.
-        //roleChoiceBox.getItems().setAll(CreditType.getEnum());
+        roleChoiceBox.getItems().setAll(tvCreditsFacade.getCreditTypes());
 
     }
 

@@ -127,9 +127,9 @@ public class addProductionController {
         //sets type if any is selected
         if(typeDropdown.getValue() != null){
             if(typeDropdown.getValue().equals("Serie"))
-                production.setType("Serie");
+                production.setProductionType("Serie");
             else if(typeDropdown.getValue().equals("Film")){
-                production.setType("Film");
+                production.setProductionType("Film");
             }
         }
 

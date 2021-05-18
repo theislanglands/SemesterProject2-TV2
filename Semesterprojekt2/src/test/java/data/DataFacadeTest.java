@@ -3,6 +3,13 @@ package data;
 import static org.junit.Assert.*;
 public class DataFacadeTest {
 
+    private DataFacade dataFacade;
+
+    @Before
+    void setUp() throws Exception{
+        dataFacade = new DataFacade();
+    }
+
     @org.junit.Test
     public void getInstance() {
         System.out.println("hi");
@@ -10,6 +17,29 @@ public class DataFacadeTest {
 
     @org.junit.Test
     public void createProduction() {
+        Production testProduction = new Production();
+        testProduction.setProductionReference("TEST123");
+        testProduction.setName("TEST PRODUCTION NAME");
+        testProduction.setSeason(1);
+        testProduction.setEpisode(2);
+        testProduction.setReleaseDate(new Date(100000));
+        testProduction.setLength(3);
+        testProduction.setSubtitle(true);
+        testProduction.setSignLanguage(false);
+        testProduction.setActive(true);
+        testProduction.setValidated(true);
+        testProduction.setLanguage("Dansk");
+        testProduction.setProductionBio("TEST BIO");
+        testProduction.setType("Serie");
+        testProduction.setCompanyProductionName("SF Film Production ApS");
+        testProduction.setProductionType("Serie");
+
+        ArrayList<String> genres = new ArrayList<>();
+        genres.add("Thriller");
+        genres.add("Animation");
+        badehotelletWrong.setGenres(genres);
+
+        assertEquals("Creating new production")
     }
 
     @org.junit.Test

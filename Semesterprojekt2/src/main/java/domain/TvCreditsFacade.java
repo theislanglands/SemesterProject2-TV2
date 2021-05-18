@@ -28,6 +28,18 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     // Interface methods
+
+    // Productions
+    @Override
+    public Production getProduction(int productionId) {
+        for (Production p : productions) {
+            if (p.getId() == productionId) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     @Override
     public List<Production> getAllProductions() {
         return this.productions;
@@ -67,39 +79,50 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     @Override
-    public Production getProduction(int productionId) {
-        for (Production p : productions) {
-            if (p.getId() == productionId) {
-                return p;
-            }
+    public void validateProduction(Production prod){
+        if (prod.isValidated()) {
+            return;
+        } else {
+            prod.setValidated(true);
+            dataconnect.validateProduction(prod.getId());
         }
-        return null;
-    }
-
-
-    public Credit createCredit(CreditName creditName, java.lang.String role, String creditType) {
-        return new Credit(creditName, role, creditType);
     }
 
     @Override
-    public void addCredit(int productionId, Credit credit) {
-        for (Production p : productions) {
-            if (p.getId() == productionId) {
-                p.addCredit(credit);
-                break;
+    public void invalidateProduction(Production prod){
+        if (!prod.isValidated()) {
+            return;
+        } else {
+            prod.setValidated(false);
+            dataconnect.invalidateProduction(prod.getId());
+        }
+    }
+
+    // CREDITS
+    @Override
+    public void addCredit(Credit credit) {
+        int productionId = credit.getProductionId();
+        for (Production prod : productions) {
+            if (prod.getId() == productionId) {
+                prod.addCredit(credit);
+                dataconnect.updateProduction(productionId, prod);
             }
         }
     }
 
+    @Override
     public void deleteCredit(Credit credit) {
-        // deletes prod from
+
+
         for (Production prod : productions) {
             if (prod.hasCredit(credit)) {
                 prod.removeCredit(credit);
             }
-            // TODO: update db!
+            dataconnect.deleteCredit(prod.getId(), credit);
         }
     }
+
+
 
 
     // Methods for Enums
@@ -122,7 +145,6 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     public List<String> getGenres() {
         return dataconnect.getAllGenres();
     }
-
 }
 
 

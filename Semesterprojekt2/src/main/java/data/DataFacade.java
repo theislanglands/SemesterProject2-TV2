@@ -234,7 +234,7 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setValidated(sqlReturnValues.getBoolean(8));
                 returnProduction.setProductionReference(sqlReturnValues.getString(9));
                 returnProduction.setCompanyProductionName(sqlReturnValues.getString(10));
-                returnProduction.setType(sqlReturnValues.getString(11));
+                returnProduction.setProductionType(sqlReturnValues.getString(11));
                 returnProduction.setLanguage(sqlReturnValues.getString(12));
                 returnProduction.setName(sqlReturnValues.getString(13));
                 returnProduction.setId(sqlReturnValues.getInt(14));
@@ -489,11 +489,16 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void deleteCredit(int creditID) {
+    public void deleteCredit(int productionId, Credit credit) {
+
+        // finding id of credit
+        int creditId = getCreditId(productionId, credit);
+
+        // deleting credit
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "DELETE FROM credit WHERE id = ?;");
-            stmt.setInt(1, creditID);
+            stmt.setInt(1, creditId);
             stmt.execute();
             stmt.close();
         } catch (SQLException throwables) {
@@ -908,8 +913,13 @@ public class DataFacade implements DataLayerInterface {
             stmtGetCompanyId.setString(1, productionCompany);
             ResultSet sqlReturnValues = stmtGetCompanyId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return sqlReturnValues.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -923,8 +933,13 @@ public class DataFacade implements DataLayerInterface {
             stmtGetTypeId.setString(1, productionType);
             ResultSet sqlReturnValues = stmtGetTypeId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return sqlReturnValues.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -938,8 +953,13 @@ public class DataFacade implements DataLayerInterface {
             stmtGetNameId.setString(1, productionName);
             ResultSet sqlReturnValues = stmtGetNameId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return sqlReturnValues.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -953,8 +973,13 @@ public class DataFacade implements DataLayerInterface {
             stmtGetNameId.setString(1, language);
             ResultSet sqlReturnValues = stmtGetNameId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return sqlReturnValues.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -969,8 +994,13 @@ public class DataFacade implements DataLayerInterface {
             stmtGetTypeId.setString(1, creditType);
             ResultSet sqlReturnValues = stmtGetTypeId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return sqlReturnValues.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -1006,8 +1036,13 @@ public class DataFacade implements DataLayerInterface {
             stmtGenreId.setString(1, genre);
             ResultSet sqlReturnValues = stmtGenreId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return sqlReturnValues.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -1021,8 +1056,34 @@ public class DataFacade implements DataLayerInterface {
             stmtGenreId.setInt(1, productionNameId);
             ResultSet sqlReturnValues = stmtGenreId.executeQuery();
 
-            sqlReturnValues.next();
-            return sqlReturnValues.getInt(1);
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!sqlReturnValues.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return sqlReturnValues.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return -1;
+        }
+    }
+
+    private int getCreditId(int productionId, Credit credit) {
+        try {
+            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM credit WHERE role = ? AND production_id = ?");
+            stmt.setString(1, credit.getRole());
+            stmt.setInt(2, productionId);
+            ResultSet resultSet = stmt.executeQuery();
+
+            // checks if the ResultSet is empty and returns -1 if that's the case
+            if (!resultSet.next()) {
+                System.out.println("ResultSet is empty");
+                return -1;
+            } else {
+                return resultSet.getInt(1);
+            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
