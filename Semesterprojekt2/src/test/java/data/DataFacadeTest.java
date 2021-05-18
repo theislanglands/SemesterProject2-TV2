@@ -42,10 +42,10 @@ public class DataFacadeTest {
         badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
         badehotelletWrong.setProductionType("Serie");
 
-        ArrayList<String> genres = new ArrayList<>();
-        genres.add("Thriller");
-        genres.add("Animation");
-        badehotelletWrong.setGenres(genres);
+        ArrayList<String> testGenres = new ArrayList<>();
+        testGenres.add("Thriller");
+        testGenres.add("Animation");
+        testProduction.setGenres(testGenres);
 
         System.out.println("\n\nTester createProduction()");
         //hardcoded production
@@ -64,6 +64,7 @@ public class DataFacadeTest {
 
     @org.junit.Test
     public void getProduction() {
+        dataFacade.getProduction(getProductionId);
     }
 
     @org.junit.Test

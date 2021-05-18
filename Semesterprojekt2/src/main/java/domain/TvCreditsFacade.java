@@ -113,7 +113,6 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     @Override
     public void deleteCredit(Credit credit) {
 
-
         for (Production prod : productions) {
             if (prod.hasCredit(credit)) {
                 prod.removeCredit(credit);
@@ -121,9 +120,6 @@ public final class TvCreditsFacade implements TvCreditsInterface {
             dataconnect.deleteCredit(prod.getId(), credit);
         }
     }
-
-
-
 
     // Methods for Enums
     @Override

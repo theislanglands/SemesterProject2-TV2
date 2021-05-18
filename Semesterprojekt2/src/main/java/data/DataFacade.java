@@ -489,7 +489,9 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void deleteCredit(int productionId, Credit credit) {
+    public void deleteCredit(Credit credit) {
+
+        int productionId = credit.getProductionId();
 
         // finding id of credit
         int creditId = getCreditId(productionId, credit);
@@ -1050,10 +1052,15 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    private int getProductionId(int productionNameId) {
+    private int getProductionId(Production production) {
         try {
-            PreparedStatement stmtGenreId = connection.prepareStatement("SELECT id FROM production WHERE production_name_id = ?");
-            stmtGenreId.setInt(1, productionNameId);
+            PreparedStatement stmtGenreId = connection.prepareStatement("SELECT id " +
+                    "FROM production " +
+                    "WHERE season = ? AND episode = ? AND production_name_id = ?");
+            stmtGenreId.setInt(1, production.getSeason());
+            stmtGenreId.setInt(2, production.getEpisode());
+            stmtGenreId.setInt(3, getProductionNameId(production.getName()));
+
             ResultSet sqlReturnValues = stmtGenreId.executeQuery();
 
             // checks if the ResultSet is empty and returns -1 if that's the case

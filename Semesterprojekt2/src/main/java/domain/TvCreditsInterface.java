@@ -33,6 +33,4 @@ public interface TvCreditsInterface {
     List<String> getProductionTypes();
     List<String> getLanguages();
     List<String> getGenres();
-
-
 }
