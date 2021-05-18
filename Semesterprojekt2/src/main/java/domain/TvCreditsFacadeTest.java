@@ -9,7 +9,7 @@ public class TvCreditsFacadeTest {
 
         TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
 
-        List<Production> testProductions = tvCreditsFacade.getProductions();
+        List<Production> testProductions = tvCreditsFacade.getAllProductions();
         System.out.println(testProductions);
     }
 }

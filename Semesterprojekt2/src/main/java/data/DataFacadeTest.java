@@ -182,7 +182,8 @@ public class DataFacadeTest {
         // Test af insertImage()
         // dbFacade.insertImage("Semesterprojekt2/src/main/resources/org/presentation/Logo/drukplakat.jpeg", "Druk",1);
 
-
+        // Test om check for tomt ResultQuery virker
+        //dbFacade.getCreditNameId("a","s");
 
 
 

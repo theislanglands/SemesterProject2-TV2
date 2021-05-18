@@ -58,7 +58,7 @@ public class ViewerCreditsController {
 
     private void addProductions(){
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getProductions();
+        List<Production> productionList = tvCreditsFacade.getAllProductions();
 
         for (Production prod :
                 productionList) {

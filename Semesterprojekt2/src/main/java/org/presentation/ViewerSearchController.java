@@ -179,7 +179,7 @@ public class ViewerSearchController {
     private void addAllProductions(){
         //adding data to the table view
         //List<Production> productionList = tvCredits.getProductions();
-        productionObservableList.addAll(tvCreditsFacade.getProductions());
+        productionObservableList.addAll(tvCreditsFacade.getAllProductions());
         listviewProductions.getItems().addAll(productionObservableList);
     }
 
@@ -215,7 +215,7 @@ public class ViewerSearchController {
 
     private void addAllCredits(){
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getProductions();
+        List<Production> productionList = tvCreditsFacade.getAllProductions();
         List<Credit> credits = new ArrayList<>();
         for (Production prod :
                 productionList) {
@@ -232,7 +232,7 @@ public class ViewerSearchController {
         listviewProductions.getItems().clear();
 
         //getting all productions to search through
-        List<Production> productionList = tvCreditsFacade.getProductions();
+        List<Production> productionList = tvCreditsFacade.getAllProductions();
 
         //productions that match will be added to this list
         List<Production> searchList = new ArrayList<>();
@@ -266,7 +266,7 @@ public class ViewerSearchController {
         listviewProductions.getItems().clear();
 
         //getting all productions
-        List<Production> productionList = tvCreditsFacade.getProductions();
+        List<Production> productionList = tvCreditsFacade.getAllProductions();
         //initializing list that will be filled with matches
         List<Credit> credits = new ArrayList<>();
         List<Production> productions = new ArrayList<>();

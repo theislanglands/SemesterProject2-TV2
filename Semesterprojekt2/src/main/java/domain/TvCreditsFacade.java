@@ -3,7 +3,7 @@ package domain;
 import data.DataFacade;
 import data.DataLayerInterface;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 //Controllerklasse FACADE
@@ -13,6 +13,10 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     private static final TvCreditsFacade INSTANCE = new TvCreditsFacade();
     private static DataLayerInterface dataconnect;
 
+    // attributes
+    final private List<Production> productions = dataconnect.getProductions();
+
+    // Constructor
     private TvCreditsFacade() {
         dataconnect = DataFacade.getInstance();
     }
@@ -22,20 +26,41 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         return INSTANCE;
     }
 
+    // Interface methods
     @Override
-    public List<Production> getProductions() {
-        return dataconnect.getProductions();
+    public List<Production> getAllProductions() {
+        return this.productions;
     }
 
-    //base case of *required fields
-    public Production createProduction(java.lang.String id, java.lang.String name, Date releaseDate) {
-        return new Production(id, name, releaseDate);
+    @Override
+    public List<Production> getValidatedProductions() {
+        List<Production> returnList = new ArrayList<Production>();
+
+        for (Production p : productions) {
+            if (p.isValidated()) {
+                returnList.add(p);
+            }
+        }
+        return returnList;
     }
 
-    public void saveProduction(Production prod) {
-        dataconnect.createProduction(prod);
+    @Override
+    public List<Production> getUnValidatedProductions() {
+        List<Production> returnList = new ArrayList<Production>();
+        for (Production p : productions) {
+            if (!p.isValidated()) {
+                returnList.add(p);
+            }
+        }
+        return returnList;
     }
 
+    @Override
+    public boolean saveProduction(Production prod) {
+        return dataconnect.createProduction(prod);
+    }
+
+    @Override
     public boolean updateProduction(int productionID, Production replaceProduction) {
         return dataconnect.updateProduction(productionID, replaceProduction);
     }

@@ -27,7 +27,7 @@ public class ProductionsController {
 
         //Displays all current productions
         productionsTextArea.setText("Productions \n");
-        List<Production> productions = tvCreditsFacade.getProductions();
+        List<Production> productions = tvCreditsFacade.getAllProductions();
         for (Production prod :
                 productions) {
             productionsTextArea.appendText(prod.toString() + "\n");

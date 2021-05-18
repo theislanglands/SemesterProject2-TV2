@@ -69,7 +69,7 @@ public class searchController {
 
         //gets text from the searchBar
         String searchString = searchBar.getText();
-        List<Production> prods = tvCreditsFacade.getProductions();
+        List<Production> prods = tvCreditsFacade.getAllProductions();
 
         //initializing new array of productions that will match the search
         List<Production> newProds = new ArrayList<>();
@@ -136,7 +136,7 @@ public class searchController {
         tableView.getColumns().add(col4);
 
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getProductions();
+        List<Production> productionList = tvCreditsFacade.getAllProductions();
         tableView.getItems().addAll(productionList);
 
 
@@ -170,7 +170,7 @@ public class searchController {
         tableView.getColumns().add(col4);
 
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getProductions();
+        List<Production> productionList = tvCreditsFacade.getAllProductions();
         List<Credit> credits = new ArrayList<>();
         for (Production prod :
                 productionList) {
