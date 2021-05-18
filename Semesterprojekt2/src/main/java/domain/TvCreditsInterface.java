@@ -21,8 +21,8 @@ public interface TvCreditsInterface {
     // validate productions & credits(for admin)
     void validateProduction(Production prod);
     void invalidateProduction(Production prod);
-    // void validateCredit(Credit);
-    // void invalidateCredit(int creditID);
+    void validateCredit(Credit credit);
+    // void invalidateCredit(Credit credit);
 
     // Credits
     void addCredit(Credit credit);

@@ -785,7 +785,9 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void validateCredit(int creditID) {
+    public void validateCredit(Credit credit) {
+        int creditID = getCreditId(credit.getProductionId(), credit);
+
         try {
 
             PreparedStatement stmt = connection.prepareStatement(
@@ -801,7 +803,8 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void invalidateCredit(int creditID) {
+    public void invalidateCredit(Credit credit) {
+        int creditID = getCreditId(credit.getProductionId(), credit);
         try {
 
             PreparedStatement stmt = connection.prepareStatement(
