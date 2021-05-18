@@ -80,9 +80,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public void validateProduction(Production prod){
-        if (prod.isValidated()) {
-            return;
-        } else {
+        if (!prod.isValidated()) {
             prod.setValidated(true);
             dataconnect.validateProduction(prod.getId());
         }
@@ -90,9 +88,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public void invalidateProduction(Production prod){
-        if (!prod.isValidated()) {
-            return;
-        } else {
+        if (prod.isValidated()) {
             prod.setValidated(false);
             dataconnect.invalidateProduction(prod.getId());
         }
