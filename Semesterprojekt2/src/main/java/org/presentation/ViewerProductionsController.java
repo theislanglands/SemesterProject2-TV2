@@ -2,7 +2,6 @@ package org.presentation;
 
 import domain.Credit;
 import domain.Production;
-import domain.enums.Genre;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;

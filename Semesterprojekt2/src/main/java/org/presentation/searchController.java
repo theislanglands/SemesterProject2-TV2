@@ -81,6 +81,7 @@ public class searchController {
                 newProds.add(prod);
             }
         }
+
         //Clears the old data from before the search
         tableView.getItems().clear();
         //Displays new data that matches the search to the user

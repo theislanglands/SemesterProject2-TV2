@@ -30,13 +30,10 @@ public class ViewerCreditsController {
             ViewerProductionsController.creditChosen = null;
         }
 
-
         setTableViewProduction();
         addProductions();
 
         activateDoubleClick();
-
-
     }
 
     private void activateDoubleClick() {
@@ -75,9 +72,7 @@ public class ViewerCreditsController {
                 }
             }
         }
-
     }
-
 
     private void setTableViewProduction(){
 
