@@ -3,7 +3,7 @@ package org.presentation;
 
 import domain.Credit;
 import domain.Production;
-import domain.TvCredits;
+import domain.TvCreditsFacade;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class searchController {
 
@@ -30,11 +29,11 @@ public class searchController {
     public Button searchButton;
 
 
-    private TvCredits tvCredits;
+    private TvCreditsFacade tvCreditsFacade;
 
 
     public void initialize(){
-        tvCredits = TvCredits.getInstance();
+        tvCreditsFacade = TvCreditsFacade.getInstance();
         search.setDisable(true);
 
         //init on search production
@@ -70,7 +69,7 @@ public class searchController {
 
         //gets text from the searchBar
         String searchString = searchBar.getText();
-        List<Production> prods = tvCredits.getProductions();
+        List<Production> prods = tvCreditsFacade.getProductions();
 
         //initializing new array of productions that will match the search
         List<Production> newProds = new ArrayList<>();
@@ -137,7 +136,7 @@ public class searchController {
         tableView.getColumns().add(col4);
 
         //adding data to the table view
-        List<Production> productionList = tvCredits.getProductions();
+        List<Production> productionList = tvCreditsFacade.getProductions();
         tableView.getItems().addAll(productionList);
 
 
@@ -171,7 +170,7 @@ public class searchController {
         tableView.getColumns().add(col4);
 
         //adding data to the table view
-        List<Production> productionList = tvCredits.getProductions();
+        List<Production> productionList = tvCreditsFacade.getProductions();
         List<Credit> credits = new ArrayList<>();
         for (Production prod :
                 productionList) {

@@ -2,7 +2,7 @@ package org.presentation;
 
 import domain.Credit;
 import domain.Production;
-import domain.TvCredits;
+import domain.TvCreditsFacade;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -20,13 +20,13 @@ public class ViewerSearchController {
     public TableView listviewCredits;
     public TextField textSearchBar;
 
-    private TvCredits tvCredits;
+    private TvCreditsFacade tvCreditsFacade;
 
     public static Production productionChosen;
     public static Credit creditChosen;
 
     public void initialize(){
-        tvCredits = TvCredits.getInstance();
+        tvCreditsFacade = TvCreditsFacade.getInstance();
 
         setTableViewProduction();
         setTableViewCredits();
@@ -92,7 +92,7 @@ public class ViewerSearchController {
 
     private void addAllProductions(){
         //adding data to the table view
-        List<Production> productionList = tvCredits.getProductions();
+        List<Production> productionList = tvCreditsFacade.getProductions();
         listviewProductions.getItems().addAll(productionList);
     }
 
@@ -128,7 +128,7 @@ public class ViewerSearchController {
 
     private void addAllCredits(){
         //adding data to the table view
-        List<Production> productionList = tvCredits.getProductions();
+        List<Production> productionList = tvCreditsFacade.getProductions();
         List<Credit> credits = new ArrayList<>();
         for (Production prod :
                 productionList) {
@@ -144,7 +144,7 @@ public class ViewerSearchController {
         listviewProductions.getItems().clear();
 
         //getting all productions to search through
-        List<Production> productionList = tvCredits.getProductions();
+        List<Production> productionList = tvCreditsFacade.getProductions();
 
         //productions that match will be added to this list
         List<Production> searchList = new ArrayList<>();
@@ -178,7 +178,7 @@ public class ViewerSearchController {
         listviewCredits.getItems().clear();
 
         //getting all productions
-        List<Production> productionList = tvCredits.getProductions();
+        List<Production> productionList = tvCreditsFacade.getProductions();
         //initializing list that will be filled with matches
         List<Credit> credits = new ArrayList<>();
 

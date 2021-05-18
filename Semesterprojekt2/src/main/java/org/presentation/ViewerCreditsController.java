@@ -2,7 +2,7 @@ package org.presentation;
 
 import domain.Credit;
 import domain.Production;
-import domain.TvCredits;
+import domain.TvCreditsFacade;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -17,10 +17,10 @@ public class ViewerCreditsController {
     public TableView listviewProductions;
     private Credit credit;
     public static Production productionChosen;
-    private TvCredits tvCredits;
+    private TvCreditsFacade tvCreditsFacade;
 
     public void initialize(){
-        tvCredits = TvCredits.getInstance();
+        tvCreditsFacade = TvCreditsFacade.getInstance();
 
         if(ViewerSearchController.creditChosen != null){
             credit = ViewerSearchController.creditChosen;
@@ -58,7 +58,7 @@ public class ViewerCreditsController {
 
     private void addProductions(){
         //adding data to the table view
-        List<Production> productionList = tvCredits.getProductions();
+        List<Production> productionList = tvCreditsFacade.getProductions();
 
         for (Production prod :
                 productionList) {

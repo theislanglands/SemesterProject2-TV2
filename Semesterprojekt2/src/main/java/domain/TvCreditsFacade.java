@@ -1,7 +1,7 @@
 package domain;
 
-import Interfaces.*;
 import data.DataFacade;
+import data.DataLayerInterface;
 
 import java.util.Date;
 import java.util.List;

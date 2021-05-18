@@ -1,7 +1,7 @@
 package org.presentation;
 
 import domain.Production;
-import domain.TvCredits;
+import domain.TvCreditsFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ProductionsController {
 
-    private TvCredits tvCredits;
+    private TvCreditsFacade tvCreditsFacade;
 
     public TextArea productionsTextArea;
     public TextField searchBar;
@@ -23,11 +23,11 @@ public class ProductionsController {
 
     public void initialize(){
         //Singleton object initialized
-        tvCredits = TvCredits.getInstance();
+        tvCreditsFacade = TvCreditsFacade.getInstance();
 
         //Displays all current productions
         productionsTextArea.setText("Productions \n");
-        List<Production> productions = tvCredits.getProductions();
+        List<Production> productions = tvCreditsFacade.getProductions();
         for (Production prod :
                 productions) {
             productionsTextArea.appendText(prod.toString() + "\n");

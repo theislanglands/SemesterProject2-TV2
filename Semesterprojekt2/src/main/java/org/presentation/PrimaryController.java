@@ -1,16 +1,14 @@
 package org.presentation;
 
 import java.io.IOException;
-import java.util.List;
 
-import domain.Production;
-import domain.TvCredits;
+import domain.TvCreditsFacade;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class PrimaryController {
 
-    TvCredits tvCredits = TvCredits.getInstance();
+    TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
 
 
     @FXML

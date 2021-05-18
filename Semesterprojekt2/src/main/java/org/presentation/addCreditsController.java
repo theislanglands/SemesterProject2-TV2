@@ -2,7 +2,7 @@ package org.presentation;
 
 import domain.Credit;
 import domain.Production;
-import domain.TvCredits;
+import domain.TvCreditsFacade;
 import domain.enums.CreditType;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -18,7 +18,7 @@ public class addCreditsController {
     public Button showCredits;
     public Button activeCreditsButton;
 
-    TvCredits tvCredits;
+    TvCreditsFacade tvCreditsFacade;
 
     public Button addCreditButton;
     public TextField productionIdText;
@@ -30,7 +30,7 @@ public class addCreditsController {
 
 
     public void initialize(){
-        tvCredits = TvCredits.getInstance();
+        tvCreditsFacade = TvCreditsFacade.getInstance();
 
         addCreditButton.setDisable(true);
         activeCreditsButton.setDisable(true);
@@ -64,7 +64,7 @@ public class addCreditsController {
         credit.setRole(nameTextField.getText());
 
         //save through singleton
-        tvCredits.addCredit(productionIdText.getText(), credit);
+        tvCreditsFacade.addCredit(productionIdText.getText(), credit);
 
         //show it to user
         listViewRoles.getItems().add(credit);
@@ -75,7 +75,7 @@ public class addCreditsController {
         Object selectedItem = listViewRoles.getSelectionModel().getSelectedItem();
 
         //delete through singleton
-        tvCredits.deleteCredit((Credit) selectedItem);
+        tvCreditsFacade.deleteCredit((Credit) selectedItem);
 
         //delete from gui
         listViewRoles.getItems().remove(selectedItem);
@@ -83,7 +83,7 @@ public class addCreditsController {
 
     public void showCredit(ActionEvent actionEvent) {
         //Finds the production with productionID through singleton obj.
-        Production production = tvCredits.getProduction(productionIdText.getText());
+        Production production = tvCreditsFacade.getProduction(productionIdText.getText());
 
         //if production has credits show them in GUI
         if(production.getCredits() != null){

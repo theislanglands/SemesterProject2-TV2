@@ -1,7 +1,7 @@
 package org.presentation;
 
 import domain.Production;
-import domain.TvCredits;
+import domain.TvCreditsFacade;
 import domain.enums.Genre;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -18,7 +18,7 @@ public class addProductionController {
     public ChoiceBox genreDropdown2;
     public ChoiceBox genreDropdown3;
     public Button activeCreditsButton;
-    TvCredits tvCredits;
+    TvCreditsFacade tvCreditsFacade;
 
     public Button addProductionButton;
     public TextArea title;
@@ -40,7 +40,7 @@ public class addProductionController {
     public void initialize(){
 
         //singleton obj
-        tvCredits = TvCredits.getInstance();
+        tvCreditsFacade = TvCreditsFacade.getInstance();
 
         addProductionButton.setDisable(true);
 
@@ -57,7 +57,7 @@ public class addProductionController {
     }
 
     private void setLanguageDropdown() {
-        List<String> languages = tvCredits.getLanguages();
+        List<String> languages = tvCreditsFacade.getLanguages();
 
         for (String s :
                 languages) {
@@ -68,7 +68,7 @@ public class addProductionController {
     }
 
     private void setGenreDropdown() {
-        List<String> genres = tvCredits.getGenres();
+        List<String> genres = tvCreditsFacade.getGenres();
 
         for (String s :
                 genres) {
@@ -91,7 +91,7 @@ public class addProductionController {
     }
 
     private void setCreditTypeDropdown() {
-        List<String> creditTypes = tvCredits.getCreditTypes();
+        List<String> creditTypes = tvCreditsFacade.getCreditTypes();
 
         for (String s :
                 creditTypes) {
@@ -179,7 +179,7 @@ public class addProductionController {
         production.setValidated(false);
 
         //saves production through singleton obj
-        tvCredits.saveProduction(production);
+        tvCreditsFacade.saveProduction(production);
 
         //clears the fields where user entered info
         clearFields();

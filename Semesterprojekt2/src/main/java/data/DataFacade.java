@@ -1,6 +1,5 @@
 package data;
 
-import Interfaces.DataLayerInterface;
 import domain.Credit;
 import domain.CreditName;
 import domain.Production;

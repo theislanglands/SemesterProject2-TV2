@@ -1,18 +1,9 @@
 package org.presentation;
 
 import java.io.IOException;
-import java.util.*;
 
-import domain.Production;
-import domain.TvCredits;
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextArea;
 
 public class ProducerController {
 
