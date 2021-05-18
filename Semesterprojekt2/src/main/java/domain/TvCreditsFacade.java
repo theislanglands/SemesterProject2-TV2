@@ -98,6 +98,11 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         }
     }
 
+    @Override
+    public void validateCredit(Credit credit) {
+
+    }
+
     // CREDITS
     @Override
     public void addCredit(Credit credit) {
