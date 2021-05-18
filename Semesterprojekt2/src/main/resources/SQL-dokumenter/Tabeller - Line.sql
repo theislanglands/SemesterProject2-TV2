@@ -89,15 +89,12 @@ CREATE TABLE credit (
     validated BOOLEAN,
     production_id INTEGER NOT NULL REFERENCES production(id) ON DELETE CASCADE,
     UNIQUE (role, production_id)
-<<<<<<< Updated upstream
 );
 
 CREATE TABLE production_images (
    image_text VARCHAR(100),
    image BYTEA,
    production_id INTEGER NOT NULL REFERENCES production(id) ON DELETE CASCADE
-=======
->>>>>>> Stashed changes
 );
 
 CREATE TABLE credit_name_credit_type_association (

@@ -6,7 +6,7 @@ import data.DataFacade;
 import java.util.Date;
 import java.util.List;
 
-//Controllerklasse
+//Controllerklasse FACADE
 
 public final class TvCredits {
 
@@ -16,14 +16,14 @@ public final class TvCredits {
 
     private static DataLayerInterface dataconnect;
 
-    private TvCredits(){
+    private TvCredits() {
         dataconnect = DataFacade.getInstance();
 
         // bruges til test af program - opretter 2 produktioner.
         //dataconnect.createTestProductions();
     }
 
-    public static TvCredits getInstance(){
+    public static TvCredits getInstance() {
         return INSTANCE;
     }
 
@@ -44,29 +44,30 @@ public final class TvCredits {
         return dataconnect.updateProduction(productionID, replaceProduction);
     }
 
-        public Credit createCredit(CreditName creditName, java.lang.String role, String creditType) {
+    public Credit createCredit(CreditName creditName, java.lang.String role, String creditType) {
         return new Credit(creditName, role, creditType);
     }
 
-    public void addCredit (Production production, Credit credit) {
+    public void addCredit(Production production, Credit credit) {
         production.addCredit(credit);
     }
 
-    public void addCredit (String productionId, Credit credit){
+    public void addCredit(String productionId, Credit credit) {
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {
-            if(prod.getProductionReference().equals(productionId)){
+            if (prod.getProductionReference().equals(productionId)) {
                 prod.addCredit(credit);
                 break;
             }
         }
     }
+
     public void deleteCredit(Credit credit) {
         List<Production> productions = dataconnect.getProductions();
         for (Production prod :
                 productions) {
-            if(prod.hasCredit(credit)){
+            if (prod.hasCredit(credit)) {
                 prod.removeCredit(credit);
             }
         }
@@ -78,27 +79,28 @@ public final class TvCredits {
         for (Production prod :
                 productions) {
             if (prod.getProductionReference().equals(text)) {
-               return prod;
+                return prod;
             }
         }
         return null;
     }
 
-    public List<String> getCreditTypes(){
+    public List<String> getCreditTypes() {
         return dataconnect.getAllCreditTypes();
     }
 
-    public List<String> getProductionTypes(){
+    public List<String> getProductionTypes() {
         return dataconnect.getAllProductionTypes();
     }
 
-    public List<String> getLanguages(){
+    public List<String> getLanguages() {
         return dataconnect.getAllLanguages();
     }
 
-    public List<String> getGenres(){
+    public List<String> getGenres() {
         return dataconnect.getAllGenres();
     }
+
 
 
 
@@ -158,7 +160,7 @@ public final class TvCredits {
 */
 
     // private Producer producerObj = new Producer(1,"Test", "Testsen");
-   // private Administrator administrator = new Administrator(2,"Teste", "Testesen");
+    // private Administrator administrator = new Administrator(2,"Teste", "Testesen");
 
 
 }
