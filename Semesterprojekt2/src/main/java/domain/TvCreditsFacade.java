@@ -100,17 +100,33 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public void validateCredit(Credit credit) {
+        if (!credit.isValidated()) {        // checks if credit validation status is "not validated"
+            credit.setValidated(true);
+            dataconnect.validateCredit(credit);
+        }
+    }
 
+    @Override
+    public void invalidateCredit(Credit credit) {
+        if (credit.isValidated()) {         // checks if credit validation status is "validated"
+            credit.setValidated(false);
+            dataconnect.validateCredit(credit);
+        }
     }
 
     // CREDITS
     @Override
     public void addCredit(Credit credit) {
         int productionId = credit.getProductionId();
+
+        // finding production
         for (Production prod : productions) {
             if (prod.getId() == productionId) {
                 prod.addCredit(credit);
+
+                // updating database
                 dataconnect.updateProduction(productionId, prod);
+                break;
             }
         }
     }
