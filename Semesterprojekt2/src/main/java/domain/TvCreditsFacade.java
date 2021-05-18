@@ -7,22 +7,22 @@ import java.util.Date;
 import java.util.List;
 
 //Controllerklasse FACADE
-
 public final class TvCreditsFacade implements TvCreditsInterface {
 
     //Singleton object that is acessed in all controllers
     private static final TvCreditsFacade INSTANCE = new TvCreditsFacade();
-
     private static DataLayerInterface dataconnect;
 
     private TvCreditsFacade() {
         dataconnect = DataFacade.getInstance();
     }
 
+    // returns singelton instance
     public static TvCreditsFacade getInstance() {
         return INSTANCE;
     }
 
+    @Override
     public List<Production> getProductions() {
         return dataconnect.getProductions();
     }
@@ -81,32 +81,28 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         return null;
     }
 
+    // Methods for Enums
+    @Override
     public List<String> getCreditTypes() {
         return dataconnect.getAllCreditTypes();
     }
 
+    @Override
     public List<String> getProductionTypes() {
         return dataconnect.getAllProductionTypes();
     }
 
+    @Override
     public List<String> getLanguages() {
         return dataconnect.getAllLanguages();
     }
 
+    @Override
     public List<String> getGenres() {
         return dataconnect.getAllGenres();
     }
 
-
-
-
-    public static void main(java.lang.String[] args) {
-
-        TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
-
-        List<Production> testProductions = tvCreditsFacade.getProductions();
-        System.out.println(testProductions);
-    }
+}
 
 
 
@@ -155,8 +151,8 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 */
 
-    // private Producer producerObj = new Producer(1,"Test", "Testsen");
-    // private Administrator administrator = new Administrator(2,"Teste", "Testesen");
+// private Producer producerObj = new Producer(1,"Test", "Testsen");
+// private Administrator administrator = new Administrator(2,"Teste", "Testesen");
 
 
-}
+
