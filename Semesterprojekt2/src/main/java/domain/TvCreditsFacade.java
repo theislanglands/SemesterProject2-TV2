@@ -117,7 +117,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
             if (prod.hasCredit(credit)) {
                 prod.removeCredit(credit);
             }
-            dataconnect.deleteCredit(prod.getId(), credit);
+            dataconnect.deleteCredit(credit);
         }
     }
 
