@@ -1,4 +1,4 @@
-package Interfaces;
+package data;
 
 import domain.Credit;
 import domain.CreditName;

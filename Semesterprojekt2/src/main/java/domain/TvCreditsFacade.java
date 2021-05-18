@@ -8,22 +8,18 @@ import java.util.List;
 
 //Controllerklasse FACADE
 
-public final class TvCredits {
-
+public final class TvCreditsFacade implements TvCreditsInterface {
 
     //Singleton object that is acessed in all controllers
-    private static final TvCredits INSTANCE = new TvCredits();
+    private static final TvCreditsFacade INSTANCE = new TvCreditsFacade();
 
     private static DataLayerInterface dataconnect;
 
-    private TvCredits() {
+    private TvCreditsFacade() {
         dataconnect = DataFacade.getInstance();
-
-        // bruges til test af program - opretter 2 produktioner.
-        //dataconnect.createTestProductions();
     }
 
-    public static TvCredits getInstance() {
+    public static TvCreditsFacade getInstance() {
         return INSTANCE;
     }
 
@@ -106,9 +102,9 @@ public final class TvCredits {
 
     public static void main(java.lang.String[] args) {
 
-        TvCredits tvCredits = TvCredits.getInstance();
+        TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
 
-        List<Production> testProductions = tvCredits.getProductions();
+        List<Production> testProductions = tvCreditsFacade.getProductions();
         System.out.println(testProductions);
     }
 
