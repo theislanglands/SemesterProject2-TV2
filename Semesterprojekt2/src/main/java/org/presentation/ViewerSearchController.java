@@ -64,11 +64,23 @@ public class ViewerSearchController {
 
                 String lowerCase = newValue.toLowerCase();
 
-                //id, name, releaseDate, productionType, episode, season, length, language, companyProdcutionName
+                //id, name, releaseDate, productionType, language, companyProdcutionName
                 if(String.valueOf(production.getId()).toLowerCase().contains(lowerCase)){
                     return true;
                 }
                 else if(production.getName().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(production.getReleaseDate().toString().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(production.getProductionType().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(production.getLanguage().toLowerCase().contains(lowerCase)){
+                    return true;
+                }
+                else if(production.getCompanyProductionName().toLowerCase().contains(lowerCase)){
                     return true;
                 }
                 else return false;
