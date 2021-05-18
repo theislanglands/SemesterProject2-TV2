@@ -8,14 +8,16 @@ import java.util.List;
 
 public interface TvCreditsInterface {
 
-    List<Production> getAllProductions();
     Production getProduction(int productionId);
+    List<Production> getAllProductions();
     List<Production> getValidatedProductions();
     List<Production> getUnValidatedProductions();
 
     boolean saveProduction(Production prod);
 
     boolean updateProduction(int productionID, Production replaceProduction);
+
+    void addCredit(int productionId, Credit credit);
 
     // Methods for Enums
     List<String> getCreditTypes();

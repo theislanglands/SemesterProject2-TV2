@@ -192,7 +192,7 @@ public class ViewerSearchController {
 
     private void addAllProductions(){
         //adds all the productions to the master data list productionObservableList
-        productionObservableList.addAll(tvCreditsFacade.getProductions());
+        productionObservableList.addAll(tvCreditsFacade.getAllProductions());
         //adding all data to the table view
         listviewProductions.getItems().addAll(productionObservableList);
     }
@@ -229,7 +229,7 @@ public class ViewerSearchController {
 
     private void addAllCredits(){
         //looping through each production and extracting each credit
-        List<Production> productionList = tvCreditsFacade.getProductions();
+        List<Production> productionList = tvCreditsFacade.getAllProductions();
         List<Credit> credits = new ArrayList<>();
         for (Production prod :
                 productionList) {

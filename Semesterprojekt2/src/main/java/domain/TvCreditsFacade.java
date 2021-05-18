@@ -81,31 +81,25 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         return new Credit(creditName, role, creditType);
     }
 
-    public void addCredit(Production production, Credit credit) {
-        production.addCredit(credit);
-    }
-
-    public void addCredit(String productionId, Credit credit) {
-        List<Production> productions = dataconnect.getProductions();
-        for (Production prod :
-                productions) {
-            if (prod.getProductionReference().equals(productionId)) {
-                prod.addCredit(credit);
+    @Override
+    public void addCredit(int productionId, Credit credit) {
+        for (Production p : productions) {
+            if (p.getId() == productionId) {
+                p.addCredit(credit);
                 break;
             }
         }
     }
 
     public void deleteCredit(Credit credit) {
-        List<Production> productions = dataconnect.getProductions();
-        for (Production prod :
-                productions) {
+        // deletes prod from
+        for (Production prod : productions) {
             if (prod.hasCredit(credit)) {
                 prod.removeCredit(credit);
             }
+            // TODO: update db!
         }
     }
-
 
 
     // Methods for Enums

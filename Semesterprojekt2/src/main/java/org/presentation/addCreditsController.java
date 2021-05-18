@@ -63,7 +63,7 @@ public class addCreditsController {
         credit.setRole(nameTextField.getText());
 
         //save through singleton
-        tvCreditsFacade.addCredit(productionIdText.getText(), credit);
+        tvCreditsFacade.addCredit(Integer.parseInt(productionIdText.getText()), credit);
 
         //show it to user
         listViewRoles.getItems().add(credit);
