@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 
 public class PrimaryController {
 
-    TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
-
 
     @FXML
     private void switchToProducer() throws IOException {

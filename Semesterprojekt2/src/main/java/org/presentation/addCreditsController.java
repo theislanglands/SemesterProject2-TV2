@@ -82,11 +82,11 @@ public class addCreditsController {
 
     public void showCredit(ActionEvent actionEvent) {
         //Finds the production with productionID through singleton obj.
-        Production production = tvCreditsFacade.getProduction(productionIdText.getText());
+        Production production = tvCreditsFacade.getProduction(Integer.parseInt(productionIdText.getText()));
 
         //if production has credits show them in GUI
         if(production.getCredits() != null){
-            listViewRoles.getItems().add("ID: " + production.getProductionReference());
+            listViewRoles.getItems().add("ID: " + production.getId());
             listViewRoles.getItems().addAll(production.getCredits());
         }
 

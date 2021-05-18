@@ -14,11 +14,12 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     private static DataLayerInterface dataconnect;
 
     // attributes
-    final private List<Production> productions = dataconnect.getProductions();
+    private List<Production> productions;
 
     // Constructor
     private TvCreditsFacade() {
         dataconnect = DataFacade.getInstance();
+        this.productions = dataconnect.getProductions();
     }
 
     // returns singelton instance
@@ -65,6 +66,17 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         return dataconnect.updateProduction(productionID, replaceProduction);
     }
 
+    @Override
+    public Production getProduction(int productionId) {
+        for (Production p : productions) {
+            if (p.getId() == productionId) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+
     public Credit createCredit(CreditName creditName, java.lang.String role, String creditType) {
         return new Credit(creditName, role, creditType);
     }
@@ -94,17 +106,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         }
     }
 
-    //get production from ID
-    public Production getProduction(String text) {
-        List<Production> productions = dataconnect.getProductions();
-        for (Production prod :
-                productions) {
-            if (prod.getProductionReference().equals(text)) {
-                return prod;
-            }
-        }
-        return null;
-    }
+
 
     // Methods for Enums
     @Override

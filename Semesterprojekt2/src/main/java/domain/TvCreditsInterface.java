@@ -9,6 +9,7 @@ import java.util.List;
 public interface TvCreditsInterface {
 
     List<Production> getAllProductions();
+    Production getProduction(int productionId);
     List<Production> getValidatedProductions();
     List<Production> getUnValidatedProductions();
 
