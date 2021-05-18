@@ -30,6 +30,7 @@ public class ViewerProductionsController {
 
     public void initialize(){
 
+        //using the public static Production from other classes to know which production to show
         if(ViewerSearchController.productionChosen != null){
             production = ViewerSearchController.productionChosen;
             ViewerSearchController.productionChosen = null;

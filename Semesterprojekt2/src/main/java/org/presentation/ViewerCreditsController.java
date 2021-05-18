@@ -22,6 +22,7 @@ public class ViewerCreditsController {
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
+        //uses the public static objects from the other classes to know which credit to show
         if(ViewerSearchController.creditChosen != null){
             credit = ViewerSearchController.creditChosen;
             ViewerSearchController.creditChosen = null;

@@ -29,6 +29,7 @@ public class ViewerSearchController {
     public static Production productionChosen;
     public static Credit creditChosen;
 
+    //These hold all data of the 2 lists.
     private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
     private final ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
 
@@ -50,64 +51,77 @@ public class ViewerSearchController {
 
     //Example from youtube: https://www.youtube.com/watch?v=FeTrcNBVWtg
     //same concept: https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
-    //Dont know if we wanna do this. seems very complicated
+
     private void activateSearchbar() {
 
+        //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
         FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
         FilteredList<Credit> creditFilteredList = new FilteredList<>(creditObservableList, b -> true);
 
+        //adding a listener to the searchBar
+        //only newValue is used, not sure what the other 2 does
         textSearchBar.textProperty().addListener((observable, oldValue, newValue) ->{
+
+            //this filters the productions based on the input
             productionFilteredList.setPredicate(production -> {
+
+                //if no value has been put in, return true on every object
                 if(newValue == null || newValue.isEmpty()){
                     return true;
                 }
 
-                String lowerCase = newValue.toLowerCase();
+                String searchStringLowerCase = newValue.toLowerCase();
 
-                //id, name, releaseDate, productionType, language, companyProdcutionName
-                if(String.valueOf(production.getId()).toLowerCase().contains(lowerCase)){
+                //These check if the value of the object matches the search string
+                //if they match they return true, which means they are added to the filtered list
+                if(String.valueOf(production.getId()).toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
-                else if(production.getName().toLowerCase().contains(lowerCase)){
+                else if(production.getName().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
-                else if(production.getReleaseDate().toString().toLowerCase().contains(lowerCase)){
+                else if(production.getReleaseDate().toString().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
-                else if(production.getProductionType().toLowerCase().contains(lowerCase)){
+                else if(production.getProductionType().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
-                else if(production.getLanguage().toLowerCase().contains(lowerCase)){
+                else if(production.getLanguage().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
-                else if(production.getCompanyProductionName().toLowerCase().contains(lowerCase)){
+                else if(production.getCompanyProductionName().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
                 else return false;
             });
 
+            //Sorted list that is passed all objects of the filtered list. Dont know why
             SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
+            //no idea what this does
             productionSortedList.comparatorProperty().bind(listviewProductions.comparatorProperty());
+            //adding the filtered objects to the listview
             listviewProductions.setItems(productionSortedList);
 
+
+            //This is the same as above, but for the credit list
             creditFilteredList.setPredicate(credit -> {
                 if(newValue == null || newValue.isEmpty()){
                     return true;
                 }
 
-                String lowerCase = newValue.toLowerCase();
+                String searchStringlowerCase = newValue.toLowerCase();
 
-                //first, last, role, creditType
-                if(credit.getFirstName().toLowerCase().contains(lowerCase)){
+
+                if(credit.getFirstName().toLowerCase().contains(searchStringlowerCase)){
                     return true;
                 }
-                else if(credit.getLastName().toLowerCase().contains(lowerCase)){
+                else if(credit.getLastName().toLowerCase().contains(searchStringlowerCase)){
                     return true;
                 }
-                else if(credit.getRole().toLowerCase().contains(lowerCase)){
+                else if(credit.getRole().toLowerCase().contains(searchStringlowerCase)){
                     return true;
                 }
-                else if(credit.getCreditType().toLowerCase().contains(lowerCase)){
+                else if(credit.getCreditType().toLowerCase().contains(searchStringlowerCase)){
                     return true;
                 }
                 else{
@@ -177,9 +191,9 @@ public class ViewerSearchController {
     }
 
     private void addAllProductions(){
-        //adding data to the table view
-        //List<Production> productionList = tvCredits.getProductions();
-        productionObservableList.addAll(tvCreditsFacade.getAllProductions());
+        //adds all the productions to the master data list productionObservableList
+        productionObservableList.addAll(tvCreditsFacade.getProductions());
+        //adding all data to the table view
         listviewProductions.getItems().addAll(productionObservableList);
     }
 
@@ -214,8 +228,8 @@ public class ViewerSearchController {
     }
 
     private void addAllCredits(){
-        //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getAllProductions();
+        //looping through each production and extracting each credit
+        List<Production> productionList = tvCreditsFacade.getProductions();
         List<Credit> credits = new ArrayList<>();
         for (Production prod :
                 productionList) {
@@ -223,10 +237,68 @@ public class ViewerSearchController {
                 credits.addAll(prod.getCredits());
             }
         }
+        //adding to the master list
         creditObservableList.addAll(credits);
+        //adding master list to the view
         listviewCredits.getItems().addAll(creditObservableList);
     }
 
+    //activates the tableViews to allow doubleClick on cells to redirect to other page
+    public void activateDoubleClick(){
+        //production
+        listviewProductions.setRowFactory(tv -> {
+            //setting up rows to be able to listen for clicks
+            TableRow<Production> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Production rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getName());
+                    //public static Production. Used from other controller, to know which production to show
+                    productionChosen = rowData;
+                    try {
+                        App.setRoot("viewerProductions");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
+
+        //credit
+        listviewCredits.setRowFactory(tv -> {
+            TableRow<Credit> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Credit rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getFirstName());
+                    creditChosen = rowData;
+                    try {
+                        App.setRoot("viewerCredits");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //no longer in use. Was very, very, very slow
     private void searchProduction(String s){
 
         listviewProductions.getItems().clear();
@@ -259,6 +331,8 @@ public class ViewerSearchController {
         }
 
     }
+
+    //no longer in use. Was very, very, very slow
 
     private void searchCredits(String s){
 
@@ -313,50 +387,18 @@ public class ViewerSearchController {
         }
     }
 
+    //no longer in use, was very, very very slow
     public void search(KeyEvent keyEvent) {
 
         //on key pressed get the text, remove whitespace and search productions and credits for matches
         String s = textSearchBar.getText();
         s = s.replaceAll("\\s","");
 
-        searchCredits(s);
+        //searchCredits(s);
+        //searchProduction(s);
     }
 
-    public void activateDoubleClick(){
-        listviewProductions.setRowFactory(tv -> {
-            TableRow<Production> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Production rowData = row.getItem();
-                    System.out.println("Double clock on: " + rowData.getName());
-                    productionChosen = rowData;
-                    try {
-                        App.setRoot("viewerProductions");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return row ;
-        });
 
-        listviewCredits.setRowFactory(tv -> {
-            TableRow<Credit> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Credit rowData = row.getItem();
-                    System.out.println("Double clock on: " + rowData.getFirstName());
-                    creditChosen = rowData;
-                    try {
-                        App.setRoot("viewerCredits");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return row ;
-        });
-    }
 
 
 }
