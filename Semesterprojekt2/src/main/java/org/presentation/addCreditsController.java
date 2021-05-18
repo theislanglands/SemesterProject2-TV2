@@ -3,7 +3,6 @@ package org.presentation;
 import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
-import domain.enums.CreditType;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -36,7 +35,7 @@ public class addCreditsController {
         activeCreditsButton.setDisable(true);
 
         //sets roles from enum. We need to rethink what we call role etc.
-        roleChoiceBox.getItems().setAll(CreditType.getEnum());
+        //roleChoiceBox.getItems().setAll(CreditType.getEnum());
 
     }
 

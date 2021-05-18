@@ -2,7 +2,7 @@ package org.presentation;
 
 import domain.Production;
 import domain.TvCreditsFacade;
-import domain.enums.Genre;
+
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
@@ -195,17 +195,5 @@ public class addProductionController {
         subtitles.setSelected(false);
     }
 
-    //Tror ikke den bruges
-    private Genre genreSwitch(String in){
-        switch(in){
-            case "Drama":
-                return Genre.DRAMA;
-            case "Krimi":
-                return Genre.THRILLER;
-            case "Komedie":
-                return Genre.COMEDY;
-            //mangler resten
-        }
-        return null;
-    }
+
 }
