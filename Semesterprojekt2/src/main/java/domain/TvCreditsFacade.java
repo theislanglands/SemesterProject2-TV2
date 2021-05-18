@@ -13,6 +13,8 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     private static final TvCreditsFacade INSTANCE = new TvCreditsFacade();
     private static DataLayerInterface dataconnect;
 
+
+
     // attributes
     private List<Production> productions;
 
@@ -158,6 +160,8 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     public List<String> getGenres() {
         return dataconnect.getAllGenres();
     }
+
+
 }
 
 
