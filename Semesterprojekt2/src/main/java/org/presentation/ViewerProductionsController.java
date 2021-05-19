@@ -61,17 +61,16 @@ public class ViewerProductionsController {
         listviewProductions.setItems(creditObservableList);
 
 
-        System.out.println(creditObservableList.get(1));
-        System.out.println(creditObservableList.get(2));
-        System.out.println(creditObservableList.get(1).getFirstName());
-        System.out.println(creditObservableList.get(2).getFirstName());
 
 
         textProductionBio.setText(production.getProductionBio());
         textFilmTitel.setText(production.getName());
-        textGenre1.setText(production.getGenres().get(0));
-       // textGenre2.setText(production.getGenres().get(1));
-        //textGenre3.setText(production.getGenres().get(2));
+        if(production.getGenres().size()>0){
+            textGenre1.setText(production.getGenres().get(0));
+            // textGenre2.setText(production.getGenres().get(1));
+            //textGenre3.setText(production.getGenres().get(2));
+        }
+
         textLength.setText(String.valueOf(production.getLength()));
         textProductionCompany.setText(production.getProductionCompanyName());
         textYear.setText(String.valueOf(production.getReleaseDate().getYear()));

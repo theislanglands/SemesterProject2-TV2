@@ -3,6 +3,8 @@ package org.presentation;
 import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -19,6 +21,8 @@ public class ViewerCreditsController {
     private Credit credit;
     public static Production productionChosen;
     private TvCreditsFacade tvCreditsFacade;
+
+    private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
 
     @FXML
     private void switchToViewerLanding() throws IOException {
@@ -78,6 +82,7 @@ public class ViewerCreditsController {
             for (Credit cred :
                     credits) {
                 //works on firstName, but might put in too many people
+
                 if(cred.getFirstName().equals(credit.getFirstName())){
                     listviewProductions.getItems().add(prod);
                     break;
