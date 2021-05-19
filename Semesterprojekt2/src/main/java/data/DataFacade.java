@@ -66,10 +66,10 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public boolean createProduction(Production prod) {
+    public int createProduction(Production prod) {
 
-        // returns true if succesful
-
+        // returns key if succesful, -1 if not
+        int productionId = -1;
         try {
             //Begin statement - Transaction
             connection.setAutoCommit(false);
@@ -122,7 +122,7 @@ public class DataFacade implements DataLayerInterface {
             // gets the generated production id
             ResultSet resultSet = stmt1.getGeneratedKeys();
             resultSet.next();
-            int productionId = resultSet.getInt(1);
+            productionId = resultSet.getInt(1);
             stmt1.close();
 
 
@@ -158,11 +158,9 @@ public class DataFacade implements DataLayerInterface {
                     System.out.println("Transaction is being rolled back");
                 }
             }
-
-            return false;
         }
 
-        return true;
+        return productionId;
     }
 
     @Override
@@ -489,7 +487,9 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void deleteCredit(int productionId, Credit credit) {
+    public void deleteCredit(Credit credit) {
+
+        int productionId = credit.getProductionId();
 
         // finding id of credit
         int creditId = getCreditId(productionId, credit);
@@ -783,7 +783,9 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void validateCredit(int creditID) {
+    public void validateCredit(Credit credit) {
+        int creditID = getCreditId(credit.getProductionId(), credit);
+
         try {
 
             PreparedStatement stmt = connection.prepareStatement(
@@ -799,7 +801,8 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public void invalidateCredit(int creditID) {
+    public void invalidateCredit(Credit credit) {
+        int creditID = getCreditId(credit.getProductionId(), credit);
         try {
 
             PreparedStatement stmt = connection.prepareStatement(
@@ -1050,10 +1053,15 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    private int getProductionId(int productionNameId) {
+    private int getProductionId(Production production) {
         try {
-            PreparedStatement stmtGenreId = connection.prepareStatement("SELECT id FROM production WHERE production_name_id = ?");
-            stmtGenreId.setInt(1, productionNameId);
+            PreparedStatement stmtGenreId = connection.prepareStatement("SELECT id " +
+                    "FROM production " +
+                    "WHERE season = ? AND episode = ? AND production_name_id = ?");
+            stmtGenreId.setInt(1, production.getSeason());
+            stmtGenreId.setInt(2, production.getEpisode());
+            stmtGenreId.setInt(3, getProductionNameId(production.getName()));
+
             ResultSet sqlReturnValues = stmtGenreId.executeQuery();
 
             // checks if the ResultSet is empty and returns -1 if that's the case

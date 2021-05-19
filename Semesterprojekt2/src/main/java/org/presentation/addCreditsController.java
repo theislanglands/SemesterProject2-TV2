@@ -61,9 +61,9 @@ public class addCreditsController {
         //set parameters
         credit.setCreditType((String) roleChoiceBox.getValue());
         credit.setRole(nameTextField.getText());
-
+        credit.setProductionId(Integer.parseInt(productionIdText.getText()));
         //save through singleton
-        tvCreditsFacade.addCredit(Integer.parseInt(productionIdText.getText()), credit);
+        tvCreditsFacade.addCredit(credit);
 
         //show it to user
         listViewRoles.getItems().add(credit);

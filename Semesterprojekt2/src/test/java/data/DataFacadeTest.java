@@ -1,64 +1,82 @@
 package data;
 
+import domain.Production;
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import static org.junit.Assert.*;
+
 public class DataFacadeTest {
+    //Instance of dataFacade that will be accessed throughout the tests
+    DataFacade dbFacade = DataFacade.getInstance();
+    //Run the tests contained in the class
 
-    private DataFacade dataFacade;
-
-    @Before
-    void setUp() throws Exception{
-        dataFacade = new DataFacade();
-    }
-
-    @org.junit.Test
+    //Ensures instance of dataFacade isn't null before any test, useful?
+    @Test
     public void getInstance() {
-        System.out.println("hi");
+
     }
 
-    @org.junit.Test
+    @Test
     public void createProduction() {
-        Production testProduction = new Production();
-        testProduction.setProductionReference("TEST123");
-        testProduction.setName("TEST PRODUCTION NAME");
-        testProduction.setSeason(1);
-        testProduction.setEpisode(2);
-        testProduction.setReleaseDate(new Date(100000));
-        testProduction.setLength(3);
-        testProduction.setSubtitle(true);
-        testProduction.setSignLanguage(false);
-        testProduction.setActive(true);
-        testProduction.setValidated(true);
-        testProduction.setLanguage("Dansk");
-        testProduction.setProductionBio("TEST BIO");
-        testProduction.setType("Serie");
-        testProduction.setCompanyProductionName("SF Film Production ApS");
-        testProduction.setProductionType("Serie");
-
-        ArrayList<String> genres = new ArrayList<>();
-        genres.add("Thriller");
-        genres.add("Animation");
-        badehotelletWrong.setGenres(genres);
-
-        assertEquals("Creating new production")
+//        Production badehotelletWrong = new Production();
+//        badehotelletWrong.setProductionReference("WRONG123");
+//        badehotelletWrong.setName("Badehotellet 2");
+//        badehotelletWrong.setSeason(2);
+//        badehotelletWrong.setEpisode(6);
+//        badehotelletWrong.setReleaseDate(new Date(100000));
+//        badehotelletWrong.setLength(99);
+//        badehotelletWrong.setSubtitle(true);
+//        badehotelletWrong.setSignLanguage(false);
+//        badehotelletWrong.setActive(true);
+//        badehotelletWrong.setValidated(true);
+//        badehotelletWrong.setLanguage("Dansk");
+//        badehotelletWrong.setProductionBio("En ny spændende sæson af badehotellet");
+//        badehotelletWrong.setType("Serie");
+//        badehotelletWrong.setCompanyProductionName("SF Film Production ApS");
+//        badehotelletWrong.setProductionType("Serie");
+//
+//        ArrayList<String> testGenres = new ArrayList<>();
+//        testGenres.add("Thriller");
+//        testGenres.add("Animation");
+//        testProduction.setGenres(testGenres);
+//
+//        System.out.println("\n\nTester createProduction()");
+//        //hardcoded production
+//        boolean a1 = dbFacade.createProduction(badehotelletWrong);
+//
+//        //SELECT id FROM productions WHERE id = ?
+//        boolean a2 = dbFacade.createProduction(dbFacade.getProduction(2));
+//
+////        assertTrue(a1);
+//        //It's a mess, I know ://
     }
 
-    @org.junit.Test
+    @Test
     public void getProductions() {
     }
 
-    @org.junit.Test
+    @Test
     public void getProduction() {
+//        dataFacade.getProduction(getProductionId);
     }
 
-    @org.junit.Test
+    @Test
     public void deleteProduction() {
     }
 
-    @org.junit.Test
+    @Test
     public void updateProduction() {
     }
 
-    @org.junit.Test
+    @Test
     public void createCredits() {
     }
 

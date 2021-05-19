@@ -13,6 +13,8 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     private static final TvCreditsFacade INSTANCE = new TvCreditsFacade();
     private static DataLayerInterface dataconnect;
 
+
+
     // attributes
     private List<Production> productions;
 
@@ -70,19 +72,29 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public boolean saveProduction(Production prod) {
-        return dataconnect.createProduction(prod);
+        int productionId = dataconnect.createProduction(prod);
+        if (productionId != -1) {
+            prod.setId(productionId);
+            productions.add(prod);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean updateProduction(int productionID, Production replaceProduction) {
-        return dataconnect.updateProduction(productionID, replaceProduction);
+
+        if (dataconnect.updateProduction(productionID, replaceProduction) == true) {
+            productions.add(productionID, replaceProduction);
+            return true;
+        }
+       
+        return false;
     }
 
     @Override
     public void validateProduction(Production prod){
-        if (prod.isValidated()) {
-            return;
-        } else {
+        if (!prod.isValidated()) {
             prod.setValidated(true);
             dataconnect.validateProduction(prod.getId());
         }
@@ -90,11 +102,25 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public void invalidateProduction(Production prod){
-        if (!prod.isValidated()) {
-            return;
-        } else {
+        if (prod.isValidated()) {
             prod.setValidated(false);
             dataconnect.invalidateProduction(prod.getId());
+        }
+    }
+
+    @Override
+    public void validateCredit(Credit credit) {
+        if (!credit.isValidated()) {        // checks if credit validation status is "not validated"
+            credit.setValidated(true);
+            dataconnect.validateCredit(credit);
+        }
+    }
+
+    @Override
+    public void invalidateCredit(Credit credit) {
+        if (credit.isValidated()) {         // checks if credit validation status is "validated"
+            credit.setValidated(false);
+            dataconnect.validateCredit(credit);
         }
     }
 
@@ -102,10 +128,15 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     @Override
     public void addCredit(Credit credit) {
         int productionId = credit.getProductionId();
+
+        // finding production
         for (Production prod : productions) {
             if (prod.getId() == productionId) {
                 prod.addCredit(credit);
+
+                // updating database
                 dataconnect.updateProduction(productionId, prod);
+                break;
             }
         }
     }
@@ -113,17 +144,13 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     @Override
     public void deleteCredit(Credit credit) {
 
-
         for (Production prod : productions) {
             if (prod.hasCredit(credit)) {
                 prod.removeCredit(credit);
             }
-            dataconnect.deleteCredit(prod.getId(), credit);
+            dataconnect.deleteCredit(credit);
         }
     }
-
-
-
 
     // Methods for Enums
     @Override
@@ -145,6 +172,8 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     public List<String> getGenres() {
         return dataconnect.getAllGenres();
     }
+
+
 }
 
 

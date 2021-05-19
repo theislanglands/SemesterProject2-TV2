@@ -3,7 +3,7 @@ package domain;
 
 import domain.Production;
 
-import java.util.Date;
+
 import java.util.List;
 
 public interface TvCreditsInterface {
@@ -21,11 +21,12 @@ public interface TvCreditsInterface {
     // validate productions & credits(for admin)
     void validateProduction(Production prod);
     void invalidateProduction(Production prod);
-    // void validateCredit(Credit);
-    // void invalidateCredit(int creditID);
+    void validateCredit(Credit credit);
+    void invalidateCredit(Credit credit);
 
     // Credits
     void addCredit(Credit credit);
+    // TODO: void updateCredit(Credit oldCredit, Credit newCredit);
     void deleteCredit(Credit credit);
 
     // Methods for Enums
@@ -33,6 +34,4 @@ public interface TvCreditsInterface {
     List<String> getProductionTypes();
     List<String> getLanguages();
     List<String> getGenres();
-
-
 }

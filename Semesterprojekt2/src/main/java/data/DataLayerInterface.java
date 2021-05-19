@@ -11,25 +11,27 @@ public interface DataLayerInterface {
     // flg metoder defineres for hver klasse!
 
     // Production
-    boolean createProduction(Production prod);
+    int createProduction(Production prod); // returns created ID, -1 if unsuccesful
     List<Production> getProductions();
     Production getProduction(int id);
     void deleteProduction(int id);
     boolean updateProduction(int sourceProductionID, Production replaceProduction);
-    void validateProduction(int productionID);
-    void invalidateProduction(int productionID);
+
 
     // Credits
     void createCredits(Credit cred, int productionId);
     List<Credit> getCredits(int prodId);
     Credit getCredit(int creditID);
-    void deleteCredit(int prodId, Credit credit);
+    void deleteCredit(Credit credit);
     boolean updateCredit(int creditID, Credit replaceCredit);
-    void validateCredit(int creditID);
-    void invalidateCredit(int creditID);
+
+    // Validation
+    void validateProduction(int productionID);
+    void invalidateProduction(int productionID);
+    void validateCredit(Credit credit);
+    void invalidateCredit(Credit credit);
 
     // Metoder der erstatter ENUMS
-
     List<String> getAllCreditTypes();
     List<String> getAllProductionTypes();
     List<String> getAllLanguages();
