@@ -83,7 +83,13 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public boolean updateProduction(int productionID, Production replaceProduction) {
-        return dataconnect.updateProduction(productionID, replaceProduction);
+
+        if (dataconnect.updateProduction(productionID, replaceProduction) == true) {
+            productions.add(productionID, replaceProduction);
+            return true;
+        }
+       
+        return false;
     }
 
     @Override
