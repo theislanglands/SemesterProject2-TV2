@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerLandingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerLandingController">
    <children>
       <Line endX="1742.7440185546875" endY="-101.9999771118164" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-101.9999771118164" stroke="#afafaf" />
       <Button fx:id="startPageButton" layoutX="316.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToViewerLanding" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf" AnchorPane.leftAnchor="550.0">
@@ -41,7 +41,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <ImageView fx:id="iconSearch" fitHeight="32.0" fitWidth="39.0" layoutX="951.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
+      <ImageView fx:id="iconSearch" fitHeight="32.0" fitWidth="39.0" layoutX="951.0" layoutY="43.0" onMouseClicked="#switchToViewerSearch" AnchorPane.rightAnchor="235.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
