@@ -115,5 +115,10 @@
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
       </ImageView>
+      <TextField fx:id="searchTableButton" layoutX="938.0" layoutY="172.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg...">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
