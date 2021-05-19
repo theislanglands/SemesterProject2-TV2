@@ -26,7 +26,7 @@ public class AdminValidateController {
     private final ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
 
     @FXML
-    TableView validationTableView, validationTableView2;
+    TableView validationTableProductions, validationTableCredits;
 
 
     @FXML
@@ -75,7 +75,7 @@ public class AdminValidateController {
 
     private void activateDoubleClick() {
 
-        validationTableView.setRowFactory(tv -> {
+        validationTableProductions.setRowFactory(tv -> {
             TableRow<Production> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
@@ -84,7 +84,6 @@ public class AdminValidateController {
                     System.out.println("Double clock on: " + rowData.getName());
                     productionChosen = rowData;
 
-                    setTableViewCredits();
                     addUnvalidatedCredits();
                 }
             });
@@ -92,17 +91,13 @@ public class AdminValidateController {
         });
     }
 
-
-
-
-
     private void setTableViewProduction(){
 
 //        private ArrayList<String> genre missing
 
 
-        validationTableView.getColumns().clear();
-        validationTableView.getItems().clear();
+        validationTableProductions.getColumns().clear();
+        validationTableProductions.getItems().clear();
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
         TableColumn<Production, String> col1 = new TableColumn<>("Produktions Reference");
@@ -141,14 +136,14 @@ public class AdminValidateController {
 
         //adding columns to the tableview
 
-        validationTableView.getColumns().add(col1);
-        validationTableView.getColumns().add(col2);
-        validationTableView.getColumns().add(col3);
-        validationTableView.getColumns().add(col4);
-        validationTableView.getColumns().add(col5);
-        validationTableView.getColumns().add(col6);
-        validationTableView.getColumns().add(col7);
-        validationTableView.getColumns().add(col8);
+        validationTableProductions.getColumns().add(col1);
+        validationTableProductions.getColumns().add(col2);
+        validationTableProductions.getColumns().add(col3);
+        validationTableProductions.getColumns().add(col4);
+        validationTableProductions.getColumns().add(col5);
+        validationTableProductions.getColumns().add(col6);
+        validationTableProductions.getColumns().add(col7);
+        validationTableProductions.getColumns().add(col8);
         // validationTableView.getColumns().add(col9);
         // validationTableView.getColumns().add(col10);
     }
@@ -157,14 +152,14 @@ public class AdminValidateController {
         //adding all unvalidated production to the table view
         List<Production> productionList = tvCreditsFacade.getUnValidatedProductions();
         for (Production prod : productionList) {
-            validationTableView.getItems().add(prod);
+            validationTableProductions.getItems().add(prod);
         }
     }
 
     private void setTableViewCredits(){
 
-        validationTableView2.getColumns().clear();
-        validationTableView2.getItems().clear();
+        validationTableCredits.getColumns().clear();
+        validationTableCredits.getItems().clear();
 
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
@@ -183,10 +178,10 @@ public class AdminValidateController {
 
         //adding columns to the tableview
 
-        validationTableView2.getColumns().add(col1);
-        validationTableView2.getColumns().add(col2);
-        validationTableView2.getColumns().add(col3);
-        validationTableView2.getColumns().add(col4);
+        validationTableCredits.getColumns().add(col1);
+        validationTableCredits.getColumns().add(col2);
+        validationTableCredits.getColumns().add(col3);
+        validationTableCredits.getColumns().add(col4);
 
     }
 
@@ -194,15 +189,18 @@ public class AdminValidateController {
 
     private void addUnvalidatedCredits(){
 
-        System.out.println("prod id " + productionChosen.getId());
+        // System.out.println("prod id " + productionChosen.getId());
 
-        List<Credit> credits = tvCreditsFacade.getUnValidatedCredits(productionChosen.getId());
+        if (creditObservableList.isEmpty()) {
+            List<Credit> credits = tvCreditsFacade.getUnValidatedCredits(productionChosen.getId());
+            //adding to the master list
+            creditObservableList.removeAll();
+            creditObservableList.addAll(credits);
+            //adding master list to the view
 
-        //adding to the master list
-        creditObservableList.addAll(credits);
-        //adding master list to the view
-        validationTableView2.getItems().addAll(creditObservableList);
-
+            setTableViewCredits();
+            validationTableCredits.getItems().addAll(creditObservableList);
+        }
 
     }
 }

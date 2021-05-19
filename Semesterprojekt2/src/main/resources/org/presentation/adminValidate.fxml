@@ -65,12 +65,7 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="invalidateButton" layoutX="988.0" layoutY="618.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Invalidere" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="390.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="selectNoneButton" layoutX="988.0" layoutY="258.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afmarker alle" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="250.0">
+      <Button fx:id="selectNoneButton" layoutX="988.0" layoutY="258.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Validere kreditering" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="250.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -80,17 +75,17 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="validateButton" layoutX="989.0" layoutY="328.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Validere" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="320.0">
+      <Button fx:id="validateButton" layoutX="989.0" layoutY="328.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Validere alle krediteringer" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="320.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="selectAllButton" layoutX="989.0" layoutY="191.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Marker alle" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
+      <Button fx:id="selectAllButton" layoutX="989.0" layoutY="191.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Validere produktion" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="validationTableView" layoutX="354.0" layoutY="111.0" prefHeight="331.0" prefWidth="903.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="354.0">
+      <TableView fx:id="validationTableProductions" layoutX="354.0" layoutY="111.0" prefHeight="331.0" prefWidth="903.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="354.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
@@ -101,27 +96,7 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <Button fx:id="changeProductionButton" layoutX="1364.0" layoutY="485.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Ændre produktion" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="460.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="changeCreditButton" layoutX="1372.0" layoutY="546.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Ændre kreditering" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="530.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="addProductionButton" layoutX="1382.0" layoutY="556.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="600.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="addCreditButton" layoutX="1392.0" layoutY="566.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj kreditering" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="670.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <TableView fx:id="validationTableView2" layoutX="362.0" layoutY="492.0" prefHeight="331.0" prefWidth="903.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="354.0">
+      <TableView fx:id="validationTableCredits" layoutX="362.0" layoutY="492.0" prefHeight="331.0" prefWidth="903.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="354.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
