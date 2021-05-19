@@ -72,7 +72,11 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public boolean saveProduction(Production prod) {
-        return dataconnect.createProduction(prod);
+        if (dataconnect.createProduction(prod)) {
+            productions.add(prod);
+            return true;
+        }
+        return false;
     }
 
     @Override

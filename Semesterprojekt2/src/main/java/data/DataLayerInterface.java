@@ -11,7 +11,7 @@ public interface DataLayerInterface {
     // flg metoder defineres for hver klasse!
 
     // Production
-    boolean createProduction(Production prod);
+    int createProduction(Production prod);
     List<Production> getProductions();
     Production getProduction(int id);
     void deleteProduction(int id);

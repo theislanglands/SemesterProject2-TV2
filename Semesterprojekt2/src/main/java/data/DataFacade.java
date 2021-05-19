@@ -66,10 +66,10 @@ public class DataFacade implements DataLayerInterface {
     }
 
     @Override
-    public boolean createProduction(Production prod) {
+    public int createProduction(Production prod) {
 
-        // returns true if succesful
-
+        // returns key if succesful, -1 if not
+        int productionId = -1;
         try {
             //Begin statement - Transaction
             connection.setAutoCommit(false);
@@ -122,7 +122,7 @@ public class DataFacade implements DataLayerInterface {
             // gets the generated production id
             ResultSet resultSet = stmt1.getGeneratedKeys();
             resultSet.next();
-            int productionId = resultSet.getInt(1);
+            productionId = resultSet.getInt(1);
             stmt1.close();
 
 
@@ -158,11 +158,9 @@ public class DataFacade implements DataLayerInterface {
                     System.out.println("Transaction is being rolled back");
                 }
             }
-
-            return false;
         }
-
-        return true;
+        
+        return productionId;
     }
 
     @Override
