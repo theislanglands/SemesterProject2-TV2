@@ -28,6 +28,7 @@ public interface TvCreditsInterface {
     void addCredit(Credit credit);
     // TODO: void updateCredit(Credit oldCredit, Credit newCredit);
     void deleteCredit(Credit credit);
+    List<Credit> getUnValidatedCredits(int productionsId);
 
     // Methods for Enums
     List<String> getCreditTypes();

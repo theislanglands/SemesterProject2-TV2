@@ -71,6 +71,17 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     @Override
+    public List<Credit> getUnValidatedCredits(int productionId) {
+        List<Credit> returnList = new ArrayList<>();
+        for (Credit c : productions.get(productionId).getCredits()) {
+            if (!c.isValidated()) {
+                returnList.add(c);
+            }
+        }
+        return returnList;
+    }
+
+    @Override
     public boolean saveProduction(Production prod) {
         int productionId = dataconnect.createProduction(prod);
         if (productionId != -1) {
@@ -151,6 +162,9 @@ public final class TvCreditsFacade implements TvCreditsInterface {
             dataconnect.deleteCredit(credit);
         }
     }
+
+
+
 
     // Methods for Enums
     @Override
