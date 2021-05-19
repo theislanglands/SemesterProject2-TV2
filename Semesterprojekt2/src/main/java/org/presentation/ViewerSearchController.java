@@ -29,6 +29,7 @@ public class ViewerSearchController {
 
     public static Production productionChosen;
     public static Credit creditChosen;
+    public static String landingSearch = "";
 
     //These hold all data of the 2 lists.
     private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
@@ -55,8 +56,13 @@ public class ViewerSearchController {
 
         activateDoubleClick();
 
+
+
         activateSearchbar();
 
+        landingSearch = ViewerLandingController.landingSearch;
+
+        textSearchBar.setText(landingSearch);
 
     }
 
