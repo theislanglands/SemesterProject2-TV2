@@ -5,11 +5,15 @@ import domain.Production;
 import domain.TvCreditsFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.Date;
@@ -18,9 +22,18 @@ import java.util.List;
 public class ViewerCreditsController {
 
     public TableView listviewProductions;
+    public TextField searchTableButton;
+
     private Credit credit;
     public static Production productionChosen;
     private TvCreditsFacade tvCreditsFacade;
+
+    public Text textName;
+    public Text textPersonBio;
+    public Text textPersonBirthplace;
+    public Text textPersonBirthyear;
+    public Text textRole;
+    public Text textSurname;
 
     private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
 
@@ -46,10 +59,72 @@ public class ViewerCreditsController {
             ViewerProductionsController.creditChosen = null;
         }
 
+        setPageCredit();
+
+
         setTableViewProduction();
         addProductions();
 
         activateDoubleClick();
+        activateSearchbar();
+    }
+
+    private void setPageCredit() {
+
+        textName.setText(credit.getFirstName());
+        textSurname.setText(credit.getLastName());
+        textPersonBio.setText(credit.getCreditName().getBio());
+        textPersonBirthplace.setText(credit.getCreditName().getCountry());
+        textPersonBirthyear.setText(String.valueOf(credit.getCreditName().getDateOfBirth().getYear() + 1900));
+        textRole.setText(credit.getCreditType());
+
+    }
+
+    private void activateSearchbar() {
+
+        //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
+        FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
+
+
+        //adding a listener to the searchBar
+        //only newValue is used, not sure what the other 2 does
+        searchTableButton.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            //this filters the productions based on the input
+            productionFilteredList.setPredicate(production -> {
+
+                //if no value has been put in, return true on every object
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchStringLowerCase = newValue.toLowerCase();
+
+                //These check if the value of the object matches the search string
+                //if they match they return true, which means they are added to the filtered list
+                if (String.valueOf(production.getId()).toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getName().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getReleaseDate().toString().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getProductionType().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getLanguage().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getCompanyProductionName().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else return false;
+            });
+
+            //Sorted list that is passed all objects of the filtered list. Dont know why
+            SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
+            //no idea what this does
+            productionSortedList.comparatorProperty().bind(listviewProductions.comparatorProperty());
+            //adding the filtered objects to the listview
+            listviewProductions.setItems(productionSortedList);
+
+        });
     }
 
     private void activateDoubleClick() {
@@ -84,11 +159,12 @@ public class ViewerCreditsController {
                 //works on firstName, but might put in too many people
 
                 if(cred.getFirstName().equals(credit.getFirstName())){
-                    listviewProductions.getItems().add(prod);
+                    productionObservableList.add(prod);
                     break;
                 }
             }
         }
+        listviewProductions.setItems(productionObservableList);
     }
 
     private void setTableViewProduction(){
