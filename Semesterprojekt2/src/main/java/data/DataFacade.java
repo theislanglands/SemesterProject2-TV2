@@ -454,7 +454,8 @@ public class DataFacade implements DataLayerInterface {
                             "    credit_name.bio, \n" +         //8
                             "    credit_type.type,\n" +         //9
                             "    credit.role,\n" +              //10
-                            "    credit.validated\n" +          //11
+                            "    credit.validated,\n" +         //11
+                            "    credit.production_id " +       //12
                             "FROM credit_name_credit_type_association\n" +
                             "JOIN credit_type ON credit_name_credit_type_association.credit_type_id = credit_type.id\n" +
                             "JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id\n" +
@@ -481,6 +482,7 @@ public class DataFacade implements DataLayerInterface {
                 returnCredit.setCreditType(resultSet.getString(9));
                 returnCredit.setRole(resultSet.getString(10));
                 returnCredit.setValidated(resultSet.getBoolean(11));
+                returnCredit.setProductionId(resultSet.getInt(12));
             }
 
             stmt.close();
@@ -1101,19 +1103,22 @@ public class DataFacade implements DataLayerInterface {
     }
 
     private int getCreditId(int productionId, Credit credit) {
+        int Id = credit.getProductionId();
+        System.out.println("prod id " + Id);
+
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT id FROM credit WHERE role = ? AND production_id = ?");
             stmt.setString(1, credit.getRole());
             stmt.setInt(2, productionId);
             ResultSet resultSet = stmt.executeQuery();
 
+            int returnInt = -1;
             // checks if the ResultSet is empty and returns -1 if that's the case
-            if (!resultSet.next()) {
-                System.out.println("ResultSet is empty");
-                return -1;
-            } else {
-                return resultSet.getInt(1);
+            while(resultSet.next()){
+                returnInt = resultSet.getInt(1);
+                System.out.println("credit ID " + returnInt);
             }
+            return returnInt;
 
         } catch (SQLException ex) {
             ex.printStackTrace();

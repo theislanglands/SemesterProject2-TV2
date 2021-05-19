@@ -11,10 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AdminValidateController {
@@ -30,7 +27,7 @@ public class AdminValidateController {
 
 
     @FXML
-    Button adminLandingButton, searchProductionsButton, invalidateButton, selectNoneButton, approveButton, validateButton, selectAllButton, changeProductionButton, changeCreditButton, addProductionButton, addCreditButton;
+    Button validateProductionButton, validateCreditButton, validateAllCreditsButton, approveButton;
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -50,6 +47,42 @@ public class AdminValidateController {
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
         App.setRoot("search");
     }
+
+    // ACTION HANDLERS!
+    @FXML
+    public void validateProductionButtonHandler(ActionEvent event){
+        System.out.println("validateProdButton");
+        // check om alle krediteringer er valideret.
+    }
+
+    @FXML
+    public void validateCreditButtonHandler(ActionEvent event){
+        // find chosen credit
+        int chosenIndex = validationTableCredits.getSelectionModel().getFocusedIndex();
+        Credit chosenCredit = creditObservableList.get(chosenIndex);
+
+        tvCreditsFacade.validateCredit(chosenCredit);
+        //Removes unvalidated credit from observable list
+        creditObservableList.remove(chosenIndex);
+        //Removes unvalidated credit from table + also disappears from GUI
+        validationTableCredits.getItems().remove(chosenIndex);
+    }
+
+    @FXML
+    public void validateAllCreditsButtonHandler(ActionEvent event){
+//        validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+////        System.out.println("validateAllCreditButton");
+//        int chosenIndex = validationTableCredits.getSelectionModel().getSelectedCells().size();
+//        Credit chosenCredit = creditObservableList.get(chosenIndex);
+//        tvCreditsFacade.validateCredit(chosenCredit);
+//        creditObservableList.remove(chosenIndex);
+//        validationTableCredits.getItems().remove(chosenIndex);
+
+
+    }
+
+
+    //TODO approveButton + change b
 
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();
