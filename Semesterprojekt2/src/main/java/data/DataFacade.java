@@ -27,10 +27,10 @@ public class DataFacade implements DataLayerInterface {
     private String username = "hdzfvhcu";
     private String password = "5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd";
     private String stringType = "unspecified";  // If stringtype is set to varchar (the default),
-                                                // such parameters will be sent to the server as
-                                                // varchar parameters. If stringtype is set to unspecified,
-                                                // parameters will be sent to the server as untyped values,
-                                                // and the server will attempt to infer an appropriate type.
+    // such parameters will be sent to the server as
+    // varchar parameters. If stringtype is set to unspecified,
+    // parameters will be sent to the server as untyped values,
+    // and the server will attempt to infer an appropriate type.
 
     private Connection connection = null;
 
@@ -50,11 +50,11 @@ public class DataFacade implements DataLayerInterface {
             DriverManager.registerDriver(new org.postgresql.Driver());
             connection = DriverManager.getConnection(
                     "jdbc:postgresql://" + url + ":" +
-                    port + "/" +
-                    databaseName + "?" +
-                    "user=" + username +
-                    "&password=" + password +
-                    "&stringtype=" + stringType
+                            port + "/" +
+                            databaseName + "?" +
+                            "user=" + username +
+                            "&password=" + password +
+                            "&stringtype=" + stringType
             );
 
         } catch (SQLException | IllegalArgumentException ex) {
@@ -332,7 +332,7 @@ public class DataFacade implements DataLayerInterface {
             // associate production with genres
             for (String genre : replaceProduction.getGenres()) {
 
-                PreparedStatement stmt3= connection.prepareStatement(
+                PreparedStatement stmt3 = connection.prepareStatement(
                         "INSERT INTO genres_production_association " +
                                 "(genre_id, " +
                                 "production_id) " +
@@ -449,9 +449,12 @@ public class DataFacade implements DataLayerInterface {
                             "    credit_name.address,\n" +      //3
                             "    credit_name.phone,\n" +        //4
                             "    credit_name.email,\n" +        //5
-                            "    credit_type.type,\n" +         //6
-                            "    credit.role,\n" +              //7
-                            "    credit.validated\n" +          //8
+                            "    credit_name.date_of_birth,\n" +//6
+                            "    credit_name.country, \n" +     //7
+                            "    credit_name.bio, \n" +         //8
+                            "    credit_type.type,\n" +         //9
+                            "    credit.role,\n" +              //10
+                            "    credit.validated\n" +          //11
                             "FROM credit_name_credit_type_association\n" +
                             "JOIN credit_type ON credit_name_credit_type_association.credit_type_id = credit_type.id\n" +
                             "JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id\n" +
@@ -469,12 +472,15 @@ public class DataFacade implements DataLayerInterface {
                 associatedName.setAddress(resultSet.getString(3));
                 associatedName.setPhone(resultSet.getInt(4));
                 associatedName.setEmail(resultSet.getString(5));
+                associatedName.setDateOfBirth(resultSet.getDate(6));
+                associatedName.setCountry(resultSet.getString(7));
+                associatedName.setBio(resultSet.getString(8));
                 returnCredit.setCreditName(associatedName);
 
                 // adding remaining parameters to Credit
-                returnCredit.setCreditType(resultSet.getString(6));
-                returnCredit.setRole(resultSet.getString(7));
-                returnCredit.setValidated(resultSet.getBoolean(8));
+                returnCredit.setCreditType(resultSet.getString(9));
+                returnCredit.setRole(resultSet.getString(10));
+                returnCredit.setValidated(resultSet.getBoolean(11));
             }
 
             stmt.close();
@@ -570,15 +576,23 @@ public class DataFacade implements DataLayerInterface {
                             "last_name, " +         //2
                             "address, " +           //3
                             "phone, " +             //4
-                            "email) " +             //5
-                            "VALUES (?,?,?,?,?)",
+                            "email, " +             //5
+                            "date_of_birth, " +     //6
+                            "country, " +           //7
+                            "bio)" +               //8
+                            "VALUES (?,?,?,?,?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
             );
+
+
             stmt.setString(1, creditName.getFirstName());
             stmt.setString(2, creditName.getLastName());
             stmt.setString(3, creditName.getAddress());
             stmt.setInt(4, creditName.getPhone());
             stmt.setString(5, creditName.getEmail());
+            stmt.setDate(6, (java.sql.Date) creditName.getDateOfBirth());
+            stmt.setString(7, creditName.getCountry());
+            stmt.setString(8, creditName.getBio());
 
             stmt.execute();
 
@@ -599,12 +613,10 @@ public class DataFacade implements DataLayerInterface {
     public List<CreditName> getCreditNames() {
 
         try {
-            PreparedStatement stmt = connection.prepareStatement("SELECT id FROM credit_name");
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM credit_name");
             ResultSet sqlReturnValues = stmt.executeQuery();
 
             List<CreditName> returnValue = new ArrayList<>();
-
-            sqlReturnValues.next();
             while (sqlReturnValues.next()) {
                 CreditName creditName = new CreditName();
                 creditName.setId(sqlReturnValues.getInt(1));
@@ -613,6 +625,9 @@ public class DataFacade implements DataLayerInterface {
                 creditName.setAddress(sqlReturnValues.getString(4));
                 creditName.setPhone(sqlReturnValues.getInt(5));
                 creditName.setEmail(sqlReturnValues.getString(6));
+                creditName.setDateOfBirth(sqlReturnValues.getDate(7));
+                creditName.setCountry(sqlReturnValues.getString(8));
+                creditName.setBio(sqlReturnValues.getString(9));
                 returnValue.add(creditName);
             }
             return returnValue;
@@ -628,18 +643,21 @@ public class DataFacade implements DataLayerInterface {
     public CreditName getCreditName(int creditNameID) {
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * from credit_name WHERE id = ?");
-            stmt.setInt(1,creditNameID);
+            stmt.setInt(1, creditNameID);
 
             ResultSet resultSet = stmt.executeQuery();
             CreditName creditName = new CreditName();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 creditName.setId(resultSet.getInt(1));
                 creditName.setFirstName(resultSet.getString(2));
                 creditName.setLastName(resultSet.getString(3));
                 creditName.setAddress(resultSet.getString(4));
                 creditName.setPhone(resultSet.getInt(5));
                 creditName.setEmail(resultSet.getString(6));
+                creditName.setDateOfBirth(resultSet.getDate(7));
+                creditName.setCountry(resultSet.getString(8));
+                creditName.setBio(resultSet.getString(9));
             }
 
             return creditName;
@@ -676,10 +694,10 @@ public class DataFacade implements DataLayerInterface {
                     "UPDATE credit_name SET " +
                             "first_name = ?, " +        // 1
                             "last_name = ?, " +         // 2
-                            "address = ?, "+            // 3
+                            "address = ?, " +            // 3
                             "phone = ?, " +             // 4
                             "email = ? " +              // 5
-                        "WHERE id = ?");                // 6
+                            "WHERE id = ?");                // 6
             stmt.setString(1, replaceCreditName.getFirstName());
             stmt.setString(2, replaceCreditName.getLastName());
             stmt.setString(3, replaceCreditName.getAddress());
@@ -731,15 +749,15 @@ public class DataFacade implements DataLayerInterface {
 
         try {
             PreparedStatement stmt = connection.prepareStatement(
-                        "SELECT genre " +
-                             "FROM genre "+
-                             "JOIN genres_production_association ON genre.id = genres_production_association.genre_id " +
+                    "SELECT genre " +
+                            "FROM genre " +
+                            "JOIN genres_production_association ON genre.id = genres_production_association.genre_id " +
                             "WHERE production_id = ?;");
             stmt.setInt(1, prod_id);
 
             ResultSet resultSet = stmt.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 returnList.add(resultSet.getString(1));
             }
 
@@ -1023,7 +1041,7 @@ public class DataFacade implements DataLayerInterface {
                 System.out.println("ResultSet is empty");
                 return -1;
             } else {
-                    return sqlReturnValues.getInt(1);
+                return sqlReturnValues.getInt(1);
             }
 
         } catch (SQLException ex) {
@@ -1116,13 +1134,12 @@ public class DataFacade implements DataLayerInterface {
                             "VALUES (?, ?, ?)"
             );
             stmt.setString(1, imageText);
-            stmt.setBinaryStream(2, inputStream, (int)file.length());
+            stmt.setBinaryStream(2, inputStream, (int) file.length());
             stmt.setInt(3, productionId);
             stmt.execute();
             stmt.close();
 
-        }
-        catch (FileNotFoundException | SQLException ex) {
+        } catch (FileNotFoundException | SQLException ex) {
             ex.printStackTrace();
         }
     }

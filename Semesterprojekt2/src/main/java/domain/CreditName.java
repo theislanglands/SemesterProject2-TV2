@@ -2,6 +2,8 @@ package domain;
 
 //toString-metoder for at sende information til databasen.
 
+import java.util.Date;
+
 public class CreditName {
 
     private int id;
@@ -11,13 +13,22 @@ public class CreditName {
     private int phone;
     private String email;
 
-    public CreditName(int id, String firstName, String lastName, String address, int phone, String email) {
+
+    private Date dateOfBirth;
+    private String country;
+    private String bio;
+
+    public CreditName(int id, String firstName, String lastName, String address, int phone,
+                      String email, Date dateOfBirth, String country, String bio) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.country = country;
+        this.bio = bio;
     }
 
     public CreditName(){
@@ -76,8 +87,42 @@ public class CreditName {
         this.email = email;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return "CreditName{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", phone=" + phone +
+                ", email='" + email + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", country='" + country + '\'' +
+                ", bio='" + bio + '\'' +
+                '}';
     }
 }
