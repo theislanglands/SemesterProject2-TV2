@@ -186,10 +186,13 @@ INSERT INTO production_type (type) VALUES ('Serie');
 
 
 INSERT INTO production_company (name, address, phone, email, country) VALUES ('SF Film Production ApS', 'filmbyen 1, 5000 Oense', 62856381, 'sffilm@badhotellet.dk', 'Denmark');
+INSERT INTO production_company (name, address, phone, email, country) VALUES ('Koncern TV- og Filmproduktion', 'adresse 2, Kolding', 65926104, 'koncernTvFilm@yahoo.com', 'Denmark');
 
 INSERT INTO production_name (name) VALUES ('Badehotellet');
+INSERT INTO production_name (name) VALUES ('På røven i Nakskov');
 
 INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1999-01-08 04:05:06', 43, true, false, true, true, 'SF102', 'badehotellet er en helt fantastisk serie om et badehotel', 1, 2, 1, 1);
+INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 1, '1969-04-20 04:05:06', 50, false, true, false, false, 'Z0101', 'På røven i nakskov - Underholdning for hele familien!', 2, 2, 1, 2);
 
 -- indsætter skuespillere i credit_name
 INSERT INTO credit_name (first_name, last_name, address, phone, email, date_of_birth, country, bio) VALUES ('Rosalinde', 'Mynster', 'Poulstrupvej 8', 80997397, 'rosalinde@credits.dk', '1990-09-28', 'Danmark', 'Mynster fik sin filmdebut som 16-årig i Niels Arden Oplevs drama To verdener fra 2008, som byggede på en sand historie om et Jehovas Vidne, som bryder fri fra sin familie og menighed. I 2009 blev filmen det danske Oscar-bidrag i kategorien "Bedste udenlandske film". I 2010 spillede hun over for Thure Lindhardt i komedien Sandheden om mænd, og i 2012 var hun med i En kongelig affære. Hendes helt store folkelige gennembrud kom med hovedrollen som Fie i TV 2s dramaserie Badehotellet i 2014, som hun dog valgte at forlade efter fem sæsoner. I de følgende sæsoner nævnes Fie kun, da hun i seriens univers er flyttet til England og har fået børn. - https://da.wikipedia.org/wiki/Rosalinde_Mynster');
@@ -268,6 +271,8 @@ INSERT INTO credit (role, validated, production_id) VALUES ('Bremer', true, 1);
 INSERT INTO credit (role, validated, production_id) VALUES ('Fru Damgaard', true, 1);
 INSERT INTO credit (role, validated, production_id) VALUES ('Fru Skibsreder Holm', true, 1);
 INSERT INTO credit (role, validated, production_id) VALUES ('Arne Kokholm', true, 1);
+INSERT INTO credit (role, validated, production_id) VALUES ('Mono-Lone', false, 2);
+INSERT INTO credit (role, validated, production_id) VALUES ('Kenneth-Klarsyn', false, 2);
 
 -- indsætter foreign keys i credit_name_credit_type_association
 INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (1, 24, 1);
@@ -312,3 +317,4 @@ INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id,
 -- inserting relation between production and genres
 INSERT INTO genres_production_association (production_id, genre_id) VALUES (1, 2);
 INSERT INTO genres_production_association (production_id, genre_id) VALUES (1, 8);
+
