@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class DataFacadeTest {
+public class DataFacadeTest1 {
     //Instance of dataFacade that will be accessed throughout the tests
     DataFacade dbFacade = DataFacade.getInstance();
     //Run the tests contained in the class
