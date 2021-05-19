@@ -1,6 +1,7 @@
 package org.presentation;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -50,13 +51,13 @@ public class AdminValidateController {
 
     // ACTION HANDLERS!
     @FXML
-    public void validateProductionButtonHandler(ActionEvent event){
+    public void validateProductionButtonHandler(ActionEvent event) {
         System.out.println("validateProdButton");
         // check om alle krediteringer er valideret.
     }
 
     @FXML
-    public void validateCreditButtonHandler(ActionEvent event){
+    public void validateCreditButtonHandler(ActionEvent event) {
         // find chosen credit
         int chosenIndex = validationTableCredits.getSelectionModel().getFocusedIndex();
         Credit chosenCredit = creditObservableList.get(chosenIndex);
@@ -69,10 +70,11 @@ public class AdminValidateController {
     }
 
     @FXML
-    public void validateAllCreditsButtonHandler(ActionEvent event){
-//        validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-////        System.out.println("validateAllCreditButton");
-//        int chosenIndex = validationTableCredits.getSelectionModel().getSelectedCells().size();
+    public void validateAllCreditsButtonHandler(ActionEvent event) {
+
+//        System.out.println("validateAllCreditButton");
+
+//        int chosenIndex = validationTableCredits.getFocusModel().focusedCellProperty().get().hashCode();
 //        Credit chosenCredit = creditObservableList.get(chosenIndex);
 //        tvCreditsFacade.validateCredit(chosenCredit);
 //        creditObservableList.remove(chosenIndex);
@@ -84,7 +86,7 @@ public class AdminValidateController {
 
     //TODO approveButton + change b
 
-    public void initialize(){
+    public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
         /*
@@ -103,7 +105,7 @@ public class AdminValidateController {
         addProductions();
         //addUnvalidatedCredits();
         activateDoubleClick();
-
+        validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     private void activateDoubleClick() {
@@ -111,7 +113,7 @@ public class AdminValidateController {
         validationTableProductions.setRowFactory(tv -> {
             TableRow<Production> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Production rowData = row.getItem();
 
                     System.out.println("Double clock on: " + rowData.getName());
@@ -120,11 +122,11 @@ public class AdminValidateController {
                     addUnvalidatedCredits();
                 }
             });
-            return row ;
+            return row;
         });
     }
 
-    private void setTableViewProduction(){
+    private void setTableViewProduction() {
 
 //        private ArrayList<String> genre missing
 
@@ -162,9 +164,8 @@ public class AdminValidateController {
 //        loadedColumn.setCellFactory(tc -> new CheckBoxTableCell<>());
 //        columns.add(loadedColumn);
 
-    //    TableColumn<Production, String> col9 = new TableColumn<>("Produktionsselskab");
-    //   col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
-
+        //    TableColumn<Production, String> col9 = new TableColumn<>("Produktionsselskab");
+        //   col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
 
         //adding columns to the tableview
@@ -181,7 +182,7 @@ public class AdminValidateController {
         // validationTableView.getColumns().add(col10);
     }
 
-    private void addProductions(){
+    private void addProductions() {
         //adding all unvalidated production to the table view
         List<Production> productionList = tvCreditsFacade.getUnValidatedProductions();
         for (Production prod : productionList) {
@@ -189,7 +190,7 @@ public class AdminValidateController {
         }
     }
 
-    private void setTableViewCredits(){
+    private void setTableViewCredits() {
 
         validationTableCredits.getColumns().clear();
         validationTableCredits.getItems().clear();
@@ -219,8 +220,7 @@ public class AdminValidateController {
     }
 
 
-
-    private void addUnvalidatedCredits(){
+    private void addUnvalidatedCredits() {
 
         // System.out.println("prod id " + productionChosen.getId());
 
