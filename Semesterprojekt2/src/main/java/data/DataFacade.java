@@ -579,7 +579,7 @@ public class DataFacade implements DataLayerInterface {
                             "email, " +             //5
                             "date_of_birth, " +     //6
                             "country, " +           //7
-                            "bio)" +               //8
+                            "bio)" +                //8
                             "VALUES (?,?,?,?,?,?,?,?)",
                     PreparedStatement.RETURN_GENERATED_KEYS
             );
@@ -686,24 +686,28 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public boolean updateCreditName(int creditNameId, CreditName replaceCreditName) {
-
-        // returns true if succesful!
-
+        // returns true if successful!
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "UPDATE credit_name SET " +
                             "first_name = ?, " +        // 1
                             "last_name = ?, " +         // 2
-                            "address = ?, " +            // 3
+                            "address = ?, " +           // 3
                             "phone = ?, " +             // 4
-                            "email = ? " +              // 5
-                            "WHERE id = ?");                // 6
+                            "email = ?, " +             // 5
+                            "date_of_birth = ?," +      // 6
+                            "country = ?," +            // 7
+                            "bio = ?" +                 // 8
+                            "WHERE id = ?");            // 9
             stmt.setString(1, replaceCreditName.getFirstName());
             stmt.setString(2, replaceCreditName.getLastName());
             stmt.setString(3, replaceCreditName.getAddress());
             stmt.setInt(4, replaceCreditName.getPhone());
             stmt.setString(5, replaceCreditName.getEmail());
-            stmt.setInt(6, creditNameId);
+            stmt.setDate(6, (java.sql.Date) replaceCreditName.getDateOfBirth());
+            stmt.setString(7, replaceCreditName.getCountry());
+            stmt.setString(8, replaceCreditName.getBio());
+            stmt.setInt(9, creditNameId);
             stmt.execute();
             stmt.close();
 
