@@ -64,7 +64,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textPersonBio" fill="WHITE" layoutX="187.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hej jag heter Mads Mikkelsen.">
+      <Text fx:id="textPersonBio" fill="WHITE" layoutX="187.0" layoutY="634.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hej jag heter Mads Mikkelsen." wrappingWidth="400.0">
          <font>
             <Font size="20.0" />
          </font>
