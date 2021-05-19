@@ -11,7 +11,7 @@ public interface DataLayerInterface {
     // flg metoder defineres for hver klasse!
 
     // Production
-    int createProduction(Production prod);
+    int createProduction(Production prod); // returns created ID, -1 if unsuccesful
     List<Production> getProductions();
     Production getProduction(int id);
     void deleteProduction(int id);
