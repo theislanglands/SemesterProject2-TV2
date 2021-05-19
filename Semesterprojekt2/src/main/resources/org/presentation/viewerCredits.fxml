@@ -80,7 +80,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="941.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
+      <ImageView fx:id="iconSearch" fitHeight="32.0" fitWidth="39.0" layoutX="941.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
@@ -90,7 +90,7 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <TextField fx:id="searchTableButton" layoutX="933.0" layoutY="177.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg...">
+      <TextField fx:id="searchTableButton" layoutX="933.0" layoutY="177.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;">
          <font>
             <Font size="20.0" />
          </font>

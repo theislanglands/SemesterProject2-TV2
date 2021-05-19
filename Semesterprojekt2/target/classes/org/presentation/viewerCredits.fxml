@@ -90,5 +90,10 @@
             <Font size="26.0" />
          </font>
       </Text>
+      <TextField fx:id="searchTableButton" layoutX="933.0" layoutY="177.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
