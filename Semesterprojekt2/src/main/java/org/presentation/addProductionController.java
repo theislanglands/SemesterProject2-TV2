@@ -110,7 +110,8 @@ public class addProductionController {
         App.setRoot("productions");
     }
 
-    public void switchToAddProduction(ActionEvent actionEvent) {
+    public void switchToAddProduction(ActionEvent actionEvent) throws IOException {
+        App.setRoot("addProduction");
     }
 
     public void saveProduction(ActionEvent actionEvent) {

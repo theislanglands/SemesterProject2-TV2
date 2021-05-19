@@ -19,7 +19,9 @@ public class PrimaryController {
         App.setRoot("viewerLanding");
     }
 
-    public void switchToAdmin(ActionEvent actionEvent) {
+    @FXML
+    private void switchToAdminLanding() throws IOException {
+        App.setRoot("administration");
     }
 
     /*Bliver brugt senere med roller

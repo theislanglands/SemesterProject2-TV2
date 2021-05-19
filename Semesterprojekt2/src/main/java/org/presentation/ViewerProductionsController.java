@@ -2,6 +2,7 @@ package org.presentation;
 
 import domain.Credit;
 import domain.Production;
+import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -26,6 +27,16 @@ public class ViewerProductionsController {
     private Production production;
 
     public static Credit creditChosen;
+
+    @FXML
+    private void switchToViewerLanding() throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
+    @FXML
+    private void switchToViewerSearch() throws IOException {
+        App.setRoot("viewerSearch");
+    }
 
 
     public void initialize(){

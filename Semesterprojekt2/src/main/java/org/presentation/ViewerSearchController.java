@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -32,6 +33,16 @@ public class ViewerSearchController {
     //These hold all data of the 2 lists.
     private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
     private final ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
+
+    @FXML
+    private void switchToViewerLanding() throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
+    @FXML
+    private void switchToViewerSearch() throws IOException {
+        App.setRoot("viewerSearch");
+    }
 
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();

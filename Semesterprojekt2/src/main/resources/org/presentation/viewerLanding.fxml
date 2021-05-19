@@ -8,45 +8,45 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerLandingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerLandingController">
    <children>
-      <Line endX="1053.2928466796875" endY="-102.0" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-102.0" stroke="#afafaf" />
-      <Button layoutX="316.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf">
+      <Line endX="1742.7440185546875" endY="-101.9999771118164" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-101.9999771118164" stroke="#afafaf" />
+      <Button fx:id="startPageButton" layoutX="316.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToViewerLanding" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf" AnchorPane.leftAnchor="550.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="credits" layoutX="454.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Krediteringer" textFill="#afafaf">
+      <Button fx:id="creditsButton" layoutX="454.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToViewerSearch" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Krediteringer" textFill="#afafaf" AnchorPane.leftAnchor="690.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#afafaf">
+      <Button fx:id="favouritesButton" layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#afafaf" AnchorPane.leftAnchor="830.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#afafaf">
+      <Button fx:id="musicButton" layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#afafaf" AnchorPane.leftAnchor="955.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <ImageView fx:id="logoLarge" fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0">
+      <ImageView fx:id="logoLarge" fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0" AnchorPane.leftAnchor="669.0">
          <image>
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" onAction="#switchToSearch" prefHeight="40.0" prefWidth="200.0" promptText="Søg på produktioner" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;">
+      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" onAction="#switchToSearch" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <ImageView fx:id="iconSearch" fitHeight="32.0" fitWidth="39.0" layoutX="951.0" layoutY="43.0">
+      <ImageView fx:id="iconSearch" fitHeight="32.0" fitWidth="39.0" layoutX="951.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pictureLiveTV" fitHeight="683.0" fitWidth="1052.0" layoutX="68.0" layoutY="171.0">
+      <ImageView fx:id="pictureLiveTV" fitHeight="778.0" fitWidth="1199.0" layoutX="195.0" layoutY="173.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.24.28.png" />
          </image>

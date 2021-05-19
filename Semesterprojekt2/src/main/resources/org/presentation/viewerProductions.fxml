@@ -11,91 +11,81 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerProductionsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerProductionsController">
    <children>
-      <Line endX="1053.2928466796875" endY="-102.0" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-102.0" stroke="#afafaf" />
-      <Button fx:id="buttonStartPage" layoutX="316.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf">
+      <Line endX="1685.5657958984375" endY="-102.0" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-102.0" stroke="#afafaf" />
+      <Button fx:id="startPageButton" layoutX="316.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToViewerLanding" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf" AnchorPane.leftAnchor="550.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonCredits" layoutX="454.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Krediteringer" textFill="#afafaf">
+      <Button fx:id="creditsButton" layoutX="454.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToViewerSearch" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Krediteringer" textFill="#afafaf" AnchorPane.leftAnchor="690.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonFavourites" layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#afafaf">
+      <Button fx:id="favouritesButton" layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#afafaf" AnchorPane.leftAnchor="830.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonMusic" layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#afafaf">
+      <Button fx:id="musicButton" layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#afafaf" AnchorPane.leftAnchor="955.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <ImageView fx:id="tv2CreditsLogo" fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0">
+      <ImageView fx:id="tv2CreditsLogo" fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0" AnchorPane.leftAnchor="669.0">
          <image>
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="listviewProductions" layoutX="568.0" layoutY="244.0" prefHeight="593.0" prefWidth="524.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
+      <TableView fx:id="listviewProductions" layoutX="835.0" layoutY="221.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="225.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Text fx:id="textFilmTitel" fill="WHITE" layoutX="291.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Druk">
+      <Text fx:id="textFilmTitel" fill="WHITE" layoutX="341.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Druk" AnchorPane.leftAnchor="340.0">
          <font>
             <Font size="34.0" />
          </font>
       </Text>
-      <Text fx:id="textGenre1" fill="WHITE" layoutX="291.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comedy">
+      <Text fx:id="textGenre1" fill="WHITE" layoutX="341.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comedy" AnchorPane.bottomAnchor="671.7812567" AnchorPane.leftAnchor="340.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textLand" fill="WHITE" layoutX="293.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danmark">
+      <Text fx:id="textLand" fill="WHITE" layoutX="343.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danmark" AnchorPane.bottomAnchor="608.0" AnchorPane.leftAnchor="340.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textActor2" fill="WHITE" layoutX="295.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen, Thomas Bo Larsen ">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="317.0" fitWidth="211.0" layoutX="60.0" layoutY="289.0">
+      <ImageView fitHeight="317.0" fitWidth="211.0" layoutX="110.0" layoutY="271.0" AnchorPane.leftAnchor="110.0">
          <image>
             <Image url="@Logo/drukplakat.jpeg" />
          </image>
       </ImageView>
-      <Text fx:id="textActor1" fill="WHITE" layoutX="295.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Magnus Millang, Lars Ranthe">
+      <Text fx:id="textProductionBio" fill="WHITE" layoutX="112.0" layoutY="620.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fire gymnasielærere og venner beslutter sig for, at teste en teori om, at mennesket er født med en halv promille for lidt. Teorien lyder, at alkohol i blodet åbner sindet for omverdenen og får kreativiteten til at stige. Resultatet er opsigtsvækkende. Både undervisningen og resultaterne løfter sig, og vennerne begynder for alvor at mærke livetigen. I takt med, at genstandene ryger indenbords, skrider eksperimentet fremad for nogen, og af sporet for andre. Det bliver tydeligt, at alkohol kan skabe store resultater, men også at den slags vovemod kan have konsekvenser. DRUK er et morsomt, rørende, livsbekræftende og tankevækkende drama om venskab, frihed, kærlighed – og alkohol." wrappingWidth="475.3752021789551">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="textProductionBio" fill="WHITE" layoutX="62.0" layoutY="638.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fire gymnasielærere og venner beslutter sig for, at teste en teori om, at mennesket er født med en halv promille for lidt. Teorien lyder, at alkohol i blodet åbner sindet for omverdenen og får kreativiteten til at stige. Resultatet er opsigtsvækkende. Både undervisningen og resultaterne løfter sig, og vennerne begynder for alvor at mærke livetigen. I takt med, at genstandene ryger indenbords, skrider eksperimentet fremad for nogen, og af sporet for andre. Det bliver tydeligt, at alkohol kan skabe store resultater, men også at den slags vovemod kan have konsekvenser. DRUK er et morsomt, rørende, livsbekræftende og tankevækkende drama om venskab, frihed, kærlighed – og alkohol." wrappingWidth="475.3752021789551">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Text>
-      <Text fx:id="textDirector" fill="WHITE" layoutX="293.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thomas Vinterberg">
+      <Text fx:id="textDirector" fill="WHITE" layoutX="340.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thomas Vinterberg" AnchorPane.bottomAnchor="585.0" AnchorPane.leftAnchor="340.0">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <Text fx:id="textLength" fill="WHITE" layoutX="291.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="116">
+      <Text fx:id="textLength" fill="WHITE" layoutX="341.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="116" AnchorPane.bottomAnchor="650.0" AnchorPane.leftAnchor="340.0">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="textProductionCompany" fill="WHITE" layoutX="294.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nordisk film">
+      <Text fx:id="textProductionCompany" fill="WHITE" layoutX="344.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nordisk film" AnchorPane.leftAnchor="340.0">
          <font>
             <Font size="17.0" />
          </font>
       </Text>
-      <Text fx:id="textGenre2" fill="WHITE" layoutX="376.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drama">
+      <Text fx:id="textGenre2" fill="WHITE" layoutX="426.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drama" AnchorPane.bottomAnchor="670.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -105,22 +95,22 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textLength1" fill="WHITE" layoutX="320.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="min">
+      <Text fx:id="textLength1" fill="WHITE" layoutX="370.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="min" AnchorPane.bottomAnchor="650.0">
          <font>
             <Font size="16.0" />
          </font>
       </Text>
-      <Text fx:id="textYear" fill="WHITE" layoutX="379.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2020">
+      <Text fx:id="textYear" fill="WHITE" layoutX="426.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2020" AnchorPane.bottomAnchor="608.0">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TextField fx:id="textSearchBar" layoutX="974.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg på produktioner">
+      <TextField fx:id="textSearchBar" layoutX="974.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg..." AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="935.0" layoutY="43.0">
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="935.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>

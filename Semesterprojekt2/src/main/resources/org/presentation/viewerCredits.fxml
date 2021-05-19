@@ -11,81 +11,81 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerCreditsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerCreditsController">
    <children>
-      <Line endX="1053.2928466796875" endY="-102.0" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-102.0" stroke="#afafaf" />
-      <Button fx:id="buttonStartPage" layoutX="316.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf">
+      <Line endX="1667.0765380859375" endY="-102.0" layoutX="174.0" layoutY="216.0" startX="-432.4189453125" startY="-102.0" stroke="#afafaf" />
+      <Button fx:id="startPageButton" layoutX="550.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchToViewerLanding" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf" AnchorPane.leftAnchor="550.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonCredits" layoutX="454.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Krediteringer" textFill="#afafaf">
+      <Button fx:id="creditsButton" layoutX="688.0" layoutY="121.0" mnemonicParsing="false" onAction="#switchToViewerSearch" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Krediteringer" textFill="#afafaf" AnchorPane.leftAnchor="690.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonFavourites" layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#afafaf">
+      <Button fx:id="favouritesButton" layoutX="826.0" layoutY="121.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#afafaf" AnchorPane.leftAnchor="830.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="buttonMusic" layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#afafaf">
+      <Button fx:id="musicButton" layoutX="964.0" layoutY="121.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#afafaf" AnchorPane.leftAnchor="955.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <ImageView fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0">
+      <ImageView fitHeight="52.0" fitWidth="296.0" layoutX="672.0" layoutY="34.0" AnchorPane.leftAnchor="669.0">
          <image>
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <Text fx:id="textSurname" fill="WHITE" layoutX="310.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
+      <Text fx:id="textSurname" fill="WHITE" layoutX="368.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <ImageView fitHeight="225.0" fitWidth="269.0" layoutX="129.0" layoutY="238.0">
+      <ImageView fitHeight="225.0" fitWidth="269.0" layoutX="205.0" layoutY="213.0" AnchorPane.leftAnchor="200.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-11%20at%2014.35.48.png" />
          </image>
       </ImageView>
-      <Text fx:id="textRole" fill="WHITE" layoutX="129.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skuespiller">
+      <Text fx:id="textRole" fill="WHITE" layoutX="187.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skuespiller">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textPersonBirthyear" fill="WHITE" layoutX="129.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1965">
+      <Text fx:id="textPersonBirthyear" fill="WHITE" layoutX="187.0" layoutY="576.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1965">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textPersonBirthplace" fill="WHITE" layoutX="129.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danmark">
+      <Text fx:id="textPersonBirthplace" fill="WHITE" layoutX="187.0" layoutY="602.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Danmark">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <Text fx:id="textPersonBio" fill="WHITE" layoutX="129.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hej jag heter Mads Mikkelsen.">
+      <Text fx:id="textPersonBio" fill="WHITE" layoutX="187.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hej jag heter Mads Mikkelsen.">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <TableView fx:id="listviewProductions" layoutX="578.0" layoutY="254.0" prefHeight="593.0" prefWidth="524.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
+      <TableView fx:id="listviewProductions" layoutX="650.0" layoutY="224.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="225.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TextField fx:id="textSearchBar" layoutX="980.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg på produktioner">
+      <TextField fx:id="textSearchBar" layoutX="980.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" text="Søg..." AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="941.0" layoutY="43.0">
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="941.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
       </ImageView>
-      <Text fx:id="textName" fill="WHITE" layoutX="132.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
+      <Text fx:id="textName" fill="WHITE" layoutX="190.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mads Mikkelsen">
          <font>
             <Font size="26.0" />
          </font>

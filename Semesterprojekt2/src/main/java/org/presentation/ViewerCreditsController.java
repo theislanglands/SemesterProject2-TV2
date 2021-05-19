@@ -3,6 +3,7 @@ package org.presentation;
 import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
+import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -18,6 +19,16 @@ public class ViewerCreditsController {
     private Credit credit;
     public static Production productionChosen;
     private TvCreditsFacade tvCreditsFacade;
+
+    @FXML
+    private void switchToViewerLanding() throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
+    @FXML
+    private void switchToViewerSearch() throws IOException {
+        App.setRoot("viewerSearch");
+    }
 
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();

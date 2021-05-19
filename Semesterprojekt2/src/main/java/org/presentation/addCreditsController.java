@@ -40,7 +40,8 @@ public class addCreditsController {
     }
 
 
-    public void switchToAddCredits(ActionEvent actionEvent) {
+    public void switchToAddCredits(ActionEvent actionEvent) throws IOException {
+        App.setRoot("addCredits");
     }
 
     public void switchToAddProduction(ActionEvent actionEvent) throws IOException {
