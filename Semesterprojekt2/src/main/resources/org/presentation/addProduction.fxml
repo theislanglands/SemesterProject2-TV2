@@ -105,7 +105,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="addProductionButton" layoutX="979.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToAddProductions" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
+      <Button fx:id="addProductionButton" layoutX="979.0" layoutY="181.0" mnemonicParsing="false" onAction="#switchToAddProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
          <font>
             <Font size="15.0" />
          </font>

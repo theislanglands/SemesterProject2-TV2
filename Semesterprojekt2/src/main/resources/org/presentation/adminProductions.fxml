@@ -48,12 +48,12 @@
       </Label>
       <VBox layoutX="3.0" layoutY="203.0" prefHeight="623.0" prefWidth="284.0">
          <children>
-            <Button fx:id="searchProductionsButton" mnemonicParsing="false" onAction="#switchToSearch" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Produktioner" textFill="WHITE">
+            <Button fx:id="searchProductionsButton" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Produktioner" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="validateButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15; -fx-text-alignment: left;" text="Validere" textFill="WHITE">
+            <Button fx:id="validateButton" mnemonicParsing="false" onAction="#switchToProduction" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15; -fx-text-alignment: left;" text="Validere" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>
