@@ -80,7 +80,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="941.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
+      <ImageView fx:id="iconSearch" fitHeight="32.0" fitWidth="39.0" layoutX="941.0" layoutY="43.0" onMouseClicked="#switchToViewerSearch" AnchorPane.rightAnchor="235.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
