@@ -72,12 +72,23 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public List<Credit> getUnValidatedCredits(int productionId) {
+
         List<Credit> returnList = new ArrayList<>();
-        for (Credit c : productions.get(productionId).getCredits()) {
+
+        // finding production
+        Production prod = null;
+        for (Production p : productions) {
+            if (p.getId() == productionId) {
+                prod = p;
+            }
+        }
+
+        for (Credit c : prod.getCredits()) {
             if (!c.isValidated()) {
                 returnList.add(c);
             }
         }
+
         return returnList;
     }
 

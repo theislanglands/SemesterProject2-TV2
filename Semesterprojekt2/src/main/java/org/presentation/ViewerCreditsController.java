@@ -205,7 +205,6 @@ public class ViewerCreditsController {
         col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
         //adding columns to the tableview
-
         listviewProductions.getColumns().add(col1);
         listviewProductions.getColumns().add(col2);
         listviewProductions.getColumns().add(col3);

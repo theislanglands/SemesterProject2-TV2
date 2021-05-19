@@ -17,7 +17,6 @@ public interface DataLayerInterface {
     void deleteProduction(int id);
     boolean updateProduction(int sourceProductionID, Production replaceProduction);
 
-
     // Credits
     void createCredits(Credit cred, int productionId);
     List<Credit> getCredits(int prodId);

@@ -90,7 +90,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="validationTableView" layoutX="355.0" layoutY="166.0" prefHeight="593.0" prefWidth="850.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;">
+      <TableView fx:id="validationTableView" layoutX="354.0" layoutY="111.0" prefHeight="331.0" prefWidth="903.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="354.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
@@ -121,5 +121,11 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <TableView fx:id="validationTableView2" layoutX="362.0" layoutY="492.0" prefHeight="331.0" prefWidth="903.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="354.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
