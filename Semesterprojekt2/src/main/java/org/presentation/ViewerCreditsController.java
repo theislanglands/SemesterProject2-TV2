@@ -13,6 +13,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -34,6 +36,7 @@ public class ViewerCreditsController {
     public Text textPersonBirthyear;
     public Text textRole;
     public Text textSurname;
+    public ImageView creditImage;
 
     private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
 
@@ -77,7 +80,7 @@ public class ViewerCreditsController {
         textPersonBirthplace.setText(credit.getCreditName().getCountry());
         textPersonBirthyear.setText(String.valueOf(credit.getCreditName().getDateOfBirth().getYear() + 1900));
         textRole.setText(credit.getCreditType());
-
+        creditImage.setImage(new Image(credit.getImageUrl()));
     }
 
     private void activateSearchbar() {
@@ -149,21 +152,10 @@ public class ViewerCreditsController {
 
     private void addProductions(){
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getAllProductions();
+        List<Production> productionList = tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId());
 
-        for (Production prod :
-                productionList) {
-            List<Credit> credits = prod.getCredits();
-            for (Credit cred :
-                    credits) {
-                //works on firstName, but might put in too many people
+        productionObservableList.addAll(productionList);
 
-                if(cred.getFirstName().equals(credit.getFirstName())){
-                    productionObservableList.add(prod);
-                    break;
-                }
-            }
-        }
         tableViewProductions.setItems(productionObservableList);
     }
 

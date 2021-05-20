@@ -30,6 +30,7 @@ public class Production implements Serializable {
     private int episode;
     private String productionBio;
     private String companyProductionName;
+    private String imageUrl;
     private ArrayList<Credit> credits;
 
     public Production(int id, String productionReference, String name, Date releaseDate, ArrayList<String> genres, String productionType, int length,
@@ -251,6 +252,14 @@ public class Production implements Serializable {
         return productionType;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
         return "Production{" +
@@ -271,7 +280,7 @@ public class Production implements Serializable {
                 ", episode=" + episode +
                 ", productionBio='" + productionBio + '\'' +
                 ", companyProductionName='" + companyProductionName + '\'' +
-                '}';
+                '}' + "\n";
     }
 }
 

@@ -1,15 +1,21 @@
 package data;
 
+import domain.Production;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
-public class DataFacadeTest2 {
+public class DataFacadeTest {
+
+    private DataFacade dataFacade;
 
     @Before
     public void setUp() throws Exception {
+        dataFacade = DataFacade.getInstance();
     }
 
     @After
@@ -38,6 +44,14 @@ public class DataFacadeTest2 {
 
     @Test
     public void updateProduction() {
+    }
+
+    @Test
+    public void getProductionsFromCreditName() {
+        List<Production> testList = dataFacade.getProductionsFromCreditName(2);
+
+        System.out.println(testList);
+        assertNotNull(testList);
     }
 
     @Test

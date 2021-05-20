@@ -6,10 +6,7 @@ import domain.Production;
 import domain.TvCreditsFacade;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
@@ -27,6 +24,7 @@ public class searchController {
 
     public TextField searchBar;
     public Button searchButton;
+    public static Object objectChosen;
 
 
     private TvCreditsFacade tvCreditsFacade;
@@ -106,6 +104,8 @@ public class searchController {
         }
     }
 
+
+
     private void setTableViewProduction(){
 
         tableView.getColumns().clear();
@@ -125,8 +125,7 @@ public class searchController {
         TableColumn<Production, String> col4 = new TableColumn<>("Length");
         col4.setCellValueFactory(new PropertyValueFactory<>("length"));
 
-        TableColumn<Production, String> col5 = new TableColumn<>("Højde");
-        col5.setCellValueFactory(new PropertyValueFactory<>("højde"));
+
 
         //adding columns to the tableview
         tableView.getColumns().clear();
@@ -179,6 +178,36 @@ public class searchController {
         }
         tableView.getItems().addAll(credits);
 
+    }
+
+
+    private void activateDoubleClick() {
+
+        tableView.setRowFactory(tv -> {
+            TableRow<Object> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Object rowData = row.getItem();
+                    objectChosen = rowData;
+                    if(objectChosen instanceof Production){
+
+                        List<Credit> credits = ((Production) objectChosen).getCredits();
+                        setTableViewCredits();
+                        tableView.getItems().clear();
+                        tableView.getItems().add(credits);
+
+                    }else if(objectChosen instanceof Credit){
+                        //Show productions
+
+                        tableView.getItems().clear();
+                        setTableViewProduction();
+
+                        //tableView.getItems().add(tvCreditsFacade.getProductions(objectChosen));
+                    }
+                }
+            });
+            return row;
+        });
     }
 
 

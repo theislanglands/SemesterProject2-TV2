@@ -12,6 +12,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class ViewerProductionsController {
     public Text textDirector;
     public TextField searchTableButton;
     private Production production;
+    public ImageView productionImage;
 
     public static Credit creditChosen;
     private final ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
@@ -60,10 +63,16 @@ public class ViewerProductionsController {
         creditObservableList.addAll(production.getCredits());
         tableViewProductions.setItems(creditObservableList);
 
+        if(production.getImageUrl() != null){
+            productionImage.setImage(new Image(production.getImageUrl()));
+        }else{
+            productionImage.setImage(new Image("http://rannok.dk/TVCredits/production_images/Unknown_production.jpg"));
+        }
 
 
 
         textProductionBio.setText(production.getProductionBio());
+
         textFilmTitel.setText(production.getName());
         if(production.getGenres().size()>0){
             textGenre1.setText(production.getGenres().get(0));
