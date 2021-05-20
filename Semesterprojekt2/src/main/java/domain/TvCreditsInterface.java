@@ -13,6 +13,7 @@ public interface TvCreditsInterface {
     List<Production> getAllProductions();
     List<Production> getValidatedProductions();
     List<Production> getUnValidatedProductions();
+    List<Production> getProductionsFromCreditName(int creditNameId);
 
     // save & update production (for producers)
     boolean saveProduction(Production prod);

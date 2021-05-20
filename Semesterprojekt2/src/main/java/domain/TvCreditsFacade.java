@@ -71,6 +71,11 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     @Override
+    public List<Production> getProductionsFromCreditName(int creditNameId) {
+        return dataconnect.getProductionsFromCreditName(creditNameId);
+    }
+
+    @Override
     public List<Credit> getUnValidatedCredits(int productionId) {
 
         List<Credit> returnList = new ArrayList<>();

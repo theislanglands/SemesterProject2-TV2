@@ -152,21 +152,22 @@ public class ViewerCreditsController {
 
     private void addProductions(){
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getAllProductions();
+        List<Production> productionList = tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId());
 
-        for (Production prod :
-                productionList) {
-            List<Credit> credits = prod.getCredits();
-            for (Credit cred :
-                    credits) {
-                //works on firstName, but might put in too many people
-
-                if(cred.getFirstName().equals(credit.getFirstName())){
-                    productionObservableList.add(prod);
-                    break;
-                }
-            }
-        }
+        productionObservableList.addAll(productionList);
+//        for (Production prod :
+//                productionList) {
+//            List<Credit> credits = prod.getCredits();
+//            for (Credit cred :
+//                    credits) {
+//                //works on firstName, but might put in too many people
+//
+//                if(cred.getFirstName().equals(credit.getFirstName())){
+//                    productionObservableList.add(prod);
+//                    break;
+//                }
+//            }
+//        }
         tableViewProductions.setItems(productionObservableList);
     }
 
