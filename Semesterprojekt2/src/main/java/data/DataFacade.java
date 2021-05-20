@@ -210,6 +210,7 @@ public class DataFacade implements DataLayerInterface {
                             "production_name.name, " +              // 13
                             "production.id, " +                     // 14
                             "production.production_bio " +         // 15
+                            "production.imageURL " +                 // 16
                             "FROM production " +
                             "JOIN production_company ON production_company.id = production.production_company_id " +
                             "JOIN production_type ON production_type.id = production.production_type_id " +
@@ -237,6 +238,7 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setName(sqlReturnValues.getString(13));
                 returnProduction.setId(sqlReturnValues.getInt(14));
                 returnProduction.setProductionBio(sqlReturnValues.getString(15));
+                returnProduction.setImageUrl((sqlReturnValues.getString(16)));
             }
 
             stmt.close();
@@ -456,6 +458,7 @@ public class DataFacade implements DataLayerInterface {
                             "    credit.role,\n" +              //10
                             "    credit.validated,\n" +         //11
                             "    credit.production_id " +       //12
+                            "    credit_name.imageURL " +       //13
                             "FROM credit_name_credit_type_association\n" +
                             "JOIN credit_type ON credit_name_credit_type_association.credit_type_id = credit_type.id\n" +
                             "JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id\n" +
@@ -483,6 +486,7 @@ public class DataFacade implements DataLayerInterface {
                 returnCredit.setRole(resultSet.getString(10));
                 returnCredit.setValidated(resultSet.getBoolean(11));
                 returnCredit.setProductionId(resultSet.getInt(12));
+                returnCredit.setImageUrl(resultSet.getString(13));
             }
 
             stmt.close();
