@@ -58,22 +58,17 @@
             </Button>
          </children>
       </VBox>
-      <Button fx:id="validateCreditButton" layoutX="988.0" layoutY="258.0" mnemonicParsing="false" onAction="#validateCreditButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Validere kreditering" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="250.0">
+      <Button fx:id="validateCreditButton" layoutX="1368.0" layoutY="550.0" mnemonicParsing="false" onAction="#validateCreditButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Valider kreditering" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="550.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="approveButton" layoutX="989.0" layoutY="773.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Godkend" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="740.0">
+      <Button fx:id="validateAllCreditsButton" layoutX="1368.0" layoutY="629.0" mnemonicParsing="false" onAction="#validateAllCreditsButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Valider valgte krediteringer" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="629.0">
          <font>
-            <Font size="15.0" />
+            <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="validateAllCreditsButton" layoutX="989.0" layoutY="328.0" mnemonicParsing="false" onAction="#validateAllCreditsButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Validere valgte krediteringer" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="320.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Button fx:id="validateProductionButton" layoutX="989.0" layoutY="191.0" mnemonicParsing="false" onAction="#validateProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Validere produktion" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
+      <Button fx:id="validateProductionButton" layoutX="989.0" layoutY="191.0" mnemonicParsing="false" onAction="#validateProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Valider produktion" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="180.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -95,5 +90,15 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
+      <Label layoutX="354.0" layoutY="72.0" text="Produktioner til validering" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="354.0" layoutY="457.0" text="Krediteringer til validering" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

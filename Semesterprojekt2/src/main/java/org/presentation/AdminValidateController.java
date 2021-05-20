@@ -1,6 +1,8 @@
 package org.presentation;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import domain.TvCreditsFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,14 +23,14 @@ public class AdminValidateController {
     private Credit credit;
     public static Production productionChosen;
     private TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
-    private final ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
+    private ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
 
     @FXML
     TableView validationTableProductions, validationTableCredits;
 
 
     @FXML
-    Button validateProductionButton, validateCreditButton, validateAllCreditsButton, approveButton;
+    Button validateProductionButton, validateCreditButton, validateAllCreditsButton;
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -50,41 +53,42 @@ public class AdminValidateController {
 
     // ACTION HANDLERS!
     @FXML
-    public void validateProductionButtonHandler(ActionEvent event){
-        System.out.println("validateProdButton");
-        // check om alle krediteringer er valideret.
+    public void validateProductionButtonHandler(ActionEvent event) {
+        //Checks if production has any unvalidated credits
+        if (tvCreditsFacade.getUnValidatedCredits(productionChosen.getId()).size() == 0) {
+            //Validates the chosen production
+            tvCreditsFacade.validateProduction(productionChosen);
+            //Removes the now validated production
+            validationTableProductions.getItems().remove(productionChosen);
+        }
+
     }
 
     @FXML
-    public void validateCreditButtonHandler(ActionEvent event){
+    public void validateCreditButtonHandler(ActionEvent event) {
         // find chosen credit
         int chosenIndex = validationTableCredits.getSelectionModel().getFocusedIndex();
         Credit chosenCredit = creditObservableList.get(chosenIndex);
-
+        //Validates the chosen credit
         tvCreditsFacade.validateCredit(chosenCredit);
         //Removes unvalidated credit from observable list
         creditObservableList.remove(chosenIndex);
-        //Removes unvalidated credit from table + also disappears from GUI
+        //Removes unvalidated credit from table + disappears from GUI
         validationTableCredits.getItems().remove(chosenIndex);
     }
 
     @FXML
-    public void validateAllCreditsButtonHandler(ActionEvent event){
-//        validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-////        System.out.println("validateAllCreditButton");
-//        int chosenIndex = validationTableCredits.getSelectionModel().getSelectedCells().size();
-//        Credit chosenCredit = creditObservableList.get(chosenIndex);
-//        tvCreditsFacade.validateCredit(chosenCredit);
-//        creditObservableList.remove(chosenIndex);
-//        validationTableCredits.getItems().remove(chosenIndex);
-
-
+    public void validateAllCreditsButtonHandler(ActionEvent event) {
+        //Observable list of all credits
+        ObservableList<Credit> allCredits = validationTableCredits.getItems();
+        creditObservableList = validationTableCredits.getSelectionModel().getSelectedItems();
+        for (int i = 0; i < creditObservableList.size(); i++) {
+            tvCreditsFacade.validateCredit(allCredits.get(i));
+        }
+        allCredits.removeAll(creditObservableList);
     }
 
-
-    //TODO approveButton + change b
-
-    public void initialize(){
+    public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
         /*
@@ -103,7 +107,7 @@ public class AdminValidateController {
         addProductions();
         //addUnvalidatedCredits();
         activateDoubleClick();
-
+        validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     private void activateDoubleClick() {
@@ -111,20 +115,20 @@ public class AdminValidateController {
         validationTableProductions.setRowFactory(tv -> {
             TableRow<Production> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Production rowData = row.getItem();
 
-                    System.out.println("Double clock on: " + rowData.getName());
+                    System.out.println("Double click on: " + rowData.getName());
                     productionChosen = rowData;
 
                     addUnvalidatedCredits();
                 }
             });
-            return row ;
+            return row;
         });
     }
 
-    private void setTableViewProduction(){
+    private void setTableViewProduction() {
 
 //        private ArrayList<String> genre missing
 
@@ -162,9 +166,8 @@ public class AdminValidateController {
 //        loadedColumn.setCellFactory(tc -> new CheckBoxTableCell<>());
 //        columns.add(loadedColumn);
 
-    //    TableColumn<Production, String> col9 = new TableColumn<>("Produktionsselskab");
-    //   col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
-
+        //    TableColumn<Production, String> col9 = new TableColumn<>("Produktionsselskab");
+        //   col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
 
         //adding columns to the tableview
@@ -181,7 +184,7 @@ public class AdminValidateController {
         // validationTableView.getColumns().add(col10);
     }
 
-    private void addProductions(){
+    private void addProductions() {
         //adding all unvalidated production to the table view
         List<Production> productionList = tvCreditsFacade.getUnValidatedProductions();
         for (Production prod : productionList) {
@@ -189,7 +192,7 @@ public class AdminValidateController {
         }
     }
 
-    private void setTableViewCredits(){
+    private void setTableViewCredits() {
 
         validationTableCredits.getColumns().clear();
         validationTableCredits.getItems().clear();
@@ -219,8 +222,7 @@ public class AdminValidateController {
     }
 
 
-
-    private void addUnvalidatedCredits(){
+    private void addUnvalidatedCredits() {
 
         // System.out.println("prod id " + productionChosen.getId());
 
