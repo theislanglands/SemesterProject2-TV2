@@ -59,6 +59,7 @@ public class TvCreditsFacadeTest {
         testProduction.setProductionBio("En ny spændende sæson af badehotellet");
         testProduction.setProductionType("Serie");
         testProduction.setCompanyProductionName("SF Film Production ApS");
+        testProduction.setImageUrl("http://rannok.dk/TVCredits/production_images/Unknown_production.jpg");
 
         ArrayList<String> testGenres = new ArrayList<>();
         testGenres.add("Reality");

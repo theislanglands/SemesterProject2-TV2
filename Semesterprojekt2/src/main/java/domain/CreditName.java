@@ -14,6 +14,10 @@ public class CreditName {
     private String email;
 
 
+    private String imageUrl;
+
+
+
     private Date dateOfBirth;
     private String country;
     private String bio;
@@ -109,6 +113,15 @@ public class CreditName {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

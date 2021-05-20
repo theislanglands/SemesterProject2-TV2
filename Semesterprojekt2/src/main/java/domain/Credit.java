@@ -110,10 +110,10 @@ public class Credit {
     }
 
     public String getImageUrl() {
-        return imageUrl;
+        return this.creditName.getImageUrl();
     }
 
     public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+        this.creditName.setImageUrl(imageUrl);
     }
 }
