@@ -14,43 +14,35 @@ import java.util.List;
 
 public class addProductionController {
 
+    public ChoiceBox genreDropdown1, genreDropdown2, genreDropdown3;
+    public ChoiceBox typeDropdown;
+    public ChoiceBox languageDropdown;
 
-    public ChoiceBox genreDropdown2;
-    public ChoiceBox genreDropdown3;
-    public Button activeCreditsButton;
-    TvCreditsFacade tvCreditsFacade;
+    public Button saveAndSubmitButton;
+    public Button logoutButton;
 
-    public Button addProductionButton;
     public TextArea title;
     public TextArea producent;
     public TextArea director;
-    public Button saveButton;
-    public CheckBox subtitles;
-    public CheckBox CC;
-    public DatePicker date;
     public TextArea length;
-    public ChoiceBox typeDropdown;
-    public ChoiceBox languageDropdown;
     public TextArea productionID;
     public TextArea season;
     public TextArea episode;
     public TextArea age;
-    public ChoiceBox genreDropdown1;
+    
+    public CheckBox subtitles;
+    public CheckBox signLanguage;
+    public DatePicker date;
+
+    TvCreditsFacade tvCreditsFacade;
 
     public void initialize(){
 
         //singleton obj
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
-        addProductionButton.setDisable(true);
-
-        //might not need this button
-        activeCreditsButton.setDisable(true);
-
         //adding values to dropdowns
-        //mangler data
-        //should be taken from database
-        setCreditTypeDropdown();
+        setProductionTypeDropdown();
         setGenreDropdown();
         setLanguageDropdown();
 
@@ -76,42 +68,19 @@ public class addProductionController {
             genreDropdown2.getItems().add(s);
             genreDropdown3.getItems().add(s);
         }
-
-       /* genreDropdown1.getItems().add("Krimi");
-        genreDropdown1.getItems().add("Drama");
-        genreDropdown1.getItems().add("Komedie");
-
-        genreDropdown2.getItems().add("Krimi");
-        genreDropdown2.getItems().add("Drama");
-        genreDropdown2.getItems().add("Komedie");
-
-        genreDropdown3.getItems().add("Krimi");
-        genreDropdown3.getItems().add("Drama");
-        genreDropdown3.getItems().add("Komedie");*/
     }
 
-    private void setCreditTypeDropdown() {
-        List<String> creditTypes = tvCreditsFacade.getCreditTypes();
+    private void setProductionTypeDropdown() {
+        List<String> productionTypes = tvCreditsFacade.getProductionTypes();
 
-        for (String s :
-                creditTypes) {
+        for (String s : productionTypes) {
             typeDropdown.getItems().add(s);
         }
 
-        // typeDropdown.getItems().add("Film");
-        // typeDropdown.getItems().add("Serie");
-    }
-
-    public void switchToAddCredits(ActionEvent actionEvent) throws IOException {
-        App.setRoot("addCredits");
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
-        App.setRoot("productions");
-    }
-
-    public void switchToAddProduction(ActionEvent actionEvent) throws IOException {
-        App.setRoot("addProduction");
+        App.setRoot("productionLanding");
     }
 
     public void saveProduction(ActionEvent actionEvent) {
@@ -125,30 +94,12 @@ public class addProductionController {
 
         production.setLength(Integer.parseInt(length.getText()));
 
-        //sets type if any is selected
-        if(typeDropdown.getValue() != null){
-            if(typeDropdown.getValue().equals("Serie"))
-                production.setProductionType("Serie");
-            else if(typeDropdown.getValue().equals("Film")){
-                production.setProductionType("Film");
-            }
-        }
+        //sets type
+        production.setProductionType((String) typeDropdown.getValue());
 
-        //sets language if any is selected
-        if(languageDropdown.getValue() != null){
-            switch((String)languageDropdown.getValue()){
-                case "Dansk":
-                    production.setLanguage("Dansk");
-                    break;
-                case "Engelsk":
-                    production.setLanguage("Engelsk");
-                    break;
-                case "Spansk":
-                    production.setLanguage("Spansk");
-                    break;
-                //mangler resten
-            }
-        }
+        //sets language
+        production.setLanguage((String) languageDropdown.getValue());
+
 
         //Sets genres from a dropdown through an array. This could be refactored in a method
         ArrayList<String> genres = new ArrayList<>();
@@ -170,7 +121,7 @@ public class addProductionController {
             production.setSubtitle(false);
         }
         //maybe change this from subtitle?
-        if(CC.isSelected()){
+        if(signLanguage.isSelected()){
             production.setSignLanguage(true);
         }else{
             production.setSignLanguage(false);
@@ -179,7 +130,7 @@ public class addProductionController {
         production.setActive(false);
         production.setValidated(false);
 
-        //saves production through singleton obj
+        //saves production
         tvCreditsFacade.saveProduction(production);
 
         //clears the fields where user entered info
@@ -197,4 +148,7 @@ public class addProductionController {
     }
 
 
+    public void switchToPrimary(ActionEvent actionEvent) throws IOException{
+        App.setRoot("primary");
+    }
 }
