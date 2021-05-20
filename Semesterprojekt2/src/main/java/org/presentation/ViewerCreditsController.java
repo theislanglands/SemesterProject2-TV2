@@ -176,14 +176,14 @@ public class ViewerCreditsController {
         tableViewProductions.getItems().clear();
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
-        TableColumn<Production, String> col1 = new TableColumn<>("ID");
+        //TableColumn<Production, String> col1 = new TableColumn<>("ID");
         //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
-        col1.setCellValueFactory(new PropertyValueFactory<>("id"));
+       // col1.setCellValueFactory(new PropertyValueFactory<>("id"));
 
-        TableColumn<Production, String> col2 = new TableColumn<>("Title");
+        TableColumn<Production, String> col2 = new TableColumn<>("Titel");
         col2.setCellValueFactory(new PropertyValueFactory<>("name"));
 
-        TableColumn<Production, Date> col3 = new TableColumn<>("Release Date");
+        TableColumn<Production, Date> col3 = new TableColumn<>("Udgivelses Dato");
         col3.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
 
         TableColumn<Production, String> col4 = new TableColumn<>("Type");
@@ -192,20 +192,20 @@ public class ViewerCreditsController {
         TableColumn<Production, String> col5 = new TableColumn<>("Episode");
         col5.setCellValueFactory(new PropertyValueFactory<>("episode"));
 
-        TableColumn<Production, String> col6 = new TableColumn<>("Season");
+        TableColumn<Production, String> col6 = new TableColumn<>("Sæson");
         col6.setCellValueFactory(new PropertyValueFactory<>("season"));
 
-        TableColumn<Production, String> col7 = new TableColumn<>("Length");
+        TableColumn<Production, String> col7 = new TableColumn<>("Længde");
         col7.setCellValueFactory(new PropertyValueFactory<>("length"));
 
-        TableColumn<Production, String> col8 = new TableColumn<>("Language");
+        TableColumn<Production, String> col8 = new TableColumn<>("Sprog");
         col8.setCellValueFactory(new PropertyValueFactory<>("language"));
 
-        TableColumn<Production, String> col9 = new TableColumn<>("Company");
+        TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
         col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
         //adding columns to the tableview
-        tableViewProductions.getColumns().add(col1);
+       // tableViewProductions.getColumns().add(col1);
         tableViewProductions.getColumns().add(col2);
         tableViewProductions.getColumns().add(col3);
         tableViewProductions.getColumns().add(col4);
