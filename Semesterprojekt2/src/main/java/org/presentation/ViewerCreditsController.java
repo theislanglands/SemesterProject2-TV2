@@ -13,6 +13,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -34,6 +36,7 @@ public class ViewerCreditsController {
     public Text textPersonBirthyear;
     public Text textRole;
     public Text textSurname;
+    public ImageView creditImage;
 
     private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
 
@@ -77,7 +80,7 @@ public class ViewerCreditsController {
         textPersonBirthplace.setText(credit.getCreditName().getCountry());
         textPersonBirthyear.setText(String.valueOf(credit.getCreditName().getDateOfBirth().getYear() + 1900));
         textRole.setText(credit.getCreditType());
-
+        creditImage.setImage(new Image(credit.getImageUrl()));
     }
 
     private void activateSearchbar() {
