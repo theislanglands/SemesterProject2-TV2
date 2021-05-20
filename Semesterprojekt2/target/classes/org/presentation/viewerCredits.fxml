@@ -44,7 +44,7 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <ImageView fitHeight="225.0" fitWidth="269.0" layoutX="205.0" layoutY="213.0" AnchorPane.leftAnchor="200.0">
+      <ImageView fx:id="creditImage" fitHeight="225.0" fitWidth="275.0" layoutX="205.0" layoutY="213.0" AnchorPane.leftAnchor="200.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-11%20at%2014.35.48.png" />
          </image>

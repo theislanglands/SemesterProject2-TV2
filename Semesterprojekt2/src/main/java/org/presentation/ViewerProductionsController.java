@@ -63,7 +63,12 @@ public class ViewerProductionsController {
         creditObservableList.addAll(production.getCredits());
         tableViewProductions.setItems(creditObservableList);
 
-        productionImage.setImage(new Image(production.getImageUrl()));
+        if(production.getImageUrl() != null){
+            productionImage.setImage(new Image(production.getImageUrl()));
+        }else{
+            productionImage.setImage(new Image("http://rannok.dk/TVCredits/production_images/Unknown_production.jpg"));
+        }
+
 
 
         textProductionBio.setText(production.getProductionBio());

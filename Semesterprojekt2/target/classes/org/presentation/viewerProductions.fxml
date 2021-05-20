@@ -60,9 +60,9 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <ImageView fitHeight="317.0" fitWidth="211.0" layoutX="110.0" layoutY="271.0" AnchorPane.leftAnchor="110.0">
+      <ImageView fx:id="productionImage" fitHeight="225.0" fitWidth="275.0" layoutX="110.0" layoutY="271.0" AnchorPane.leftAnchor="110.0">
          <image>
-            <Image url="@Logo/drukplakat.jpeg" />
+            <Image url="http://rannok.dk/TVCredits/production_images/drukplakat.jpeg" />
          </image>
       </ImageView>
       <Text fx:id="textProductionBio" fill="WHITE" layoutX="112.0" layoutY="620.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fire gymnasielærere og venner beslutter sig for, at teste en teori om, at mennesket er født med en halv promille for lidt. Teorien lyder, at alkohol i blodet åbner sindet for omverdenen og får kreativiteten til at stige. Resultatet er opsigtsvækkende. Både undervisningen og resultaterne løfter sig, og vennerne begynder for alvor at mærke livetigen. I takt med, at genstandene ryger indenbords, skrider eksperimentet fremad for nogen, og af sporet for andre. Det bliver tydeligt, at alkohol kan skabe store resultater, men også at den slags vovemod kan have konsekvenser. DRUK er et morsomt, rørende, livsbekræftende og tankevækkende drama om venskab, frihed, kærlighed – og alkohol." wrappingWidth="475.3752021789551">
