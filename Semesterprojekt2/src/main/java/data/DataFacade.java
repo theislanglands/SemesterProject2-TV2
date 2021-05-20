@@ -373,7 +373,6 @@ public class DataFacade implements DataLayerInterface {
             stmt.setInt(1, creditNameId);
             ResultSet sqlReturnValues = stmt.executeQuery();
 
-
             // Query Id's of all productions and add production to list.
             while (sqlReturnValues.next()) {
                 productions.add(getProduction(sqlReturnValues.getInt(1)));
@@ -385,6 +384,7 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace();
             return null;
         }
+
 
         return productions;
     }
@@ -491,7 +491,8 @@ public class DataFacade implements DataLayerInterface {
                             "    credit.role,\n" +              //10
                             "    credit.validated,\n" +         //11
                             "    credit.production_id, " +       //12
-                            "    credit_name.imageURL " +       //13
+                            "    credit_name.imageURL, " +       //13
+                            "    credit_name.id "+               //14
                             "FROM credit_name_credit_type_association\n" +
                             "JOIN credit_type ON credit_name_credit_type_association.credit_type_id = credit_type.id\n" +
                             "JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id\n" +
@@ -512,6 +513,7 @@ public class DataFacade implements DataLayerInterface {
                 associatedName.setDateOfBirth(resultSet.getDate(6));
                 associatedName.setCountry(resultSet.getString(7));
                 associatedName.setBio(resultSet.getString(8));
+                associatedName.setId(resultSet.getInt(14));
                 returnCredit.setCreditName(associatedName);
 
                 // adding remaining parameters to Credit
