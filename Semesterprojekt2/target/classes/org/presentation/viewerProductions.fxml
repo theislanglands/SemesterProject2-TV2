@@ -24,12 +24,12 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="favouritesButton" layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#afafaf" AnchorPane.leftAnchor="830.0">
+      <Button fx:id="favouritesButton" layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="#fc0505" AnchorPane.leftAnchor="830.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="musicButton" layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#afafaf" AnchorPane.leftAnchor="955.0">
+      <Button fx:id="musicButton" layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="#fc0808" AnchorPane.leftAnchor="955.0">
          <font>
             <Font size="17.0" />
          </font>
