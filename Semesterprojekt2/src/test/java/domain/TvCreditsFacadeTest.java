@@ -1,10 +1,8 @@
 package domain;
 
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import data.DataFacade;
+import org.junit.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,28 +12,43 @@ import static org.junit.Assert.*;
 
 public class TvCreditsFacadeTest {
 
-    private TvCreditsFacade tvCreditsFacade;
-    private Production testProduction;
-    private CreditName testCreditName;
-    private CreditName testCreditName2;
-    private Credit testCredit;
-    private Credit testCredit2;
+    private static TvCreditsFacade tvCreditsFacade;
+    private static DataFacade dataFacade;
+    private static Production testProduction;
+    private static CreditName testCreditName;
+    private static CreditName testCreditName2;
+    private static Credit testCredit;
+    private static Credit testCredit2;
+    private static List<Integer> productionIds = new ArrayList<>();
 
 
 
 
 
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         tvCreditsFacade = TvCreditsFacade.getInstance();
+
+        // collects the highest present episode-number from production_tabel
+        // in order to avoid duplicate keys while testing
+        List<Production> testList = tvCreditsFacade.getAllProductions();;
+        int[] productionEpisodes = new int[testList.size()];
+        int highestEpisode = 0;
+        int episode;
+        for (Production prod : testList) {
+            episode = prod.getEpisode();
+            if (episode > highestEpisode) {
+                highestEpisode = episode;
+            }
+        }
 
         // Creates a testProduction
         testProduction = new Production();
         testProduction.setProductionReference("SF666");
         testProduction.setName("Badehotellet");
         testProduction.setSeason(4);
-        testProduction.setEpisode(5);
+        testProduction.setEpisode(highestEpisode+1);
         testProduction.setReleaseDate(new Date(100000));
         testProduction.setLength(46);
         testProduction.setSubtitle(true);
@@ -83,11 +96,17 @@ public class TvCreditsFacadeTest {
 
     }
 
+    @AfterClass
+    public static void tearDown() throws Exception {
+        dataFacade = DataFacade.getInstance();
 
-
-    @After
-    public void tearDown() throws Exception {
+        for (Integer productionId : productionIds) {
+            System.out.println(productionId);
+            dataFacade.deleteProduction(productionId);
+        }
     }
+
+
 
     @Test
     public void getInstance() {
@@ -105,6 +124,7 @@ public class TvCreditsFacadeTest {
     public void getAllProductions() {
         List<Production> testList = null;
         testList = tvCreditsFacade.getAllProductions();
+        System.out.println(testList);
         assertNotNull("Unable to retrieve list of productions", testList);
     }
 
@@ -149,6 +169,8 @@ public class TvCreditsFacadeTest {
         List<Production> allProductions = tvCreditsFacade.getAllProductions();
 
         Production testProduction2 = allProductions.get(allProductions.size()-1);
+
+        productionIds.add(testProduction2.getId());
 
         assertEquals(testProduction, testProduction2);
     }
@@ -196,4 +218,8 @@ public class TvCreditsFacadeTest {
     @Test
     public void getGenres() {
     }
+
+
+
+
 }

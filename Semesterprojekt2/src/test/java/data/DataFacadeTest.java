@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class DataFacadeTest2 {
+public class DataFacadeTest {
 
     @Before
     public void setUp() throws Exception {

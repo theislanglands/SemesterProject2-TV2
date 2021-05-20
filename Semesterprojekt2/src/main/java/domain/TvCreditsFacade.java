@@ -198,6 +198,11 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         return dataconnect.getAllGenres();
     }
 
+    public static void main(String[] args) {
+        TvCreditsFacade test = new TvCreditsFacade();
+        System.out.println(test.getAllProductions());
+    }
+
 
 }
 

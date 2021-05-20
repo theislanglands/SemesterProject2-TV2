@@ -3,6 +3,7 @@ package data;
 import domain.Credit;
 import domain.CreditName;
 import domain.Production;
+import javafx.scene.chart.PieChart;
 
 import java.io.File;
 import java.io.FileInputStream;
