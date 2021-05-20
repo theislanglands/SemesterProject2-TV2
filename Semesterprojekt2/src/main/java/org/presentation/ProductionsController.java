@@ -53,6 +53,10 @@ public class ProductionsController {
         App.setRoot("AddCredits");
     }
 
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
     public void search(ActionEvent actionEvent) {
 
         //tvCredits.search(searchBar.getText());

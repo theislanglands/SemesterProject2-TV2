@@ -25,4 +25,8 @@ public class AdministrationController {
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
         App.setRoot("search");
     }
+
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
+    }
 }

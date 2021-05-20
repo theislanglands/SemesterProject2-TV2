@@ -113,9 +113,9 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <MenuButton fx:id="bruger" layoutX="1104.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <MenuButton fx:id="bruger" layoutX="1104.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
+            <MenuItem mnemonicParsing="false" onAction="#switchToViewer" text="Log ud" />
          </items>
          <graphic>
             <ImageView fitHeight="69.0" fitWidth="56.0">

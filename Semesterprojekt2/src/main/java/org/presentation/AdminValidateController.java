@@ -51,6 +51,10 @@ public class AdminValidateController {
         App.setRoot("search");
     }
 
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
     // ACTION HANDLERS!
     @FXML
     public void validateProductionButtonHandler(ActionEvent event) {

@@ -13,9 +13,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.searchController">
    <children>
-      <MenuButton fx:id="bruger" layoutX="1084.0" layoutY="4.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;">
+      <MenuButton fx:id="bruger" layoutX="1084.0" layoutY="4.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
+            <MenuItem mnemonicParsing="false" onAction="#switchToViewer" text="Log ud" />
          </items>
          <graphic>
             <ImageView fitHeight="52.0" fitWidth="56.0">

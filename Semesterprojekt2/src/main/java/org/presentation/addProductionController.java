@@ -114,6 +114,10 @@ public class addProductionController {
         App.setRoot("addProduction");
     }
 
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
     public void saveProduction(ActionEvent actionEvent) {
 
         //When button is pressed initialize a prodcution object with 3 arguments

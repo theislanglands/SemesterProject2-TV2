@@ -52,6 +52,10 @@ public class addCreditsController {
         App.setRoot("productions");
     }
 
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
 
     //Mixing addRole and credit. Confusing to read
 

@@ -33,4 +33,8 @@ public class ProducerController {
     public void switchToSearch(ActionEvent actionEvent) throws IOException {
         App.setRoot("search");
     }
+
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
+    }
 }
