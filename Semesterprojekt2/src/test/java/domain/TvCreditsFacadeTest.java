@@ -124,7 +124,6 @@ public class TvCreditsFacadeTest {
     public void getAllProductions() {
         List<Production> testList = null;
         testList = tvCreditsFacade.getAllProductions();
-        System.out.println(testList);
         assertNotNull("Unable to retrieve list of productions", testList);
     }
 

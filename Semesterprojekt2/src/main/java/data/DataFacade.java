@@ -210,8 +210,8 @@ public class DataFacade implements DataLayerInterface {
                             "language.language, " +                 // 12
                             "production_name.name, " +              // 13
                             "production.id, " +                     // 14
-                            "production.production_bio " +         // 15
-                            "production.imageURL " +                 // 16
+                            "production.production_bio, " +          // 15
+                            "production.imageURL " +                // 16
                             "FROM production " +
                             "JOIN production_company ON production_company.id = production.production_company_id " +
                             "JOIN production_type ON production_type.id = production.production_type_id " +
@@ -458,7 +458,7 @@ public class DataFacade implements DataLayerInterface {
                             "    credit_type.type,\n" +         //9
                             "    credit.role,\n" +              //10
                             "    credit.validated,\n" +         //11
-                            "    credit.production_id " +       //12
+                            "    credit.production_id, " +       //12
                             "    credit_name.imageURL " +       //13
                             "FROM credit_name_credit_type_association\n" +
                             "JOIN credit_type ON credit_name_credit_type_association.credit_type_id = credit_type.id\n" +
