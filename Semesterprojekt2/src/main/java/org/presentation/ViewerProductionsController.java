@@ -73,7 +73,7 @@ public class ViewerProductionsController {
 
         textLength.setText(String.valueOf(production.getLength()));
         textProductionCompany.setText(production.getProductionCompanyName());
-        textYear.setText(String.valueOf(production.getReleaseDate().getYear()));
+        textYear.setText(String.valueOf(production.getReleaseDate().getYear() + 1900));
         //textDirector.setText(production.getProducer());
 
         tableViewProductions.setStyle("-fx-background-color:gray");
