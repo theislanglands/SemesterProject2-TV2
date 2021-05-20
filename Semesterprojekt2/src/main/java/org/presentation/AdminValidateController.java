@@ -2,6 +2,7 @@ package org.presentation;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import domain.TvCreditsFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,7 +23,7 @@ public class AdminValidateController {
     private Credit credit;
     public static Production productionChosen;
     private TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
-    private final ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
+    private ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
 
     @FXML
     TableView validationTableProductions, validationTableCredits;
@@ -54,6 +56,8 @@ public class AdminValidateController {
     public void validateProductionButtonHandler(ActionEvent event) {
         System.out.println("validateProdButton");
         // check om alle krediteringer er valideret.
+        //if prod_id = null -> validate
+//        productionChosen;
     }
 
     @FXML
@@ -71,17 +75,14 @@ public class AdminValidateController {
 
     @FXML
     public void validateAllCreditsButtonHandler(ActionEvent event) {
-
-//        System.out.println("validateAllCreditButton");
-
-//        int chosenIndex = validationTableCredits.getFocusModel().focusedCellProperty().get().hashCode();
-//        Credit chosenCredit = creditObservableList.get(chosenIndex);
-//        tvCreditsFacade.validateCredit(chosenCredit);
-//        creditObservableList.remove(chosenIndex);
-//        validationTableCredits.getItems().remove(chosenIndex);
-
-
+        ObservableList<Credit> allCredits = validationTableCredits.getItems();
+        creditObservableList = validationTableCredits.getSelectionModel().getSelectedItems();
+        for (int i = 0; i < creditObservableList.size(); i++) {
+            tvCreditsFacade.validateCredit(allCredits.get(i));
+        }
+        allCredits.removeAll(creditObservableList);
     }
+
 
 
     //TODO approveButton + change b
