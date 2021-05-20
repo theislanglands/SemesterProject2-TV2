@@ -60,7 +60,7 @@
             <Font size="20.0" />
          </font>
       </Text>
-      <ImageView fitHeight="317.0" fitWidth="211.0" layoutX="110.0" layoutY="271.0" AnchorPane.leftAnchor="110.0">
+      <ImageView fx:id="productionImage" fitHeight="225.0" fitWidth="275.0" layoutX="110.0" layoutY="271.0" AnchorPane.leftAnchor="110.0">
          <image>
             <Image url="http://rannok.dk/TVCredits/production_images/drukplakat.jpeg" />
          </image>
