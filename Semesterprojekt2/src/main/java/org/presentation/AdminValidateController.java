@@ -30,7 +30,7 @@ public class AdminValidateController {
 
 
     @FXML
-    Button validateProductionButton, validateCreditButton, validateAllCreditsButton, approveButton;
+    Button validateProductionButton, validateCreditButton, validateAllCreditsButton;
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -54,10 +54,14 @@ public class AdminValidateController {
     // ACTION HANDLERS!
     @FXML
     public void validateProductionButtonHandler(ActionEvent event) {
-        System.out.println("validateProdButton");
-        // check om alle krediteringer er valideret.
-        //if prod_id = null -> validate
-//        productionChosen;
+        //Checks if production has any unvalidated credits
+        if (tvCreditsFacade.getUnValidatedCredits(productionChosen.getId()).size() == 0) {
+            //Validates the chosen production
+            tvCreditsFacade.validateProduction(productionChosen);
+            //Removes the now validated production
+            validationTableProductions.getItems().remove(productionChosen);
+        }
+
     }
 
     @FXML
@@ -65,16 +69,17 @@ public class AdminValidateController {
         // find chosen credit
         int chosenIndex = validationTableCredits.getSelectionModel().getFocusedIndex();
         Credit chosenCredit = creditObservableList.get(chosenIndex);
-
+        //Validates the chosen credit
         tvCreditsFacade.validateCredit(chosenCredit);
         //Removes unvalidated credit from observable list
         creditObservableList.remove(chosenIndex);
-        //Removes unvalidated credit from table + also disappears from GUI
+        //Removes unvalidated credit from table + disappears from GUI
         validationTableCredits.getItems().remove(chosenIndex);
     }
 
     @FXML
     public void validateAllCreditsButtonHandler(ActionEvent event) {
+        //Observable list of all credits
         ObservableList<Credit> allCredits = validationTableCredits.getItems();
         creditObservableList = validationTableCredits.getSelectionModel().getSelectedItems();
         for (int i = 0; i < creditObservableList.size(); i++) {
@@ -82,10 +87,6 @@ public class AdminValidateController {
         }
         allCredits.removeAll(creditObservableList);
     }
-
-
-
-    //TODO approveButton + change b
 
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
@@ -117,7 +118,7 @@ public class AdminValidateController {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     Production rowData = row.getItem();
 
-                    System.out.println("Double clock on: " + rowData.getName());
+                    System.out.println("Double click on: " + rowData.getName());
                     productionChosen = rowData;
 
                     addUnvalidatedCredits();
