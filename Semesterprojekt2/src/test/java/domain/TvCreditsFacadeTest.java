@@ -23,9 +23,6 @@ public class TvCreditsFacadeTest {
 
 
 
-
-
-
     @BeforeClass
     public static void setUp() throws Exception {
         tvCreditsFacade = TvCreditsFacade.getInstance();

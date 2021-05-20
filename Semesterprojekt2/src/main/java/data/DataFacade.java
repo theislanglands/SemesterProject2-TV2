@@ -210,7 +210,7 @@ public class DataFacade implements DataLayerInterface {
                             "language.language, " +                 // 12
                             "production_name.name, " +              // 13
                             "production.id, " +                     // 14
-                            "production.production_bio, " +          // 15
+                            "production.production_bio, " +         // 15
                             "production.imageURL " +                // 16
                             "FROM production " +
                             "JOIN production_company ON production_company.id = production.production_company_id " +
@@ -355,6 +355,38 @@ public class DataFacade implements DataLayerInterface {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<Production> getProductionsFromCreditName(int creditNameId) {
+
+        List<Production> productions = new ArrayList<>();
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT production_id " +
+                    "FROM credit " +
+                    "INNER JOIN credit_name_credit_type_association ON credit.id = credit_name_credit_type_association.credit_id " +
+                    "INNER JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id " +
+                    "WHERE credit_name_id = ?"
+                    );
+            stmt.setInt(1, creditNameId);
+            ResultSet sqlReturnValues = stmt.executeQuery();
+
+
+            // Query Id's of all productions and add production to list.
+            while (sqlReturnValues.next()) {
+                productions.add(getProduction(sqlReturnValues.getInt(1)));
+            }
+            stmt.close();
+
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return productions;
     }
 
     @Override
