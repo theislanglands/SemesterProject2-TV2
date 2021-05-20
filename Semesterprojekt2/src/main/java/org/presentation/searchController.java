@@ -202,7 +202,7 @@ public class searchController {
                         tableView.getItems().clear();
                         setTableViewProduction();
 
-                        tableView.getItems().add(tvCreditsFacade.getProductions(objectChosen));
+                        //tableView.getItems().add(tvCreditsFacade.getProductions(objectChosen));
                     }
                 }
             });
