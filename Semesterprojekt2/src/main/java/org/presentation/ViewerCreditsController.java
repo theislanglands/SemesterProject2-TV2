@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ViewerCreditsController {
 
-    public TableView listviewProductions;
+    public TableView tableViewProductions;
     public TextField searchTableButton;
 
     private Credit credit;
@@ -120,16 +120,16 @@ public class ViewerCreditsController {
             //Sorted list that is passed all objects of the filtered list. Dont know why
             SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
             //no idea what this does
-            productionSortedList.comparatorProperty().bind(listviewProductions.comparatorProperty());
+            productionSortedList.comparatorProperty().bind(tableViewProductions.comparatorProperty());
             //adding the filtered objects to the listview
-            listviewProductions.setItems(productionSortedList);
+            tableViewProductions.setItems(productionSortedList);
 
         });
     }
 
     private void activateDoubleClick() {
 
-        listviewProductions.setRowFactory(tv -> {
+        tableViewProductions.setRowFactory(tv -> {
             TableRow<Production> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
@@ -164,7 +164,7 @@ public class ViewerCreditsController {
                 }
             }
         }
-        listviewProductions.setItems(productionObservableList);
+        tableViewProductions.setItems(productionObservableList);
     }
 
     private void setTableViewProduction(){
@@ -172,8 +172,8 @@ public class ViewerCreditsController {
 //        private ArrayList<String> genre missing
 
 
-        listviewProductions.getColumns().clear();
-        listviewProductions.getItems().clear();
+        tableViewProductions.getColumns().clear();
+        tableViewProductions.getItems().clear();
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
         TableColumn<Production, String> col1 = new TableColumn<>("ID");
@@ -205,15 +205,15 @@ public class ViewerCreditsController {
         col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
         //adding columns to the tableview
-        listviewProductions.getColumns().add(col1);
-        listviewProductions.getColumns().add(col2);
-        listviewProductions.getColumns().add(col3);
-        listviewProductions.getColumns().add(col4);
-        listviewProductions.getColumns().add(col5);
-        listviewProductions.getColumns().add(col6);
-        listviewProductions.getColumns().add(col7);
-        listviewProductions.getColumns().add(col8);
-        listviewProductions.getColumns().add(col9);
+        tableViewProductions.getColumns().add(col1);
+        tableViewProductions.getColumns().add(col2);
+        tableViewProductions.getColumns().add(col3);
+        tableViewProductions.getColumns().add(col4);
+        tableViewProductions.getColumns().add(col5);
+        tableViewProductions.getColumns().add(col6);
+        tableViewProductions.getColumns().add(col7);
+        tableViewProductions.getColumns().add(col8);
+        tableViewProductions.getColumns().add(col9);
 
 
     }

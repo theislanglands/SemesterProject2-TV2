@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class ViewerProductionsController {
 
-    public TableView listviewProductions;
+    public TableView tableViewProductions;
     public Text textProductionBio;
     public Text textFilmTitel;
     public Text textGenre1;
@@ -58,7 +58,7 @@ public class ViewerProductionsController {
 
         setTableViewCredits();
         creditObservableList.addAll(production.getCredits());
-        listviewProductions.setItems(creditObservableList);
+        tableViewProductions.setItems(creditObservableList);
 
 
 
@@ -76,7 +76,7 @@ public class ViewerProductionsController {
         textYear.setText(String.valueOf(production.getReleaseDate().getYear()));
         //textDirector.setText(production.getProducer());
 
-        listviewProductions.setStyle("-fx-background-color:gray");
+        tableViewProductions.setStyle("-fx-background-color:gray");
 
         activateDoubleClick();
         activateSearchbar();
@@ -86,8 +86,8 @@ public class ViewerProductionsController {
 
     private void setTableViewCredits(){
 
-        listviewProductions.getColumns().clear();
-        listviewProductions.getItems().clear();
+        tableViewProductions.getColumns().clear();
+        tableViewProductions.getItems().clear();
 
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
@@ -106,17 +106,17 @@ public class ViewerProductionsController {
 
         //adding columns to the tableview
 
-        listviewProductions.getColumns().add(col1);
-        listviewProductions.getColumns().add(col2);
-        listviewProductions.getColumns().add(col3);
-        listviewProductions.getColumns().add(col4);
+        tableViewProductions.getColumns().add(col1);
+        tableViewProductions.getColumns().add(col2);
+        tableViewProductions.getColumns().add(col3);
+        tableViewProductions.getColumns().add(col4);
 
 
     }
 
     private void activateDoubleClick(){
 
-        listviewProductions.setRowFactory(tv -> {
+        tableViewProductions.setRowFactory(tv -> {
             TableRow<Credit> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
@@ -178,9 +178,9 @@ public class ViewerProductionsController {
             //Sorted list that is passed all objects of the filtered list. Dont know why
             SortedList<Credit> productionSortedList = new SortedList<>(productionFilteredList);
             //no idea what this does
-            productionSortedList.comparatorProperty().bind(listviewProductions.comparatorProperty());
+            productionSortedList.comparatorProperty().bind(tableViewProductions.comparatorProperty());
             //adding the filtered objects to the listview
-            listviewProductions.setItems(productionSortedList);
+            tableViewProductions.setItems(productionSortedList);
 
         });
     }

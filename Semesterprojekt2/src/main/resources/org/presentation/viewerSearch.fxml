@@ -38,13 +38,13 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="listviewProductions" layoutX="218.0" layoutY="195.0" prefHeight="593.0" prefWidth="697.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.topAnchor="180.0">
+      <TableView fx:id="tableViewProductions" layoutX="218.0" layoutY="195.0" prefHeight="593.0" prefWidth="697.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.topAnchor="180.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TableView fx:id="listviewCredits" layoutX="990.0" layoutY="180.0" prefHeight="593.0" prefWidth="377.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.topAnchor="180.0">
+      <TableView fx:id="tableViewCredits" layoutX="990.0" layoutY="180.0" prefHeight="593.0" prefWidth="377.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.topAnchor="180.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />

@@ -21,8 +21,8 @@ import java.util.Date;
 import java.util.List;
 
 public class ViewerSearchController {
-    public TableView listviewProductions;
-    public TableView listviewCredits;
+    public TableView tableViewProductions;
+    public TableView tableViewCredits;
     public TextField textSearchBar;
 
     private TvCreditsFacade tvCreditsFacade;
@@ -115,9 +115,9 @@ public class ViewerSearchController {
             //Sorted list that is passed all objects of the filtered list. Dont know why
             SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
             //no idea what this does
-            productionSortedList.comparatorProperty().bind(listviewProductions.comparatorProperty());
+            productionSortedList.comparatorProperty().bind(tableViewProductions.comparatorProperty());
             //adding the filtered objects to the listview
-            listviewProductions.setItems(productionSortedList);
+            tableViewProductions.setItems(productionSortedList);
 
 
             //This is the same as above, but for the credit list
@@ -149,8 +149,8 @@ public class ViewerSearchController {
         } );
 
         SortedList<Credit> creditSortedList = new SortedList<>(creditFilteredList);
-        creditSortedList.comparatorProperty().bind(listviewCredits.comparatorProperty());
-        listviewCredits.setItems(creditSortedList);
+        creditSortedList.comparatorProperty().bind(tableViewCredits.comparatorProperty());
+        tableViewCredits.setItems(creditSortedList);
     }
 
 
@@ -159,8 +159,8 @@ public class ViewerSearchController {
 //        private ArrayList<String> genre missing
 
 
-        listviewProductions.getColumns().clear();
-        listviewProductions.getItems().clear();
+        tableViewProductions.getColumns().clear();
+        tableViewProductions.getItems().clear();
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
         TableColumn<Production, String> col1 = new TableColumn<>("ID");
@@ -194,15 +194,15 @@ public class ViewerSearchController {
 
         //adding columns to the tableview
 
-        listviewProductions.getColumns().add(col1);
-        listviewProductions.getColumns().add(col2);
-        listviewProductions.getColumns().add(col3);
-        listviewProductions.getColumns().add(col4);
-        listviewProductions.getColumns().add(col5);
-        listviewProductions.getColumns().add(col6);
-        listviewProductions.getColumns().add(col7);
-        listviewProductions.getColumns().add(col8);
-        listviewProductions.getColumns().add(col9);
+        tableViewProductions.getColumns().add(col1);
+        tableViewProductions.getColumns().add(col2);
+        tableViewProductions.getColumns().add(col3);
+        tableViewProductions.getColumns().add(col4);
+        tableViewProductions.getColumns().add(col5);
+        tableViewProductions.getColumns().add(col6);
+        tableViewProductions.getColumns().add(col7);
+        tableViewProductions.getColumns().add(col8);
+        tableViewProductions.getColumns().add(col9);
 
 
     }
@@ -211,13 +211,13 @@ public class ViewerSearchController {
         //adds all the productions to the master data list productionObservableList
         productionObservableList.addAll(tvCreditsFacade.getAllProductions());
         //adding all data to the table view
-        listviewProductions.getItems().addAll(productionObservableList);
+        tableViewProductions.getItems().addAll(productionObservableList);
     }
 
     private void setTableViewCredits(){
 
-        listviewCredits.getColumns().clear();
-        listviewCredits.getItems().clear();
+        tableViewCredits.getColumns().clear();
+        tableViewCredits.getItems().clear();
 
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
@@ -236,10 +236,10 @@ public class ViewerSearchController {
 
         //adding columns to the tableview
 
-        listviewCredits.getColumns().add(col1);
-        listviewCredits.getColumns().add(col2);
-        listviewCredits.getColumns().add(col3);
-        listviewCredits.getColumns().add(col4);
+        tableViewCredits.getColumns().add(col1);
+        tableViewCredits.getColumns().add(col2);
+        tableViewCredits.getColumns().add(col3);
+        tableViewCredits.getColumns().add(col4);
 
 
     }
@@ -257,13 +257,13 @@ public class ViewerSearchController {
         //adding to the master list
         creditObservableList.addAll(credits);
         //adding master list to the view
-        listviewCredits.getItems().addAll(creditObservableList);
+        tableViewCredits.getItems().addAll(creditObservableList);
     }
 
     //activates the tableViews to allow doubleClick on cells to redirect to other page
     public void activateDoubleClick(){
         //production
-        listviewProductions.setRowFactory(tv -> {
+        tableViewProductions.setRowFactory(tv -> {
             //setting up rows to be able to listen for clicks
             TableRow<Production> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -283,7 +283,7 @@ public class ViewerSearchController {
         });
 
         //credit
-        listviewCredits.setRowFactory(tv -> {
+        tableViewCredits.setRowFactory(tv -> {
             TableRow<Credit> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && !row.isEmpty()) {
@@ -318,7 +318,7 @@ public class ViewerSearchController {
     //no longer in use. Was very, very, very slow
     private void searchProduction(String s){
 
-        listviewProductions.getItems().clear();
+        tableViewProductions.getItems().clear();
 
         //getting all productions to search through
         List<Production> productionList = tvCreditsFacade.getAllProductions();
@@ -342,9 +342,9 @@ public class ViewerSearchController {
 
         //if we ahve matches add them to the view
         if(!searchList.isEmpty()){
-            listviewProductions.getItems().addAll(searchList);
+            tableViewProductions.getItems().addAll(searchList);
         }else{
-            listviewProductions.getItems().add(new Production());
+            tableViewProductions.getItems().add(new Production());
         }
 
     }
@@ -353,8 +353,8 @@ public class ViewerSearchController {
 
     private void searchCredits(String s){
 
-        listviewCredits.getItems().clear();
-        listviewProductions.getItems().clear();
+        tableViewCredits.getItems().clear();
+        tableViewProductions.getItems().clear();
 
         //getting all productions
         List<Production> productionList = tvCreditsFacade.getAllProductions();
@@ -393,14 +393,14 @@ public class ViewerSearchController {
         }
         //if list is not empty add all to the view, else add an empty object
         if(!credits.isEmpty()){
-            listviewCredits.getItems().addAll(credits);
+            tableViewCredits.getItems().addAll(credits);
         }else{
-            listviewCredits.getItems().add(new Credit());
+            tableViewCredits.getItems().add(new Credit());
         }
         if(!productions.isEmpty()){
-            listviewProductions.getItems().addAll(productions);
+            tableViewProductions.getItems().addAll(productions);
         }else{
-            listviewProductions.getItems().add(new Production());
+            tableViewProductions.getItems().add(new Production());
         }
     }
 
