@@ -41,7 +41,7 @@
             <Font name="AlrightSans-Black" size="19.0" />
          </font>
       </Button>
-      <TextField fx:id="productionRefText" layoutX="682.0" layoutY="206.0" prefHeight="27.0" prefWidth="182.0" promptText="Produktions - reference" />
+      <TextField fx:id="productionRefText" layoutX="743.0" layoutY="206.0" prefHeight="27.0" prefWidth="182.0" promptText="Produktions - reference" />
       <TextField fx:id="searchFieldCreditName" layoutX="252.0" layoutY="297.0" prefHeight="25.0" prefWidth="108.0" promptText="Navn..." />
       <ImageView fitHeight="42.0" fitWidth="262.0" layoutX="55.0" layoutY="861.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="45.0">
          <image>
@@ -91,7 +91,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewCredits" layoutX="682.0" layoutY="340.0" prefHeight="475.0" prefWidth="468.0">
+      <TableView fx:id="tableViewCredits" layoutX="743.0" layoutY="340.0" prefHeight="475.0" prefWidth="407.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
@@ -107,7 +107,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="tableViewCreditName" layoutX="249.0" layoutY="340.0" prefHeight="475.0" prefWidth="412.0">
+      <TableView fx:id="tableViewCreditName" layoutX="249.0" layoutY="340.0" prefHeight="475.0" prefWidth="452.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
@@ -118,5 +118,15 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Label layoutX="743.0" layoutY="272.0" prefHeight="54.0" prefWidth="206.0" text="Eksiterende Krediteringer" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="message" layoutX="32.0" layoutY="185.0" prefHeight="69.0" prefWidth="126.0" text="message" textFill="RED">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

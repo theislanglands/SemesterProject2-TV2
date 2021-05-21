@@ -13,10 +13,7 @@ public class CreditName {
     private int phone;
     private String email;
 
-
     private String imageUrl;
-
-
 
     private Date dateOfBirth;
     private String country;

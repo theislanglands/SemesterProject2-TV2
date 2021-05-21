@@ -4,7 +4,9 @@ import data.DataFacade;
 import data.DataLayerInterface;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //Controllerklasse FACADE
 public final class TvCreditsFacade implements TvCreditsInterface {
@@ -209,6 +211,22 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
 
+    //TODO: Bør query DB
+    public Set<CreditName> getAllCreditNames() {
+        Set<CreditName> creditNames = new HashSet<>();
+        for (Production prod :
+                productions) {
+            for (Credit cred :
+                    prod.getCredits()) {
+                creditNames.add(cred.getCreditName());
+            }
+        }
+        return creditNames;
+    }
+
+    public void addCreditName(CreditName creditName) {
+        dataconnect.createCreditName(creditName);
+    }
 }
 
 
