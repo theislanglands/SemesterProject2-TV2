@@ -7,11 +7,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.creditsAdminController">
    <children>
-      <Button fx:id="saveCreditButton" layoutX="966.0" layoutY="674.0" mnemonicParsing="false" onAction="#saveCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <Label layoutX="424.0" layoutY="108.0" prefHeight="54.0" prefWidth="126.0" text="Ny kreditering" textFill="WHITE">
          <font>
             <Font name="System Font" size="19.0" />
@@ -19,7 +14,7 @@
       </Label>
       <Label layoutX="424.0" layoutY="182.0" prefHeight="54.0" prefWidth="126.0" text="Krediterings type" textFill="WHITE">
          <font>
-            <Font size="17.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <Label layoutX="574.0" layoutY="182.0" prefHeight="54.0" prefWidth="126.0" text="Navn" textFill="WHITE">
@@ -27,11 +22,6 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button fx:id="addCreditButton" layoutX="676.0" layoutY="270.0" mnemonicParsing="false" onAction="#addCredit" prefHeight="57.0" prefWidth="175.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="+ Tilføj kreditering" textFill="WHITE">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
       <ChoiceBox fx:id="typeChoiceBox" layoutX="424.0" layoutY="233.0" prefHeight="27.0" prefWidth="126.0" />
       <ImageView fitHeight="69.0" fitWidth="72.0" layoutX="1105.0" layoutY="26.0">
          <image>
@@ -50,7 +40,14 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <VBox layoutX="13.0" layoutY="213.0" prefHeight="623.0" prefWidth="284.0" />
+      <VBox layoutX="13.0" layoutY="213.0" prefHeight="623.0" prefWidth="284.0">
+         <children>
+            <Label fx:id="message" alignment="CENTER_RIGHT" prefHeight="54.0" prefWidth="126.0" textFill="RED">
+               <font>
+                  <Font name="System Font" size="19.0" />
+               </font>
+            </Label>
+         </children></VBox>
       <Label layoutX="959.0" layoutY="43.0" text="Anna Andersson" textFill="WHITE" AnchorPane.rightAnchor="122.0">
          <font>
             <Font size="24.0" />
@@ -101,7 +98,12 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button fx:id="deleteCredit" layoutX="966.0" layoutY="597.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE">
+      <Button fx:id="deleteCredit" layoutX="966.0" layoutY="443.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="addCreditButton" layoutX="966.0" layoutY="362.0" mnemonicParsing="false" onAction="#addCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Tilføj kreditering" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

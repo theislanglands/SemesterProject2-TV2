@@ -3,6 +3,10 @@ package org.presentation;
 import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -27,10 +31,13 @@ public class producerLandingController {
     public static Production productionChosen;
     private TvCreditsFacade tvCreditsFacade;
 
+    private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
+
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
-
+        productionObservableList.addAll(TvCreditsFacade.getInstance().getAllProductions());
         setTableViewProduction();
+        activateSearchbar();
     }
 
     @FXML
@@ -88,8 +95,7 @@ public class producerLandingController {
         tableView.getColumns().add(col5);
 
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getAllProductions();
-        tableView.getItems().addAll(productionList);
+        tableView.getItems().addAll(productionObservableList);
     }
 
     public void selectProductionButtonHandler(ActionEvent actionEvent) {
@@ -122,5 +128,53 @@ public class producerLandingController {
 
     public void showSelected(ActionEvent actionEvent) {
 
+    }
+
+    private void activateSearchbar() {
+
+        //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
+
+        FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
+
+
+        //adding a listener to the searchBar
+        //only newValue is used, not sure what the other 2 does
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            //this filters the productions based on the input
+            productionFilteredList.setPredicate(production -> {
+
+                //if no value has been put in, return true on every object
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchStringLowerCase = newValue.toLowerCase();
+
+                //These check if the value of the object matches the search string
+                //if they match they return true, which means they are added to the filtered list
+                if (String.valueOf(production.getId()).toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getName().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getReleaseDate().toString().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getProductionType().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getLanguage().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else if (production.getCompanyProductionName().toLowerCase().contains(searchStringLowerCase)) {
+                    return true;
+                } else return false;
+            });
+
+            //Sorted list that is passed all objects of the filtered list. Dont know why
+            SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
+            //no idea what this does
+            productionSortedList.comparatorProperty().bind(tableView.comparatorProperty());
+            //adding the filtered objects to the listview
+            tableView.setItems(productionSortedList);
+
+        });
     }
 }
