@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-public class creditsAdminController {
+public class ProducerAddCreditController {
 
     public Button addCreditButton;
     public Button deleteCredit;
@@ -38,6 +38,7 @@ public class creditsAdminController {
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
         productionChosen = producerLandingController.getProductionChosen();
+        creditObservableList.addAll(productionChosen.getCredits());
 
         productionRefText.setText((productionChosen.getProductionReference()));
         //addCreditButton.setDisable(true);
@@ -127,8 +128,8 @@ public class creditsAdminController {
         tableViewCredits.getColumns().add(col4);
 
         //adding data to the table view
-        List<Credit> creditList = productionChosen.getCredits();
-        tableViewCredits.getItems().addAll(creditList);
+
+        tableViewCredits.getItems().addAll(creditObservableList);
     }
 
     private boolean checkFormFields() {
