@@ -80,7 +80,7 @@ public class addProductionController {
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
-        App.setRoot("productionLanding");
+        App.setRoot("producerLanding");
     }
 
     public void switchToViewer(ActionEvent actionEvent) throws IOException {

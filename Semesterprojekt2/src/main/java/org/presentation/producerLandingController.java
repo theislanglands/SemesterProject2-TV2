@@ -94,6 +94,7 @@ public class producerLandingController {
 
     public void selectProductionButtonHandler(ActionEvent actionEvent) {
         productionChosen = (Production) tableView.getSelectionModel().getSelectedItem();
+        message.setText("");
     }
 
     public void search(ActionEvent actionEvent) {
