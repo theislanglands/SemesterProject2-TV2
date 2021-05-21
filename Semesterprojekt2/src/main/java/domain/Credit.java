@@ -6,7 +6,6 @@ public class Credit {
     private String role;
     private String creditType;
     private boolean isValidated = false;
-    private String imageUrl;
     private int productionId;
 
     // Constructors

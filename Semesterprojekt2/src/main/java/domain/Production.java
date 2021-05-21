@@ -1,5 +1,8 @@
 package domain;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -254,6 +257,12 @@ public class Production implements Serializable {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public ImageView getImage(){
+        Image image = new Image(getImageUrl());
+
+        return new ImageView(image);
     }
 
     public void setImageUrl(String imageUrl) {

@@ -33,24 +33,24 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <ImageView fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0" AnchorPane.leftAnchor="669.0">
+      <ImageView fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0" onMouseClicked="#switchToPrimary" AnchorPane.leftAnchor="669.0">
          <image>
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableViewProductions" layoutX="138.0" layoutY="180.0" prefHeight="600.0" prefWidth="685.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.topAnchor="180.0">
+      <TableView fx:id="tableViewProductions" layoutX="138.0" layoutY="180.0" prefHeight="600.0" prefWidth="685.0" stylesheets="@../../style.css" AnchorPane.topAnchor="180.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TableView fx:id="tableViewCredits" layoutX="949.0" layoutY="180.0" prefHeight="601.0" prefWidth="516.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.topAnchor="180.0">
+      <TableView fx:id="tableViewCredits" layoutX="949.0" layoutY="180.0" prefHeight="601.0" prefWidth="516.0" stylesheets="@../../style.css" AnchorPane.topAnchor="180.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" AnchorPane.rightAnchor="40.0">
+      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." stylesheets="@../../style.css" AnchorPane.rightAnchor="40.0">
          <font>
             <Font size="20.0" />
          </font>

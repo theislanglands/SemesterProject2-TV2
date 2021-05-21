@@ -4,7 +4,9 @@ import data.DataFacade;
 import data.DataLayerInterface;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //Controllerklasse FACADE
 public final class TvCreditsFacade implements TvCreditsInterface {
@@ -151,6 +153,12 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         }
     }
 
+    @Override
+    public void deleteProduction(Production production) {
+        productions.remove(production);
+        dataconnect.deleteProduction(production.getId());
+    }
+
     // CREDITS
     @Override
     public void addCredit(Credit credit) {
@@ -208,7 +216,16 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         System.out.println(test.getAllProductions());
     }
 
+    
+    public Set<CreditName> getAllCreditNames() {
+        Set<CreditName> creditNames = new HashSet<>();
+        creditNames.addAll(dataconnect.getCreditNames());
+        return creditNames;
+    }
 
+    public void addCreditName(CreditName creditName) {
+        dataconnect.createCreditName(creditName);
+    }
 }
 
 

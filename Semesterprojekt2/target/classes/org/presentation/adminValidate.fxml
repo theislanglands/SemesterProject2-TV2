@@ -7,9 +7,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.AdminValidateController">
    <children>
-      <MenuButton fx:id="bruger" layoutX="1094.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <MenuButton fx:id="bruger" layoutX="1094.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <items>
-            <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
+            <MenuItem mnemonicParsing="false" onAction="#switchToViewer" text="Log ud" />
          </items>
          <graphic>
             <ImageView fitHeight="69.0" fitWidth="56.0">
@@ -39,7 +39,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <VBox layoutX="3.0" layoutY="203.0" prefHeight="623.0" prefWidth="284.0">
+      <VBox layoutX="3.0" layoutY="203.0" prefHeight="331.0" prefWidth="284.0">
          <children>
             <Button fx:id="adminLandingButton" mnemonicParsing="false" onAction="#switchToAdminLanding" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15; -fx-text-alignment: left;" text="Forside" textFill="WHITE">
                <font>
@@ -51,7 +51,17 @@
                   <Font size="30.0" />
                </font>
             </Button>
-            <Button fx:id="usersButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15; -fx-text-alignment: left;" text="Brugere" textFill="WHITE">
+            <Button fx:id="showAllButton" layoutX="10.0" layoutY="75.0" mnemonicParsing="false" onAction="#showAllButtonHandler" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Vis alle" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="selectValidateButton" layoutX="10.0" layoutY="140.0" mnemonicParsing="false" onAction="#selectValidateButtonHandler" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Til validering" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="usersButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15; -fx-text-alignment: left;" text="Brugere" textFill="RED">
                <font>
                   <Font size="30.0" />
                </font>
@@ -90,15 +100,26 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Label layoutX="354.0" layoutY="72.0" text="Produktioner til validering" textFill="WHITE">
+      <Label fx:id="productionsTableHeader" layoutX="354.0" layoutY="72.0" text="Produktioner til validering" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="354.0" layoutY="457.0" text="Krediteringer til validering" textFill="WHITE">
+      <Label fx:id="creditsTableHeader" layoutX="354.0" layoutY="457.0" text="Krediteringer til validering" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <Label fx:id="message" contentDisplay="CENTER" layoutX="88.0" layoutY="534.0" prefHeight="17.0" prefWidth="114.0" textFill="RED" />
+      <Button fx:id="deleteCreditButton" layoutX="1368.0" layoutY="710.0" mnemonicParsing="false" onAction="#deleteCreditButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet krediting" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteProductionButton" layoutX="1368.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet produktion" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

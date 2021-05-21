@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class addProductionController {
+public class ProducerAddProductionController {
 
     public ChoiceBox genreDropdown1, genreDropdown2, genreDropdown3;
     public ChoiceBox typeDropdown;
@@ -80,7 +80,7 @@ public class addProductionController {
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
-        App.setRoot("productionLanding");
+        App.setRoot("producerLanding");
     }
 
     public void switchToViewer(ActionEvent actionEvent) throws IOException {

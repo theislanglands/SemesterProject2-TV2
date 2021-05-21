@@ -24,6 +24,7 @@ public interface TvCreditsInterface {
     void invalidateProduction(Production prod);
     void validateCredit(Credit credit);
     void invalidateCredit(Credit credit);
+    void deleteProduction(Production production);
 
     // Credits
     void addCredit(Credit credit);

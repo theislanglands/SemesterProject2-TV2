@@ -1,0 +1,18 @@
+
+.table-view{
+    -fx-background-color: #808080;
+}
+
+.table-row-cell:even{
+    -fx-background-color:  	#FF0000 ;
+}
+
+.text-field{
+    -fx-text-inner-color:  #afafaf;
+    -fx-background-color:  #000000;
+}
+
+.root{
+    -fx-background-color: black;
+}
+

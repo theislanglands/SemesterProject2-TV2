@@ -13,7 +13,9 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,6 +65,8 @@ public class ViewerSearchController {
         landingSearch = ViewerLandingController.landingSearch;
 
         textSearchBar.setText(landingSearch);
+
+
 
     }
 
@@ -191,6 +195,12 @@ public class ViewerSearchController {
         TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
         col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
+        TableColumn<Production, Image> col10 = new TableColumn<>("image");
+        col10.setCellValueFactory(new PropertyValueFactory<>("image"));
+
+
+
+
 
         //adding columns to the tableview
 
@@ -203,6 +213,7 @@ public class ViewerSearchController {
         tableViewProductions.getColumns().add(col7);
         tableViewProductions.getColumns().add(col8);
         tableViewProductions.getColumns().add(col9);
+        tableViewProductions.getColumns().add(col10);
 
 
     }
@@ -416,6 +427,7 @@ public class ViewerSearchController {
     }
 
 
-
-
+    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("primary");
+    }
 }
