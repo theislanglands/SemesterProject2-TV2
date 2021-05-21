@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -208,5 +209,8 @@ public class ViewerCreditsController {
         tableViewProductions.getColumns().add(col9);
 
 
+    }
+    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("primary");
     }
 }

@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,6 +64,8 @@ public class ViewerSearchController {
         landingSearch = ViewerLandingController.landingSearch;
 
         textSearchBar.setText(landingSearch);
+
+
 
     }
 
@@ -416,6 +419,7 @@ public class ViewerSearchController {
     }
 
 
-
-
+    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("primary");
+    }
 }
