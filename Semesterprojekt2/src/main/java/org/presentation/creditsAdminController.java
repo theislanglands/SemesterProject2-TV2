@@ -20,6 +20,7 @@ public class creditsAdminController {
     public Button deleteCredit;
     public Button logoutButton;
     public Button saveCreditButton;
+    public Label message;
 
     public TextField lastnameTextField;
     public TextField firstnameTextField;
@@ -34,12 +35,12 @@ public class creditsAdminController {
     private Production productionChosen;
     private ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
 
-    public void initialize(){
+    public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
         productionChosen = producerLandingController.getProductionChosen();
 
         productionRefText.setText((productionChosen.getProductionReference()));
-        addCreditButton.setDisable(true);
+        //addCreditButton.setDisable(true);
 
         setTableViewCredits();
 
@@ -61,20 +62,27 @@ public class creditsAdminController {
 
 
     public void addCredit(ActionEvent actionEvent) {
-        //Create credit obj
-        Credit credit = new Credit();
 
-        //set parameters
-        credit.setCreditType((String) typeChoiceBox.getValue());
-        credit.setFirstName(firstnameTextField.getText());
-        credit.setLastName(lastnameTextField.getText());
-        credit.setProductionId(productionChosen.getId());
-        credit.setRole(roleTextField.getText());
-        //save through singleton
-        tvCreditsFacade.addCredit(credit);
+        if (checkFormFields()) {
+            //Create credit obj
+            Credit credit = new Credit();
+            CreditName associatedName = new CreditName();
+            credit.setCreditName(associatedName);
 
-        //show it to user
-        tableViewCredits.getItems().add(credit);
+            //set parameters
+            credit.setCreditType((String) typeChoiceBox.getValue());
+            credit.setFirstName(firstnameTextField.getText());
+            credit.setLastName(lastnameTextField.getText());
+            credit.setProductionId(productionChosen.getId());
+            credit.setRole(roleTextField.getText());
+            //save through singleton
+            tvCreditsFacade.addCredit(credit);
+
+            System.out.println("cr: " + credit);
+            //show it to user
+            tableViewCredits.getItems().add(credit);
+            clearFormFields();
+        }
     }
 
     public void deleteCredit(ActionEvent actionEvent) {
@@ -87,7 +95,6 @@ public class creditsAdminController {
         //delete from gui
         tableViewCredits.getItems().remove(selectedItem);
     }
-
 
     public void saveCredits(ActionEvent actionEvent) {
 
@@ -123,4 +130,41 @@ public class creditsAdminController {
         List<Credit> creditList = productionChosen.getCredits();
         tableViewCredits.getItems().addAll(creditList);
     }
+
+    private boolean checkFormFields() {
+
+        System.out.println("checks fields");
+        boolean result = true;
+        String setMessage = "";
+        // Checks if all fields are complete and sets message if not
+        if (lastnameTextField.getText().equals("")) {
+            setMessage += "indtast efternavn\n";
+            result = false;
+        }
+        if (firstnameTextField.getText().equals("")) {
+            setMessage += "indtast fornavn\n";
+            result = false;
+        }
+        if (roleTextField.getText().equals("")) {
+            setMessage += "udfyld rolle\n";
+            result = false;
+        }
+        if (typeChoiceBox.getValue().equals("")) {
+            setMessage += "vælg krediteringstype\n";
+            result = false;
+        }
+
+        message.setText(setMessage);
+        return result;
+    }
+
+    private void clearFormFields(){
+        message.setText("");
+        lastnameTextField.setText("");
+        firstnameTextField.setText("");
+        roleTextField.setText("");
+        typeChoiceBox.setValue("");
+
+    }
+
 }
