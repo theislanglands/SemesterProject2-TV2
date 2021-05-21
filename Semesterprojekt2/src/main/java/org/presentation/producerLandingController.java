@@ -38,6 +38,7 @@ public class producerLandingController {
         productionObservableList.addAll(TvCreditsFacade.getInstance().getAllProductions());
         setTableViewProduction();
         activateSearchbar();
+        activateDoubleClick();
     }
 
     @FXML
@@ -175,6 +176,26 @@ public class producerLandingController {
             //adding the filtered objects to the listview
             tableView.setItems(productionSortedList);
 
+        });
+    }
+
+    private void activateDoubleClick() {
+
+        tableView.setRowFactory(tv -> {
+            TableRow<Production> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Production rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getName());
+                    productionChosen = rowData;
+                    try {
+                        App.setRoot("addCredits");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
         });
     }
 }
