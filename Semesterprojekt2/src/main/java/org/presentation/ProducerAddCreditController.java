@@ -11,8 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 
 public class ProducerAddCreditController {
 
@@ -37,7 +35,7 @@ public class ProducerAddCreditController {
 
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
-        productionChosen = producerLandingController.getProductionChosen();
+        productionChosen = ProducerLandingController.getProductionChosen();
         creditObservableList.addAll(productionChosen.getCredits());
 
         productionRefText.setText((productionChosen.getProductionReference()));
@@ -170,6 +168,4 @@ public class ProducerAddCreditController {
         typeChoiceBox.setValue("");
 
     }
-
-
 }
