@@ -1,9 +1,5 @@
 package domain;
 
-
-import domain.Production;
-
-
 import java.util.List;
 import java.util.Set;
 

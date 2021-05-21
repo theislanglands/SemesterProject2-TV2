@@ -17,7 +17,7 @@ import java.util.List;
 
 public class DataFacade implements DataLayerInterface {
 
-    // singeltion instance
+    // Singleton instance
     private static DataFacade instance;
 
     // database connection setup
@@ -26,9 +26,10 @@ public class DataFacade implements DataLayerInterface {
     private String databaseName = "hdzfvhcu";
     private String username = "hdzfvhcu";
     private String password = "5pfvgV5fp9kT6J2Z5mJ92CnEuXnofxVd";
-    private String stringType = "unspecified";  // If stringtype is set to varchar (the default),
+    private String stringType = "unspecified";
+    // If stringType is set to varchar (the default),
     // such parameters will be sent to the server as
-    // varchar parameters. If stringtype is set to unspecified,
+    // varchar parameters. If stringType is set to unspecified,
     // parameters will be sent to the server as untyped values,
     // and the server will attempt to infer an appropriate type.
 
@@ -60,15 +61,15 @@ public class DataFacade implements DataLayerInterface {
         } catch (SQLException | IllegalArgumentException ex) {
             ex.printStackTrace(System.err);
         } finally {
-            // TODO: Aksel: Lukker hele programmet hvis connection = null?
+            // Checks if no connection and close application
             if (connection == null) System.exit(-1);
+            System.out.println("Ingen forbindelse til database, programmet afsluttes");
         }
     }
 
     @Override
     public int createProduction(Production prod) {
-
-        // returns key if succesful, -1 if not
+        // returns key if successful, -1 if not
         int productionId = -1;
         try {
             //Begin statement - Transaction
@@ -125,7 +126,6 @@ public class DataFacade implements DataLayerInterface {
             productionId = resultSet.getInt(1);
             stmt1.close();
 
-
             // associate production with genres
             for (String genre : prod.getGenres()) {
 
@@ -145,11 +145,11 @@ public class DataFacade implements DataLayerInterface {
             connection.commit();
 
 
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
             System.out.println("Error, could not create production.");
 
-            // TODO: Er det den rigtig måde at Rollback på i JAVA?
+            // Rollback of transaction if any error occurs
             if (connection != null) {
                 try {
                     connection.rollback();
@@ -321,8 +321,6 @@ public class DataFacade implements DataLayerInterface {
             stmt.executeUpdate();
             stmt.close();
 
-            // TODO: Burde kunne løses mere enkelt med et "DELETE ON UPDATE CASCADE"-agtig ting i SQL-scriptet
-
             // Deleting existing genre associations
             PreparedStatement stmt2 = connection.prepareStatement(
                     "DELETE FROM genres_production_association WHERE production_id = ?"
@@ -351,6 +349,15 @@ public class DataFacade implements DataLayerInterface {
 
         } catch (SQLException ex) {
             ex.printStackTrace();
+            // Rollback of transaction if any error occurs
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Transaction is being rolled back");
+                }
+            }
             return false;
         }
         return true;
@@ -364,11 +371,11 @@ public class DataFacade implements DataLayerInterface {
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "SELECT production_id " +
-                    "FROM credit " +
-                    "INNER JOIN credit_name_credit_type_association ON credit.id = credit_name_credit_type_association.credit_id " +
-                    "INNER JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id " +
-                    "WHERE credit_name_id = ?"
-                    );
+                            "FROM credit " +
+                            "INNER JOIN credit_name_credit_type_association ON credit.id = credit_name_credit_type_association.credit_id " +
+                            "INNER JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id " +
+                            "WHERE credit_name_id = ?"
+            );
             stmt.setInt(1, creditNameId);
             ResultSet sqlReturnValues = stmt.executeQuery();
 
@@ -383,8 +390,6 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace();
             return null;
         }
-
-
         return productions;
     }
 
@@ -439,13 +444,21 @@ public class DataFacade implements DataLayerInterface {
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
+            // Rollback of transaction if any error occurs
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Transaction is being rolled back");
+                }
+            }
         }
     }
 
     @Override
     public List<Credit> getCredits(int productionId) {
         // returns a list of credits associated with production
-
         List<Credit> returnCredits = new ArrayList<>();
 
         try {
@@ -491,7 +504,7 @@ public class DataFacade implements DataLayerInterface {
                             "    credit.validated,\n" +         //11
                             "    credit.production_id, " +       //12
                             "    credit_name.imageURL, " +       //13
-                            "    credit_name.id "+               //14
+                            "    credit_name.id " +               //14
                             "FROM credit_name_credit_type_association\n" +
                             "JOIN credit_type ON credit_name_credit_type_association.credit_type_id = credit_type.id\n" +
                             "JOIN credit_name ON credit_name_credit_type_association.credit_name_id = credit_name.id\n" +
@@ -554,7 +567,7 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public boolean updateCredit(int creditID, Credit replaceCredit) {
-        // returns true if succesfull!
+        // returns true if successful!
 
         try {
             connection.setAutoCommit(false);
@@ -630,7 +643,7 @@ public class DataFacade implements DataLayerInterface {
             stmt.setString(3, creditName.getAddress());
             stmt.setInt(4, creditName.getPhone());
             stmt.setString(5, creditName.getEmail());
-            stmt.setDate(6,  new java.sql.Date(creditName.getDateOfBirth().getTime()));
+            stmt.setDate(6, new java.sql.Date(creditName.getDateOfBirth().getTime()));
             stmt.setString(7, creditName.getCountry());
             stmt.setString(8, creditName.getBio());
 
@@ -788,7 +801,6 @@ public class DataFacade implements DataLayerInterface {
 
     public List<String> getGenres(int prod_id) {
         // returns all genres associated with an production
-
         List<String> returnList = new ArrayList<>();
 
         try {
@@ -880,15 +892,12 @@ public class DataFacade implements DataLayerInterface {
     }
 
 
-    // Method which recieves a Date-object og converts to a dataformat which can be used as TIMESTAMP in database
-
+    // Method which receives a Date-object og converts to a dataformat which can be used as TIMESTAMP in database
     public String dateFormatter(Date date) {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return formatter.format(date);
     }
 
-
-    //ERSTATTER ENUMS
     // CreditType
     @Override
     public List<String> getAllCreditTypes() {
@@ -971,7 +980,7 @@ public class DataFacade implements DataLayerInterface {
     }
 
 
-    // private metoder til at finde ID på foreign keys i tabeller, -1 hvis ikke findes
+    // Private Methods for retrieving ID's on foreign keys, returns -1 if not found in table
     private int getProdCompanyId(String productionCompany) {
         try {
             PreparedStatement stmtGetCompanyId = connection.prepareStatement("SELECT id FROM production_company WHERE name = ?");
@@ -1052,7 +1061,7 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    // Returnerer id på creditType der matcher navnet
+    // Returns id for creditType which matches the name
     private int getCreditTypeId(String creditType) {
         try {
             PreparedStatement stmtGetTypeId = connection.prepareStatement("SELECT id FROM credit_type WHERE type = ?");
@@ -1115,31 +1124,6 @@ public class DataFacade implements DataLayerInterface {
         }
     }
 
-    private int getProductionId(Production production) {
-        try {
-            PreparedStatement stmtGenreId = connection.prepareStatement("SELECT id " +
-                    "FROM production " +
-                    "WHERE season = ? AND episode = ? AND production_name_id = ?");
-            stmtGenreId.setInt(1, production.getSeason());
-            stmtGenreId.setInt(2, production.getEpisode());
-            stmtGenreId.setInt(3, getProductionNameId(production.getName()));
-
-            ResultSet sqlReturnValues = stmtGenreId.executeQuery();
-
-            // checks if the ResultSet is empty and returns -1 if that's the case
-            if (!sqlReturnValues.next()) {
-                System.out.println("ResultSet is empty");
-                return -1;
-            } else {
-                return sqlReturnValues.getInt(1);
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return -1;
-        }
-    }
-
     private int getCreditId(int productionId, Credit credit) {
         int Id = credit.getProductionId();
         System.out.println("prod id " + Id);
@@ -1152,7 +1136,7 @@ public class DataFacade implements DataLayerInterface {
 
             int returnInt = -1;
             // checks if the ResultSet is empty and returns -1 if that's the case
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 returnInt = resultSet.getInt(1);
                 System.out.println("credit ID " + returnInt);
             }
@@ -1163,34 +1147,5 @@ public class DataFacade implements DataLayerInterface {
             return -1;
         }
     }
-
-
-    // method for adding production images to database
-    public void insertImage(String imageUrl, String imageText, int productionId) {
-        // TODO: Det er nok kun når vi tester den, at vi kan bruge en url til
-        //  at finde filen. Ved ikke hvordan det fungerer med at uploade et billede
-        //  i GUI'en (Simon)
-        try {
-            File file = new File(imageUrl);
-            FileInputStream inputStream = new FileInputStream(file);
-            PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO production_images (" +
-                            "image_text, " +
-                            "image, " +
-                            "production_id) " +
-                            "VALUES (?, ?, ?)"
-            );
-            stmt.setString(1, imageText);
-            stmt.setBinaryStream(2, inputStream, (int) file.length());
-            stmt.setInt(3, productionId);
-            stmt.execute();
-            stmt.close();
-
-        } catch (FileNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
 }
 
-// TODO: ret danske kommentarer til engelsk
