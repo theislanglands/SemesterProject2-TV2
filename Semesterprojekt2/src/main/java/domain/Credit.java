@@ -116,4 +116,12 @@ public class Credit {
     public void setImageUrl(String imageUrl) {
         this.creditName.setImageUrl(imageUrl);
     }
+
+    public void setFirstName(String firstName){
+        this.creditName.setFirstName(firstName);
+    }
+
+    public void setLastName(String lastName){
+        this.creditName.setLastName(lastName);
+    }
 }
