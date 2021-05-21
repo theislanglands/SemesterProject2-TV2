@@ -195,7 +195,7 @@ INSERT INTO production_name (name) VALUES ('Badehotellet');
 INSERT INTO production_name (name) VALUES ('På røven i Nakskov');
 INSERT INTO production_name (name) VALUES ('Druk');
 
-INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, imageurl, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1999-01-08 04:05:06', 43, true, false, true, true, 'SF102', 'Badehotellet er en helt fantastisk serie om et badehotel', 'http://rannok.dk//TVCredits/production_images/badehotellet_s01.jpg', 1, 2, 1, 1);
+INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, imageurl, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 2, '1999-01-08 04:05:06', 43, true, false, true, true, 'SF102', 'Handlingen udspiller sig på det lille Andersens Badehotel ved Vesterhavet i det nordligste Jylland i sommeren 1928 og følger livet blandt farverige stamgæster og lokale ansatte. Centralt i fortællingen står den 18-årige Fie, der i seriens første afsnit får ansættelse som stuepige. Hun har kun planlagt at være der sommeren over, men det lille hotel bliver hendes skæbne, mens tiden slår om fra optimisme til krise, og den store verden udenfor har retning mod katastrofen.', 'http://rannok.dk//TVCredits/production_images/badehotellet_s01.jpg', 1, 2, 1, 1);
 INSERT INTO production (season, episode, release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, imageurl, production_company_id, production_type_id, language_id, production_name_id) VALUES (1, 1, '1969-04-20 04:05:06', 50, false, true, false, false, 'Z0101', 'På røven i nakskov - Underholdning for hele familien!', 'http://rannok.dk//TVCredits/production_images/paa_roeven_i_naksskov.jpg', 2, 2, 1, 2);
 INSERT INTO production (release_date, length, subtitle, sign_language, active, validated, production_reference, production_bio, imageurl, production_company_id, production_type_id, language_id, production_name_id) VALUES ('2020-09-24 04:05:06', 116, false, false, false, false, 'ZDruk22020', 'Fire gymnasielærere og venner beslutter sig for at teste en teori om, at mennesket er født med en halv promille for lidt. Teorien lyder, at alkohol i blodet åbner sindet for omverdenen og får kreativiteten til at stige. Resultatet er opsigtsvækkende. Både undervisningen og resultaterne løfter sig, og vennerne begynder for alvor at mærke livet igen. I takt med at genstandene ryger indenbords, skrider eksperimentet fremad for nogle og af sporet for andre. Det bliver tydeligt, at alkohol kan skabe store resultater, men også at den slags vovemod kan have konsekvenser. Filmen er et drama om venskab, frihed, kærlighed – og alkohol.', 'http://rannok.dk//TVCredits/production_images/drukplakat.jpeg', 3, 1, 1, 3);
 
@@ -243,6 +243,16 @@ INSERT INTO credit_name (first_name, last_name, address, phone, email, date_of_b
 INSERT INTO credit_name (first_name, last_name, address, phone, email, date_of_birth, country, bio, imageurl) VALUES ('Magnus', 'Millang', 'Kunstner Allé 33, 2900 Hellerup', 56895241, 'MagnusMillang@skuespiller.dk', '1981-07-20', 'Danmark', 'Magnus Millang fik sit gennembrud i TV 2 Zulus komedieserie Danish Dynamite i 2012. I 2014 vandt han prisen som Årets komiker ved Comedy Galla Awards. Millang spillefilmdebuterede som skuespiller i Kvinden i buret (2013) og har siden medvirket i en række film, blandt andet Kollektivet (2016), Dan-Dream (2017), Kursk (2018) og Druk (2020), der indbragte ham og hans tre medskuespillere skuespilprisen ved San Sebastián Filmfestival.', 'http://rannok.dk//TVCredits/production_images/magnus_millang.jpg');
 INSERT INTO credit_name (first_name, last_name, address, phone, email, date_of_birth, country, imageurl) VALUES ('Ib', 'Andersen', 'Nakskovvej 1, 4900 Nakskov', 78456532, 'IbAndersen@Nakskov.dk', '1965-09-17', 'Danmark', 'http://rannok.dk//TVCredits/production_images/ib_fra_nakskov_.jpg');
 INSERT INTO credit_name (first_name, last_name, address, phone, email, date_of_birth, country, imageurl) VALUES ('Kenneth', 'Rasmussen', 'Nakskovvej 4, 4900 Nakskov', 59647852, 'KennethsKlarsyn@Clavoyant.dk', '1971-10-05', 'Danmark', 'http://rannok.dk//TVCredits/production_images/kenneth_fra_nakskov.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Jacob', 'Kusk', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg'); -- Fotograf
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Steen', 'Schapiro', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Janne Bjerg', 'Sørensen', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Karen', 'Søsted', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Bobby', 'Hess', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Halfdan', 'E.', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Jeppe', 'Kaas', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Jette', 'Lehmann', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO credit_name (first_name, last_name, country, imageurl) VALUES ('Christian', 'Grønvall', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
+INSERT INTO  credit_name (first_name, last_name, country, imageurl) VALUES ('Jette', 'Termann', 'Danmark', 'http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg');
 
 
 -- indsætter krediteringer i credit
@@ -283,14 +293,24 @@ INSERT INTO credit (role, validated, production_id) VALUES ('Bremer', true, 1);
 INSERT INTO credit (role, validated, production_id) VALUES ('Fru Damgaard', true, 1);
 INSERT INTO credit (role, validated, production_id) VALUES ('Fru Skibsreder Holm', true, 1);
 INSERT INTO credit (role, validated, production_id) VALUES ('Arne Kokholm', true, 1);
--- indsætter krediteringer i credit for På røven i Nakskov
 INSERT INTO credit (role, validated, production_id) VALUES ('Ib', false, 2);
 INSERT INTO credit (role, validated, production_id) VALUES ('Kenneth-Klarsyn', false, 2);
--- indsætter krediteringer i credit for druk
 INSERT INTO credit (role, validated, production_id) VALUES ('Martin', false, 3);
 INSERT INTO credit (role, validated, production_id) VALUES ('Tommy', false, 3);
 INSERT INTO credit (role, validated, production_id) VALUES ('Nikolaj', false, 3);
 INSERT INTO credit (role, validated, production_id) VALUES ('Peter', false, 3);
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Fotograf
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Klipper
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Klipper
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Klipper
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Lyd
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Musikals arrangement
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Musikals arrangement
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Scenograf
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Casting
+INSERT INTO credit (validated, production_id) VALUES (false, 1); -- Casting
+
+
 
 -- indsætter foreign keys i credit_name_credit_type_association
 INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (1, 24, 1);
@@ -336,6 +356,17 @@ INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id,
 INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (7, 24, 43);
 INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (41, 24, 38);
 INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (42, 24, 39);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (43, 10, 44);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (44, 15, 45);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (45, 15, 46);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (46, 15, 47);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (47, 20, 48);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (48, 26, 49);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (49, 26, 50);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (50, 39, 51);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (51, 3, 52);
+INSERT INTO credit_name_credit_type_association (credit_name_id, credit_type_id, credit_id) VALUES (52, 3, 53);
+
 
 -- inserting relation between production and genres
 INSERT INTO genres_production_association (production_id, genre_id) VALUES (1, 2);
