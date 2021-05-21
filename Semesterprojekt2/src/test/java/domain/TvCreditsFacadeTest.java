@@ -3,7 +3,6 @@ package domain;
 
 import data.DataFacade;
 import org.junit.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +24,7 @@ public class TvCreditsFacadeTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
+        System.out.println("BeforeClass");
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
         // collects the highest present episode-number from production_tabel
@@ -94,15 +94,7 @@ public class TvCreditsFacadeTest {
 
     }
 
-    @AfterClass
-    public static void tearDown() throws Exception {
-        dataFacade = DataFacade.getInstance();
 
-        for (Integer productionId : productionIds) {
-            System.out.println(productionId);
-            dataFacade.deleteProduction(productionId);
-        }
-    }
 
 
 
@@ -217,6 +209,16 @@ public class TvCreditsFacadeTest {
     }
 
 
+    @AfterClass
+    public static void tearDown() throws Exception {
+        System.out.println("AfterClass: ");
+        DataFacade dataFacade2 = DataFacade.getInstance();
+        dataFacade2.deleteProduction(17);
 
+//        for (Integer productionId : productionIds) {
+//            dataFacade.deleteProduction(11);
+//        }
+
+    }
 
 }

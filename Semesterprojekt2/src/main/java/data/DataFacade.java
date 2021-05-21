@@ -62,8 +62,10 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace(System.err);
         } finally {
             // Checks if no connection and close application
-            if (connection == null) System.exit(-1);
-            System.out.println("Ingen forbindelse til database, programmet afsluttes");
+            if (connection == null) {
+                System.exit(-1);
+                System.out.println("Ingen forbindelse til database, programmet afsluttes");
+            }
         }
     }
 
@@ -257,7 +259,6 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public void deleteProduction(int productionId) {
-
         try {
             PreparedStatement stmt = connection.prepareStatement(
                     "DELETE FROM production WHERE id = ?"
