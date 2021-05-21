@@ -214,13 +214,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     //TODO: Bør query DB
     public Set<CreditName> getAllCreditNames() {
         Set<CreditName> creditNames = new HashSet<>();
-        for (Production prod :
-                productions) {
-            for (Credit cred :
-                    prod.getCredits()) {
-                creditNames.add(cred.getCreditName());
-            }
-        }
+        creditNames.addAll(dataconnect.getCreditNames());
         return creditNames;
     }
 

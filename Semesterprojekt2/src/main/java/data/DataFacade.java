@@ -631,7 +631,7 @@ public class DataFacade implements DataLayerInterface {
             stmt.setString(3, creditName.getAddress());
             stmt.setInt(4, creditName.getPhone());
             stmt.setString(5, creditName.getEmail());
-            stmt.setDate(6, (java.sql.Date) creditName.getDateOfBirth());
+            stmt.setDate(6,  new java.sql.Date(creditName.getDateOfBirth().getTime()));
             stmt.setString(7, creditName.getCountry());
             stmt.setString(8, creditName.getBio());
 
