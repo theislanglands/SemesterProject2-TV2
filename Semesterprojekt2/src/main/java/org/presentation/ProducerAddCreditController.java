@@ -193,22 +193,26 @@ public class ProducerAddCreditController {
 
     private boolean checkFormFields() {
 
-        System.out.println("checks fields");
+
         boolean result = true;
         String setMessage = "";
         // Checks if all fields are complete and sets message if not
-        if (tableViewCreditName.getSelectionModel().getSelectedItem() != null) {
+        if (tableViewCreditName.getSelectionModel().getSelectedItem() == null) {
             setMessage += "Vælg person på listen\n";
             result = false;
+
         }
         if (roleTextField.getText().equals("")) {
             setMessage += "udfyld rolle\n";
             result = false;
+
         }
         if (typeChoiceBox.getValue().equals("")) {
             setMessage += "vælg krediteringstype\n";
             result = false;
+            
         }
+
 
         message.setText(setMessage);
         return result;
