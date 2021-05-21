@@ -1,21 +1,18 @@
 package org.presentation;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 
 public class AdminValidateController {
 
