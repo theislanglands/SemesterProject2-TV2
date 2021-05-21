@@ -168,7 +168,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         for (Production prod : productions) {
             if (prod.getId() == productionId) {
                 prod.addCredit(credit);
-
+                System.out.println("added to" + prod.getName());
                 // updating database
                 dataconnect.updateProduction(productionId, prod);
                 break;
@@ -216,7 +216,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         System.out.println(test.getAllProductions());
     }
 
-    
+
     public Set<CreditName> getAllCreditNames() {
         Set<CreditName> creditNames = new HashSet<>();
         creditNames.addAll(dataconnect.getCreditNames());
@@ -225,6 +225,12 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     public void addCreditName(CreditName creditName) {
         dataconnect.createCreditName(creditName);
+    }
+
+    public void addCreditToProduction(Credit credit) {
+        int productionId = credit.getProductionId();
+
+        dataconnect.createCredits(credit, productionId);
     }
 }
 

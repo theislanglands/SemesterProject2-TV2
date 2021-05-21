@@ -105,11 +105,11 @@ public class ProducerAddCreditController {
             credit.setRole(roleTextField.getText());
 
             //save through singleton
-            tvCreditsFacade.addCredit(credit);
+            tvCreditsFacade.addCreditToProduction(credit);
 
             System.out.println("cr: " + credit);
             //show it to user
-            tableViewCredits.getItems().add(credit);
+            creditObservableList.add(credit);
             clearFormFields();
         }
     }
@@ -122,7 +122,7 @@ public class ProducerAddCreditController {
         tvCreditsFacade.deleteCredit((Credit) selectedItem);
 
         //delete from gui
-        tableViewCredits.getItems().remove(selectedItem);
+        creditObservableList.remove(selectedItem);
     }
 
     public void saveCredits(ActionEvent actionEvent) {
