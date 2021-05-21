@@ -5,6 +5,7 @@ import domain.Production;
 
 
 import java.util.List;
+import java.util.Set;
 
 public interface TvCreditsInterface {
 
@@ -28,11 +29,14 @@ public interface TvCreditsInterface {
 
     // Credits
     void addCredit(Credit credit);
-    // TODO: void updateCredit(Credit oldCredit, Credit newCredit);
     void deleteCredit(Credit credit);
     List<Credit> getUnValidatedCredits(int productionsId);
 
-    // Methods for Enums
+    // CreditName
+    Set<CreditName> getAllCreditNames();
+    void addCreditName(CreditName creditName);
+
+    // Methods for Replacing Enums
     List<String> getCreditTypes();
     List<String> getProductionTypes();
     List<String> getLanguages();

@@ -29,7 +29,7 @@ public class Production {
     public Production(){
         credits = new ArrayList<>();
     }
-    // TODO: Hvad bliver den her brugt til?
+
     public Production(String productionReference, String name, Date date){
         this.productionReference = productionReference;
         this.name = name;
