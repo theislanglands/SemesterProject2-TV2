@@ -3,7 +3,6 @@ package data;
 import domain.Credit;
 import domain.CreditName;
 import domain.Production;
-import javafx.scene.chart.PieChart;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -233,7 +232,7 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setActive(sqlReturnValues.getBoolean(7));
                 returnProduction.setValidated(sqlReturnValues.getBoolean(8));
                 returnProduction.setProductionReference(sqlReturnValues.getString(9));
-                returnProduction.setCompanyProductionName(sqlReturnValues.getString(10));
+                returnProduction.setProductionCompanyName(sqlReturnValues.getString(10));
                 returnProduction.setProductionType(sqlReturnValues.getString(11));
                 returnProduction.setLanguage(sqlReturnValues.getString(12));
                 returnProduction.setName(sqlReturnValues.getString(13));

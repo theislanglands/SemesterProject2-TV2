@@ -3,7 +3,6 @@ package domain;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.Serializable;
 import java.util.Date;
 
 //Att. releaseDate refererer til det dato produktionen blev released.
@@ -13,11 +12,11 @@ import java.util.Date;
 
 import java.util.ArrayList;
 
-public class Production implements Serializable {
+public class Production {
 
-    //Enums: genre, type, language
+    // attributes
     private int id;
-    private String productionReference; //e.g. nf221
+    private String productionReference; // productino company's own e.g. nf221
     private String name;
     private Date releaseDate;
     private ArrayList<String> genres;
@@ -32,13 +31,15 @@ public class Production implements Serializable {
     private int season;
     private int episode;
     private String productionBio;
-    private String companyProductionName;
+    private String productionCompanyName;
     private String imageUrl;
+
     private ArrayList<Credit> credits;
 
+    // Constructors
     public Production(int id, String productionReference, String name, Date releaseDate, ArrayList<String> genres, String productionType, int length,
                       String language, boolean hasSubtitle, boolean hasSignLanguage, boolean isActive, boolean isValidated, int recommendedAge,
-                      int season, int episode, String productionBio, String companyProductionName, ArrayList<Credit> credits) {
+                      int season, int episode, String productionBio, String productionCompanyName, ArrayList<Credit> credits) {
         this.id = id;
         this.productionReference = productionReference;
         this.name = name;
@@ -55,7 +56,7 @@ public class Production implements Serializable {
         this.season = season;
         this.episode = episode;
         this.productionBio = productionBio;
-        this.companyProductionName = companyProductionName;
+        this.productionCompanyName = productionCompanyName;
         this.credits = credits;
     }
 
@@ -70,10 +71,10 @@ public class Production implements Serializable {
         credits = new ArrayList<>();
     }
 
+    //Getters and setters
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -81,7 +82,6 @@ public class Production implements Serializable {
     public String getProductionBio() {
         return productionBio;
     }
-
     public void setProductionBio(String productionBio) {
         this.productionBio = productionBio;
     }
@@ -89,7 +89,6 @@ public class Production implements Serializable {
     public void addCredit(Credit credit){
         credits.add(credit);
     }
-
     public void removeCredit(Credit credit){
         credits.remove(credit);
     }
@@ -97,7 +96,6 @@ public class Production implements Serializable {
     public String getProductionReference() {
         return productionReference;
     }
-
     public void setProductionReference(String productionReference) {
         this.productionReference = productionReference;
     }
@@ -105,7 +103,6 @@ public class Production implements Serializable {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -113,7 +110,6 @@ public class Production implements Serializable {
     public Date getReleaseDate() {
         return releaseDate;
     }
-
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
@@ -121,18 +117,9 @@ public class Production implements Serializable {
     public ArrayList<String> getGenres() {
         return this.genres;
     }
-
     public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
     }
-
-    public void addGenre(String genre) {
-        this.genres.add(genre);
-    }
-
-//    public String getType() {
-//        return productionType;
-//    }
 
     public void setProductionType(String type) {
         this.productionType = type;
@@ -141,7 +128,6 @@ public class Production implements Serializable {
     public int getLength() {
         return length;
     }
-
     public void setLength(int length) {
         this.length = length;
     }
@@ -149,7 +135,6 @@ public class Production implements Serializable {
     public String getLanguage() {
         return language;
     }
-
     public void setLanguage(String language) {
         this.language = language;
     }
@@ -157,7 +142,6 @@ public class Production implements Serializable {
     public boolean hasSubtitle() {
         return hasSubtitle;
     }
-
     public void setSubtitle(boolean hasSubtitle) {
         this.hasSubtitle = hasSubtitle;
     }
@@ -165,7 +149,6 @@ public class Production implements Serializable {
     public boolean hasSignLanguage() {
         return hasSignLanguage;
     }
-
     public void setSignLanguage(boolean hasSignLanguage) {
         this.hasSignLanguage = hasSignLanguage;
     }
@@ -173,23 +156,13 @@ public class Production implements Serializable {
     public ArrayList<Credit> getCredits() {
         return credits;
     }
-
     public void setCredits(ArrayList<Credit> credits) {
         this.credits = credits;
-    }
-
-    public int getRecommendedAge() {
-        return recommendedAge;
-    }
-
-    public void setRecommendedAge(int recommendedAge) {
-        this.recommendedAge = recommendedAge;
     }
 
     public boolean isActive() {
         return isActive;
     }
-
     public void setActive(boolean active) {
         isActive = active;
     }
@@ -197,7 +170,6 @@ public class Production implements Serializable {
     public boolean isValidated() {
         return isValidated;
     }
-
     public void setValidated(boolean validated) {
         isValidated = validated;
     }
@@ -205,7 +177,6 @@ public class Production implements Serializable {
     public int getSeason() {
         return season;
     }
-
     public void setSeason(int season) {
         this.season = season;
     }
@@ -213,42 +184,15 @@ public class Production implements Serializable {
     public int getEpisode() {
         return episode;
     }
-
     public void setEpisode(int episode) {
         this.episode = episode;
     }
 
-    public boolean hasCredit(Credit credit) {
-        for (Credit cred : credits) {
-            if(cred.equals(credit)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public String getCompanyProductionName() {
-        return companyProductionName;
-    }
-
-    public void setCompanyProductionName(String companyProductionName) {
-        this.companyProductionName = companyProductionName;
-    }
-
-    public int getProductionTypeId() {
-        return 11;
-    }
-
-    public int getlanguageId() {
-        return 12;
-    }
-
-    public int getNameInt(){
-        return 13;
-    }
-
     public String getProductionCompanyName() {
-        return companyProductionName;
+        return productionCompanyName;
+    }
+    public void setProductionCompanyName(String productionCompanyName) {
+        this.productionCompanyName = productionCompanyName;
     }
 
     public String getProductionType() {
@@ -258,17 +202,18 @@ public class Production implements Serializable {
     public String getImageUrl() {
         return imageUrl;
     }
-
-    public ImageView getImage(){
-        Image image = new Image(getImageUrl());
-
-        return new ImageView(image);
-    }
-
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
 
+    /* BLIVER DEN BRUGT?
+    public ImageView getImage(){
+        Image image = new Image(getImageUrl());
+        return new ImageView(image);
+    }
+    */
+
+    //toString method
     @Override
     public String toString() {
         return "Production{" +
@@ -288,8 +233,18 @@ public class Production implements Serializable {
                 ", season=" + season +
                 ", episode=" + episode +
                 ", productionBio='" + productionBio + '\'' +
-                ", companyProductionName='" + companyProductionName + '\'' +
+                ", companyProductionName='" + productionCompanyName + '\'' +
                 '}' + "\n";
+    }
+
+    // True/false if production has credits
+    public boolean hasCredits(Credit credit) {
+        for (Credit cred : credits) {
+            if(cred.equals(credit)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 

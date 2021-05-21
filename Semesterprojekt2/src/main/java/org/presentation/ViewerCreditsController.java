@@ -116,7 +116,7 @@ public class ViewerCreditsController {
                     return true;
                 } else if (production.getLanguage().toLowerCase().contains(searchStringLowerCase)) {
                     return true;
-                } else if (production.getCompanyProductionName().toLowerCase().contains(searchStringLowerCase)) {
+                } else if (production.getProductionCompanyName().toLowerCase().contains(searchStringLowerCase)) {
                     return true;
                 } else return false;
             });
