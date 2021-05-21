@@ -210,7 +210,7 @@ public class ProducerAddCreditController {
         if (typeChoiceBox.getValue().equals("")) {
             setMessage += "vælg krediteringstype\n";
             result = false;
-            
+
         }
 
 
