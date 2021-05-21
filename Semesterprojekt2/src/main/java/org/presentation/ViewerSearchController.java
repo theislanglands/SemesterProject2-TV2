@@ -197,7 +197,7 @@ public class ViewerSearchController {
 
         TableColumn<Production, Image> col10 = new TableColumn<>("image");
         col10.setCellValueFactory(new PropertyValueFactory<>("image"));
-        
+
 
 
 
