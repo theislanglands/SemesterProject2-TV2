@@ -153,6 +153,12 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         }
     }
 
+    @Override
+    public void deleteProduction(Production production) {
+        productions.remove(production);
+        dataconnect.deleteProduction(production.getId());
+    }
+
     // CREDITS
     @Override
     public void addCredit(Credit credit) {

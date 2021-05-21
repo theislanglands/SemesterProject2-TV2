@@ -6,7 +6,6 @@ public class Credit {
     private String role;
     private String creditType;
     private boolean isValidated = false;
-    private String imageUrl = "http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg";
     private int productionId;
 
     // Constructors

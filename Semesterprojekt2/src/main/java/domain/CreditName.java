@@ -13,7 +13,8 @@ public class CreditName {
     private int phone;
     private String email;
 
-    private String imageUrl;
+    // default Unknown pic
+    private String imageUrl = "http://rannok.dk/TVCredits/credit_images/Unknown_person.jpg";
 
     private Date dateOfBirth;
     private String country;
