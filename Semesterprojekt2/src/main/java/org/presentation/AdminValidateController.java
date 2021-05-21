@@ -19,18 +19,27 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AdminValidateController {
 
+    public Button adminLandingButton;
+    public Button searchProductionsButton;
+    public Button showAllButton;
+    public Button selectValidateButton;
+    public Button validateProductionButton;
+    public Button validateCreditButton;
+    public Button validateAllCreditsButton;
+    public Button deleteCreditButton;
+
+    public Label productionsTableHeader;
+    public Label creditsTableHeader;
+    public Label message;
+    public Button deleteProductionButton;
+
+    public TableView validationTableProductions;
+    public TableView validationTableCredits;
 
     private Credit credit;
     public static Production productionChosen;
     private TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
     private ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
-
-    @FXML
-    TableView validationTableProductions, validationTableCredits;
-
-
-    @FXML
-    Button validateProductionButton, validateCreditButton, validateAllCreditsButton;
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -108,7 +117,7 @@ public class AdminValidateController {
          */
 
         setTableViewProduction();
-        addProductions();
+//        addProductions();
         //addUnvalidatedCredits();
         activateDoubleClick();
         validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -124,19 +133,18 @@ public class AdminValidateController {
 
                     System.out.println("Double click on: " + rowData.getName());
                     productionChosen = rowData;
-
-                    addUnvalidatedCredits();
+                    setTableViewCredits();
+                    addCreditsToTable();
                 }
             });
             return row;
         });
     }
 
+
     private void setTableViewProduction() {
 
 //        private ArrayList<String> genre missing
-
-
         validationTableProductions.getColumns().clear();
         validationTableProductions.getItems().clear();
 
@@ -188,9 +196,11 @@ public class AdminValidateController {
         // validationTableView.getColumns().add(col10);
     }
 
-    private void addProductions() {
+    private void addProductions(List<Production> productionList) {
         //adding all unvalidated production to the table view
-        List<Production> productionList = tvCreditsFacade.getUnValidatedProductions();
+        validationTableProductions.getItems().clear();
+        validationTableCredits.getItems().clear();
+
         for (Production prod : productionList) {
             validationTableProductions.getItems().add(prod);
         }
@@ -225,21 +235,33 @@ public class AdminValidateController {
 
     }
 
-
-    private void addUnvalidatedCredits() {
-
-        // System.out.println("prod id " + productionChosen.getId());
-
-        if (creditObservableList.isEmpty()) {
-            List<Credit> credits = tvCreditsFacade.getUnValidatedCredits(productionChosen.getId());
-            //adding to the master list
-            creditObservableList.removeAll();
-            creditObservableList.addAll(credits);
-            //adding master list to the view
-
-            setTableViewCredits();
-            validationTableCredits.getItems().addAll(creditObservableList);
+    private void addCreditsToTable() {
+        validationTableCredits.getItems().clear();
+        for (Credit credit : productionChosen.getCredits()) {
+            validationTableCredits.getItems().add(credit);
         }
-
     }
+
+
+
+    public void deleteCreditButtonHandler(ActionEvent actionEvent) {
+    }
+
+    public void deleteProductionButtonHandler(ActionEvent actionEvent) {
+    }
+
+    public void selectValidateButtonHandler(ActionEvent actionEvent) {
+        productionsTableHeader.setText("Produktioner til validering");
+        creditsTableHeader.setText("Krediteringer til validering");
+        addProductions(tvCreditsFacade.getUnValidatedProductions());
+    }
+
+    public void showAllButtonHandler(ActionEvent actionEvent) {
+        
+        productionsTableHeader.setText("Alle Produktioner");
+        creditsTableHeader.setText("Krediteringer");
+        addProductions(tvCreditsFacade.getAllProductions());
+    }
+
+
 }

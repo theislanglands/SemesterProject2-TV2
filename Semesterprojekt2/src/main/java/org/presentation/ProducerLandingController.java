@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class producerLandingController {
+public class ProducerLandingController {
     public Button addCreditButton, addProductionButton, selectProductionButton, searchButton, logoutButton;
 
     public TableView tableView;
