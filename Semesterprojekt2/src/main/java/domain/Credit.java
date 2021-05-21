@@ -17,17 +17,6 @@ public class Credit {
         this.productionId = productionId;
     }
 
-    public Credit(CreditName creditName, String role, String creditType) {
-        this.creditName = creditName;
-        this.role = role;
-        this.creditType = creditType;
-    }
-
-    public Credit(CreditName creditName, String role) {
-        this.creditName = creditName;
-        this.role = role;
-    }
-
     public Credit() {
     }
 
