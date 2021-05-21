@@ -97,7 +97,7 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button fx:id="deleteCredit" layoutX="1181.0" layoutY="441.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE">
+      <Button fx:id="deleteCredit" layoutX="1181.0" layoutY="664.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -113,7 +113,7 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Button fx:id="addCreditName" layoutX="416.0" layoutY="293.0" mnemonicParsing="false" onAction="#addCredit" prefHeight="35.0" prefWidth="137.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Tilføj Person" textFill="WHITE">
+      <Button fx:id="addCreditName" layoutX="416.0" layoutY="293.0" mnemonicParsing="false" onAction="#addPerson" prefHeight="35.0" prefWidth="137.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Tilføj Person" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

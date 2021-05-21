@@ -60,6 +60,9 @@ public class ProducerAddCreditController {
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
         App.setRoot("viewerLanding");
     }
+    public void addPerson(ActionEvent actionEvent) throws IOException {
+        App.setRoot("producerAddCreditName");
+    }
 
 
     public void addCredit(ActionEvent actionEvent) {
@@ -167,5 +170,6 @@ public class ProducerAddCreditController {
         typeChoiceBox.setValue("");
 
     }
+
 
 }
