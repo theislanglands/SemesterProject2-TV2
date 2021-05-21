@@ -42,7 +42,7 @@ public class ProducerAddCreditController {
 
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
-        productionChosen = producerLandingController.getProductionChosen();
+        productionChosen = ProducerLandingController.getProductionChosen();
 
         creditObservableList.setAll(productionChosen.getCredits());
         //hurtig implementering, bør optimeres
