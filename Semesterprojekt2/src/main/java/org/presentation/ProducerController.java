@@ -16,7 +16,7 @@ public class ProducerController {
 
     @FXML
     private void switchToProductions() throws IOException {
-        App.setRoot("productions");
+        App.setRoot("producerLanding");
 
     }
 

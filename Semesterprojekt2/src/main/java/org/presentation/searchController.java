@@ -45,7 +45,7 @@ public class searchController {
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
-        App.setRoot("productions");
+        App.setRoot("producerLanding");
     }
 
     public void searchCredit(ActionEvent actionEvent) {

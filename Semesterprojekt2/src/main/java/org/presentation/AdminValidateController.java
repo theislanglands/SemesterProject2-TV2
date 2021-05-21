@@ -48,7 +48,7 @@ public class AdminValidateController {
     }
 
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
-        App.setRoot("search");
+        App.setRoot("producerLanding");
     }
 
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
