@@ -42,7 +42,6 @@ public interface DataLayerInterface {
     void deleteCreditName(int creditNameID);
     boolean updateCreditName(int creditNameID, CreditName replaceCreditName);
 
-
     // FUTURE ITERATIONS - System Admin Functionality
     /*
     // User

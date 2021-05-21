@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-public class AdminValidateController {
+public class AdminController {
 
     public Button adminLandingButton;
     public Button searchProductionsButton;
