@@ -180,15 +180,12 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     public void deleteCredit(Credit credit) {
 
         for (Production prod : productions) {
-            if (prod.hasCredit(credit)) {
+            if (prod.hasCredits(credit)) {
                 prod.removeCredit(credit);
             }
             dataconnect.deleteCredit(credit);
         }
     }
-
-
-
 
     // Methods for Enums
     @Override
