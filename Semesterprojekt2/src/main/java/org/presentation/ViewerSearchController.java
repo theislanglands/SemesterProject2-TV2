@@ -47,6 +47,11 @@ public class ViewerSearchController {
         App.setRoot("viewerSearch");
     }
 
+    @FXML
+    private void switchToViewerProductions() throws IOException {
+        App.setRoot("viewerProductions");
+    }
+
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();
 

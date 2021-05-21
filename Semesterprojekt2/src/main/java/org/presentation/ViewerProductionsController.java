@@ -48,6 +48,11 @@ public class ViewerProductionsController {
         App.setRoot("viewerSearch");
     }
 
+    @FXML
+    private void switchToViewerProductions() throws IOException {
+        App.setRoot("viewerProductins");
+    }
+
 
     public void initialize(){
 
@@ -60,9 +65,13 @@ public class ViewerProductionsController {
             ViewerCreditsController.productionChosen = null;
         }
 
+
+
         setTableViewCredits();
         creditObservableList.addAll(production.getCredits());
         tableViewProductions.setItems(creditObservableList);
+
+        System.out.println(production.getName());;
 
         if(production.getImageUrl() != null){
             productionImage.setImage(new Image(production.getImageUrl()));

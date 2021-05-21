@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerSearchController">
+   <children>
+      <Line endX="1643.738037109375" endY="-102.00000762939453" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-102.0" stroke="#afafaf" />
+      <Button fx:id="startPageButton" layoutX="316.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToViewerLanding" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Forside" textFill="#afafaf" AnchorPane.leftAnchor="550.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="creditsButtons" layoutX="454.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchToViewerSearch" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Krediteringer" textFill="#afafaf" AnchorPane.leftAnchor="690.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="favouritesButton" layoutX="592.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Favoriter" textFill="RED" AnchorPane.leftAnchor="830.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="musicButton" layoutX="730.0" layoutY="115.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Musik" textFill="RED" AnchorPane.leftAnchor="955.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0" onMouseClicked="#switchToPrimary" AnchorPane.leftAnchor="669.0">
+         <image>
+            <Image url="@Logo/2.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tableViewProductions" layoutX="138.0" layoutY="180.0" prefHeight="600.0" prefWidth="685.0" stylesheets="@../../style.css" AnchorPane.topAnchor="180.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tableViewCredits" layoutX="949.0" layoutY="180.0" prefHeight="601.0" prefWidth="516.0" stylesheets="@../../style.css" AnchorPane.topAnchor="180.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+      </TableView>
+      <TextField fx:id="textSearchBar" layoutX="990.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." stylesheets="@../../style.css" AnchorPane.rightAnchor="40.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="32.0" fitWidth="39.0" layoutX="951.0" layoutY="43.0" AnchorPane.rightAnchor="235.0">
+         <image>
+            <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

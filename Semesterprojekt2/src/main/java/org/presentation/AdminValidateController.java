@@ -257,4 +257,6 @@ public class AdminValidateController {
         validateCreditButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
     }
+
+
 }

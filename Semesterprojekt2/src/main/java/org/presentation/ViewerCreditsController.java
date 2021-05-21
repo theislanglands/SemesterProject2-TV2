@@ -197,6 +197,9 @@ public class ViewerCreditsController {
         TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
         col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
 
+        //TableColumn<Production, Image> col10 = new TableColumn<>("image");
+        //col10.setCellValueFactory(new PropertyValueFactory<>("image"));
+
         //adding columns to the tableview
        // tableViewProductions.getColumns().add(col1);
         tableViewProductions.getColumns().add(col2);
@@ -207,9 +210,11 @@ public class ViewerCreditsController {
         tableViewProductions.getColumns().add(col7);
         tableViewProductions.getColumns().add(col8);
         tableViewProductions.getColumns().add(col9);
-
+       // tableViewProductions.getColumns().add(col10);
 
     }
+
+
     public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
         App.setRoot("primary");
     }
