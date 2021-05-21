@@ -9,14 +9,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class producerLandingController {
-    public Button addCreditButton, addProductionButton, showSelectedButton, searchButton, logoutButton;
+    public Button addCreditButton, addProductionButton, selectProductionButton, searchButton, logoutButton;
 
     public TableView tableView;
-
+    public Label message;
     public TextField searchBar;
 
     public static Production getProductionChosen() {
@@ -28,10 +29,10 @@ public class producerLandingController {
 
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
-        productionChosen = tvCreditsFacade.getProduction(1);
-        setTableViewProduction();
 
+        setTableViewProduction();
     }
+
     @FXML
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
         App.setRoot("primary");
@@ -46,6 +47,8 @@ public class producerLandingController {
     public void switchToAddCredits(ActionEvent actionEvent) throws IOException {
         if (productionChosen != null){
             App.setRoot("addCredits");
+        } else {
+            message.setText("Vælg produktion først");
         }
     }
 
@@ -87,14 +90,36 @@ public class producerLandingController {
         //adding data to the table view
         List<Production> productionList = tvCreditsFacade.getAllProductions();
         tableView.getItems().addAll(productionList);
-
-
     }
 
+    public void selectProductionButtonHandler(ActionEvent actionEvent) {
+        productionChosen = (Production) tableView.getSelectionModel().getSelectedItem();
+    }
 
     public void search(ActionEvent actionEvent) {
+        //missing implementation for search of credits. Maybe some sort of check of the ListView. not sure
+        //gets text from the searchBar
+        String searchString = searchBar.getText();
+        List<Production> prods = tvCreditsFacade.getAllProductions();
+
+        //initializing new array of productions that will match the search
+        List<Production> newProds = new ArrayList<>();
+        for (Production prod :
+                prods) {
+            //comparing toString of the production to the searchString. toLowerCase on both to make it caseInsensitive
+            if(prod.toString().toLowerCase().contains(searchString.toLowerCase())){
+                newProds.add(prod);
+            }
+        }
+
+        //Clears the old data from before the search
+        tableView.getItems().clear();
+        //Displays new data that matches the search to the user
+        tableView.getItems().addAll(newProds);
     }
 
+
     public void showSelected(ActionEvent actionEvent) {
+
     }
 }

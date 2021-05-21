@@ -44,7 +44,7 @@
             <Font size="26.0" />
          </font>
       </Button>
-      <Button fx:id="addCreditButton" layoutX="965.0" layoutY="251.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Administrer kreditering" textFill="WHITE">
+      <Button fx:id="addCreditButton" layoutX="966.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Administrer kreditering" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -54,22 +54,27 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="searchBar" layoutX="316.0" layoutY="130.0" prefHeight="25.0" prefWidth="271.0" promptText="Søg..." />
-      <Button fx:id="searchButton" layoutX="600.0" layoutY="124.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Søg" textFill="WHITE">
+      <TextField fx:id="searchBar" layoutX="316.0" layoutY="130.0" prefHeight="25.0" prefWidth="482.0" promptText="Søg..." />
+      <Button fx:id="searchButton" layoutX="819.0" layoutY="124.0" mnemonicParsing="false" onAction="#search" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Søg" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
       <TableView fx:id="tableView" layoutX="316.0" layoutY="184.0" prefHeight="679.0" prefWidth="612.0" />
-      <Button fx:id="showSelectedButton" layoutX="761.0" layoutY="124.0" mnemonicParsing="false" onAction="#showSelected" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Se valgte" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <Button fx:id="logoutButton" layoutX="965.0" layoutY="806.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afslut og log ud" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+      <Button fx:id="selectProductionButton" layoutX="966.0" layoutY="263.0" mnemonicParsing="false" onAction="#selectProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Vælg produktion" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="message" layoutX="26.0" layoutY="263.0" prefHeight="30.0" prefWidth="213.0" textFill="RED">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
