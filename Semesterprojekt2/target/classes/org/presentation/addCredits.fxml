@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.addCreditsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.creditsAdminController">
    <children>
       <Button fx:id="saveCreditButton" layoutX="966.0" layoutY="674.0" mnemonicParsing="false" onAction="#saveCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE">
          <font>
@@ -45,12 +45,6 @@
       </Button>
       <TextField fx:id="productionRefText" layoutX="668.0" layoutY="122.0" prefHeight="27.0" prefWidth="182.0" promptText="Produktions - reference" />
       <TextField fx:id="firstnameTextField" layoutX="574.0" layoutY="234.0" prefHeight="25.0" prefWidth="108.0" promptText="Fornavn..." />
-      <ListView fx:id="listViewCredits" layoutX="424.0" layoutY="342.0" prefHeight="475.0" prefWidth="427.0" />
-      <Button fx:id="deleteCredit" layoutX="418.0" layoutY="280.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="37.0" prefWidth="139.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="42.0" fitWidth="262.0" layoutX="55.0" layoutY="861.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="45.0">
          <image>
             <Image url="@Logo/2.png" />
@@ -101,5 +95,16 @@
          </font>
       </Label>
       <TextField fx:id="lastnameTextField" layoutX="700.0" layoutY="234.0" prefHeight="25.0" prefWidth="108.0" promptText="Efternavn..." />
+      <TableView fx:id="tableViewCredits" layoutX="424.0" layoutY="342.0" prefHeight="475.0" prefWidth="427.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button fx:id="deleteCredit" layoutX="966.0" layoutY="597.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
