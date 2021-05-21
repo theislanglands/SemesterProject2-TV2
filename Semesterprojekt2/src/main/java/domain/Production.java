@@ -1,33 +1,22 @@
 package domain;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import java.util.Date;
-
-//Att. releaseDate refererer til det dato produktionen blev released.
-//Skal krediterings-klassen droppes? Skal vi så bruge en hashMap / ArrayList for kreditering inde på den specifikke produktionen?
-//toString-metoder for at sende information til databasen.
-
-
 import java.util.ArrayList;
 
 public class Production {
 
     // attributes
     private int id;
-    private String productionReference; // productino company's own e.g. nf221
+    private String productionReference; // production company's own reference e.g. nf221
     private String name;
-    private Date releaseDate;
+    private Date releaseDate; // Refers to the date, the production was released
     private ArrayList<String> genres;
-    private String productionType;
+    private String productionType;  // ex Serie, Film
     private int length;
     private String language;
     private boolean hasSubtitle;
     private boolean hasSignLanguage;
-    private boolean isActive;
+    private boolean isActive; // not used at the moment
     private boolean isValidated;
-    private int recommendedAge;
     private int season;
     private int episode;
     private String productionBio;
@@ -37,37 +26,14 @@ public class Production {
     private ArrayList<Credit> credits;
 
     // Constructors
-    public Production(int id, String productionReference, String name, Date releaseDate, ArrayList<String> genres, String productionType, int length,
-                      String language, boolean hasSubtitle, boolean hasSignLanguage, boolean isActive, boolean isValidated, int recommendedAge,
-                      int season, int episode, String productionBio, String productionCompanyName, ArrayList<Credit> credits) {
-        this.id = id;
-        this.productionReference = productionReference;
-        this.name = name;
-        this.releaseDate = releaseDate;
-        this.genres = genres;
-        this.productionType = productionType;
-        this.length = length;
-        this.language = language;
-        this.hasSubtitle = hasSubtitle;
-        this.hasSignLanguage = hasSignLanguage;
-        this.isActive = isActive;
-        this.isValidated = isValidated;
-        this.recommendedAge = recommendedAge;
-        this.season = season;
-        this.episode = episode;
-        this.productionBio = productionBio;
-        this.productionCompanyName = productionCompanyName;
-        this.credits = credits;
+    public Production(){
+        credits = new ArrayList<>();
     }
-
+    // TODO: Hvad bliver den her brugt til?
     public Production(String productionReference, String name, Date date){
         this.productionReference = productionReference;
         this.name = name;
         this.releaseDate = date;
-        credits = new ArrayList<>();
-    }
-
-    public Production(){
         credits = new ArrayList<>();
     }
 
@@ -206,13 +172,6 @@ public class Production {
         this.imageUrl = imageUrl;
     }
 
-    /* BLIVER DEN BRUGT?
-    public ImageView getImage(){
-        Image image = new Image(getImageUrl());
-        return new ImageView(image);
-    }
-    */
-
     //toString method
     @Override
     public String toString() {
@@ -229,7 +188,6 @@ public class Production {
                 ", hasSignLanguage=" + hasSignLanguage +
                 ", isActive=" + isActive +
                 ", isValidated=" + isValidated +
-                ", recommendedAge=" + recommendedAge +
                 ", season=" + season +
                 ", episode=" + episode +
                 ", productionBio='" + productionBio + '\'' +
