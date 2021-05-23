@@ -195,7 +195,7 @@ public class ViewerCreditsController {
         col8.setCellValueFactory(new PropertyValueFactory<>("language"));
 
         TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
-        col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
+        col9.setCellValueFactory(new PropertyValueFactory<>("productionCompanyName"));
 
         //adding columns to the tableview
        // tableViewProductions.getColumns().add(col1);

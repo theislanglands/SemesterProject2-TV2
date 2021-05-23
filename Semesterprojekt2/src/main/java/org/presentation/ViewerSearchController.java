@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -193,10 +194,10 @@ public class ViewerSearchController {
         col8.setCellValueFactory(new PropertyValueFactory<>("language"));
 
         TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
-        col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
+        col9.setCellValueFactory(new PropertyValueFactory<>("productionCompanyName"));
 
-        TableColumn<Production, Image> col10 = new TableColumn<>("image");
-        col10.setCellValueFactory(new PropertyValueFactory<>("image"));
+        //TableColumn<Production, ImageView> col10 = new TableColumn<>("image");
+        //col10.setCellValueFactory(new PropertyValueFactory<>("image"));
 
 
 
@@ -213,7 +214,7 @@ public class ViewerSearchController {
         tableViewProductions.getColumns().add(col7);
         tableViewProductions.getColumns().add(col8);
         tableViewProductions.getColumns().add(col9);
-        tableViewProductions.getColumns().add(col10);
+        //tableViewProductions.getColumns().add(col10);
 
 
     }

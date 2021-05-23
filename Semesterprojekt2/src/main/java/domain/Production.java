@@ -1,4 +1,7 @@
 package domain;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -171,6 +174,10 @@ public class Production {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+
+
+
 
     //toString method
     @Override
