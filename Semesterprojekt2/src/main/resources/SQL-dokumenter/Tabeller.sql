@@ -96,12 +96,6 @@ CREATE TABLE credit (
     UNIQUE (role, production_id)
 );
 
-CREATE TABLE production_images (
-   image_text VARCHAR(100),
-   image BYTEA,
-   production_id INTEGER NOT NULL REFERENCES production(id) ON DELETE CASCADE
-);
-
 CREATE TABLE credit_name_credit_type_association (
     credit_name_id INTEGER NOT NULL REFERENCES credit_name(id),
     credit_type_id INTEGER NOT NULL REFERENCES credit_type(id),
