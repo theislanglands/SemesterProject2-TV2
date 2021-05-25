@@ -49,6 +49,11 @@ public class ViewerProductionsController extends TableViewInitializer {
         App.setRoot("viewerSearch");
     }
 
+    @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
+
 
     public void initialize(){
 

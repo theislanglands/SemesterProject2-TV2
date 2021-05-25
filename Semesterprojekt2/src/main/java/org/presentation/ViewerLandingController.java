@@ -24,12 +24,17 @@ public class ViewerLandingController {
     }
 
     @FXML
-    private void switchToPrimary() throws IOException {
-        App.setRoot("primary");
+    private void switchToViewerProductions() throws IOException {
+        App.setRoot("viewerProductions");
     }
 
     @FXML
     private void switchToViewerSearch() throws IOException {
         App.setRoot("viewerSearch");
+    }
+
+    @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
     }
 }
