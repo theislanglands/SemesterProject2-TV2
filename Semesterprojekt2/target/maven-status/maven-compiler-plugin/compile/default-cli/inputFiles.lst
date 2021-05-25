@@ -3,9 +3,11 @@ C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\da
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\domain\CreditName.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\data\DataLayerInterface.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ProducerAddCreditNameController.java
+C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\AdminController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ViewerProductionsController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ViewerSearchController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\domain\Production.java
+C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\TableViewInitializer.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ViewerLandingController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\AdminLandingController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\domain\TvCreditsFacade.java
@@ -14,9 +16,9 @@ C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\or
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\module-info.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ViewerController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\domain\Credit.java
-C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\domain\TvCreditsFacadeTest.java
-C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\AdminValidateController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\App.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ViewerCreditsController.java
+C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\domain\TvCreditsFacadeTestManuel.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ProducerAddCreditController.java
 C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\PrimaryController.java
+C:\Users\Aksel\GitHub\Gruppe-6-semesterprojekt\Semesterprojekt2\src\main\java\org\presentation\ViewerOopsController.java

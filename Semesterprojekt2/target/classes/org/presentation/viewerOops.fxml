@@ -7,15 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerLandingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerOopsController">
    <children>
       <Line endX="1742.7440185546875" endY="-101.9999771118164" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-101.9999771118164" stroke="#afafaf" AnchorPane.topAnchor="115.0" />
-      <ImageView fx:id="pictureLiveTV" fitHeight="778.0" fitWidth="1199.0" layoutX="195.0" layoutY="173.0">
-         <image>
-            <Image url="@Logo/Screenshot%202021-05-12%20at%2010.24.28.png" />
-         </image>
-      </ImageView>
       <Button fx:id="loginButton" layoutX="38.0" layoutY="42.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="33.0" prefWidth="102.0" style="-fx-background-color: black;" text="Log ind" textFill="#afafaf" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
          <font>
             <Font size="17.0" />
@@ -31,17 +27,17 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="LiveTVButton" layoutX="487.0" layoutY="117.0" mnemonicParsing="false" onAction="#switchToViewerOops" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Live TV" textFill="#464444" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="125.0">
+      <Button fx:id="liveTVButton" layoutX="487.0" layoutY="117.0" mnemonicParsing="false" onAction="#switchToViewerOops" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Live TV" textFill="#464444" AnchorPane.leftAnchor="480.0" AnchorPane.topAnchor="125.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="ExploreButton" layoutX="610.0" layoutY="117.0" mnemonicParsing="false" onAction="#switchToViewerOops" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Udforsk" textFill="#464444" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="125.0">
+      <Button fx:id="exploreButton" layoutX="610.0" layoutY="117.0" mnemonicParsing="false" onAction="#switchToViewerOops" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Udforsk" textFill="#464444" AnchorPane.leftAnchor="600.0" AnchorPane.topAnchor="125.0">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="NewsButton" layoutX="737.0" layoutY="117.0" mnemonicParsing="false" onAction="#switchToViewerOops" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Nyheder" textFill="#464444" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="125.0">
+      <Button fx:id="newsButton" layoutX="737.0" layoutY="117.0" mnemonicParsing="false" onAction="#switchToViewerOops" prefHeight="41.0" prefWidth="138.0" style="-fx-background-color: black;" text="Nyheder" textFill="#464444" AnchorPane.leftAnchor="720.0" AnchorPane.topAnchor="125.0">
          <font>
             <Font size="17.0" />
          </font>
@@ -81,5 +77,15 @@
             <Image url="@../presentation/Logo/2.png" />
          </image>
       </ImageView>
+      <Text fx:id="hovText" fill="#afafaf" layoutX="548.0" layoutY="426.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hov, her udvikles det.." AnchorPane.leftAnchor="553.0" AnchorPane.rightAnchor="553.669921875">
+         <font>
+            <Font size="54.0" />
+         </font>
+      </Text>
+      <Button fx:id="backToLandingButton" layoutX="687.0" layoutY="498.0" mnemonicParsing="false" onAction="#switchToViewerLanding" prefHeight="81.0" prefWidth="290.0" style="-fx-background-color: black; -fx-border-color: afafaf; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilbage til forsiden" textFill="#afafaf" AnchorPane.leftAnchor="657.0" AnchorPane.rightAnchor="653.0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

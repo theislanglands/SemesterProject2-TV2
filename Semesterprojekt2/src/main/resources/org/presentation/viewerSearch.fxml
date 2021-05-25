@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerSearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerSearchController">
    <children>
       <Line endX="1643.738037109375" endY="-102.00000762939453" layoutX="174.0" layoutY="216.0" startX="-218.0" startY="-102.0" stroke="#afafaf" AnchorPane.topAnchor="115.0" />
       <ImageView fitHeight="52.0" fitWidth="296.0" layoutX="444.0" layoutY="33.0" onMouseClicked="#switchToPrimary" AnchorPane.leftAnchor="652.0" AnchorPane.rightAnchor="652.0">
@@ -18,13 +18,13 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableViewProductions" layoutX="138.0" layoutY="180.0" prefHeight="600.0" prefWidth="685.0" stylesheets="@../../style.css" AnchorPane.topAnchor="180.0">
+      <TableView fx:id="tableViewProductions" layoutX="85.0" layoutY="283.0" prefHeight="600.0" prefWidth="740.0" stylesheets="@../../style.css" AnchorPane.topAnchor="283.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TableView fx:id="tableViewCredits" layoutX="949.0" layoutY="180.0" prefHeight="601.0" prefWidth="516.0" stylesheets="@../../style.css" AnchorPane.topAnchor="180.0">
+      <TableView fx:id="tableViewCredits" layoutX="885.0" layoutY="283.0" prefHeight="601.0" prefWidth="630.0" stylesheets="@../../style.css" AnchorPane.topAnchor="283.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
@@ -85,5 +85,10 @@
             <Image url="@../Presentation/Logo/Screenshot%202021-05-18%20at%2009.51.29.png" />
          </image>
       </ImageView>
+      <Button fx:id="latestShow" layoutX="91.0" layoutY="204.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="243.0" style="-fx-background-color: black;" text="Seneste Udsendelse" textFill="#afafaf">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

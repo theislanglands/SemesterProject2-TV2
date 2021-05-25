@@ -1,3 +1,4 @@
+org\presentation\TableViewInitializer.class
 data\DataLayerInterface.class
 org\presentation\ProducerAddCreditNameController.class
 domain\CreditName.class
@@ -6,17 +7,18 @@ domain\TvCreditsInterface.class
 org\presentation\App.class
 org\presentation\AdminLandingController.class
 org\presentation\ViewerSearchController.class
-domain\TvCreditsFacadeTest.class
 org\presentation\ViewerProductionsController.class
 domain\TvCreditsFacade.class
 org\presentation\ProducerAddProductionController.class
 org\presentation\ProducerLandingController.class
+domain\TvCreditsFacadeTestManuel.class
 module-info.class
 org\presentation\PrimaryController.class
 org\presentation\ProducerAddCreditController.class
 org\presentation\ViewerLandingController.class
-org\presentation\AdminValidateController.class
 org\presentation\ViewerController.class
+org\presentation\ViewerOopsController.class
 domain\Credit.class
+org\presentation\AdminController.class
 org\presentation\ViewerCreditsController.class
 data\DataFacade.class
