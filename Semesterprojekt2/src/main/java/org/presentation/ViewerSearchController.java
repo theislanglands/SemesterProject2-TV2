@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -23,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ViewerSearchController {
+public class ViewerSearchController extends TableViewInitializer {
     public TableView tableViewProductions;
     public TableView tableViewCredits;
     public TextField textSearchBar;
@@ -51,18 +48,18 @@ public class ViewerSearchController {
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
-        setTableViewProduction();
-        setTableViewCredits();
+        setTableViewProduction(tableViewProductions);
+        setTableViewCredits(tableViewCredits);
 
-        addAllProductions();
-        addAllCredits();
+        addProductions(tableViewProductions, productionObservableList, tvCreditsFacade.getAllProductions());
+        addAllCredits(tableViewCredits, creditObservableList, tvCreditsFacade.getAllProductions());
+
+        activateCreditSearchbar(textSearchBar, creditObservableList, tableViewCredits);
+        activateProductionSearchbar(textSearchBar, productionObservableList, tableViewProductions);
 
         activateDoubleClick();
 
-
-
-        activateSearchbar();
-
+        
         landingSearch = ViewerLandingController.landingSearch;
 
         textSearchBar.setText(landingSearch);
@@ -73,6 +70,57 @@ public class ViewerSearchController {
 
     //Example from youtube: https://www.youtube.com/watch?v=FeTrcNBVWtg
     //same concept: https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
+
+
+
+    //activates the tableViews to allow doubleClick on cells to redirect to other page
+    public void activateDoubleClick(){
+        //production
+        tableViewProductions.setRowFactory(tv -> {
+            //setting up rows to be able to listen for clicks
+            TableRow<Production> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Production rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getName());
+                    //public static Production. Used from other controller, to know which production to show
+                    productionChosen = rowData;
+                    try {
+                        App.setRoot("viewerProductions");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
+
+        //credit
+        tableViewCredits.setRowFactory(tv -> {
+            TableRow<Credit> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Credit rowData = row.getItem();
+                    System.out.println("Double clock on: " + rowData.getFirstName());
+                    creditChosen = rowData;
+                    try {
+                        App.setRoot("viewerCredits");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row ;
+        });
+    }
+
+    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("primary");
+    }
+
+
+
+
 
     private void activateSearchbar() {
 
@@ -168,9 +216,9 @@ public class ViewerSearchController {
         tableViewProductions.getItems().clear();
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
-       // TableColumn<Production, String> col1 = new TableColumn<>("ID");
+        // TableColumn<Production, String> col1 = new TableColumn<>("ID");
         //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
-       // col1.setCellValueFactory(new PropertyValueFactory<>("id"));
+        // col1.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         TableColumn<Production, String> col2 = new TableColumn<>("Titel");
         col2.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -205,7 +253,7 @@ public class ViewerSearchController {
 
         //adding columns to the tableview
 
-       // tableViewProductions.getColumns().add(col1);
+        // tableViewProductions.getColumns().add(col1);
         tableViewProductions.getColumns().add(col2);
         tableViewProductions.getColumns().add(col3);
         tableViewProductions.getColumns().add(col4);
@@ -285,60 +333,6 @@ public class ViewerSearchController {
         //adding master list to the view
         tableViewCredits.getItems().addAll(creditObservableList);
     }
-
-    //activates the tableViews to allow doubleClick on cells to redirect to other page
-    public void activateDoubleClick(){
-        //production
-        tableViewProductions.setRowFactory(tv -> {
-            //setting up rows to be able to listen for clicks
-            TableRow<Production> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && !row.isEmpty()) {
-                    Production rowData = row.getItem();
-                    System.out.println("Double clock on: " + rowData.getName());
-                    //public static Production. Used from other controller, to know which production to show
-                    productionChosen = rowData;
-                    try {
-                        App.setRoot("viewerProductions");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return row ;
-        });
-
-        //credit
-        tableViewCredits.setRowFactory(tv -> {
-            TableRow<Credit> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && !row.isEmpty()) {
-                    Credit rowData = row.getItem();
-                    System.out.println("Double clock on: " + rowData.getFirstName());
-                    creditChosen = rowData;
-                    try {
-                        App.setRoot("viewerCredits");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return row ;
-        });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     //no longer in use. Was very, very, very slow
@@ -442,7 +436,4 @@ public class ViewerSearchController {
     }
 
 
-    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("primary");
-    }
 }

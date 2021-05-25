@@ -39,7 +39,7 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableViewProductions" layoutX="835.0" layoutY="221.0" prefHeight="600.0" prefWidth="515.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="225.0">
+      <TableView fx:id="tableViewCredits" layoutX="835.0" layoutY="221.0" prefHeight="600.0" prefWidth="515.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="650.0" AnchorPane.topAnchor="225.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />

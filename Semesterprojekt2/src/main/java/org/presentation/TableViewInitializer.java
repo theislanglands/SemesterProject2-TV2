@@ -3,123 +3,22 @@ package org.presentation;
 import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ViewerCreditsController extends TableViewInitializer{
+public abstract class TableViewInitializer {
 
-    public TableView tableViewProductions;
-    public TextField searchTableButton;
+    public void activateProductionSearchbar(TextField searchTableButton, ObservableList productionObservableList, TableView tableViewProductions) {
 
-    private Credit credit;
-    public static Production productionChosen;
-    private TvCreditsFacade tvCreditsFacade;
-
-    public Text textName;
-    public Text textPersonBio;
-    public Text textPersonBirthplace;
-    public Text textPersonBirthyear;
-    public Text textRole;
-    public Text textSurname;
-    public ImageView creditImage;
-
-    private final ObservableList<Production> productionObservableList = FXCollections.observableArrayList();
-
-    @FXML
-    private void switchToViewerLanding() throws IOException {
-        App.setRoot("viewerLanding");
-    }
-
-    @FXML
-    private void switchToViewerSearch() throws IOException {
-        App.setRoot("viewerSearch");
-    }
-
-    public void initialize(){
-        tvCreditsFacade = TvCreditsFacade.getInstance();
-
-        //uses the public static objects from the other classes to know which credit to show
-        if(ViewerSearchController.creditChosen != null){
-            credit = ViewerSearchController.creditChosen;
-            ViewerSearchController.creditChosen = null;
-        }else if(ViewerProductionsController.creditChosen != null){
-            credit = ViewerProductionsController.creditChosen;
-            ViewerProductionsController.creditChosen = null;
-        }
-
-        setPageCredit();
-
-
-        setTableViewProduction(tableViewProductions);
-        addProductions(tableViewProductions, productionObservableList, tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId()));
-        activateProductionSearchbar(searchTableButton, productionObservableList, tableViewProductions);
-
-        activateDoubleClick();
-
-
-
-    }
-
-    private void setPageCredit() {
-
-        textName.setText(credit.getFirstName());
-        textSurname.setText(credit.getLastName());
-        textPersonBio.setText(credit.getCreditName().getBio());
-        textPersonBirthplace.setText(credit.getCreditName().getCountry());
-        textPersonBirthyear.setText(String.valueOf(credit.getCreditName().getDateOfBirth().getYear() + 1900));
-        textRole.setText(credit.getCreditType());
-        creditImage.setImage(new Image(credit.getImageUrl()));
-    }
-
-
-
-    private void activateDoubleClick() {
-
-        tableViewProductions.setRowFactory(tv -> {
-            TableRow<Production> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    Production rowData = row.getItem();
-                    System.out.println("Double clock on: " + rowData.getName());
-                    productionChosen = rowData;
-                    try {
-                        App.setRoot("viewerProductions");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            return row ;
-        });
-    }
-
-
-
-
-    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("primary");
-    }
-
-
-
-    private void activateSearchbar() {
-
+        System.out.println("tableViewInitializer Searchbar");
         //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
         FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
 
@@ -165,7 +64,59 @@ public class ViewerCreditsController extends TableViewInitializer{
         });
     }
 
-    private void setTableViewProduction(){
+    public void activateCreditSearchbar( TextField searchTableButton, ObservableList creditObservableList, TableView tableViewCredits ) {
+
+        //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
+        FilteredList<Credit> creditFilteredList = new FilteredList<>(creditObservableList, b -> true);
+
+
+        //adding a listener to the searchBar
+        //only newValue is used, not sure what the other 2 does
+        searchTableButton.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            //this filters the productions based on the input
+            creditFilteredList.setPredicate(credit -> {
+
+                //if no value has been put in, return true on every object
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchStringLowerCase = newValue.toLowerCase();
+
+                //These check if the value of the object matches the search string
+                //if they match they return true, which means they are added to the filtered list
+
+                if(credit.getFirstName().toLowerCase().contains(searchStringLowerCase)){
+                    return true;
+                }
+                else if(credit.getLastName().toLowerCase().contains(searchStringLowerCase)){
+                    return true;
+                }
+                else if(credit.getRole().toLowerCase().contains(searchStringLowerCase)){
+                    return true;
+                }
+                else if(credit.getCreditType().toLowerCase().contains(searchStringLowerCase)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            });
+
+            //Sorted list that is passed all objects of the filtered list. Dont know why
+            SortedList<Credit> productionSortedList = new SortedList<>(creditFilteredList);
+            //no idea what this does
+            productionSortedList.comparatorProperty().bind(tableViewCredits.comparatorProperty());
+            //adding the filtered objects to the listview
+            tableViewCredits.setItems(productionSortedList);
+
+        });
+    }
+
+    public void setTableViewProduction(TableView tableViewProductions){
+
+        System.out.println("tableViewInitializer tableView");
 
 //        private ArrayList<String> genre missing
 
@@ -216,9 +167,9 @@ public class ViewerCreditsController extends TableViewInitializer{
 
     }
 
-    private void addProductions(){
+    public void addProductions(TableView tableViewProductions, ObservableList productionObservableList, List<Production> productions){
         //adding data to the table view
-        List<Production> productionList = tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId());
+        List<Production> productionList = productions;
 
         for (Production prod :
                 productionList) {
@@ -230,5 +181,75 @@ public class ViewerCreditsController extends TableViewInitializer{
         //productionObservableList.addAll(productionList);
 
         tableViewProductions.setItems(productionObservableList);
+    }
+
+
+
+
+    public void setTableViewCredits(TableView tableViewCredits){
+
+        tableViewCredits.getColumns().clear();
+        tableViewCredits.getItems().clear();
+
+
+        //creates a new column in the TableView with header "ID", type Production and cellValue String
+        TableColumn<Credit, String> col1 = new TableColumn<>("Fornavn");
+        //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
+        col1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+
+        TableColumn<Credit, String> col2 = new TableColumn<>("Efternavn");
+        col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        TableColumn<Credit, String> col3 = new TableColumn<>("Rolle");
+        col3.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+        TableColumn<Credit, String> col4 = new TableColumn<>("Type");
+        col4.setCellValueFactory(new PropertyValueFactory<>("creditType"));
+
+        //adding columns to the tableview
+
+        tableViewCredits.getColumns().add(col1);
+        tableViewCredits.getColumns().add(col2);
+        tableViewCredits.getColumns().add(col3);
+        tableViewCredits.getColumns().add(col4);
+
+
+    }
+
+    public void addCredits(Production production, ObservableList creditObservableList, TableView tableViewCredits) {
+        List<Credit> credits = production.getCredits();
+
+        for (Credit cred :
+                credits) {
+            if(cred.isValidated()){
+                creditObservableList.add(cred);
+            }
+
+        }
+
+        tableViewCredits.setItems(creditObservableList);
+
+    }
+
+    public void addAllCredits(TableView tableViewCredits, ObservableList creditObservableList, List<Production> productions){
+        //looping through each production and extracting each credit
+        List<Production> productionList = productions;
+        List<Credit> credits = new ArrayList<>();
+        for (Production prod :
+                productionList) {
+            if(prod != null){
+                for (Credit cred :
+                        prod.getCredits()) {
+                    if(cred.isValidated()){
+                        credits.add(cred);
+                    }
+                }
+                //credits.addAll(prod.getCredits());
+            }
+        }
+        //adding to the master list
+        creditObservableList.addAll(credits);
+        //adding master list to the view
+        tableViewCredits.getItems().addAll(creditObservableList);
     }
 }

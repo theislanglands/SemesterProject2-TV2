@@ -20,9 +20,9 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.List;
 
-public class ViewerProductionsController {
+public class ViewerProductionsController extends TableViewInitializer {
 
-    public TableView tableViewProductions;
+    public TableView tableViewCredits;
     public Text textProductionBio;
     public Text textFilmTitel;
     public Text textGenre1;
@@ -61,9 +61,11 @@ public class ViewerProductionsController {
             ViewerCreditsController.productionChosen = null;
         }
 
-        setTableViewCredits();
-        addCredits();
+        setTableViewCredits(tableViewCredits);
+        addCredits(production, creditObservableList, tableViewCredits);
+        activateCreditSearchbar( searchTableButton, creditObservableList, tableViewCredits);
 
+        activateDoubleClick();
 
         if(production.getImageUrl() != null){
             productionImage.setImage(new Image(production.getImageUrl()));
@@ -87,62 +89,17 @@ public class ViewerProductionsController {
         textYear.setText(String.valueOf(production.getReleaseDate().getYear() + 1900));
         //textDirector.setText(production.getProducer());
 
-        tableViewProductions.setStyle("-fx-background-color:gray");
+        tableViewCredits.setStyle("-fx-background-color:gray");
 
-        activateDoubleClick();
-        activateSearchbar();
 
-    }
-
-    private void addCredits() {
-        List<Credit> credits = production.getCredits();
-
-        for (Credit cred :
-                credits) {
-            if(cred.isValidated()){
-                creditObservableList.add(cred);
-            }
-
-        }
-
-        tableViewProductions.setItems(creditObservableList);
 
     }
 
 
-    private void setTableViewCredits(){
-
-        tableViewProductions.getColumns().clear();
-        tableViewProductions.getItems().clear();
-
-
-        //creates a new column in the TableView with header "ID", type Production and cellValue String
-        TableColumn<Credit, String> col1 = new TableColumn<>("Fornavn");
-        //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
-        col1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-
-        TableColumn<Credit, String> col2 = new TableColumn<>("Efternavn");
-        col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-
-        TableColumn<Credit, String> col3 = new TableColumn<>("Rolle");
-        col3.setCellValueFactory(new PropertyValueFactory<>("role"));
-
-        TableColumn<Credit, String> col4 = new TableColumn<>("Type");
-        col4.setCellValueFactory(new PropertyValueFactory<>("creditType"));
-
-        //adding columns to the tableview
-
-        tableViewProductions.getColumns().add(col1);
-        tableViewProductions.getColumns().add(col2);
-        tableViewProductions.getColumns().add(col3);
-        tableViewProductions.getColumns().add(col4);
-
-
-    }
 
     private void activateDoubleClick(){
 
-        tableViewProductions.setRowFactory(tv -> {
+        tableViewCredits.setRowFactory(tv -> {
             TableRow<Credit> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
@@ -161,10 +118,46 @@ public class ViewerProductionsController {
     }
 
 
+
+    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
+        App.setRoot("primary");
+    }
+
+
+    private void setTableViewCredits(){
+
+        tableViewCredits.getColumns().clear();
+        tableViewCredits.getItems().clear();
+
+
+        //creates a new column in the TableView with header "ID", type Production and cellValue String
+        TableColumn<Credit, String> col1 = new TableColumn<>("Fornavn");
+        //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
+        col1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+
+        TableColumn<Credit, String> col2 = new TableColumn<>("Efternavn");
+        col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+        TableColumn<Credit, String> col3 = new TableColumn<>("Rolle");
+        col3.setCellValueFactory(new PropertyValueFactory<>("role"));
+
+        TableColumn<Credit, String> col4 = new TableColumn<>("Type");
+        col4.setCellValueFactory(new PropertyValueFactory<>("creditType"));
+
+        //adding columns to the tableview
+
+        tableViewCredits.getColumns().add(col1);
+        tableViewCredits.getColumns().add(col2);
+        tableViewCredits.getColumns().add(col3);
+        tableViewCredits.getColumns().add(col4);
+
+
+    }
+
     private void activateSearchbar() {
 
         //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
-        FilteredList<Credit> productionFilteredList = new FilteredList<>(creditObservableList, b -> true);
+        FilteredList<Credit> creditFilteredList = new FilteredList<>(creditObservableList, b -> true);
 
 
         //adding a listener to the searchBar
@@ -172,7 +165,7 @@ public class ViewerProductionsController {
         searchTableButton.textProperty().addListener((observable, oldValue, newValue) -> {
 
             //this filters the productions based on the input
-            productionFilteredList.setPredicate(credit -> {
+            creditFilteredList.setPredicate(credit -> {
 
                 //if no value has been put in, return true on every object
                 if (newValue == null || newValue.isEmpty()) {
@@ -202,15 +195,27 @@ public class ViewerProductionsController {
             });
 
             //Sorted list that is passed all objects of the filtered list. Dont know why
-            SortedList<Credit> productionSortedList = new SortedList<>(productionFilteredList);
+            SortedList<Credit> productionSortedList = new SortedList<>(creditFilteredList);
             //no idea what this does
-            productionSortedList.comparatorProperty().bind(tableViewProductions.comparatorProperty());
+            productionSortedList.comparatorProperty().bind(tableViewCredits.comparatorProperty());
             //adding the filtered objects to the listview
-            tableViewProductions.setItems(productionSortedList);
+            tableViewCredits.setItems(productionSortedList);
 
         });
     }
-    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("primary");
+
+    private void addCredits() {
+        List<Credit> credits = production.getCredits();
+
+        for (Credit cred :
+                credits) {
+            if(cred.isValidated()){
+                creditObservableList.add(cred);
+            }
+
+        }
+
+        tableViewCredits.setItems(creditObservableList);
+
     }
 }
