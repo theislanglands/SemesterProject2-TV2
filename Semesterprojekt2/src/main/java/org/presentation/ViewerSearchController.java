@@ -61,10 +61,7 @@ public class ViewerSearchController extends TableViewInitializer {
 
 
         landingSearch = ViewerLandingController.landingSearch;
-
         textSearchBar.setText(landingSearch);
-
-
 
     }
 
@@ -120,6 +117,7 @@ public class ViewerSearchController extends TableViewInitializer {
 
 
 
+//----------------------Below this no longer in use-------------------------
 
 
     private void activateSearchbar() {

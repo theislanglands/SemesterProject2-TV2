@@ -68,14 +68,13 @@ public class ViewerCreditsController extends TableViewInitializer{
             ViewerProductionsController.creditChosen = null;
         }
 
-        setPageCredit();
-
 
         setTableViewProduction(tableViewProductions);
         addProductions(tableViewProductions, productionObservableList, tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId()));
         activateProductionSearchbar(searchTableButton, productionObservableList, tableViewProductions);
 
         activateDoubleClick();
+        setPageCredit();
 
 
 
@@ -115,13 +114,11 @@ public class ViewerCreditsController extends TableViewInitializer{
     }
 
 
-
-
     public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
         App.setRoot("primary");
     }
 
-
+//----------------------Below this no longer in use-------------------------
 
     private void activateSearchbar() {
 

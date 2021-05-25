@@ -71,9 +71,7 @@ public class ViewerProductionsController extends TableViewInitializer {
         activateCreditSearchbar( searchTableButton, creditObservableList, tableViewCredits);
 
         activateDoubleClick();
-
         setPageProduction();
-        
 
     }
 
@@ -128,6 +126,8 @@ public class ViewerProductionsController extends TableViewInitializer {
     public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
         App.setRoot("primary");
     }
+
+//----------------------Below this no longer in use-------------------------
 
 
     private void setTableViewCredits(){
