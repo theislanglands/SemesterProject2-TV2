@@ -104,7 +104,7 @@ public class ViewerProductionsController {
             }
 
         }
-        
+
         tableViewProductions.setItems(creditObservableList);
 
     }
