@@ -45,6 +45,7 @@ public class AdminController {
     @FXML
     private void switchToAdminValidate() throws IOException {
         App.setRoot("adminValidate");
+
     }
 
     @FXML
@@ -63,11 +64,8 @@ public class AdminController {
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
         setTableViewProduction();
-        productionsTableHeader.setText("Alle Produktioner");
-        creditsTableHeader.setText("Krediteringer");
         addProductions(tvCreditsFacade.getAllProductions());
         validateProductionButton.setDisable(true);
-        validateCreditButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
         activateDoubleClick();
     }
@@ -237,24 +235,22 @@ public class AdminController {
         //Allows user to select multiple credits in the creditTable
         validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         //Changes the titles for production and credit headers
-        productionsTableHeader.setText("Produktioner til validering");
-        creditsTableHeader.setText("Krediteringer til validering");
+        selectValidateButton.setStyle("-fx-border-width: 3px; -fx-border-color: white; -fx-background-color: black");
+        showAllButton.setStyle("-fx-border-width: 1px; -fx-border-color: white; -fx-background-color: black");
         //Updates GUI
         addProductions(tvCreditsFacade.getUnValidatedProductions());
         validateProductionButton.setDisable(false);
-        validateCreditButton.setDisable(false);
         validateAllCreditsButton.setDisable(false);
     }
 
     public void showAllButtonHandler(ActionEvent actionEvent) {
         //Allows user to select only one credit in the creditTable
         validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        productionsTableHeader.setText("Alle Produktioner");
-        creditsTableHeader.setText("Krediteringer");
+        selectValidateButton.setStyle("-fx-border-width: 1px; -fx-border-color: white; -fx-background-color: black");
+        showAllButton.setStyle("-fx-border-width: 3px; -fx-border-color: white; -fx-background-color: black");
         addProductions(tvCreditsFacade.getAllProductions());
         //Disables all validateButtons
         validateProductionButton.setDisable(true);
-        validateCreditButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
     }
 }
