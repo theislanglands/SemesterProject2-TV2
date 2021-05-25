@@ -221,7 +221,15 @@ public class ViewerSearchController {
 
     private void addAllProductions(){
         //adds all the productions to the master data list productionObservableList
-        productionObservableList.addAll(tvCreditsFacade.getAllProductions());
+
+        List<Production> allProductions = tvCreditsFacade.getAllProductions();
+        for (Production prod :
+                allProductions) {
+            if(prod.isValidated()){
+                productionObservableList.add(prod);
+            }
+        }
+
         //adding all data to the table view
         tableViewProductions.getItems().addAll(productionObservableList);
     }
@@ -263,7 +271,13 @@ public class ViewerSearchController {
         for (Production prod :
                 productionList) {
             if(prod != null){
-                credits.addAll(prod.getCredits());
+                for (Credit cred :
+                        prod.getCredits()) {
+                    if(cred.isValidated()){
+                        credits.add(cred);
+                    }
+                }
+                //credits.addAll(prod.getCredits());
             }
         }
         //adding to the master list
