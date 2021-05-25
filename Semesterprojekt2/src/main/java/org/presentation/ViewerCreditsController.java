@@ -155,7 +155,14 @@ public class ViewerCreditsController {
         //adding data to the table view
         List<Production> productionList = tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId());
 
-        productionObservableList.addAll(productionList);
+        for (Production prod :
+                productionList) {
+            if(prod.isValidated()){
+                productionObservableList.add(prod);
+            }
+
+        }
+        //productionObservableList.addAll(productionList);
 
         tableViewProductions.setItems(productionObservableList);
     }

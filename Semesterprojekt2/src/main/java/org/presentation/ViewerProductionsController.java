@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.util.List;
 
 public class ViewerProductionsController {
 
@@ -61,8 +62,8 @@ public class ViewerProductionsController {
         }
 
         setTableViewCredits();
-        creditObservableList.addAll(production.getCredits());
-        tableViewProductions.setItems(creditObservableList);
+        addCredits();
+
 
         if(production.getImageUrl() != null){
             productionImage.setImage(new Image(production.getImageUrl()));
@@ -90,6 +91,21 @@ public class ViewerProductionsController {
 
         activateDoubleClick();
         activateSearchbar();
+
+    }
+
+    private void addCredits() {
+        List<Credit> credits = production.getCredits();
+
+        for (Credit cred :
+                credits) {
+            if(cred.isValidated()){
+                creditObservableList.add(cred);
+            }
+
+        }
+        
+        tableViewProductions.setItems(creditObservableList);
 
     }
 
