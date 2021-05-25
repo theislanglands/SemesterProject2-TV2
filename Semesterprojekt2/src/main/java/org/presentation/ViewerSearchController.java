@@ -59,7 +59,7 @@ public class ViewerSearchController extends TableViewInitializer {
 
         activateDoubleClick();
 
-        
+
         landingSearch = ViewerLandingController.landingSearch;
 
         textSearchBar.setText(landingSearch);

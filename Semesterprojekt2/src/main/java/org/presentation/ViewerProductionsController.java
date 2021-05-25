@@ -72,14 +72,12 @@ public class ViewerProductionsController extends TableViewInitializer {
 
         activateDoubleClick();
 
-        if(production.getImageUrl() != null){
-            productionImage.setImage(new Image(production.getImageUrl()));
-        }else{
-            productionImage.setImage(new Image("http://rannok.dk/TVCredits/production_images/Unknown_production.jpg"));
-        }
+        setPageProduction();
+        
 
+    }
 
-
+    private void setPageProduction(){
         textProductionBio.setText(production.getProductionBio());
 
         textFilmTitel.setText(production.getName());
@@ -96,8 +94,11 @@ public class ViewerProductionsController extends TableViewInitializer {
 
         tableViewCredits.setStyle("-fx-background-color:gray");
 
-
-
+        if(production.getImageUrl() != null){
+            productionImage.setImage(new Image(production.getImageUrl()));
+        }else{
+            productionImage.setImage(new Image("http://rannok.dk/TVCredits/production_images/Unknown_production.jpg"));
+        }
     }
 
 
