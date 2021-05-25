@@ -77,23 +77,20 @@ public class ViewerProductionsController extends TableViewInitializer {
 
         activateDoubleClick();
         setPageProduction();
-
     }
 
     private void setPageProduction(){
-        textProductionBio.setText(production.getProductionBio());
 
+        textProductionBio.setText(production.getProductionBio());
         textFilmTitel.setText(production.getName());
+
         if(production.getGenres().size()>0){
             textGenre1.setText(production.getGenres().get(0));
-            // textGenre2.setText(production.getGenres().get(1));
-            //textGenre3.setText(production.getGenres().get(2));
         }
 
         textLength.setText(String.valueOf(production.getLength()));
         textProductionCompany.setText(production.getProductionCompanyName());
         textYear.setText(String.valueOf(production.getReleaseDate().getYear() + 1900));
-        //textDirector.setText(production.getProducer());
 
         tableViewCredits.setStyle("-fx-background-color:gray");
 

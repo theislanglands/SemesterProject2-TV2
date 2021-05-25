@@ -73,16 +73,12 @@ public class ViewerCreditsController extends TableViewInitializer{
             ViewerProductionsController.creditChosen = null;
         }
 
-
         setTableViewProduction(tableViewProductions);
         addProductions(tableViewProductions, productionObservableList, tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId()));
         activateProductionSearchbar(searchTableButton, productionObservableList, tableViewProductions);
 
         activateDoubleClick();
         setPageCredit();
-
-
-
     }
 
     private void setPageCredit() {

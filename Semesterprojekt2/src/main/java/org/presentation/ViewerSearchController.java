@@ -69,15 +69,10 @@ public class ViewerSearchController extends TableViewInitializer {
 
         activateDoubleClick();
 
-
+        //carries search input from Landing Controller
         landingSearch = ViewerLandingController.landingSearch;
         textSearchBar.setText(landingSearch);
-
     }
-
-    //Example from youtube: https://www.youtube.com/watch?v=FeTrcNBVWtg
-    //same concept: https://code.makery.ch/blog/javafx-8-tableview-sorting-filtering/
-
 
 
     //activates the tableViews to allow doubleClick on cells to redirect to other page
