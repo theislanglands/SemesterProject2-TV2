@@ -20,11 +20,11 @@
       </ImageView>
       <TableView fx:id="tableViewProductions" layoutX="85.0" layoutY="283.0" prefHeight="600.0" prefWidth="740.0" stylesheets="@../../style.css" AnchorPane.topAnchor="283.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="-1.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TableView fx:id="tableViewCredits" layoutX="885.0" layoutY="283.0" prefHeight="601.0" prefWidth="630.0" stylesheets="@../../style.css" AnchorPane.topAnchor="283.0">
+      <TableView fx:id="tableViewCredits" layoutX="885.0" layoutY="283.0" prefHeight="601.0" prefWidth="667.0" stylesheets="@../../style.css" AnchorPane.topAnchor="283.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />

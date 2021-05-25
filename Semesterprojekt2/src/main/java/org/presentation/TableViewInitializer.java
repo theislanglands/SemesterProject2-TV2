@@ -124,6 +124,7 @@ public abstract class TableViewInitializer {
         tableViewProductions.getColumns().clear();
         tableViewProductions.getItems().clear();
 
+
         //creates a new column in the TableView with header "ID", type Production and cellValue String
         //TableColumn<Production, String> col1 = new TableColumn<>("ID");
         //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
@@ -131,12 +132,14 @@ public abstract class TableViewInitializer {
 
         TableColumn<Production, String> col2 = new TableColumn<>("Titel");
         col2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col2.setMinWidth(150);
 
         TableColumn<Production, Date> col3 = new TableColumn<>("Udgivelses Dato");
         col3.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
 
         TableColumn<Production, String> col4 = new TableColumn<>("Type");
         col4.setCellValueFactory(new PropertyValueFactory<>("productionType"));
+        col4.setMinWidth(80);
 
         TableColumn<Production, String> col5 = new TableColumn<>("Episode");
         col5.setCellValueFactory(new PropertyValueFactory<>("episode"));
@@ -196,6 +199,7 @@ public abstract class TableViewInitializer {
         TableColumn<Credit, String> col1 = new TableColumn<>("Fornavn");
         //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
         col1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        col1.setMinWidth(100);
 
         TableColumn<Credit, String> col2 = new TableColumn<>("Efternavn");
         col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -205,6 +209,7 @@ public abstract class TableViewInitializer {
 
         TableColumn<Credit, String> col4 = new TableColumn<>("Type");
         col4.setCellValueFactory(new PropertyValueFactory<>("creditType"));
+        col4.setMinWidth(125);
 
         //adding columns to the tableview
 
