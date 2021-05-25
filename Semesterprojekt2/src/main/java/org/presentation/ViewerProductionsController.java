@@ -54,6 +54,11 @@ public class ViewerProductionsController extends TableViewInitializer {
         App.setRoot("primary");
     }
 
+    @FXML
+    private void switchToViewerOops() throws IOException {
+        App.setRoot("viewerOops");
+    }
+
 
     public void initialize(){
 

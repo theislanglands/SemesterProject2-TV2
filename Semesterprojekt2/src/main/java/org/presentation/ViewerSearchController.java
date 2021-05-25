@@ -45,6 +45,11 @@ public class ViewerSearchController extends TableViewInitializer {
         App.setRoot("viewerSearch");
     }
 
+    @FXML
+    private void switchToViewerOops() throws IOException {
+        App.setRoot("viewerOops");
+    }
+
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
