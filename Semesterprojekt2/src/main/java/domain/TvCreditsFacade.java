@@ -15,9 +15,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     private static final TvCreditsFacade INSTANCE = new TvCreditsFacade();
     private static DataLayerInterface dataconnect;
 
-
-
-    // attributes
+    // Attribute
     private List<Production> productions;
 
     // Constructor
@@ -33,7 +31,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     // Interface methods
 
-    // Productions
+    // PRODUCTIONS
     @Override
     public Production getProduction(int productionId) {
         for (Production p : productions) {
@@ -78,6 +76,51 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     @Override
+    public boolean saveProduction(Production prod) {
+        int productionId = dataconnect.createProduction(prod);
+        if (productionId != -1) {
+            prod.setId(productionId);
+            productions.add(prod);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateProduction(int productionID, Production replaceProduction) {
+
+        if (dataconnect.updateProduction(productionID, replaceProduction) == true) {
+            productions.add(productionID, replaceProduction);
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void validateProduction(Production prod) {
+        if (!prod.isValidated()) {
+            prod.setValidated(true);
+            dataconnect.validateProduction(prod.getId());
+        }
+    }
+
+    @Override
+    public void invalidateProduction(Production prod) {
+        if (prod.isValidated()) {
+            prod.setValidated(false);
+            dataconnect.invalidateProduction(prod.getId());
+        }
+    }
+
+    @Override
+    public void deleteProduction(Production production) {
+        productions.remove(production);
+        dataconnect.deleteProduction(production.getId());
+    }
+
+    // CREDIT METHODS
+    @Override
     public List<Credit> getUnValidatedCredits(int productionId) {
 
         List<Credit> returnList = new ArrayList<>();
@@ -100,44 +143,6 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     @Override
-    public boolean saveProduction(Production prod) {
-        int productionId = dataconnect.createProduction(prod);
-        if (productionId != -1) {
-            prod.setId(productionId);
-            productions.add(prod);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean updateProduction(int productionID, Production replaceProduction) {
-
-        if (dataconnect.updateProduction(productionID, replaceProduction) == true) {
-            productions.add(productionID, replaceProduction);
-            return true;
-        }
-       
-        return false;
-    }
-
-    @Override
-    public void validateProduction(Production prod){
-        if (!prod.isValidated()) {
-            prod.setValidated(true);
-            dataconnect.validateProduction(prod.getId());
-        }
-    }
-
-    @Override
-    public void invalidateProduction(Production prod){
-        if (prod.isValidated()) {
-            prod.setValidated(false);
-            dataconnect.invalidateProduction(prod.getId());
-        }
-    }
-
-    @Override
     public void validateCredit(Credit credit) {
         if (!credit.isValidated()) {        // checks if credit validation status is "not validated"
             credit.setValidated(true);
@@ -154,13 +159,6 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     @Override
-    public void deleteProduction(Production production) {
-        productions.remove(production);
-        dataconnect.deleteProduction(production.getId());
-    }
-
-    // CREDITS
-    @Override
     public void addCredit(Credit credit) {
         int productionId = credit.getProductionId();
 
@@ -168,7 +166,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         for (Production prod : productions) {
             if (prod.getId() == productionId) {
                 prod.addCredit(credit);
-
+                System.out.println("added to" + prod.getName());
                 // updating database
                 dataconnect.updateProduction(productionId, prod);
                 break;
@@ -180,17 +178,33 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     public void deleteCredit(Credit credit) {
 
         for (Production prod : productions) {
-            if (prod.hasCredit(credit)) {
+            if (prod.hasCredits(credit)) {
                 prod.removeCredit(credit);
             }
             dataconnect.deleteCredit(credit);
         }
     }
 
+    public void addCreditToProduction(Credit credit) {
+        int productionId = credit.getProductionId();
 
+        dataconnect.createCredits(credit, productionId);
+    }
 
+    // CREDIT NAME METHODS
+    @Override
+    public Set<CreditName> getAllCreditNames() {
+        Set<CreditName> creditNames = new HashSet<>();
+        creditNames.addAll(dataconnect.getCreditNames());
+        return creditNames;
+    }
 
-    // Methods for Enums
+    @Override
+    public void addCreditName(CreditName creditName) {
+        dataconnect.createCreditName(creditName);
+    }
+
+    // Methods for database
     @Override
     public List<String> getCreditTypes() {
         return dataconnect.getAllCreditTypes();
@@ -210,73 +224,5 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     public List<String> getGenres() {
         return dataconnect.getAllGenres();
     }
-
-    public static void main(String[] args) {
-        TvCreditsFacade test = new TvCreditsFacade();
-        System.out.println(test.getAllProductions());
-    }
-
-    
-    public Set<CreditName> getAllCreditNames() {
-        Set<CreditName> creditNames = new HashSet<>();
-        creditNames.addAll(dataconnect.getCreditNames());
-        return creditNames;
-    }
-
-    public void addCreditName(CreditName creditName) {
-        dataconnect.createCreditName(creditName);
-    }
 }
-
-
-
-
-
-
-
-
-/*
-    private Administrator facade;
-
-    public TvCredits(){
-        facade = new Administrator();
-    }
-
-
-    //Calling implementation in associated classes.
-    @Override
-    public void verifyProduction(Production production) {
-        facade.verifyProduction(production);
-    }
-
-    @Override
-    public void addProduction(int ID, String Name, Date date) {
-        facade.addProduction(ID, Name, date);
-    }
-
-    @Override
-    public void addCredit(Production production) {
-        facade.addCredit(production);
-    }
-
-    @Override
-    public void search(String searchString) {
-        facade.search(searchString);
-    }
-
-    @Override
-    public void searchProduction(String searchString) {
-        facade.searchProduction(searchString);
-    }
-
-    @Override
-    public void searchCredit(String searchString) {
-        facade.searchCredit(searchString);
-    }
-*/
-
-// private Producer producerObj = new Producer(1,"Test", "Testsen");
-// private Administrator administrator = new Administrator(2,"Teste", "Testesen");
-
-
 

@@ -105,11 +105,12 @@ public class ProducerAddCreditController {
             credit.setRole(roleTextField.getText());
 
             //save through singleton
-            tvCreditsFacade.addCredit(credit);
+            tvCreditsFacade.addCreditToProduction(credit);
 
             System.out.println("cr: " + credit);
             //show it to user
-            tableViewCredits.getItems().add(credit);
+            creditObservableList.add(credit);
+            tableViewCredits.getItems().setAll(creditObservableList);
             clearFormFields();
         }
     }
@@ -122,7 +123,8 @@ public class ProducerAddCreditController {
         tvCreditsFacade.deleteCredit((Credit) selectedItem);
 
         //delete from gui
-        tableViewCredits.getItems().remove(selectedItem);
+        creditObservableList.remove(selectedItem);
+        tableViewCredits.getItems().setAll(creditObservableList);
     }
 
     public void saveCredits(ActionEvent actionEvent) {
@@ -200,17 +202,17 @@ public class ProducerAddCreditController {
         if (tableViewCreditName.getSelectionModel().getSelectedItem() == null) {
             setMessage += "Vælg person på listen\n";
             result = false;
-
+            System.out.println("creditname");
         }
         if (roleTextField.getText().equals("")) {
             setMessage += "udfyld rolle\n";
             result = false;
-
+            System.out.println("role");
         }
         if (typeChoiceBox.getValue().equals("")) {
             setMessage += "vælg krediteringstype\n";
             result = false;
-
+            System.out.println("type");
         }
 
 

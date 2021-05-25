@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface DataLayerInterface {
 
-    // flg metoder defineres for hver klasse!
-
     // Production
     int createProduction(Production prod); // returns created ID, -1 if unsuccesful
     List<Production> getProductions();
@@ -44,8 +42,7 @@ public interface DataLayerInterface {
     void deleteCreditName(int creditNameID);
     boolean updateCreditName(int creditNameID, CreditName replaceCreditName);
 
-
-
+    // FUTURE ITERATIONS - System Admin Functionality
     /*
     // User
     void createUser(User user);
@@ -54,6 +51,4 @@ public interface DataLayerInterface {
     void deleteUser(int userID);
     boolean updateCredit(int userID, User replaceUser);
     */
-
-    // void createTestProductions();
 }

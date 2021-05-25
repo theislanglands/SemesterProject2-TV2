@@ -116,7 +116,7 @@ public class ViewerCreditsController {
                     return true;
                 } else if (production.getLanguage().toLowerCase().contains(searchStringLowerCase)) {
                     return true;
-                } else if (production.getCompanyProductionName().toLowerCase().contains(searchStringLowerCase)) {
+                } else if (production.getProductionCompanyName().toLowerCase().contains(searchStringLowerCase)) {
                     return true;
                 } else return false;
             });
@@ -155,7 +155,14 @@ public class ViewerCreditsController {
         //adding data to the table view
         List<Production> productionList = tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId());
 
-        productionObservableList.addAll(productionList);
+        for (Production prod :
+                productionList) {
+            if(prod.isValidated()){
+                productionObservableList.add(prod);
+            }
+
+        }
+        //productionObservableList.addAll(productionList);
 
         tableViewProductions.setItems(productionObservableList);
     }
@@ -195,7 +202,7 @@ public class ViewerCreditsController {
         col8.setCellValueFactory(new PropertyValueFactory<>("language"));
 
         TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
-        col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
+        col9.setCellValueFactory(new PropertyValueFactory<>("productionCompanyName"));
 
         //adding columns to the tableview
        // tableViewProductions.getColumns().add(col1);

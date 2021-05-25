@@ -1,6 +1,5 @@
 package org.presentation;
 
-import domain.Credit;
 import domain.Production;
 import domain.TvCreditsFacade;
 import javafx.collections.FXCollections;
@@ -164,7 +163,7 @@ public class ProducerLandingController {
                     return true;
                 } else if (production.getLanguage().toLowerCase().contains(searchStringLowerCase)) {
                     return true;
-                } else if (production.getCompanyProductionName().toLowerCase().contains(searchStringLowerCase)) {
+                } else if (production.getProductionCompanyName().toLowerCase().contains(searchStringLowerCase)) {
                     return true;
                 } else return false;
             });

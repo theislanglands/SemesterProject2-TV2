@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS credit_name_credit_type_association;
-DROP TABLE IF EXISTS production_images;
 DROP TABLE IF EXISTS credit;
 DROP TABLE IF EXISTS genres_production_association;
 DROP TABLE IF EXISTS production;

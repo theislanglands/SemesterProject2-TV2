@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -110,7 +111,7 @@ public class ViewerSearchController {
                 else if(production.getLanguage().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
-                else if(production.getCompanyProductionName().toLowerCase().contains(searchStringLowerCase)){
+                else if(production.getProductionCompanyName().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
                 else return false;
@@ -193,10 +194,10 @@ public class ViewerSearchController {
         col8.setCellValueFactory(new PropertyValueFactory<>("language"));
 
         TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
-        col9.setCellValueFactory(new PropertyValueFactory<>("companyProductionName"));
+        col9.setCellValueFactory(new PropertyValueFactory<>("productionCompanyName"));
 
-        TableColumn<Production, Image> col10 = new TableColumn<>("image");
-        col10.setCellValueFactory(new PropertyValueFactory<>("image"));
+        //TableColumn<Production, ImageView> col10 = new TableColumn<>("image");
+        //col10.setCellValueFactory(new PropertyValueFactory<>("image"));
 
 
 
@@ -213,14 +214,22 @@ public class ViewerSearchController {
         tableViewProductions.getColumns().add(col7);
         tableViewProductions.getColumns().add(col8);
         tableViewProductions.getColumns().add(col9);
-        tableViewProductions.getColumns().add(col10);
+        //tableViewProductions.getColumns().add(col10);
 
 
     }
 
     private void addAllProductions(){
         //adds all the productions to the master data list productionObservableList
-        productionObservableList.addAll(tvCreditsFacade.getAllProductions());
+
+        List<Production> allProductions = tvCreditsFacade.getAllProductions();
+        for (Production prod :
+                allProductions) {
+            if(prod.isValidated()){
+                productionObservableList.add(prod);
+            }
+        }
+
         //adding all data to the table view
         tableViewProductions.getItems().addAll(productionObservableList);
     }
@@ -262,7 +271,13 @@ public class ViewerSearchController {
         for (Production prod :
                 productionList) {
             if(prod != null){
-                credits.addAll(prod.getCredits());
+                for (Credit cred :
+                        prod.getCredits()) {
+                    if(cred.isValidated()){
+                        credits.add(cred);
+                    }
+                }
+                //credits.addAll(prod.getCredits());
             }
         }
         //adding to the master list
