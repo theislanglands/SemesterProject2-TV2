@@ -18,7 +18,7 @@ public abstract class TableViewInitializer {
 
     public void activateProductionSearchbar(TextField searchTableButton, ObservableList productionObservableList, TableView tableViewProductions) {
 
-        System.out.println("tableViewInitializer Searchbar");
+
         //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
         FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
 
@@ -116,7 +116,7 @@ public abstract class TableViewInitializer {
 
     public void setTableViewProduction(TableView tableViewProductions){
 
-        System.out.println("tableViewInitializer tableView");
+
 
 //        private ArrayList<String> genre missing
 
