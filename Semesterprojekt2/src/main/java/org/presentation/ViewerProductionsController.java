@@ -49,6 +49,11 @@ public class ViewerProductionsController {
         App.setRoot("viewerSearch");
     }
 
+    @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
+
 
     public void initialize(){
 
@@ -209,8 +214,5 @@ public class ViewerProductionsController {
             tableViewProductions.setItems(productionSortedList);
 
         });
-    }
-    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("primary");
     }
 }

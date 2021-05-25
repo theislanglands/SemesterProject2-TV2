@@ -51,6 +51,11 @@ public class ViewerCreditsController {
         App.setRoot("viewerSearch");
     }
 
+    @FXML
+    private void switchToPrimary() throws IOException {
+        App.setRoot("primary");
+    }
+
     public void initialize(){
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
@@ -216,8 +221,5 @@ public class ViewerCreditsController {
         tableViewProductions.getColumns().add(col9);
 
 
-    }
-    public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
-        App.setRoot("primary");
     }
 }
