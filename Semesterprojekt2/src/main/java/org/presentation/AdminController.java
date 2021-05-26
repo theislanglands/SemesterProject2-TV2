@@ -95,7 +95,7 @@ public class AdminController extends TableViewInitializer{
         ObservableList<Credit> allCredits = validationTableCredits.getItems();
         creditObservableList = validationTableCredits.getSelectionModel().getSelectedItems();
         for (int i = 0; i < creditObservableList.size(); i++) {
-            tvCreditsFacade.validateCredit(allCredits.get(i));
+            tvCreditsFacade.validateCredit(creditObservableList.get(i));
         }
         allCredits.removeAll(creditObservableList);
     }
@@ -116,6 +116,7 @@ public class AdminController extends TableViewInitializer{
             return row;
         });
     }
+
 
 
 

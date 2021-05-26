@@ -90,58 +90,72 @@ public class ProducerAddProductionController {
         App.setRoot("viewerLanding");
     }
 
+    private boolean requiredFields(){
+        return date.getValue() != null &&
+                producent.getText() != null &&
+                length.getText() != null &&
+                genreDropdown1.getValue() != null &&
+                typeDropdown.getValue() != null &&
+                languageDropdown.getValue() != null &&
+                title.getText() != null &&
+                productionID.getText() != null &&
+                date.getValue() != null;
+    }
+
     public void saveProduction(ActionEvent actionEvent) throws IOException {
 
-        //When button is pressed initialize a prodcution object with 3 arguments
-        Production production = new Production(
-                productionID.getText(),
-                title.getText(),
-                //this maybe works for setting Date from calendar
-                Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        if(requiredFields()) {
+            //When button is pressed initialize a prodcution object with 3 arguments
+            Production production = new Production(
+                    productionID.getText(),
+                    title.getText(),
+                    //this maybe works for setting Date from calendar
+                    Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
-        production.setLength(Integer.parseInt(length.getText()));
+            production.setLength(Integer.parseInt(length.getText()));
 
-        //sets type
-        production.setProductionType((String) typeDropdown.getValue());
+            //sets type
+            production.setProductionType((String) typeDropdown.getValue());
 
-        //sets language
-        production.setLanguage((String) languageDropdown.getValue());
+            //sets language
+            production.setLanguage((String) languageDropdown.getValue());
 
 
-        //Sets genres from a dropdown through an array. This could be refactored in a method
-        ArrayList<String> genres = new ArrayList<>();
-        if(genreDropdown1.getValue() != null){
-            genres.add((String) genreDropdown1.getValue());
+            //Sets genres from a dropdown through an array. This could be refactored in a method
+            ArrayList<String> genres = new ArrayList<>();
+            if (genreDropdown1.getValue() != null) {
+                genres.add((String) genreDropdown1.getValue());
+            }
+            if (genreDropdown2.getValue() != null) {
+                genres.add((String) genreDropdown2.getValue());
+            }
+            if (genreDropdown3.getValue() != null) {
+                genres.add((String) genreDropdown3.getValue());
+            }
+            production.setGenres(genres);
+
+
+            if (subtitles.isSelected()) {
+                production.setSubtitle(true);
+            } else {
+                production.setSubtitle(false);
+            }
+            //maybe change this from subtitle?
+            if (signLanguage.isSelected()) {
+                production.setSignLanguage(true);
+            } else {
+                production.setSignLanguage(false);
+            }
+
+            production.setActive(false);
+            production.setValidated(false);
+
+            //saves production
+            tvCreditsFacade.saveProduction(production);
+
+            //sends user back to landing
+            App.setRoot("producerLanding");
         }
-        if(genreDropdown2.getValue() != null){
-            genres.add((String)genreDropdown2.getValue());
-        }
-        if(genreDropdown3.getValue() != null){
-            genres.add((String)genreDropdown3.getValue());
-        }
-        production.setGenres(genres);
-
-
-        if(subtitles.isSelected()){
-            production.setSubtitle(true);
-        }else{
-            production.setSubtitle(false);
-        }
-        //maybe change this from subtitle?
-        if(signLanguage.isSelected()){
-            production.setSignLanguage(true);
-        }else{
-            production.setSignLanguage(false);
-        }
-
-        production.setActive(false);
-        production.setValidated(false);
-
-        //saves production
-        tvCreditsFacade.saveProduction(production);
-
-        //sends user back to landing
-        App.setRoot("producerLanding");
     }
 
 

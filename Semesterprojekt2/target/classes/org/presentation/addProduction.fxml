@@ -163,7 +163,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="720.0" layoutY="659.0" text="*" textFill="RED">
+      <Label layoutX="715.0" layoutY="659.0" text="*" textFill="RED">
          <font>
             <Font size="20.0" />
          </font>
