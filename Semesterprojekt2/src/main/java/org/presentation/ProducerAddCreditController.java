@@ -46,7 +46,8 @@ public class ProducerAddCreditController {
         productionChosen = ProducerLandingController.getProductionChosen();
 
         creditObservableList.setAll(productionChosen.getCredits());
-        //hurtig implementering, bør optimeres
+
+
         creditNameObservableList.setAll(tvCreditsFacade.getAllCreditNames());
 
         removeExisting();
@@ -57,8 +58,6 @@ public class ProducerAddCreditController {
 
         message.setVisible(false);
 
-
-
         setTableViewCredits();
         setTableViewCreditNames();
         activateSearchbar();
@@ -67,12 +66,13 @@ public class ProducerAddCreditController {
     }
 
     private void removeExisting() {
-        List<CreditName> existingCreditNames = new ArrayList<>();
+        List<Integer> existingCreditNames = new ArrayList<>();
         for (Credit cred :
                 creditObservableList) {
-            existingCreditNames.add(cred.getCreditName());
+            existingCreditNames.add(cred.getCreditName().getId());
         }
-        creditNameObservableList.removeAll(existingCreditNames);
+
+        creditNameObservableList.removeIf(element -> (existingCreditNames.contains(element.getId())));
     }
 
     @FXML
@@ -117,6 +117,7 @@ public class ProducerAddCreditController {
 
             productionChosen.addCredit(credit);
             creditObservableList.add(credit);
+            creditNameObservableList.remove(credit.getCreditName());
 
             tableViewCredits.getItems().setAll(creditObservableList);
             clearFormFields();
@@ -281,6 +282,8 @@ public class ProducerAddCreditController {
             //no idea what this does
             creditNameSortedList.comparatorProperty().bind(tableViewCreditName.comparatorProperty());
             //adding the filtered objects to the listview
+
+
             tableViewCreditName.setItems(creditNameSortedList);
 
         });

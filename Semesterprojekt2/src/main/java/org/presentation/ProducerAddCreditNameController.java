@@ -35,7 +35,7 @@ public class ProducerAddCreditNameController {
 
     }
 
-    public void saveCreditName(ActionEvent actionEvent) {
+    public void saveCreditName(ActionEvent actionEvent) throws IOException {
         if(requiredFields()){
             CreditName creditName = new CreditName();
             creditName.setFirstName(firstNameText.getText());
@@ -49,7 +49,7 @@ public class ProducerAddCreditNameController {
             tvCreditsFacade.addCreditName(creditName);
 
             message.setText(creditName.getFirstName() + " " + creditName.getLastName() + " er tilføjet.");
-
+            App.setRoot("addCredits");
         }
         message.setVisible(true);
     }
@@ -71,5 +71,9 @@ public class ProducerAddCreditNameController {
     @FXML
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
         App.setRoot("viewerLanding");
+    }
+
+    public void switchToProductions(ActionEvent actionEvent) throws IOException {
+        App.setRoot("producerLanding");
     }
 }
