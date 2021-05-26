@@ -106,10 +106,12 @@ public class ProducerAddCreditController {
 
             //save through singleton
             tvCreditsFacade.addCreditToProduction(credit);
-
-            System.out.println("cr: " + credit);
+            
             //show it to user
+
+            productionChosen.addCredit(credit);
             creditObservableList.add(credit);
+
             tableViewCredits.getItems().setAll(creditObservableList);
             clearFormFields();
         }
