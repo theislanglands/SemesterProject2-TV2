@@ -152,6 +152,11 @@ public class AdminController extends TableViewInitializer{
 
     public void deleteProductionButtonHandler(ActionEvent actionEvent) {
         // deleteProductinon in system
+        if(validationTableProductions.getSelectionModel().getSelectedItem() == null && productionChosen == null){
+            return;
+        }else if(productionChosen == null){
+            productionChosen = (Production) validationTableProductions.getSelectionModel().getSelectedItem();
+        }
         tvCreditsFacade.deleteProduction(productionChosen);
         // update Gui
         validationTableProductions.getItems().remove(productionChosen);
