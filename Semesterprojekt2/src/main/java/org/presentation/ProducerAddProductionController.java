@@ -4,6 +4,7 @@ import domain.Production;
 import domain.TvCreditsFacade;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -79,10 +80,12 @@ public class ProducerAddProductionController {
 
     }
 
+    @FXML
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
         App.setRoot("producerLanding");
     }
 
+    @FXML
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
         App.setRoot("viewerLanding");
     }

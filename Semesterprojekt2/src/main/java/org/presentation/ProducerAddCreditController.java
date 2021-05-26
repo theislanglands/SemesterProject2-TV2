@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -74,17 +75,22 @@ public class ProducerAddCreditController {
         creditNameObservableList.removeAll(existingCreditNames);
     }
 
+    @FXML
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
         App.setRoot("primary");
     }
 
+    @FXML
     public void switchToProductions(ActionEvent actionEvent) throws IOException {
         App.setRoot("producerLanding");
     }
 
+    @FXML
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
         App.setRoot("viewerLanding");
     }
+
+    @FXML
     public void addPerson(ActionEvent actionEvent) throws IOException {
         App.setRoot("producerAddCreditName");
     }

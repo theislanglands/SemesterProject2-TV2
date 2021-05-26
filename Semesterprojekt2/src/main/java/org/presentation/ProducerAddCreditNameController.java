@@ -3,6 +3,7 @@ package org.presentation;
 import domain.CreditName;
 import domain.TvCreditsFacade;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -57,12 +58,18 @@ public class ProducerAddCreditNameController {
         return !firstNameText.getText().isEmpty() && !lastNameText.getText().isEmpty() && dateOfBirth.getValue() != null;
     }
 
-
+    @FXML
     public void switchToAddCredit(ActionEvent actionEvent) throws IOException {
         App.setRoot("addCredits");
     }
 
+    @FXML
     public void switchToPrimary(ActionEvent actionEvent) throws IOException {
         App.setRoot("primary");
+    }
+
+    @FXML
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
     }
 }

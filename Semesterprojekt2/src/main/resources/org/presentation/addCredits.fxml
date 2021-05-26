@@ -59,12 +59,12 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="43.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="40.0">
+      <Label layoutX="57.0" layoutY="43.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="40.0">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-      <Label layoutX="69.0" layoutY="81.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="80.0">
+      <Label layoutX="69.0" layoutY="81.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="22.0" />
          </font>
@@ -81,7 +81,7 @@
             </ImageView>
          </graphic>
       </MenuButton>
-      <Button fx:id="logoutButton" layoutX="1294.0" layoutY="756.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilbage" textFill="WHITE" AnchorPane.rightAnchor="60.0">
+      <Button fx:id="logoutButton" layoutX="1294.0" layoutY="756.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilbage" textFill="WHITE" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="730.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -98,7 +98,7 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button fx:id="deleteCredit" layoutX="1294.0" layoutY="662.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE" AnchorPane.rightAnchor="60.0">
+      <Button fx:id="deleteCredit" layoutX="1294.0" layoutY="662.0" mnemonicParsing="false" onAction="#deleteCredit" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Slet kreditering" textFill="WHITE" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="660.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -124,7 +124,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <VBox layoutX="19.0" layoutY="241.0" prefHeight="558.0" prefWidth="284.0">
+      <VBox layoutX="19.0" layoutY="241.0" prefHeight="558.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0">
          <children>
             <Button fx:id="myProductions" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
                <font>
@@ -143,7 +143,7 @@
             </Button>
          </children>
       </VBox>
-      <Label fx:id="message" layoutX="756.0" layoutY="873.0" prefHeight="54.0" prefWidth="251.0" text="Message" textFill="WHITE">
+      <Label fx:id="message" layoutX="857.0" layoutY="827.0" prefHeight="54.0" prefWidth="251.0" text="Message" textFill="WHITE">
          <font>
             <Font size="34.0" />
          </font>
