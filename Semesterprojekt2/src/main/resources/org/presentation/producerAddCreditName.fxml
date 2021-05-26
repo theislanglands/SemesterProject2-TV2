@@ -20,31 +20,31 @@
             <Image url="@Logo/2.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="firstNameText" layoutX="560.0" layoutY="166.0" prefHeight="17.0" prefWidth="391.0" promptText="Fornavn" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="175.0" />
-      <TextArea fx:id="lastNameText" layoutX="560.0" layoutY="223.0" prefHeight="12.0" prefWidth="391.0" promptText="Efternavn" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="235.0" />
-      <TextArea fx:id="addressText" layoutX="560.0" layoutY="341.0" prefHeight="120.0" prefWidth="391.0" promptText="Addresse" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="355.0" />
-      <Label layoutX="560.0" layoutY="101.0" prefHeight="54.0" prefWidth="272.0" text="Ny Person" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="115.0">
+      <TextArea fx:id="firstNameText" layoutX="560.0" layoutY="166.0" prefHeight="17.0" prefWidth="391.0" promptText="Fornavn" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="175.0" />
+      <TextArea fx:id="lastNameText" layoutX="560.0" layoutY="223.0" prefHeight="12.0" prefWidth="391.0" promptText="Efternavn" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="235.0" />
+      <TextArea fx:id="addressText" layoutX="560.0" layoutY="341.0" prefHeight="120.0" prefWidth="391.0" promptText="Addresse" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="355.0" />
+      <Label layoutX="560.0" layoutY="101.0" prefHeight="54.0" prefWidth="272.0" text="Ny Person" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="115.0">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
-      <Label layoutX="549.0" layoutY="164.0" text="*" textFill="RED" AnchorPane.leftAnchor="325.0" AnchorPane.topAnchor="175.0">
+      <Label layoutX="549.0" layoutY="164.0" text="*" textFill="RED" AnchorPane.leftAnchor="345.0" AnchorPane.topAnchor="175.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dateOfBirth" layoutX="559.0" layoutY="280.0" prefHeight="42.0" prefWidth="188.0" promptText="Fødselsdato" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="295.0" />
-      <Label layoutX="541.0" layoutY="280.0" text="*" textFill="RED" AnchorPane.leftAnchor="325.0" AnchorPane.topAnchor="275.0">
+      <DatePicker fx:id="dateOfBirth" layoutX="559.0" layoutY="280.0" prefHeight="42.0" prefWidth="188.0" promptText="Fødselsdato" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="295.0" />
+      <Label layoutX="541.0" layoutY="280.0" text="*" textFill="RED" AnchorPane.leftAnchor="345.0" AnchorPane.topAnchor="295.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="545.0" layoutY="223.0" text="*" textFill="RED" AnchorPane.leftAnchor="325.0" AnchorPane.topAnchor="225.0">
+      <Label layoutX="545.0" layoutY="223.0" text="*" textFill="RED" AnchorPane.leftAnchor="345.0" AnchorPane.topAnchor="235.0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextArea fx:id="bioText" layoutX="776.0" layoutY="179.0" prefHeight="421.0" prefWidth="544.0" promptText="Biografi" AnchorPane.leftAnchor="750.0" AnchorPane.topAnchor="175.0" />
+      <TextArea fx:id="bioText" layoutX="778.0" layoutY="179.0" prefHeight="421.0" prefWidth="516.0" promptText="Biografi" AnchorPane.leftAnchor="778.0" AnchorPane.topAnchor="175.0" />
       <Button fx:id="saveButton" layoutX="1355.0" layoutY="470.0" mnemonicParsing="false" onAction="#saveCreditName" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Gem" textFill="WHITE" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="470.0">
          <font>
             <Font size="15.0" />
@@ -88,14 +88,14 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextArea fx:id="emailText" layoutX="341.0" layoutY="450.0" prefHeight="12.0" prefWidth="391.0" promptText="Email" AnchorPane.leftAnchor="341.0" AnchorPane.topAnchor="493.0" />
-      <TextArea fx:id="countryText" layoutX="333.0" layoutY="506.0" prefHeight="12.0" prefWidth="391.0" promptText="Land" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="553.0" />
+      <TextArea fx:id="emailText" layoutX="341.0" layoutY="450.0" prefHeight="12.0" prefWidth="391.0" promptText="Email" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="493.0" />
+      <TextArea fx:id="countryText" layoutX="333.0" layoutY="506.0" prefHeight="12.0" prefWidth="391.0" promptText="Land" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="553.0" />
       <Label fx:id="message" layoutX="624.0" layoutY="121.0" prefHeight="69.0" prefWidth="126.0" text="* felt mangler" textFill="RED">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <VBox layoutX="19.0" layoutY="241.0" prefHeight="558.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="231.0">
+      <VBox layoutX="19.0" layoutY="241.0" prefHeight="558.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="200.0">
          <children>
             <Button fx:id="myProductions" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
                <font>
