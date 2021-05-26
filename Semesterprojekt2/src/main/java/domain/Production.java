@@ -24,7 +24,7 @@ public class Production {
     private int episode;
     private String productionBio;
     private String productionCompanyName;
-    private String imageUrl;
+    private String imageUrl = "http://rannok.dk/TVCredits/production_images/Unknown_production.jpg";
 
     private ArrayList<Credit> credits;
 

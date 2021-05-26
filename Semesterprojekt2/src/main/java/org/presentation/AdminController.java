@@ -119,7 +119,6 @@ public class AdminController extends TableViewInitializer{
 
 
 
-
     private void addProductions(List<Production> productionList) {
         //Clears the tables
         validationTableProductions.getItems().clear();
