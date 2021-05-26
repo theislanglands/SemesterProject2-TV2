@@ -170,6 +170,62 @@ public abstract class TableViewInitializer {
 
     }
 
+    public void setTableViewProductionBig(TableView tableViewProductions){
+
+
+
+//        private ArrayList<String> genre missing
+
+
+        tableViewProductions.getColumns().clear();
+        tableViewProductions.getItems().clear();
+
+
+        //creates a new column in the TableView with header "ID", type Production and cellValue String
+        TableColumn<Production, String> col1 = new TableColumn<>("ID");
+        //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
+         col1.setCellValueFactory(new PropertyValueFactory<>("productionReference"));
+
+        TableColumn<Production, String> col2 = new TableColumn<>("Titel");
+        col2.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col2.setMinWidth(200);
+
+        TableColumn<Production, Date> col3 = new TableColumn<>("Udgivelses Dato");
+        col3.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+
+        TableColumn<Production, String> col4 = new TableColumn<>("Type");
+        col4.setCellValueFactory(new PropertyValueFactory<>("productionType"));
+        col4.setMinWidth(80);
+
+        TableColumn<Production, String> col5 = new TableColumn<>("Episode");
+        col5.setCellValueFactory(new PropertyValueFactory<>("episode"));
+
+        TableColumn<Production, String> col6 = new TableColumn<>("Sæson");
+        col6.setCellValueFactory(new PropertyValueFactory<>("season"));
+
+        TableColumn<Production, String> col7 = new TableColumn<>("Længde");
+        col7.setCellValueFactory(new PropertyValueFactory<>("length"));
+
+        TableColumn<Production, String> col8 = new TableColumn<>("Sprog");
+        col8.setCellValueFactory(new PropertyValueFactory<>("language"));
+
+        TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
+        col9.setCellValueFactory(new PropertyValueFactory<>("productionCompanyName"));
+
+        //adding columns to the tableview
+        tableViewProductions.getColumns().add(col1);
+        tableViewProductions.getColumns().add(col2);
+        tableViewProductions.getColumns().add(col3);
+        tableViewProductions.getColumns().add(col4);
+        tableViewProductions.getColumns().add(col5);
+        tableViewProductions.getColumns().add(col6);
+        tableViewProductions.getColumns().add(col7);
+        tableViewProductions.getColumns().add(col8);
+        tableViewProductions.getColumns().add(col9);
+
+
+    }
+
     public void addProductions(TableView tableViewProductions, ObservableList productionObservableList, List<Production> productions){
         //adding data to the table view
         List<Production> productionList = productions;

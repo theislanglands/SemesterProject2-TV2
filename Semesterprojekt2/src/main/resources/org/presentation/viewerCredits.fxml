@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerCreditsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ViewerCreditsController">
    <children>
       <Line endX="1667.0765380859375" endY="-102.0" layoutX="174.0" layoutY="216.0" startX="-432.4189453125" startY="-102.0" stroke="#afafaf" AnchorPane.topAnchor="115.0" />
       <ImageView fitHeight="52.0" fitWidth="296.0" layoutX="672.0" layoutY="34.0" onMouseClicked="#switchToPrimary" AnchorPane.leftAnchor="652.0" AnchorPane.rightAnchor="652.0">
@@ -24,7 +24,7 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <ImageView fx:id="creditImage" fitHeight="225.0" fitWidth="275.0" layoutX="205.0" layoutY="213.0" AnchorPane.leftAnchor="200.0">
+      <ImageView fx:id="creditImage" fitHeight="225.0" fitWidth="275.0" layoutX="205.0" layoutY="213.0" preserveRatio="true" AnchorPane.leftAnchor="200.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-11%20at%2014.35.48.png" />
          </image>
@@ -55,7 +55,7 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <TextField fx:id="textSearchBar" layoutX="980.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;" AnchorPane.leftAnchor="1360.0" AnchorPane.topAnchor="40.0">
+      <TextField fx:id="textSearchBar" layoutX="980.0" layoutY="39.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." stylesheets="@../../style.css" AnchorPane.leftAnchor="1360.0" AnchorPane.topAnchor="40.0">
          <font>
             <Font size="20.0" />
          </font>
@@ -70,7 +70,7 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <TextField fx:id="searchTableButton" layoutX="690.0" layoutY="175.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." style="-fx-background-color: 000000; -fx-text-inner-color: afafaf;">
+      <TextField fx:id="searchTableButton" layoutX="690.0" layoutY="175.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." stylesheets="@../../style.css">
          <font>
             <Font size="20.0" />
          </font>
