@@ -9,53 +9,17 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerLandingController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerLandingController">
    <children>
-      <MenuButton fx:id="bruger" layoutX="1084.0" layoutY="4.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;">
-         <items>
-            <MenuItem mnemonicParsing="false" onAction="#switchToPrimary" text="Log ud" />
-         </items>
-         <graphic>
-            <ImageView fitHeight="52.0" fitWidth="56.0">
-               <image>
-                  <Image url="@Logo/creditName-icon-white.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </MenuButton>
-      <Label layoutX="939.0" layoutY="23.0" text="Anna Andersson" textFill="WHITE">
-         <font>
-            <Font name="AlrightSans-Regular" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="37.0" layoutY="23.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE">
-         <font>
-            <Font name="AlrightSans-Regular" size="34.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="69.0" text="20 marts" textFill="WHITE">
-         <font>
-            <Font name="AlrightSans-Regular" size="17.0" />
-         </font>
-      </Label>
-      <Label layoutX="1003.0" layoutY="49.0" text="Nordisk film" textFill="WHITE">
-         <font>
-            <Font name="AlrightSans-Regular" size="15.0" />
-         </font>
-      </Label>
-      <Button fx:id="myProductions" layoutX="-24.0" layoutY="206.0" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Button>
-      <Button fx:id="addCreditButton" layoutX="966.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Administrer kreditering" textFill="WHITE">
+      <Button fx:id="addCreditButton" layoutX="966.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Administrer kreditering" textFill="WHITE" AnchorPane.rightAnchor="60.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="addProductionButton" layoutX="966.0" layoutY="184.0" mnemonicParsing="false" onAction="#switchToAddProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE">
+      <Button fx:id="addProductionButton" layoutX="966.0" layoutY="184.0" mnemonicParsing="false" onAction="#switchToAddProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE" AnchorPane.rightAnchor="60.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -66,13 +30,13 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="tableView" layoutX="316.0" layoutY="184.0" prefHeight="679.0" prefWidth="612.0" />
-      <Button fx:id="logoutButton" layoutX="965.0" layoutY="806.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afslut og log ud" textFill="WHITE">
+      <TableView fx:id="tableView" layoutX="316.0" layoutY="184.0" prefHeight="679.0" prefWidth="985.0" />
+      <Button fx:id="logoutButton" layoutX="965.0" layoutY="806.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afslut og log ud" textFill="WHITE" AnchorPane.rightAnchor="60.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="selectProductionButton" layoutX="966.0" layoutY="263.0" mnemonicParsing="false" onAction="#selectProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Vælg produktion" textFill="WHITE">
+      <Button fx:id="selectProductionButton" layoutX="966.0" layoutY="263.0" mnemonicParsing="false" onAction="#selectProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Vælg produktion" textFill="WHITE" AnchorPane.rightAnchor="60.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -82,5 +46,61 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label layoutX="57.0" layoutY="43.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Label layoutX="69.0" layoutY="81.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="80.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <MenuButton fx:id="bruger" layoutX="1104.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#switchToViewer" text="Log ud" />
+         </items>
+         <graphic>
+            <ImageView fitHeight="69.0" fitWidth="56.0">
+               <image>
+                  <Image url="@Logo/Screenshot%202021-05-18%20at%2009.51.29.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MenuButton>
+      <Label layoutX="959.0" layoutY="43.0" text="Anna Andersson" textFill="WHITE" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1023.0" layoutY="69.0" text="Nordisk film" textFill="WHITE" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="65.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <VBox layoutX="9.0" layoutY="231.0" prefHeight="558.0" prefWidth="284.0">
+         <children>
+            <Button fx:id="myProductions" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="mySettingsButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Indstillninger" textFill="#464444">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+            <Button fx:id="supportButton" mnemonicParsing="false" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Support" textFill="#464444">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <ImageView fitHeight="42.0" fitWidth="237.0" layoutX="38.0" layoutY="852.0" onMouseClicked="#switchToPrimary" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0">
+         <image>
+            <Image url="@Logo/2.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
