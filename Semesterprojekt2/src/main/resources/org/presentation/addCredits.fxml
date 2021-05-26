@@ -143,5 +143,10 @@
             </Button>
          </children>
       </VBox>
+      <Label fx:id="message" layoutX="756.0" layoutY="873.0" prefHeight="54.0" prefWidth="251.0" text="Message" textFill="WHITE">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
