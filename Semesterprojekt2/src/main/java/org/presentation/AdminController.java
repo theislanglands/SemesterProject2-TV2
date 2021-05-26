@@ -45,7 +45,6 @@ public class AdminController extends TableViewInitializer{
     @FXML
     private void switchToAdminValidate() throws IOException {
         App.setRoot("adminValidate");
-
     }
 
     @FXML
@@ -59,6 +58,11 @@ public class AdminController extends TableViewInitializer{
 
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
         App.setRoot("viewerLanding");
+    }
+
+    @FXML
+    private void switchToAdminOops() throws IOException {
+        App.setRoot("adminOops");
     }
 
     public void initialize() {
