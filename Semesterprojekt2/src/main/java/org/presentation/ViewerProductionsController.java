@@ -4,21 +4,16 @@ import domain.Credit;
 import domain.Production;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
-import java.util.List;
 
 public class ViewerProductionsController extends TableViewInitializer {
 
@@ -32,7 +27,7 @@ public class ViewerProductionsController extends TableViewInitializer {
     public Text textProductionCompany;
     public Text textYear;
     public Text textDirector;
-    public TextField searchTableButton;
+    public TextField textSearchBar;
     private Production production;
     public ImageView productionImage;
 
@@ -73,7 +68,7 @@ public class ViewerProductionsController extends TableViewInitializer {
 
         setTableViewCredits(tableViewCredits);
         addCredits(production, creditObservableList, tableViewCredits);
-        activateCreditSearchbar( searchTableButton, creditObservableList, tableViewCredits);
+        activateCreditSearchbar(textSearchBar, creditObservableList, tableViewCredits);
 
         activateDoubleClick();
         setPageProduction();
