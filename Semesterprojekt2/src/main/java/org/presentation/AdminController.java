@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
-public class AdminController {
+public class AdminController extends TableViewInitializer{
 
     public Button adminLandingButton;
     public Button searchProductionsButton;
@@ -63,11 +63,17 @@ public class AdminController {
 
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
-        setTableViewProduction();
+
+        setTableViewProduction(validationTableProductions);
         addProductions(tvCreditsFacade.getAllProductions());
+
+
+        activateDoubleClick();
+
         validateProductionButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
-        activateDoubleClick();
+
+
     }
 
     // ACTION HANDLERS!
@@ -82,18 +88,6 @@ public class AdminController {
         }
     }
 
-    @FXML
-    public void validateCreditButtonHandler(ActionEvent event) {
-        // find chosen credit
-        int chosenIndex = validationTableCredits.getSelectionModel().getFocusedIndex();
-        Credit chosenCredit = creditObservableList.get(chosenIndex);
-        //Validates the chosen credit
-        tvCreditsFacade.validateCredit(chosenCredit);
-        //Removes unvalidated credit from observable list
-        creditObservableList.remove(chosenIndex);
-        //Removes unvalidated credit from table + disappears from GUI
-        validationTableCredits.getItems().remove(chosenIndex);
-    }
 
     @FXML
     public void validateAllCreditsButtonHandler(ActionEvent event) {
@@ -115,7 +109,7 @@ public class AdminController {
                     productionChosen = row.getItem();
 
                     // Initialize and add credits to credit table with credits beloning to productioinChosen
-                    setTableViewCredits();
+                    setTableViewCredits(validationTableCredits);
                     addCreditsToTable();
                 }
             });
@@ -124,51 +118,7 @@ public class AdminController {
     }
 
 
-    private void setTableViewProduction() {
 
-//        private ArrayList<String> genre missing
-        validationTableProductions.getColumns().clear();
-        validationTableProductions.getItems().clear();
-
-        //creates a new column in the TableView with header "ID", type Production and cellValue String
-        TableColumn<Production, String> col1 = new TableColumn<>("Produktions Reference");
-
-        //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
-        col1.setCellValueFactory(new PropertyValueFactory<>("productionReference"));
-
-        TableColumn<Production, String> col2 = new TableColumn<>("Titel");
-        col2.setCellValueFactory(new PropertyValueFactory<>("name"));
-
-        TableColumn<Production, Date> col3 = new TableColumn<>("Udgivelses Dato");
-        col3.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
-
-        TableColumn<Production, String> col4 = new TableColumn<>("Type");
-        col4.setCellValueFactory(new PropertyValueFactory<>("productionType"));
-
-        TableColumn<Production, String> col5 = new TableColumn<>("Episode");
-        col5.setCellValueFactory(new PropertyValueFactory<>("episode"));
-
-        TableColumn<Production, String> col6 = new TableColumn<>("Sæson");
-        col6.setCellValueFactory(new PropertyValueFactory<>("season"));
-
-        TableColumn<Production, String> col7 = new TableColumn<>("Længde");
-        col7.setCellValueFactory(new PropertyValueFactory<>("length"));
-
-        TableColumn<Production, String> col8 = new TableColumn<>("Sprog");
-        col8.setCellValueFactory(new PropertyValueFactory<>("language"));
-
-        //adding columns to the tableview
-
-        validationTableProductions.getColumns().add(col1);
-        validationTableProductions.getColumns().add(col2);
-        validationTableProductions.getColumns().add(col3);
-        validationTableProductions.getColumns().add(col4);
-        validationTableProductions.getColumns().add(col5);
-        validationTableProductions.getColumns().add(col6);
-        validationTableProductions.getColumns().add(col7);
-        validationTableProductions.getColumns().add(col8);
-
-    }
 
     private void addProductions(List<Production> productionList) {
         //Clears the tables
@@ -181,30 +131,7 @@ public class AdminController {
         }
     }
 
-    private void setTableViewCredits() {
-        validationTableCredits.getColumns().clear();
-        validationTableCredits.getItems().clear();
 
-        // create columns and set contents
-        TableColumn<Credit, String> col1 = new TableColumn<>("Fornavn");
-        // setting values to cell by specified getter
-        col1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-
-        TableColumn<Credit, String> col2 = new TableColumn<>("Efternavn");
-        col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-
-        TableColumn<Credit, String> col3 = new TableColumn<>("Rolle");
-        col3.setCellValueFactory(new PropertyValueFactory<>("role"));
-
-        TableColumn<Credit, String> col4 = new TableColumn<>("Krediteringstype");
-        col4.setCellValueFactory(new PropertyValueFactory<>("creditType"));
-
-        //adding columns to the tableview
-        validationTableCredits.getColumns().add(col1);
-        validationTableCredits.getColumns().add(col2);
-        validationTableCredits.getColumns().add(col3);
-        validationTableCredits.getColumns().add(col4);
-    }
 
     private void addCreditsToTable() {
         validationTableCredits.getItems().clear();
@@ -253,4 +180,19 @@ public class AdminController {
         validateProductionButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
     }
+
+
+    @FXML
+    public void validateCreditButtonHandler(ActionEvent event) {
+        // find chosen credit
+        int chosenIndex = validationTableCredits.getSelectionModel().getFocusedIndex();
+        Credit chosenCredit = creditObservableList.get(chosenIndex);
+        //Validates the chosen credit
+        tvCreditsFacade.validateCredit(chosenCredit);
+        //Removes unvalidated credit from observable list
+        creditObservableList.remove(chosenIndex);
+        //Removes unvalidated credit from table + disappears from GUI
+        validationTableCredits.getItems().remove(chosenIndex);
+    }
+
 }
