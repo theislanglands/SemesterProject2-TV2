@@ -67,7 +67,7 @@
             <Image url="@Logo/Screenshot%202021-05-12%20at%2010.07.42.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="26.0" layoutY="48.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="45.0">
+      <ImageView fitHeight="35.0" fitWidth="27.0" layoutX="26.0" layoutY="48.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="38.0">
          <image>
             <Image url="@Logo/Screenshot%202021-05-18%20at%2009.51.29.png" />
          </image>
