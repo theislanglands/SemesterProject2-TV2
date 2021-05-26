@@ -52,11 +52,6 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <ImageView fitHeight="71.0" fitWidth="159.0" layoutX="731.0" layoutY="25.0">
-         <image>
-            <Image url="@Logo/TV_2_PLAY_Hvid_Blaa_RGB.png" />
-         </image>
-      </ImageView>
       <TextField fx:id="textSearchBar" layoutX="1318.0" layoutY="42.0" onAction="#switchToSearch" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." stylesheets="@../../style.css" AnchorPane.leftAnchor="1360.0" AnchorPane.topAnchor="40.0">
          <font>
             <Font size="20.0" />
