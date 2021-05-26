@@ -60,10 +60,6 @@ public class AdminController extends TableViewInitializer{
         App.setRoot("viewerLanding");
     }
 
-    @FXML
-    private void switchToAdminOops() throws IOException {
-        App.setRoot("adminOops");
-    }
 
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();

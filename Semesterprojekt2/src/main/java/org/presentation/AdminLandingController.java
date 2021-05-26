@@ -30,10 +30,6 @@ public class AdminLandingController {
         App.setRoot("viewerLanding");
     }
 
-    @FXML
-    private void switchToAdminOops() throws IOException {
-        App.setRoot("adminOops");
-    }
 
 
 }
