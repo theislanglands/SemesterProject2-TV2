@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerAddCreditController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerAddCreditController">
    <children>
       <Label layoutX="305.0" layoutY="53.0" prefHeight="54.0" prefWidth="251.0" text="Ny kreditering" textFill="WHITE" AnchorPane.leftAnchor="360.0">
          <font>
@@ -44,7 +44,7 @@
       </Button>
       <TextField fx:id="productionRefText" layoutX="994.0" layoutY="250.0" prefHeight="27.0" prefWidth="182.0" promptText="Produktions - reference" />
       <TextField fx:id="searchFieldCreditName" layoutX="736.0" layoutY="303.0" prefHeight="25.0" prefWidth="159.0" promptText="Navn..." />
-      <ImageView fitHeight="42.0" fitWidth="262.0" layoutX="55.0" layoutY="861.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+      <ImageView fitHeight="42.0" fitWidth="262.0" layoutX="55.0" layoutY="861.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0">
          <image>
             <Image url="@Logo/2.png" />
          </image>
@@ -103,7 +103,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="addCreditButton" layoutX="360.0" layoutY="833.0" mnemonicParsing="false" onAction="#addCredit" prefHeight="57.0" prefWidth="174.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ 4. Tilføj kreditering" textFill="WHITE" AnchorPane.leftAnchor="360.0">
+      <Button fx:id="addCreditButton" layoutX="398.0" layoutY="835.0" mnemonicParsing="false" onAction="#addCredit" prefHeight="37.0" prefWidth="174.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Tilføj kreditering" textFill="WHITE" AnchorPane.leftAnchor="380.0" AnchorPane.topAnchor="830.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -114,7 +114,7 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Button fx:id="addCreditName" layoutX="713.0" layoutY="843.0" mnemonicParsing="false" onAction="#addPerson" prefHeight="37.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Person findes ikke" textFill="WHITE" AnchorPane.leftAnchor="713.0">
+      <Button fx:id="addCreditName" layoutX="713.0" layoutY="843.0" mnemonicParsing="false" onAction="#addPerson" prefHeight="37.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Person findes ikke" textFill="WHITE" AnchorPane.leftAnchor="713.0" AnchorPane.topAnchor="830.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -124,7 +124,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <VBox layoutX="19.0" layoutY="241.0" prefHeight="558.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0">
+      <VBox layoutX="19.0" layoutY="241.0" prefHeight="558.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="200.0">
          <children>
             <Button fx:id="myProductions" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
                <font>
@@ -143,12 +143,17 @@
             </Button>
          </children>
       </VBox>
-      <Label fx:id="message" layoutX="846.0" layoutY="899.0" prefHeight="54.0" prefWidth="251.0" text="Message" textFill="WHITE">
+      <Label fx:id="message" layoutX="999.0" layoutY="823.0" prefHeight="54.0" prefWidth="251.0" text="Message" textFill="WHITE">
          <font>
             <Font size="34.0" />
          </font>
       </Label>
       <Label layoutX="315.0" layoutY="288.0" prefHeight="54.0" prefWidth="126.0" text="3. Vælg Person" textFill="WHITE" AnchorPane.leftAnchor="360.0">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="355.0" layoutY="836.0" prefHeight="54.0" prefWidth="126.0" text="4." textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="820.0">
          <font>
             <Font size="17.0" />
          </font>
