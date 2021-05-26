@@ -11,7 +11,7 @@
 }
 
 .table-row-cell:hover {
-    -fx-text-background-color: #64b852;
+    -fx-background-color: #64b852;
 }
 
 .text-field{
@@ -49,7 +49,12 @@
 
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
+    -fx-text-fill: white;
 
+}
+
+.table-cell:hover{
+    -fx-text-background-color: #64b852;
 }
 
 
