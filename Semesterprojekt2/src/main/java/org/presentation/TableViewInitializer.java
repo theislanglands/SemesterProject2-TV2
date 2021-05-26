@@ -16,16 +16,18 @@ import java.util.List;
 
 public abstract class TableViewInitializer {
 
-    public void activateProductionSearchbar(TextField searchTableButton, ObservableList productionObservableList, TableView tableViewProductions) {
+    public void activateProductionSearchbar(TextField searchTextField, ObservableList productionObservableList, TableView tableViewProductions) {
 
 
-        //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
+        //These lists will contain all the objects from the "big" list (p/c ObservableList) that return true in the filter below
         FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
 
 
         //adding a listener to the searchBar
-        //only newValue is used, not sure what the other 2 does
-        searchTableButton.textProperty().addListener((observable, oldValue, newValue) -> {
+        //newValue is the current value in the TextField after a change happened.
+        //oldValue is the value of the TextField just before the latest change
+
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             //this filters the productions based on the input
             productionFilteredList.setPredicate(production -> {
@@ -56,7 +58,7 @@ public abstract class TableViewInitializer {
 
             //Sorted list that is passed all objects of the filtered list. Dont know why
             SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
-            //no idea what this does
+            //A filtered list is unmodifiable, so we need to transfer its values to a sorted list.
             productionSortedList.comparatorProperty().bind(tableViewProductions.comparatorProperty());
             //adding the filtered objects to the listview
             tableViewProductions.setItems(productionSortedList);
@@ -64,15 +66,14 @@ public abstract class TableViewInitializer {
         });
     }
 
-    public void activateCreditSearchbar( TextField searchTableButton, ObservableList creditObservableList, TableView tableViewCredits ) {
+    public void activateCreditSearchbar( TextField searchTextField, ObservableList creditObservableList, TableView tableViewCredits ) {
 
         //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
         FilteredList<Credit> creditFilteredList = new FilteredList<>(creditObservableList, b -> true);
 
 
-        //adding a listener to the searchBar
-        //only newValue is used, not sure what the other 2 does
-        searchTableButton.textProperty().addListener((observable, oldValue, newValue) -> {
+
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             //this filters the productions based on the input
             creditFilteredList.setPredicate(credit -> {
@@ -106,7 +107,7 @@ public abstract class TableViewInitializer {
 
             //Sorted list that is passed all objects of the filtered list. Dont know why
             SortedList<Credit> productionSortedList = new SortedList<>(creditFilteredList);
-            //no idea what this does
+
             productionSortedList.comparatorProperty().bind(tableViewCredits.comparatorProperty());
             //adding the filtered objects to the listview
             tableViewCredits.setItems(productionSortedList);
@@ -116,9 +117,6 @@ public abstract class TableViewInitializer {
 
     public void setTableViewProduction(TableView tableViewProductions){
 
-
-
-//        private ArrayList<String> genre missing
 
 
         tableViewProductions.getColumns().clear();
@@ -171,10 +169,6 @@ public abstract class TableViewInitializer {
     }
 
     public void setTableViewProductionBig(TableView tableViewProductions){
-
-
-
-//        private ArrayList<String> genre missing
 
 
         tableViewProductions.getColumns().clear();

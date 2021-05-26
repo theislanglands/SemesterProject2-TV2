@@ -86,7 +86,7 @@ public class ViewerProductionsController extends TableViewInitializer {
         textLength.setText(String.valueOf(production.getLength()));
         textProductionCompany.setText(production.getProductionCompanyName());
         textYear.setText(String.valueOf(production.getReleaseDate().getYear() + 1900));
-        
+
 
         if(production.getImageUrl() != null){
             productionImage.setImage(new Image(production.getImageUrl()));
