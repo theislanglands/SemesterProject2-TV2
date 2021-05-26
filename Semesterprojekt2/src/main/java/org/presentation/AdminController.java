@@ -64,7 +64,7 @@ public class AdminController extends TableViewInitializer{
     public void initialize() {
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
-        setTableViewProduction(validationTableProductions);
+        setTableViewProductionBig(validationTableProductions);
         addProductions(tvCreditsFacade.getAllProductions());
 
 
