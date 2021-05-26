@@ -29,12 +29,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="47.0" layoutY="33.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="40.0">
+      <Label layoutX="47.0" layoutY="33.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="40.0">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-      <Label layoutX="59.0" layoutY="71.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="80.0">
+      <Label layoutX="59.0" layoutY="71.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="22.0" />
          </font>
@@ -49,7 +49,7 @@
             <Image url="@Logo/Artboard-1.png" />
          </image>
       </ImageView>
-      <VBox layoutX="3.0" layoutY="203.0" prefHeight="623.0" prefWidth="284.0">
+      <VBox layoutX="3.0" layoutY="203.0" prefHeight="623.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="200.0">
          <children>
             <Button fx:id="adminLandingButton" mnemonicParsing="false" onAction="#switchToAdminLanding" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Forside" textFill="WHITE">
                <font>

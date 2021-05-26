@@ -106,11 +106,7 @@ public class ProducerLandingController {
         //adding data to the table view
         tableView.getItems().addAll(productionObservableList);
     }
-
-    public void selectProductionButtonHandler(ActionEvent actionEvent) {
-        productionChosen = (Production) tableView.getSelectionModel().getSelectedItem();
-        message.setText("");
-    }
+    
 
     public void search(ActionEvent actionEvent) {
         //missing implementation for search of credits. Maybe some sort of check of the ListView. not sure
