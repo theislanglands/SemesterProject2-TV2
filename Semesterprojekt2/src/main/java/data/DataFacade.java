@@ -107,7 +107,16 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setString(10, prod.getProductionBio());
 
             // inserting foreign keys
-            stmt1.setInt(11, getProdCompanyId(prod.getProductionCompanyName()));
+
+            int productionCompanyId = getProdCompanyId(prod.getProductionCompanyName());
+
+            if(productionCompanyId>0){
+                stmt1.setInt(11, productionCompanyId);
+            }else{
+                stmt1.setInt(11, createProductionCompany(prod.getProductionCompanyName()));
+            }
+
+
             stmt1.setInt(12, getProdTypeId(prod.getProductionType()));
             stmt1.setInt(13, getLanguageId(prod.getLanguage()));
 
@@ -116,6 +125,8 @@ public class DataFacade implements DataLayerInterface {
             if (productionNameId == -1) { // if production name doesn't exist - create a new one, return id.
                 productionNameId = createProductionName(prod.getName());
             }
+
+
 
             stmt1.setInt(14, productionNameId);
 
@@ -163,6 +174,37 @@ public class DataFacade implements DataLayerInterface {
         }
 
         return productionId;
+    }
+
+    private int createProductionCompany(String productionCompany) {
+
+        // returns - 1 if exist
+        int productionCompanyId = -1;
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    "INSERT INTO production_company(" +
+                            "name) " +        //1
+                            "VALUES (?)",
+                    PreparedStatement.RETURN_GENERATED_KEYS
+            );
+
+            stmt.setString(1, productionCompany);
+
+            stmt.execute();
+
+            // retrieves id of inserted creditName
+            ResultSet resultSet = stmt.getGeneratedKeys();
+            resultSet.next();
+            productionCompanyId = resultSet.getInt(1);
+
+            stmt.close();
+
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+        return productionCompanyId;
+
     }
 
     @Override

@@ -90,7 +90,7 @@ public class ProducerAddProductionController {
         App.setRoot("viewerLanding");
     }
 
-    public void saveProduction(ActionEvent actionEvent) {
+    public void saveProduction(ActionEvent actionEvent) throws IOException {
 
         //When button is pressed initialize a prodcution object with 3 arguments
         Production production = new Production(
@@ -140,19 +140,10 @@ public class ProducerAddProductionController {
         //saves production
         tvCreditsFacade.saveProduction(production);
 
-        //clears the fields where user entered info
-        clearFields();
+        //sends user back to landing
+        App.setRoot("producerLanding");
     }
 
-    private void clearFields() {
-        length.setText("");
-        productionID.setText("");
-        season.setText("");
-        episode.setText("");
-        title.setText("");
-        producent.setText("");
-        subtitles.setSelected(false);
-    }
 
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException{
