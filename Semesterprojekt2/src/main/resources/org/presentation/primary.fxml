@@ -46,22 +46,22 @@
                   <Font name="AlrightSans-Regular" size="15.0" />
                </font>
             </Hyperlink>
-            <Button fx:id="primaryButton1" layoutX="129.0" layoutY="505.0" mnemonicParsing="false" onAction="#switchToProducer" prefHeight="61.0" prefWidth="183.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 45; -fx-border-width: 3;" text="LOG IND" textFill="RED">
+            <Button fx:id="primaryButton1" layoutX="129.0" layoutY="505.0" mnemonicParsing="false" onAction="#switchToProducer" prefHeight="61.0" prefWidth="183.0" style="-fx-background-color: black; -fx-border-color: #464444; -fx-border-radius: 45; -fx-border-width: 3;" text="LOG IND" textFill="#464444">
                <font>
                   <Font name="AlrightSans-Black" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="producerButton" layoutX="82.0" layoutY="596.0" mnemonicParsing="false" onAction="#switchToProducer" prefHeight="61.0" prefWidth="120.0" style="-fx-background-color: black; -fx-border-color: afafaf; -fx-border-radius: 45; -fx-border-width: 3;" text="Producer" textFill="#afafaf">
+            <Button fx:id="producerButton" layoutX="94.0" layoutY="633.0" mnemonicParsing="false" onAction="#switchToProducer" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: black; -fx-border-color: afafaf; -fx-border-radius: 45; -fx-border-width: 3;" text="Producer" textFill="#afafaf">
                <font>
                   <Font name="AlrightSans-Black" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="adminButton" layoutX="232.0" layoutY="596.0" mnemonicParsing="false" onAction="#switchToAdminLanding" prefHeight="61.0" prefWidth="120.0" style="-fx-background-color: black; -fx-border-color: afafaf; -fx-border-radius: 45; -fx-border-width: 3;" text="Admin" textFill="#afafaf">
+            <Button fx:id="adminButton" layoutX="224.0" layoutY="634.0" mnemonicParsing="false" onAction="#switchToAdminLanding" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: black; -fx-border-color: afafaf; -fx-border-radius: 45; -fx-border-width: 3;" text="Admin" textFill="#afafaf">
                <font>
                   <Font name="AlrightSans-Black" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="backToViewerButton" layoutX="126.0" layoutY="202.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="29.0" prefWidth="197.0" style="-fx-background-color: black;" text="Kom tilbage til TV2-Credits" textFill="#00a8ff">
+            <Button fx:id="backToViewerButton" layoutX="115.0" layoutY="201.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="29.0" prefWidth="223.0" style="-fx-background-color: black;" text="Kom tilbage til TV2-Credits" textFill="#00a8ff">
                <font>
                   <Font size="15.0" />
                </font>
