@@ -14,29 +14,29 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.presentation.ProducerLandingController">
    <children>
-      <Button fx:id="addCreditButton" layoutX="966.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Administrer kreditering" textFill="WHITE" AnchorPane.rightAnchor="60.0">
+      <Button fx:id="addCreditButton" layoutX="966.0" layoutY="346.0" mnemonicParsing="false" onAction="#switchToAddCredits" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Administrer kreditering" textFill="WHITE" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="340.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="addProductionButton" layoutX="966.0" layoutY="184.0" mnemonicParsing="false" onAction="#switchToAddProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE" AnchorPane.rightAnchor="60.0">
+      <Button fx:id="addProductionButton" layoutX="966.0" layoutY="184.0" mnemonicParsing="false" onAction="#switchToAddProduction" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Tilføj produktion" textFill="WHITE" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="200.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <TextField fx:id="searchBar" layoutX="316.0" layoutY="130.0" prefHeight="25.0" prefWidth="482.0" promptText="Søg..." />
+      <TextField fx:id="searchBar" layoutX="316.0" layoutY="130.0" prefHeight="25.0" prefWidth="482.0" promptText="Søg..." AnchorPane.leftAnchor="360.0" />
       <Button fx:id="searchButton" layoutX="819.0" layoutY="124.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Søg" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="tableView" layoutX="316.0" layoutY="184.0" prefHeight="679.0" prefWidth="985.0" />
-      <Button fx:id="logoutButton" layoutX="965.0" layoutY="806.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afslut og log ud" textFill="WHITE" AnchorPane.rightAnchor="60.0">
+      <TableView fx:id="tableView" layoutX="316.0" layoutY="184.0" prefHeight="679.0" prefWidth="953.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="287.0" />
+      <Button fx:id="logoutButton" layoutX="965.0" layoutY="806.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afslut og log ud" textFill="WHITE" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="770.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="selectProductionButton" layoutX="966.0" layoutY="263.0" mnemonicParsing="false" onAction="#selectProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Vælg produktion" textFill="WHITE" AnchorPane.rightAnchor="60.0">
+      <Button fx:id="selectProductionButton" layoutX="966.0" layoutY="263.0" mnemonicParsing="false" onAction="#selectProductionButtonHandler" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Vælg produktion" textFill="WHITE" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="270.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -46,12 +46,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="57.0" layoutY="43.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="40.0">
+      <Label layoutX="57.0" layoutY="43.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="40.0">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-      <Label layoutX="69.0" layoutY="81.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="80.0">
+      <Label layoutX="69.0" layoutY="81.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="22.0" />
          </font>
@@ -78,7 +78,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <VBox layoutX="9.0" layoutY="231.0" prefHeight="558.0" prefWidth="284.0">
+      <VBox layoutX="9.0" layoutY="231.0" prefHeight="558.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0">
          <children>
             <Button fx:id="myProductions" mnemonicParsing="false" onAction="#switchToProductions" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Dine produktioner" textFill="WHITE">
                <font>
