@@ -70,7 +70,7 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <TextField fx:id="searchTableButton" layoutX="690.0" layoutY="175.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." stylesheets="@../../style.css">
+      <TextField fx:id="searchTextField" layoutX="690.0" layoutY="175.0" prefHeight="40.0" prefWidth="200.0" promptText="Søg..." stylesheets="@../../style.css">
          <font>
             <Font size="20.0" />
          </font>

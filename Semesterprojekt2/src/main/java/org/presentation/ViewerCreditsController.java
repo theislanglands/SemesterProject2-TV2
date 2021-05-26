@@ -25,7 +25,7 @@ import java.util.List;
 public class ViewerCreditsController extends TableViewInitializer{
 
     public TableView tableViewProductions;
-    public TextField searchTableButton;
+    public TextField searchTextField;
 
     private Credit credit;
     public static Production productionChosen;
@@ -75,7 +75,7 @@ public class ViewerCreditsController extends TableViewInitializer{
 
         setTableViewProduction(tableViewProductions);
         addProductions(tableViewProductions, productionObservableList, tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId()));
-        activateProductionSearchbar(searchTableButton, productionObservableList, tableViewProductions);
+        activateProductionSearchbar(searchTextField, productionObservableList, tableViewProductions);
 
         activateDoubleClick();
         setPageCredit();
