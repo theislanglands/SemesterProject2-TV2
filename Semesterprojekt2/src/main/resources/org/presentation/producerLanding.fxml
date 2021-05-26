@@ -31,7 +31,7 @@
          </font>
       </Button>
       <TableView fx:id="tableView" layoutX="316.0" layoutY="184.0" prefHeight="679.0" prefWidth="985.0" />
-      <Button fx:id="logoutButton" layoutX="965.0" layoutY="806.0" mnemonicParsing="false" onAction="#switchToPrimary" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afslut og log ud" textFill="WHITE" AnchorPane.rightAnchor="60.0">
+      <Button fx:id="logoutButton" layoutX="965.0" layoutY="806.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="57.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="Afslut og log ud" textFill="WHITE" AnchorPane.rightAnchor="60.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -56,7 +56,7 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <MenuButton fx:id="bruger" layoutX="1104.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToViewer" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <MenuButton fx:id="bruger" layoutX="1104.0" layoutY="24.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="73.0" style="-fx-background-color: black;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#switchToViewer" text="Log ud" />
          </items>

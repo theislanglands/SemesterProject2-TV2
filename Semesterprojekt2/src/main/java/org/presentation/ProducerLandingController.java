@@ -64,6 +64,11 @@ public class ProducerLandingController {
         App.setRoot("addProduction");
     }
 
+    @FXML
+    public void switchToViewer(ActionEvent actionEvent) throws IOException {
+        App.setRoot("viewerLanding");
+    }
+
     private void setTableViewProduction() {
 
         tableView.getColumns().clear();

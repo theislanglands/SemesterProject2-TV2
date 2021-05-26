@@ -14,6 +14,7 @@ public class PrimaryController {
         App.setRoot("producerLanding");
     }
 
+    @FXML
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
         App.setRoot("viewerLanding");
     }
