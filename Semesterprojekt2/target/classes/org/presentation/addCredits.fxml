@@ -114,7 +114,7 @@
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Button fx:id="addCreditName" layoutX="315.0" layoutY="845.0" mnemonicParsing="false" onAction="#addPerson" prefHeight="37.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Person findes ikke" textFill="WHITE">
+      <Button fx:id="addCreditName" layoutX="315.0" layoutY="828.0" mnemonicParsing="false" onAction="#addPerson" prefHeight="37.0" prefWidth="182.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 15; -fx-border-width: 3;" text="+ Person findes ikke" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

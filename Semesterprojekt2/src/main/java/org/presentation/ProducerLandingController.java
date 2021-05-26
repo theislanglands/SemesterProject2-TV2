@@ -91,6 +91,9 @@ public class ProducerLandingController {
         TableColumn<Production, Date> col5 = new TableColumn<>("Udgivelses dato");
         col5.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
 
+        TableColumn<Production, String> col6 = new TableColumn<>("Er valideret");
+        col6.setCellValueFactory(new PropertyValueFactory<>("validation"));
+
         //adding columns to the tableview
         tableView.getColumns().clear();
         tableView.getColumns().add(col1);
@@ -98,6 +101,7 @@ public class ProducerLandingController {
         tableView.getColumns().add(col3);
         tableView.getColumns().add(col4);
         tableView.getColumns().add(col5);
+        tableView.getColumns().add(col6);
 
         //adding data to the table view
         tableView.getItems().addAll(productionObservableList);

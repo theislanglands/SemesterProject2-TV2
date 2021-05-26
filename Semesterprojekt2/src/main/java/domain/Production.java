@@ -142,6 +142,11 @@ public class Production {
     public void setValidated(boolean validated) {
         isValidated = validated;
     }
+    public String getValidation(){
+        if(isValidated){
+            return "Ja";
+        }else return "Nej";
+    }
 
     public int getSeason() {
         return season;

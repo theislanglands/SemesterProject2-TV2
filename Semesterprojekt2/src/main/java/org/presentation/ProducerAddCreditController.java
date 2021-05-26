@@ -106,7 +106,7 @@ public class ProducerAddCreditController {
 
             //save through singleton
             tvCreditsFacade.addCreditToProduction(credit);
-            
+
             //show it to user
 
             productionChosen.addCredit(credit);
