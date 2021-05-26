@@ -49,7 +49,7 @@
             <Image url="@Logo/Artboard-1.png" />
          </image>
       </ImageView>
-      <VBox layoutX="3.0" layoutY="203.0" prefHeight="623.0" prefWidth="284.0">
+      <VBox layoutX="3.0" layoutY="203.0" prefHeight="623.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="200.0">
          <children>
             <Button fx:id="adminLandingButton" mnemonicParsing="false" onAction="#switchToAdminLanding" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15;" text="Forside" textFill="WHITE">
                <font>
