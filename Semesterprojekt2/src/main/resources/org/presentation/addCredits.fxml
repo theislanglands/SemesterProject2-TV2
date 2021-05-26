@@ -92,7 +92,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewCredits" layoutX="994.0" layoutY="331.0" prefHeight="475.0" prefWidth="329.0">
+      <TableView fx:id="tableViewCredits" layoutX="994.0" layoutY="338.0" prefHeight="475.0" prefWidth="329.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
