@@ -31,12 +31,12 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="47.0" layoutY="33.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="40.0">
+      <Label layoutX="47.0" layoutY="33.0" prefHeight="54.0" prefWidth="126.0" text="10:20" textFill="WHITE" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="40.0">
          <font>
             <Font size="43.0" />
          </font>
       </Label>
-      <Label layoutX="59.0" layoutY="71.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="80.0">
+      <Label layoutX="59.0" layoutY="71.0" prefHeight="33.0" prefWidth="213.0" text="20 marts" textFill="WHITE" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="22.0" />
          </font>
@@ -46,7 +46,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <VBox layoutX="3.0" layoutY="203.0" prefHeight="331.0" prefWidth="284.0">
+      <VBox layoutX="3.0" layoutY="203.0" prefHeight="331.0" prefWidth="300.0" AnchorPane.leftAnchor="5.0">
          <children>
             <Button fx:id="adminLandingButton" mnemonicParsing="false" onAction="#switchToAdminLanding" prefHeight="57.0" prefWidth="313.0" style="-fx-background-color: black; -fx-border-radius: 15; -fx-text-alignment: left;" text="Forside" textFill="WHITE">
                <font>
@@ -75,7 +75,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <TableView fx:id="validationTableProductions" layoutX="354.0" layoutY="111.0" prefHeight="331.0" prefWidth="930.0" style="-fx-background-color: afafaf; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="360.0">
+      <TableView fx:id="validationTableProductions" layoutX="354.0" layoutY="111.0" prefHeight="331.0" prefWidth="954.0" style="-fx-background-color: afafaf; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="340.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
@@ -86,18 +86,18 @@
             <Image url="@Presentation/Logo/2.png" />
          </image>
       </ImageView>
-      <TableView fx:id="validationTableCredits" layoutX="362.0" layoutY="492.0" prefHeight="331.0" prefWidth="930.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="360.0">
+      <TableView fx:id="validationTableCredits" layoutX="362.0" layoutY="492.0" prefHeight="331.0" prefWidth="954.0" style="-fx-background-color: 000000; -fx-text-inner-color: ffffff;" AnchorPane.leftAnchor="340.0">
          <columns>
             <TableColumn prefWidth="75.0" text="C1" />
             <TableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TableView>
-      <Label fx:id="productionsTableHeader" layoutX="354.0" layoutY="72.0" text="Produktioner" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="80.0">
+      <Label fx:id="productionsTableHeader" layoutX="354.0" layoutY="72.0" text="Produktioner" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="creditsTableHeader" layoutX="354.0" layoutY="457.0" text="Krediteringer" textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="461.0">
+      <Label fx:id="creditsTableHeader" layoutX="354.0" layoutY="457.0" text="Krediteringer" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="461.0">
          <font>
             <Font size="24.0" />
          </font>
@@ -113,12 +113,12 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="showAllButton" layoutX="1010.0" layoutY="63.0" mnemonicParsing="false" onAction="#showAllButtonHandler" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Alle" textFill="WHITE" AnchorPane.leftAnchor="980.0">
+      <Button fx:id="showAllButton" layoutX="1010.0" layoutY="63.0" mnemonicParsing="false" onAction="#showAllButtonHandler" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 3;" text="Alle" textFill="WHITE" AnchorPane.leftAnchor="1010.0">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="selectValidateButton" layoutX="1090.0" layoutY="63.0" mnemonicParsing="false" onAction="#selectValidateButtonHandler" prefHeight="20.0" prefWidth="110.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 1;" text="Til validering" textFill="WHITE" AnchorPane.leftAnchor="1090.0">
+      <Button fx:id="selectValidateButton" layoutX="1090.0" layoutY="63.0" mnemonicParsing="false" onAction="#selectValidateButtonHandler" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-width: 1;" text="Validere" textFill="WHITE" AnchorPane.leftAnchor="1090.0">
          <font>
             <Font size="15.0" />
          </font>
