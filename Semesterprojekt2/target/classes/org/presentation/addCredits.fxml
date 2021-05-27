@@ -153,7 +153,7 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Label layoutX="355.0" layoutY="836.0" prefHeight="54.0" prefWidth="126.0" text="4." textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="820.0">
+      <Label layoutX="355.0" layoutY="836.0" prefHeight="54.0" prefWidth="25.0" text="4." textFill="WHITE" AnchorPane.leftAnchor="360.0" AnchorPane.topAnchor="820.0">
          <font>
             <Font size="17.0" />
          </font>

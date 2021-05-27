@@ -25,7 +25,7 @@
       <TextArea fx:id="title" layoutX="560.0" layoutY="166.0" prefHeight="12.0" prefWidth="391.0" promptText="Titel" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="170.0" />
       <TextArea fx:id="producent" layoutX="560.0" layoutY="223.0" prefHeight="12.0" prefWidth="391.0" promptText="Producent" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="230.0" />
       <TextArea fx:id="director" layoutX="560.0" layoutY="279.0" prefHeight="12.0" prefWidth="391.0" promptText="Instruktør" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="290.0" />
-      <Label layoutX="560.0" layoutY="101.0" prefHeight="54.0" prefWidth="218.0" text="Ny produktion" textFill="WHITE" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="100.0">
+      <Label layoutX="560.0" layoutY="101.0" prefHeight="54.0" prefWidth="235.0" text="Ny produktion" textFill="WHITE" AnchorPane.leftAnchor="560.0" AnchorPane.topAnchor="100.0">
          <font>
             <Font size="34.0" />
          </font>
