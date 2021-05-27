@@ -56,7 +56,7 @@ public abstract class TableViewInitializer {
                 } else return false;
             });
 
-            //Sorted list that is passed all objects of the filtered list. Dont know why
+            //Sorted list that is passed all objects of the filtered list.
             SortedList<Production> productionSortedList = new SortedList<>(productionFilteredList);
             //A filtered list is unmodifiable, so we need to transfer its values to a sorted list.
             productionSortedList.comparatorProperty().bind(tableViewProductions.comparatorProperty());
