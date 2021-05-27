@@ -253,7 +253,8 @@ public abstract class TableViewInitializer {
 
         TableColumn<Credit, String> col2 = new TableColumn<>("Efternavn");
         col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-
+        col2.setMinWidth(150);
+        
         TableColumn<Credit, String> col3 = new TableColumn<>("Rolle");
         col3.setCellValueFactory(new PropertyValueFactory<>("role"));
 

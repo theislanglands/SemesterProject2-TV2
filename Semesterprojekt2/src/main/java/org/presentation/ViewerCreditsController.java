@@ -73,6 +73,7 @@ public class ViewerCreditsController extends TableViewInitializer{
             ViewerProductionsController.creditChosen = null;
         }
 
+        //abstract class TableViewInitializer for shared functionality
         setTableViewProduction(tableViewProductions);
         addProductions(tableViewProductions, productionObservableList, tvCreditsFacade.getProductionsFromCreditName(credit.getCreditName().getId()));
         activateProductionSearchbar(searchTextField, productionObservableList, tableViewProductions);
@@ -81,6 +82,7 @@ public class ViewerCreditsController extends TableViewInitializer{
         setPageCredit();
     }
 
+    //sets the left side of the page with info about the credit in question
     private void setPageCredit() {
 
         textName.setText(credit.getFirstName());

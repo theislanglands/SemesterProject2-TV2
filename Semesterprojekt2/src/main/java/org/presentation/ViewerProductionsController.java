@@ -66,11 +66,14 @@ public class ViewerProductionsController extends TableViewInitializer {
             ViewerCreditsController.productionChosen = null;
         }
 
+        //abstract class TableViewInitializer for shared functionality
         setTableViewCredits(tableViewCredits);
         addCredits(production, creditObservableList, tableViewCredits);
         activateCreditSearchbar(textSearchBar, creditObservableList, tableViewCredits);
 
         activateDoubleClick();
+
+        //Sets info about the production of the left side of the window
         setPageProduction();
     }
 

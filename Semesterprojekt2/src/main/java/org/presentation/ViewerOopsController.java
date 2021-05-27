@@ -6,6 +6,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+
+//Controller used to catch clicks on yet to be implemented buttons
 public class ViewerOopsController {
 
     public TextField textSearchBar;

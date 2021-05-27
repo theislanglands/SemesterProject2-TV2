@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+
+//Viewer landing page. Shows Current/recently played shows on different channels
 public class ViewerLandingController {
 
 
