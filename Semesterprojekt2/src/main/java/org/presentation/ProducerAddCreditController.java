@@ -214,7 +214,12 @@ public class ProducerAddCreditController {
             System.out.println("creditname");
         }
 
-        if (typeChoiceBox.getValue().equals("")) {
+        if (roleTextField.getText() == null || roleTextField.getText().equals("")){
+            setMessage += "Tilføj rolle/funktion\n";
+            result = false;
+        }
+
+        if (typeChoiceBox.getValue() == null) {
             setMessage += "vælg krediteringstype\n";
             result = false;
             System.out.println("type");
@@ -222,6 +227,7 @@ public class ProducerAddCreditController {
 
 
         message.setText(setMessage);
+        message.setVisible(true);
         return result;
     }
 
