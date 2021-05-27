@@ -213,11 +213,7 @@ public class ProducerAddCreditController {
             result = false;
             System.out.println("creditname");
         }
-        if (roleTextField.getText().equals("")) {
-            setMessage += "udfyld rolle\n";
-            result = false;
-            System.out.println("role");
-        }
+        
         if (typeChoiceBox.getValue().equals("")) {
             setMessage += "vælg krediteringstype\n";
             result = false;
