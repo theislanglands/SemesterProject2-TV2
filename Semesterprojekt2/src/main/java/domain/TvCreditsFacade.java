@@ -187,7 +187,7 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     public void addCreditToProduction(Credit credit) {
         int productionId = credit.getProductionId();
-
+        invalidateProduction(getProduction(productionId));
         dataconnect.createCredits(credit, productionId);
     }
 

@@ -37,6 +37,8 @@ public class AdminController extends TableViewInitializer{
     private TvCreditsFacade tvCreditsFacade = TvCreditsFacade.getInstance();
     private ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
 
+    private boolean showAll = true;
+
     @FXML
     private void switchToPrimary() throws IOException {
         App.setRoot("primary");
@@ -134,12 +136,21 @@ public class AdminController extends TableViewInitializer{
 
 
     private void addCreditsToTable() {
-        validationTableCredits.getItems().clear();
 
-        for (Credit credit : productionChosen.getCredits()) {
-            validationTableCredits.getItems().add(credit);
+        if(showAll) {
+            validationTableCredits.getItems().clear();
+
+            for (Credit credit : productionChosen.getCredits()) {
+                validationTableCredits.getItems().add(credit);
+            }
+        }else{
+            validationTableCredits.getItems().clear();
+            for (Credit credit : tvCreditsFacade.getUnValidatedCredits(productionChosen.getId())) {
+                validationTableCredits.getItems().add(credit);
+            }
         }
     }
+
 
     public void deleteCreditButtonHandler(ActionEvent actionEvent) {
         // finding selected Credit in table
@@ -171,6 +182,7 @@ public class AdminController extends TableViewInitializer{
         showAllButton.setStyle("-fx-border-width: 1px; -fx-border-color: white; -fx-background-color: black");
         //Updates GUI
         addProductions(tvCreditsFacade.getUnValidatedProductions());
+        showAll = false;
         validateProductionButton.setDisable(false);
         validateAllCreditsButton.setDisable(false);
     }
@@ -182,6 +194,7 @@ public class AdminController extends TableViewInitializer{
         showAllButton.setStyle("-fx-border-width: 3px; -fx-border-color: white; -fx-background-color: black");
         addProductions(tvCreditsFacade.getAllProductions());
         //Disables all validateButtons
+        showAll=true;
         validateProductionButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
     }
