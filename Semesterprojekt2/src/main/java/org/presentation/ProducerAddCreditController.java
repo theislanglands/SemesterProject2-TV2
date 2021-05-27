@@ -120,6 +120,7 @@ public class ProducerAddCreditController {
             creditNameObservableList.remove(credit.getCreditName());
 
             tableViewCredits.getItems().setAll(creditObservableList);
+            tableViewCreditName.getItems().setAll(creditNameObservableList);
             clearFormFields();
         }
     }
