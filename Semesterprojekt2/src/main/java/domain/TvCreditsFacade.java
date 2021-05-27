@@ -88,7 +88,6 @@ public final class TvCreditsFacade implements TvCreditsInterface {
 
     @Override
     public boolean updateProduction(int productionID, Production replaceProduction) {
-
         if (dataconnect.updateProduction(productionID, replaceProduction) == true) {
             productions.add(productionID, replaceProduction);
             return true;
@@ -132,13 +131,11 @@ public final class TvCreditsFacade implements TvCreditsInterface {
                 prod = p;
             }
         }
-
         for (Credit c : prod.getCredits()) {
             if (!c.isValidated()) {
                 returnList.add(c);
             }
         }
-
         return returnList;
     }
 

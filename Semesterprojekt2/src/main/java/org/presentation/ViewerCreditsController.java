@@ -84,7 +84,6 @@ public class ViewerCreditsController extends TableViewInitializer{
 
     //sets the left side of the page with info about the credit in question
     private void setPageCredit() {
-
         textName.setText(credit.getFirstName());
         textSurname.setText(credit.getLastName());
         textPersonBio.setText(credit.getCreditName().getBio());
@@ -94,10 +93,7 @@ public class ViewerCreditsController extends TableViewInitializer{
         creditImage.setImage(new Image(credit.getImageUrl()));
     }
 
-
-
     private void activateDoubleClick() {
-
         tableViewProductions.setRowFactory(tv -> {
             TableRow<Production> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -114,9 +110,7 @@ public class ViewerCreditsController extends TableViewInitializer{
         });
     }
 
-
     public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
         App.setRoot("primary");
     }
-
 }

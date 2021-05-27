@@ -74,7 +74,6 @@ public class ViewerSearchController extends TableViewInitializer {
         textSearchBar.setText(landingSearch);
     }
 
-
     //activates the tableViews to allow doubleClick on cells to redirect to other page
     public void activateDoubleClick(){
         //production
@@ -115,5 +114,4 @@ public class ViewerSearchController extends TableViewInitializer {
     public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
         App.setRoot("primary");
     }
-
 }

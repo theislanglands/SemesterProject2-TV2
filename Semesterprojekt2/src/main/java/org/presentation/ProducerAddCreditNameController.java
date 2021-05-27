@@ -29,10 +29,8 @@ public class ProducerAddCreditNameController {
     private TvCreditsFacade tvCreditsFacade;
 
     public void initialize(){
-
         tvCreditsFacade = TvCreditsFacade.getInstance();
         message.setVisible(false);
-
     }
 
     public void saveCreditName(ActionEvent actionEvent) throws IOException {

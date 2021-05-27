@@ -24,17 +24,5 @@ public class PrimaryController {
         App.setRoot("administration");
     }
 
-    /*Bliver brugt senere med roller
-    @FXML
-    private void switchToAdministration() throws IOException {
-        App.setRoot("administration");
-    }
-
-    Bilver brugt senere med roller
-    @FXML
-    private void switchToViewer() throws IOException {
-        App.setRoot("viewer");
-    }*/
-
 
 }

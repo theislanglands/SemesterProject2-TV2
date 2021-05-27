@@ -115,11 +115,9 @@ public class ProducerLandingController {
 
 
     private void activateSearchbar() {
-
         //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
 
         FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
-
 
         //adding a listener to the searchBar
         //only newValue is used, not sure what the other 2 does

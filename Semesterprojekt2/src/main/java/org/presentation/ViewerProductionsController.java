@@ -70,7 +70,6 @@ public class ViewerProductionsController extends TableViewInitializer {
         setTableViewCredits(tableViewCredits);
         addCredits(production, creditObservableList, tableViewCredits);
         activateCreditSearchbar(textSearchBar, creditObservableList, tableViewCredits);
-
         activateDoubleClick();
 
         //Sets info about the production of the left side of the window
@@ -90,7 +89,6 @@ public class ViewerProductionsController extends TableViewInitializer {
         textProductionCompany.setText(production.getProductionCompanyName());
         textYear.setText(String.valueOf(production.getReleaseDate().getYear() + 1900));
 
-
         if(production.getImageUrl() != null){
             productionImage.setImage(new Image(production.getImageUrl()));
         }else{
@@ -98,10 +96,7 @@ public class ViewerProductionsController extends TableViewInitializer {
         }
     }
 
-
-
     private void activateDoubleClick(){
-
         tableViewCredits.setRowFactory(tv -> {
             TableRow<Credit> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -117,8 +112,6 @@ public class ViewerProductionsController extends TableViewInitializer {
             return row ;
         });
     }
-
-
 
     public void switchToPrimary(MouseEvent mouseEvent) throws IOException {
         App.setRoot("primary");

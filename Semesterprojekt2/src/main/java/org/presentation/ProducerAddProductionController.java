@@ -38,7 +38,6 @@ public class ProducerAddProductionController {
     TvCreditsFacade tvCreditsFacade;
 
     public void initialize(){
-
         //singleton obj
         tvCreditsFacade = TvCreditsFacade.getInstance();
 
@@ -56,8 +55,6 @@ public class ProducerAddProductionController {
                 languages) {
             languageDropdown.getItems().add(s);
         }
-        
-        //languageDropdown.getItems().add("Dansk");
     }
 
     private void setGenreDropdown() {
@@ -77,7 +74,6 @@ public class ProducerAddProductionController {
         for (String s : productionTypes) {
             typeDropdown.getItems().add(s);
         }
-
     }
 
     @FXML
@@ -120,7 +116,6 @@ public class ProducerAddProductionController {
             //sets language
             production.setLanguage((String) languageDropdown.getValue());
 
-
             //Sets genres from a dropdown through an array. This could be refactored in a method
             ArrayList<String> genres = new ArrayList<>();
             if (genreDropdown1.getValue() != null) {
@@ -133,7 +128,6 @@ public class ProducerAddProductionController {
                 genres.add((String) genreDropdown3.getValue());
             }
             production.setGenres(genres);
-
 
             if (subtitles.isSelected()) {
                 production.setSubtitle(true);
@@ -157,8 +151,6 @@ public class ProducerAddProductionController {
             App.setRoot("producerLanding");
         }
     }
-
-
 
     public void switchToPrimary(ActionEvent actionEvent) throws IOException{
         App.setRoot("primary");

@@ -9,7 +9,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,15 +17,12 @@ public abstract class TableViewInitializer {
 
     public void activateProductionSearchbar(TextField searchTextField, ObservableList productionObservableList, TableView tableViewProductions) {
 
-
         //These lists will contain all the objects from the "big" list (p/c ObservableList) that return true in the filter below
         FilteredList<Production> productionFilteredList = new FilteredList<>(productionObservableList, b -> true);
-
 
         //adding a listener to the searchBar
         //newValue is the current value in the TextField after a change happened.
         //oldValue is the value of the TextField just before the latest change
-
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             //this filters the productions based on the input
@@ -112,17 +108,11 @@ public abstract class TableViewInitializer {
 
     public void setTableViewProduction(TableView tableViewProductions){
 
-
-
         tableViewProductions.getColumns().clear();
         tableViewProductions.getItems().clear();
 
-
         //creates a new column in the TableView with header "ID", type Production and cellValue String
-        //TableColumn<Production, String> col1 = new TableColumn<>("ID");
         //deciding what values go in the cells. Here it calls production.getId() to find value for the cell
-        // col1.setCellValueFactory(new PropertyValueFactory<>("id"));
-
         TableColumn<Production, String> col2 = new TableColumn<>("Titel");
         col2.setCellValueFactory(new PropertyValueFactory<>("name"));
         col2.setMinWidth(200);
@@ -130,45 +120,24 @@ public abstract class TableViewInitializer {
         TableColumn<Production, Date> col3 = new TableColumn<>("Udgivelses Dato");
         col3.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
 
-//        TableColumn<Production, String> col4 = new TableColumn<>("Type");
-//        col4.setCellValueFactory(new PropertyValueFactory<>("productionType"));
-//        col4.setMinWidth(80);
-
         TableColumn<Production, String> col5 = new TableColumn<>("Episode");
         col5.setCellValueFactory(new PropertyValueFactory<>("episode"));
 
         TableColumn<Production, String> col6 = new TableColumn<>("Sæson");
         col6.setCellValueFactory(new PropertyValueFactory<>("season"));
 
-//        TableColumn<Production, String> col7 = new TableColumn<>("Længde");
-//        col7.setCellValueFactory(new PropertyValueFactory<>("length"));
 
-//        TableColumn<Production, String> col8 = new TableColumn<>("Sprog");
-//        col8.setCellValueFactory(new PropertyValueFactory<>("language"));
-
-//        TableColumn<Production, String> col9 = new TableColumn<>("Udgiver");
-//        col9.setCellValueFactory(new PropertyValueFactory<>("productionCompanyName"));
-
-        //adding columns to the tableview
-        // tableViewProductions.getColumns().add(col1);
         tableViewProductions.getColumns().add(col2);
         tableViewProductions.getColumns().add(col3);
-//        tableViewProductions.getColumns().add(col4);
         tableViewProductions.getColumns().add(col5);
         tableViewProductions.getColumns().add(col6);
-//        tableViewProductions.getColumns().add(col7);
-//        tableViewProductions.getColumns().add(col8);
-//        tableViewProductions.getColumns().add(col9);
-
 
     }
 
     public void setTableViewProductionBig(TableView tableViewProductions){
 
-
         tableViewProductions.getColumns().clear();
         tableViewProductions.getItems().clear();
-
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
         TableColumn<Production, String> col1 = new TableColumn<>("ID");
@@ -211,8 +180,6 @@ public abstract class TableViewInitializer {
         tableViewProductions.getColumns().add(col7);
         tableViewProductions.getColumns().add(col8);
         tableViewProductions.getColumns().add(col9);
-
-
     }
 
     public void addProductions(TableView tableViewProductions, ObservableList productionObservableList, List<Production> productions){
@@ -224,10 +191,7 @@ public abstract class TableViewInitializer {
             if(prod.isValidated()){
                 productionObservableList.add(prod);
             }
-
         }
-        //productionObservableList.addAll(productionList);
-
         tableViewProductions.setItems(productionObservableList);
     }
 
@@ -238,7 +202,6 @@ public abstract class TableViewInitializer {
 
         tableViewCredits.getColumns().clear();
         tableViewCredits.getItems().clear();
-
 
         //creates a new column in the TableView with header "ID", type Production and cellValue String
         TableColumn<Credit, String> col1 = new TableColumn<>("Fornavn");
@@ -263,7 +226,6 @@ public abstract class TableViewInitializer {
         tableViewCredits.getColumns().add(col2);
         tableViewCredits.getColumns().add(col3);
         tableViewCredits.getColumns().add(col4);
-
     }
 
     public void addCredits(Production production, ObservableList creditObservableList, TableView tableViewCredits) {
@@ -291,7 +253,6 @@ public abstract class TableViewInitializer {
                         credits.add(cred);
                     }
                 }
-                //credits.addAll(prod.getCredits());
             }
         }
         //adding to the master list

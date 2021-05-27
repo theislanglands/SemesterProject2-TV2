@@ -107,7 +107,6 @@ public class DataFacade implements DataLayerInterface {
             stmt1.setString(10, prod.getProductionBio());
 
             // inserting foreign keys
-
             int productionCompanyId = getProdCompanyId(prod.getProductionCompanyName());
 
             if(productionCompanyId>0){
@@ -115,7 +114,6 @@ public class DataFacade implements DataLayerInterface {
             }else{
                 stmt1.setInt(11, createProductionCompany(prod.getProductionCompanyName()));
             }
-
 
             stmt1.setInt(12, getProdTypeId(prod.getProductionType()));
             stmt1.setInt(13, getLanguageId(prod.getLanguage()));
@@ -125,8 +123,6 @@ public class DataFacade implements DataLayerInterface {
             if (productionNameId == -1) { // if production name doesn't exist - create a new one, return id.
                 productionNameId = createProductionName(prod.getName());
             }
-
-
 
             stmt1.setInt(14, productionNameId);
 
@@ -153,10 +149,8 @@ public class DataFacade implements DataLayerInterface {
                 stmt2.execute();
                 stmt2.close();
             }
-
             // commit changes to db.
             connection.commit();
-
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
@@ -172,12 +166,10 @@ public class DataFacade implements DataLayerInterface {
                 }
             }
         }
-
         return productionId;
     }
 
     private int createProductionCompany(String productionCompany) {
-
         // returns - 1 if exist
         int productionCompanyId = -1;
 
@@ -190,7 +182,6 @@ public class DataFacade implements DataLayerInterface {
             );
 
             stmt.setString(1, productionCompany);
-
             stmt.execute();
 
             // retrieves id of inserted creditName
@@ -204,7 +195,6 @@ public class DataFacade implements DataLayerInterface {
             throwable.printStackTrace();
         }
         return productionCompanyId;
-
     }
 
     @Override
@@ -226,7 +216,6 @@ public class DataFacade implements DataLayerInterface {
             ex.printStackTrace();
             return null;
         }
-
         return productions;
     }
 
@@ -284,14 +273,12 @@ public class DataFacade implements DataLayerInterface {
                 returnProduction.setProductionBio(sqlReturnValues.getString(15));
                 returnProduction.setImageUrl((sqlReturnValues.getString(16)));
             }
-
             stmt.close();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             return null;
         }
-
         // setting arrays: genres & credits by calling helper methods.
         returnProduction.setGenres((ArrayList<String>) getGenres(productionId));
         returnProduction.setCredits((ArrayList<Credit>) getCredits(productionId));
@@ -317,7 +304,6 @@ public class DataFacade implements DataLayerInterface {
 
     @Override
     public boolean updateProduction(int sourceProductionId, Production replaceProduction) {
-
         // returns true if succesful
 
         try {
@@ -383,11 +369,9 @@ public class DataFacade implements DataLayerInterface {
 
                 stmt3.setInt(1, getGenreId(genre));
                 stmt3.setInt(2, sourceProductionId);
-
                 stmt3.execute();
                 stmt3.close();
             }
-
             connection.commit();
 
         } catch (SQLException ex) {
@@ -427,7 +411,6 @@ public class DataFacade implements DataLayerInterface {
                 productions.add(getProduction(sqlReturnValues.getInt(1)));
             }
             stmt.close();
-
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -483,9 +466,9 @@ public class DataFacade implements DataLayerInterface {
             stmt2.execute();
             stmt2.close();
 
-
             connection.commit();
 
+            //if a credit is created make sure the production is invalidated
             invalidateProduction(productionId);
 
         } catch (SQLException throwable) {
@@ -519,11 +502,9 @@ public class DataFacade implements DataLayerInterface {
                 int readID = resultSet.getInt(1);
                 returnCredits.add(getCredit(readID));
             }
-
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return returnCredits;
     }
 
@@ -581,13 +562,11 @@ public class DataFacade implements DataLayerInterface {
                 returnCredit.setProductionId(resultSet.getInt(12));
                 returnCredit.setImageUrl(resultSet.getString(13));
             }
-
             stmt.close();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return returnCredit;
     }
 
@@ -758,7 +737,6 @@ public class DataFacade implements DataLayerInterface {
                 creditName.setCountry(resultSet.getString(8));
                 creditName.setBio(resultSet.getString(9));
             }
-
             return creditName;
 
         } catch (SQLException throwables) {
@@ -947,7 +925,6 @@ public class DataFacade implements DataLayerInterface {
     // CreditType
     @Override
     public List<String> getAllCreditTypes() {
-
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT * FROM credit_type");
             ResultSet sqlReturnValues = stmt.executeQuery();

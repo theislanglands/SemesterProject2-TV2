@@ -29,7 +29,4 @@ public class AdminLandingController {
     public void switchToViewer(ActionEvent actionEvent) throws IOException {
         App.setRoot("viewerLanding");
     }
-
-
-
 }

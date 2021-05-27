@@ -142,6 +142,7 @@ public class Production {
     public void setValidated(boolean validated) {
         isValidated = validated;
     }
+
     public String getValidation(){
         if(isValidated){
             return "Ja";
@@ -179,9 +180,6 @@ public class Production {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-
-
 
 
     //toString method

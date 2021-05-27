@@ -24,20 +24,20 @@ public class ProducerAddCreditController {
     public Button saveCreditButton;
     public Label message;
 
-    public TextField lastnameTextField;
-    public TextField firstnameTextField;
     public TextField productionRefText;
     public TextField roleTextField;
-    //public ListView listViewCredits;
     public ChoiceBox typeChoiceBox;
+
     public TableView tableViewCredits;
-    public Button addCreditName;
     public TableView tableViewCreditName;
+
     public TextField searchFieldCreditName;
 
+    public Button addCreditName;
 
     private TvCreditsFacade tvCreditsFacade;
     private Production productionChosen;
+
     private ObservableList<Credit> creditObservableList = FXCollections.observableArrayList();
     private ObservableList<CreditName> creditNameObservableList = FXCollections.observableArrayList();
 
@@ -46,23 +46,21 @@ public class ProducerAddCreditController {
         productionChosen = ProducerLandingController.getProductionChosen();
 
         creditObservableList.setAll(productionChosen.getCredits());
-
-
         creditNameObservableList.setAll(tvCreditsFacade.getAllCreditNames());
 
+        //removes people from creditNameList if they are already credited on the produktion
         removeExisting();
 
-        productionRefText.setText((productionChosen.getProductionReference()));
         //sets types from database
         typeChoiceBox.getItems().setAll(tvCreditsFacade.getCreditTypes());
+        productionRefText.setText((productionChosen.getProductionReference()));
 
+        //used to show the user when incomplete input
         message.setVisible(false);
 
         setTableViewCredits();
         setTableViewCreditNames();
         activateSearchbar();
-
-
     }
 
     private void removeExisting() {
@@ -71,7 +69,6 @@ public class ProducerAddCreditController {
                 creditObservableList) {
             existingCreditNames.add(cred.getCreditName().getId());
         }
-
         creditNameObservableList.removeIf(element -> (existingCreditNames.contains(element.getId())));
     }
 
@@ -95,7 +92,6 @@ public class ProducerAddCreditController {
         App.setRoot("producerAddCreditName");
     }
 
-
     public void addCredit(ActionEvent actionEvent) {
 
         if (checkFormFields()) {
@@ -113,12 +109,11 @@ public class ProducerAddCreditController {
             //save through singleton
             tvCreditsFacade.addCreditToProduction(credit);
 
-            //show it to user
-
             productionChosen.addCredit(credit);
             creditObservableList.add(credit);
             creditNameObservableList.remove(credit.getCreditName());
 
+            //show it to user
             tableViewCredits.getItems().setAll(creditObservableList);
             tableViewCreditName.getItems().setAll(creditNameObservableList);
             clearFormFields();
@@ -137,9 +132,6 @@ public class ProducerAddCreditController {
         tableViewCredits.getItems().setAll(creditObservableList);
     }
 
-    public void saveCredits(ActionEvent actionEvent) {
-
-    }
 
     private void setTableViewCredits() {
 
@@ -205,7 +197,6 @@ public class ProducerAddCreditController {
 
     private boolean checkFormFields() {
 
-
         boolean result = true;
         String setMessage = "";
         // Checks if all fields are complete and sets message if not
@@ -224,9 +215,6 @@ public class ProducerAddCreditController {
             System.out.println("creditname");
         }
 
-
-
-
         message.setText(setMessage);
         message.setVisible(true);
         return result;
@@ -237,14 +225,12 @@ public class ProducerAddCreditController {
         roleTextField.setText("");
         typeChoiceBox.setValue("");
         searchFieldCreditName.setText("");
-
     }
 
     private void activateSearchbar() {
 
         //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
         FilteredList<CreditName> creditNameFilteredList = new FilteredList<>(creditNameObservableList, b -> true);
-
 
         //adding a listener to the searchBar
         //only newValue is used, not sure what the other 2 does
@@ -277,7 +263,6 @@ public class ProducerAddCreditController {
                         return true;
                     } else return false;
                 }else return false;
-
             });
 
             //Sorted list that is passed all objects of the filtered list. Dont know why
@@ -286,11 +271,8 @@ public class ProducerAddCreditController {
             creditNameSortedList.comparatorProperty().bind(tableViewCreditName.comparatorProperty());
             //adding the filtered objects to the listview
 
-
             tableViewCreditName.setItems(creditNameSortedList);
 
         });
     }
-
-
 }

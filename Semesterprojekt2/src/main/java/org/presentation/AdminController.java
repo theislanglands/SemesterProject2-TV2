@@ -68,14 +68,10 @@ public class AdminController extends TableViewInitializer{
 
         setTableViewProductionBig(validationTableProductions);
         addProductions(tvCreditsFacade.getAllProductions());
-
-
         activateDoubleClick();
 
         validateProductionButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
-
-
     }
 
     // ACTION HANDLERS!
@@ -119,9 +115,6 @@ public class AdminController extends TableViewInitializer{
         });
     }
 
-
-
-
     private void addProductions(List<Production> productionList) {
         //Clears the tables
         validationTableProductions.getItems().clear();
@@ -132,8 +125,6 @@ public class AdminController extends TableViewInitializer{
             validationTableProductions.getItems().add(prod);
         }
     }
-
-
 
     private void addCreditsToTable() {
 
@@ -150,7 +141,6 @@ public class AdminController extends TableViewInitializer{
             }
         }
     }
-
 
     public void deleteCreditButtonHandler(ActionEvent actionEvent) {
         // finding selected Credit in table
@@ -175,30 +165,35 @@ public class AdminController extends TableViewInitializer{
     }
 
     public void selectValidateButtonHandler(ActionEvent actionEvent) {
+        showAll = false;
+
         //Allows user to select multiple credits in the creditTable
         validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         //Changes the titles for production and credit headers
         selectValidateButton.setStyle("-fx-border-width: 3px; -fx-border-color: white; -fx-background-color: black");
         showAllButton.setStyle("-fx-border-width: 1px; -fx-border-color: white; -fx-background-color: black");
+
         //Updates GUI
         addProductions(tvCreditsFacade.getUnValidatedProductions());
-        showAll = false;
+
         validateProductionButton.setDisable(false);
         validateAllCreditsButton.setDisable(false);
     }
 
     public void showAllButtonHandler(ActionEvent actionEvent) {
+        showAll=true;
+
         //Allows user to select only one credit in the creditTable
         validationTableCredits.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         selectValidateButton.setStyle("-fx-border-width: 1px; -fx-border-color: white; -fx-background-color: black");
         showAllButton.setStyle("-fx-border-width: 3px; -fx-border-color: white; -fx-background-color: black");
         addProductions(tvCreditsFacade.getAllProductions());
+
         //Disables all validateButtons
-        showAll=true;
         validateProductionButton.setDisable(true);
         validateAllCreditsButton.setDisable(true);
     }
-
 
     @FXML
     public void validateCreditButtonHandler(ActionEvent event) {

@@ -44,7 +44,7 @@ public interface DataLayerInterface {
 
     // FUTURE ITERATIONS - System Admin Functionality
     /*
-    // User
+    User
     void createUser(User user);
     List<User> getUser();
     User getUser(int userID);
