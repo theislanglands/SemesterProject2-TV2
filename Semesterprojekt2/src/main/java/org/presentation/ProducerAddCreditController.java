@@ -208,22 +208,22 @@ public class ProducerAddCreditController {
         boolean result = true;
         String setMessage = "";
         // Checks if all fields are complete and sets message if not
+        if (typeChoiceBox.getValue() == null) {
+            setMessage += "Vælg krediteringstype\n";
+            result = false;
+            System.out.println("type");
+        }
+        if (roleTextField.getText() == null || roleTextField.getText().equals("")){
+            setMessage += "Tilføj rolle/funktion\n";
+            result = false;
+        }
         if (tableViewCreditName.getSelectionModel().getSelectedItem() == null) {
             setMessage += "Vælg person på listen\n";
             result = false;
             System.out.println("creditname");
         }
 
-        if (roleTextField.getText() == null || roleTextField.getText().equals("")){
-            setMessage += "Tilføj rolle/funktion\n";
-            result = false;
-        }
 
-        if (typeChoiceBox.getValue() == null) {
-            setMessage += "vælg krediteringstype\n";
-            result = false;
-            System.out.println("type");
-        }
 
 
         message.setText(setMessage);
