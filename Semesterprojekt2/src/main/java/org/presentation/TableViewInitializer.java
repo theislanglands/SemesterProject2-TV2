@@ -71,8 +71,6 @@ public abstract class TableViewInitializer {
         //These lists will contain all the objects from the "big" list (p/cObservableList) that return true in the filter below
         FilteredList<Credit> creditFilteredList = new FilteredList<>(creditObservableList, b -> true);
 
-
-
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
 
             //this filters the productions based on the input
@@ -82,12 +80,10 @@ public abstract class TableViewInitializer {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
                 String searchStringLowerCase = newValue.toLowerCase();
 
                 //These check if the value of the object matches the search string
                 //if they match they return true, which means they are added to the filtered list
-
                 if(credit.getFirstName().toLowerCase().contains(searchStringLowerCase)){
                     return true;
                 }
@@ -104,8 +100,7 @@ public abstract class TableViewInitializer {
                     return false;
                 }
             });
-
-            //Sorted list that is passed all objects of the filtered list. Dont know why
+            //Sorted list that is passed all objects of the filtered list.
             SortedList<Credit> productionSortedList = new SortedList<>(creditFilteredList);
 
             productionSortedList.comparatorProperty().bind(tableViewCredits.comparatorProperty());
@@ -254,7 +249,7 @@ public abstract class TableViewInitializer {
         TableColumn<Credit, String> col2 = new TableColumn<>("Efternavn");
         col2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         col2.setMinWidth(150);
-        
+
         TableColumn<Credit, String> col3 = new TableColumn<>("Rolle");
         col3.setCellValueFactory(new PropertyValueFactory<>("role"));
 
@@ -269,7 +264,6 @@ public abstract class TableViewInitializer {
         tableViewCredits.getColumns().add(col3);
         tableViewCredits.getColumns().add(col4);
 
-
     }
 
     public void addCredits(Production production, ObservableList creditObservableList, TableView tableViewCredits) {
@@ -280,11 +274,8 @@ public abstract class TableViewInitializer {
             if(cred.isValidated()){
                 creditObservableList.add(cred);
             }
-
         }
-
         tableViewCredits.setItems(creditObservableList);
-
     }
 
     public void addAllCredits(TableView tableViewCredits, ObservableList creditObservableList, List<Production> productions){
