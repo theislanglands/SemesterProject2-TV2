@@ -483,7 +483,10 @@ public class DataFacade implements DataLayerInterface {
             stmt2.execute();
             stmt2.close();
 
+
             connection.commit();
+
+            invalidateProduction(productionId);
 
         } catch (SQLException throwable) {
             throwable.printStackTrace();
