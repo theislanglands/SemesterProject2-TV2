@@ -24,7 +24,7 @@ public interface TvCreditsInterface {
     void deleteProduction(Production production);
 
     // Credits
-    void addCredit(Credit credit);
+    void addCreditToProduction(Credit credit);
     void deleteCredit(Credit credit);
     List<Credit> getUnValidatedCredits(int productionsId);
 

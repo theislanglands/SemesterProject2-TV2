@@ -156,22 +156,6 @@ public final class TvCreditsFacade implements TvCreditsInterface {
     }
 
     @Override
-    public void addCredit(Credit credit) {
-        int productionId = credit.getProductionId();
-
-        // finding production
-        for (Production prod : productions) {
-            if (prod.getId() == productionId) {
-                prod.addCredit(credit);
-                System.out.println("added to" + prod.getName());
-                // updating database
-                dataconnect.updateProduction(productionId, prod);
-                break;
-            }
-        }
-    }
-
-    @Override
     public void deleteCredit(Credit credit) {
 
         for (Production prod : productions) {
@@ -182,8 +166,18 @@ public final class TvCreditsFacade implements TvCreditsInterface {
         }
     }
 
+    @Override
     public void addCreditToProduction(Credit credit) {
         int productionId = credit.getProductionId();
+
+        for (Production prod :
+                productions) {
+            if(prod.getId() == productionId){
+                prod.addCredit(credit);
+                break;
+            }
+        }
+
         invalidateProduction(getProduction(productionId));
         dataconnect.createCredits(credit, productionId);
     }
