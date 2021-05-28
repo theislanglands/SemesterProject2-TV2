@@ -54,6 +54,7 @@ public class ProducerAddCreditController {
         //sets types from database
         typeChoiceBox.getItems().setAll(tvCreditsFacade.getCreditTypes());
         productionRefText.setText((productionChosen.getProductionReference()));
+        productionRefText.setEditable(false);
 
         //used to show the user when incomplete input
         message.setVisible(false);
