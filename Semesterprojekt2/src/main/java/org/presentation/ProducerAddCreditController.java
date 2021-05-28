@@ -108,8 +108,7 @@ public class ProducerAddCreditController {
 
             //save through singleton
             tvCreditsFacade.addCreditToProduction(credit);
-
-            productionChosen.addCredit(credit);
+            
             creditObservableList.add(credit);
             creditNameObservableList.remove(credit.getCreditName());
 
