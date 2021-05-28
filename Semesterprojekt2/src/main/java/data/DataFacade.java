@@ -1149,7 +1149,6 @@ public class DataFacade implements DataLayerInterface {
 
     private int getCreditId(int productionId, Credit credit) {
         int Id = credit.getProductionId();
-        System.out.println("prod id " + Id);
 
         try {
             PreparedStatement stmt = connection.prepareStatement("SELECT id FROM credit WHERE role = ? AND production_id = ?");
@@ -1161,7 +1160,7 @@ public class DataFacade implements DataLayerInterface {
             // checks if the ResultSet is empty and returns -1 if that's the case
             while (resultSet.next()) {
                 returnInt = resultSet.getInt(1);
-                System.out.println("credit ID " + returnInt);
+
             }
             return returnInt;
 

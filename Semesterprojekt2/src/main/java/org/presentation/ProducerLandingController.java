@@ -167,7 +167,6 @@ public class ProducerLandingController {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Production rowData = row.getItem();
-                    System.out.println("Double clock on: " + rowData.getName());
                     productionChosen = rowData;
                     try {
                         App.setRoot("addCredits");
